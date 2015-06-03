@@ -12,3 +12,10 @@ Brief description
 File contents
 =============
 
+
+Contributors
+============
+
+Gregory Soyez
+Jesse Thaler
+
