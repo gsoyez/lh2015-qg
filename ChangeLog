@@ -1,5 +1,8 @@
 2015-06-03  Gregory Soyez  <soyez@fastjet.fr>
 
+	* Shapes.cc (fastjet_shapes):
+	fixed typo in the switch to scalar pt
+
 	* README.md:
 	added a description of the first ee and pp studies to implement as
 	Rivet routines

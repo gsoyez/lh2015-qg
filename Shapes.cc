@@ -71,7 +71,7 @@ namespace fastjet_shapes{
         scalar_pt += pt;
         sum += pow(pt, _kappa) * pow(axis.squared_distance(p), _half_beta);
       }
-      sum /= pow(sclar_pt, _kappa) * pow(_R,_beta);
+      sum /= pow(scalar_pt, _kappa) * pow(_R,_beta);
     } else {
       // then handle the E_theta case (ee collisions)
       for(unsigned int i=0; i<n; i++){
