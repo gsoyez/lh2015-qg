@@ -1,6 +1,6 @@
 // $Id$
 //
-// Copyright (c) 2015-, Gregory Soyez
+// Copyright (c) 2015-, Gregory Soyez & Jesse Thaler
 //
 //----------------------------------------------------------------------
 // This file is originally part of the work done in the context of
