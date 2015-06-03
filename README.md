@@ -5,6 +5,15 @@ This repository, currently under development, contains shared software
 for the quark-gluon studies done in the context of the [Physics at TeV
 colliders workshop](http://phystev.cnrs.fr/) in June 2015.
 
+A wiki page with our progress is here:
+
+http://phystev.cnrs.fr/wiki/2015:groups:sm:qg
+
+This github repository is hosted here:
+
+https://github.com/gsoyez/lh2015-qg
+
+
 Brief description
 =================
 
@@ -47,4 +56,4 @@ Contributors
 
 Gregory Soyez
 Jesse Thaler
-
+...
