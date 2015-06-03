@@ -1,5 +1,12 @@
 2015-06-03  Gregory Soyez  <soyez@fastjet.fr>
 
+	* README.md:
+	added a description of the first ee and pp studies to implement as
+	Rivet routines
+
+	* Shapes.{hh,cc}:
+	added Jesse as an author of this
+
 	* Shapes.{hh,cc}:         *** ADDED ***
 	added a file containing basic shapes inplementation.
 	So far only GeneralisedAngularity
