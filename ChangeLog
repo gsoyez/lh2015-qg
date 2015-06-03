@@ -1,0 +1,12 @@
+2015-06-03  Gregory Soyez  <soyez@fastjet.fr>
+
+	* Shapes.{hh,cc}:         *** ADDED ***
+	added a file containing basic shapes inplementation.
+	So far only GeneralisedAngularity
+
+	Shapes live in the fastjet_shapes namespace to reflect the fact
+	that they are implemented a fastjet::FunctionOfPseudoJet<double>
+	objects (defined as fastjet_shapes::Shape here)
+
+
+

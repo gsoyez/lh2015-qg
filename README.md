@@ -12,6 +12,8 @@ Brief description
 File contents
 =============
 
+- Shapes.{hh,cc}: contains (FastJet-style) implementation of useful
+  jet shapes (only GeneralisedAngularity so far)
 
 Contributors
 ============
