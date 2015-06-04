@@ -1,5 +1,9 @@
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
+	* README.md:
+	added a few items concerning processes and setuops to run [+items
+	for discussion]
+
 	* MC_LHQG_EE.cc:                    *** ADDED ***
 	Added a Rivet analysis for the ee studies
 	It is mostly based on Deepak's MC_LHQG.cc analysis with a few

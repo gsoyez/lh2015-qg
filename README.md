@@ -73,6 +73,16 @@ Parameters:
  - R [default 0.6]
  - Emin [default 400 for asqrts=1 TeV]
 
+Processes to consider:
+ - Zprime to qqbar [or separate Zprime to uds and Zprime to b]
+ - Higgs to gg
+ - Do we want a common object decaying either to uds, or to b or to g?
+   Is there sth that can be common to Pythia, Vincia and Herwig++]
+
+Energies [GeV]:
+ - 1st batch: 50, 200, 1000
+ - 2nd batch: 100, 500, 2000, 5000
+
 File contents
 -------------
 
