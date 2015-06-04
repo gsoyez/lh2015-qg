@@ -174,7 +174,7 @@ The standard way to quantify discrimination power is through ROC curves.  At a p
 \{q^{\rm rej}_{50} ,  q^{\rm rej}_{20}\} : \quad & \text{Quark rejection rate at \{50\%, 20\%\} gluon efficiency}; \\
 s^{\rm rej} : \quad & \text{Symmetric rejection rate at $s^{\rm rej}$ efficiency}.
 \end{align}
-For all of these measures, $x^{\rm rej} \in [\frac{1}{2},1]$, where $\frac{1}{2}$ corresponds to no discrimination and $1$ corresponds to optimal discrimination.
+For all of these measures, $x^{\rm rej} \in [\frac{1}{2},1]$, where $\frac{1}{2}$ corresponds to no discrimination and $1$ corresponds to optimal discrimination.  To assign statistical errors to these quantities in Monte Carlo, we make the simplifying assumption that the uncertainty is only due to Poisson statistics on the $x^{\rm rej}$ value.
 
 \begin{figure}
 \centering
@@ -206,27 +206,20 @@ which equals $1$ for $f = \frac{1}{2}$.
 
 The choice $f = 1/2$ was used in \Ref{Larkoski:2014pca}, $I(T;A)\big|_{f = \frac{1}{2}} \equiv I_{\frac{1}{2}}$, though other $f$ choices are plausible.  The first derivative at $f = 1/2$ is not particularly enlightening, but the second derivative is sometimes referred to as the classifier separation:
 \be
-- \frac{\log 2}{4} \frac{\partial^2 I(T;A)}{\partial f^2} \Big|_{f = \frac{1}{2}} \equiv I''_\frac{1}{2} = \frac{1}{2} \int \df a \frac{\left(p_q(a) - p_g(a)\right)^2}{p_q(a) + p_g(a)}.
+- \frac{\log 2}{4} \frac{\partial^2 I(T;A)}{\partial f^2} \Big|_{f = \frac{1}{2}} \equiv I''_\frac{1}{2} = \frac{1}{2} \int \df a \, \frac{\left(p_q(a) - p_g(a)\right)^2}{p_q(a) + p_g(a)},
 \ee
-At $f = 0$ and $f = 1$, the mutual information itself is zero, but the derivatives are related to other concepts in statistics:
+where the normalization has been set such that $I''_\frac{1}{2} \in [0,1]$.  At $f = 0$ and $f = 1$, the mutual information itself is zero, but the derivatives are related to other concepts in statistics:
 \be
 \frac{\partial I}{\partial f} \Big|_{f = 0} \equiv I'_0 = \int \df a \, p_q(a)  \log_2 \frac{p_q(a)}{p_g(a)}, \qquad - \log 2 \,  \frac{\partial^2 I}{\partial f^2} \Big|_{f = 0} \equiv I''_0 = \int \df a \,  \frac{p_q(a)^2}{p_g(a)},
 \ee
 \be
 - \frac{\partial I}{\partial f} \Big|_{f = 1} \equiv I'_1 = \int \df a \, p_g(a) \log_2 \frac{p_g(a)}{p_q(a)}, \qquad - \log 2 \, \frac{\partial^2 I}{\partial f^2} \Big|_{f = 1} \equiv I''_1 = \int \df a \, \frac{p_g(a)^2}{p_q(a)}.
 \ee
-The first derivative is sometimes called relative entropy and the second derivative is sometimes called discrimination significance.  We will quote all six of the above values, visualized in \Fig{fig:truth_overlap}:
+The first derivative is sometimes called relative entropy and the second derivative is sometimes called discrimination significance.  However, all of these quantities become singular if the probability distribution is zero, so we will only quote the values at $f = \frac{1}{2}$, visualized in \Fig{fig:truth_overlap}:
 \be
-\{I_\frac{1}{2}, I''_{\frac{1}{2}}, I'_0, I''_0, I'_1, I''_1 \},
+\{I_\frac{1}{2}, I''_{\frac{1}{2}} \}.
 \ee
-
-
-
-
-
-
-
-
+To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(T;A)$ in bins of $a$ and use Poisson statistics.  Note that there is a binning bias in $I_\frac{1}{2}$, so we use the method explained in Appendix A.3 of \Ref{Larkoski:2014pca} and use half the $\Delta a$ bin size on the combined quark/gluon sample compared to the individual quark/gluon samples.
 
 
 \bibliographystyle{JHEP}
