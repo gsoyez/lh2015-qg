@@ -79,9 +79,9 @@ Processes to consider:
  - Do we want a common object decaying either to uds, or to b or to g?
    Is there sth that can be common to Pythia, Vincia and Herwig++]
 
-Energies [GeV]:
- - 1st batch: 50, 200, 1000
- - 2nd batch: 100, 500, 2000, 5000
+Energies [GeV]: (Q=sqrts)
+ - 1st batch: 50, 200, 800
+ - 2nd batch: 100, 500, 1600, 3200
 
 File contents
 -------------
