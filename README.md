@@ -74,10 +74,31 @@ Parameters:
  - Emin [default 400 for asqrts=1 TeV]
 
 File contents
-=============
+-------------
 
 - Shapes.{hh,cc}: contains (FastJet-style) implementation of useful
   jet shapes (only GeneralisedAngularity so far)
+
+- MC_LHQG_EE.cc  Rivet Analysis for the e+e- studies
+
+- MC_LHQG.cc     Rivet Analysis for the pp studies
+
+Getting Rivet to run
+--------------------
+
+- source ${rivet_path}/rivetenv.(c)sh
+- build the analysis using
+   rivet-buildplugin RivetMC_LHQG.so MC_LHQG.cc MC_LHQG_EE.cc
+- set the current directory in the Rivet analyses path by including . in 
+  the RIVET_ANALYSIS_PATH environment variable
+
+- Running Rivet:
+   > mkfifo fifo.hepmc
+   > my-generator --num-events=500000 --hepmc-output=fifo.hepmc &
+   > rivet --analysis=ANALYSIS_NAME fifo.hepmc -H output.yoda
+
+- create the plots
+   > rivet-mkhtml output1.yoda output2.yoda ...
 
 Contributors
 ============

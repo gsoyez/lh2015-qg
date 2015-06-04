@@ -1,3 +1,13 @@
+2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_EE.cc:                    *** ADDED ***
+	Added a Rivet analysis for the ee studies
+	It is mostly based on Deepak's MC_LHQG.cc analysis with a few
+	fixes (see later entries above) and using directly FastJet to use
+	ee anti-kt with the WTA axes.
+	The code should automatically adjust the energy threshold for the
+	jets to 0.4*Q.
+
 2015-06-03  Gregory Soyez  <soyez@fastjet.fr>
 
 	* Shapes.cc (fastjet_shapes):
