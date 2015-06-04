@@ -168,13 +168,27 @@
 
 For our studies, we need a way to quantify quark/gluon separation power in a robust way that does not require enormous Monte Carlo data sets.
 
-The standard way to quantify discrimination power is through ROC curves.  At a point ($q$,$g$) on the ROC curve, where $q,g \in [0,1]$, one can define a selection that yields $q$ efficiency for quarks and $g$ mistag rate for gluons, or equivalently, a $(1-g)$ efficiency for gluons for a $(1-q)$ mistag rate for quarks.  From the ROC curve, we define five benchmark points:
+The standard way to quantify discrimination power is through ROC curves.  At a point ($q$,$g$) on the ROC curve, where $q,g \in [0,1]$, one can define a selection that yields $q$ efficiency for quarks and $g$ mistag rate for gluons, or equivalently, a $(1-g)$ efficiency for gluons for a $(1-q)$ mistag rate for quarks.  From the ROC curve, we define five benchmark points, visualized in \Fig{fig:roc_curve}:
 \begin{align}
 \{ g^{\rm  rej}_{50} ,   g^{\rm  rej}_{20}\} : \quad & \text{Gluon rejection rate at \{50\%, 20\%\} quark efficiency}; \\
 \{q^{\rm rej}_{50} ,  q^{\rm rej}_{20}\} : \quad & \text{Quark rejection rate at \{50\%, 20\%\} gluon efficiency}; \\
 s^{\rm rej} : \quad & \text{Symmetric rejection rate at $s^{\rm rej}$ efficiency}.
 \end{align}
 For all of these measures, $x^{\rm rej} \in [\frac{1}{2},1]$, where $\frac{1}{2}$ corresponds to no discrimination and $1$ corresponds to optimal discrimination.
+
+\begin{figure}
+\centering
+\subfloat{
+\label{fig:roc_curve}
+\includegraphics[scale = 0.85]{figures/roc_curve}
+}
+$\quad$
+\subfloat{
+\label{fig:truth_overlap}
+\includegraphics[scale = 0.85]{figures/truth_overlap}
+}
+\caption{(a) Five ROC Curve benchmark points.  (b) Six mutual information benchmark values.}
+\end{figure}
 
 An alternative way to quantify discrimination power is through mutual information, which counts the number of ``bits'' of information gained from measuring a discriminant variable (see \cite{Larkoski:2014pca}).  Given a sample with quark fraction $f \in [0,1]$ and gluon fraction $(1-f)$, the mutual information with the truth (a.k.a. the truth overlap) is:
 \be
@@ -188,7 +202,7 @@ The minimum value of $I(T;A)$ is $0$ (no discrimination) and the maximum value i
 \be
 I(T;A)_{\rm max} = f \log_2 \frac{1}{f} + (1-f) \log_2 \frac{1}{1-f},
 \ee
-which equals $1$ for $f = \frac{1}{2}$
+which equals $1$ for $f = \frac{1}{2}$.
 
 The choice $f = 1/2$ was used in \Ref{Larkoski:2014pca}, $I(T;A)\big|_{f = \frac{1}{2}} \equiv I_{\frac{1}{2}}$, though other $f$ choices are plausible.  The first derivative at $f = 1/2$ is not particularly enlightening, but the second derivative is sometimes referred to as the classifier separation:
 \be
@@ -201,10 +215,11 @@ At $f = 0$ and $f = 1$, the mutual information itself is zero, but the derivativ
 \be
 - \frac{\partial I}{\partial f} \Big|_{f = 1} \equiv I'_1 = \int \df a \, p_g(a) \log_2 \frac{p_g(a)}{p_q(a)}, \qquad - \log 2 \, \frac{\partial^2 I}{\partial f^2} \Big|_{f = 1} \equiv I''_1 = \int \df a \, \frac{p_g(a)^2}{p_q(a)}.
 \ee
-The first derivative is sometimes called relative entropy and the second derivative is sometimes called discrimination significance.  We will quote all six of the above values:
+The first derivative is sometimes called relative entropy and the second derivative is sometimes called discrimination significance.  We will quote all six of the above values, visualized in \Fig{fig:truth_overlap}:
 \be
-\{I_\frac{1}{2}, I''_{\frac{1}{2}}, I'_0, I''_0, I'_1, I''_1 \}.
+\{I_\frac{1}{2}, I''_{\frac{1}{2}}, I'_0, I''_0, I'_1, I''_1 \},
 \ee
+
 
 
 

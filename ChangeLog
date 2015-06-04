@@ -1,3 +1,9 @@
+2015-06-05  Gregory Soyez  <soyez@fastjet.fr>
+
+	* compute-efficiencies.py:
+	added a few quality measures according to Jesse's tex file
+	[only I1/2" saved as a histogram]
+
 2015-06-04  Jesse Thaler <jthaler@mit.edu>
 
 	* tex/lh2015_qg.tex   *** ADDED ***
@@ -5,7 +11,10 @@
 	* jheppub.sty         *** ADDED ***
 	* jhep.bst            *** ADDED ***
 	added tex file with description of classifier metric
-		
+
+	* tex/figures/roc_curve.pdf       *** ADDED ***
+	* tex/figures/truth_overlap.pdf   *** ADDED ***
+	add figures to help visualize information quantities to study
 
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
