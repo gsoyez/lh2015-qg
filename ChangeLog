@@ -12,6 +12,9 @@
 	* jhep.bst            *** ADDED ***
 	added tex file with description of classifier metric
 
+	* tex/figures/roc_curve.pdf       *** ADDED ***
+	* tex/figures/truth_overlap.pdf   *** ADDED ***
+	add figures to help visualize information quantities to study
 
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
