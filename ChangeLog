@@ -1,5 +1,14 @@
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
+	* compute-efficiencies.py:
+	added a quick python script that computes (as a distribution)
+	  (Q(x)-G(x))^2/(Q(x)+G(x))
+	for a distribution of x.
+	Use as
+	  compute-efficiencies.py quark.yoda gluon.yoda output.yoda
+	On top of giving the histograms, it also prints the integrated
+	efficiencies
+
 	* MC_LHQG_EE.cc:
 	revamped the analysis to
 	. hardcode much less things
