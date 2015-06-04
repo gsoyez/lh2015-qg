@@ -1,5 +1,13 @@
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
+	* MC_LHQG_EE.cc:
+	revamped the analysis to
+	. hardcode much less things
+	. include log-scaled binned angulatrity histograms
+	. include 3 values of R
+	. added thrust (lin and log scales)
+	. added total event multiplicity in 4 thrust bins
+
 	* MC_LHQG_EE.plot:
 	set the plots axes labels and title
 
