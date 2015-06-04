@@ -1,5 +1,8 @@
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
+	* MC_LHQG_EE.plot:
+	set the plots axes labels and title
+
 	* README.md:
 	added a few items concerning processes and setuops to run [+items
 	for discussion]
