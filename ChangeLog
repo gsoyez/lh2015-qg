@@ -9,6 +9,13 @@
 
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
+	* README.md:
+	set the scales to study to multiples of 2
+
+	* MC_LHQG_EE.plot:
+	updated to include the labels for what comes out of the latest
+	version of the analysis
+
 	* compute-efficiencies.py:
 	added a quick python script that computes (as a distribution)
 	  (Q(x)-G(x))^2/(Q(x)+G(x))
