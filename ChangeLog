@@ -1,3 +1,12 @@
+2015-06-04  Jesse Thaler <jthaler@mit.edu>
+
+	* tex/lh2015_qg.tex   *** ADDED ***
+	* tex/lh2015_qg.bib   *** ADDED ***
+	* jheppub.sty         *** ADDED ***
+	* jhep.bst            *** ADDED ***
+	added tex file with description of classifier metric
+		
+
 2015-06-04  Gregory Soyez  <soyez@fastjet.fr>
 
 	* compute-efficiencies.py:
