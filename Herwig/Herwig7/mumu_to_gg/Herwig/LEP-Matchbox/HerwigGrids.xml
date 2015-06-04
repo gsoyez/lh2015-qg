@@ -1,0 +1,7 @@
+<Grids>
+<CellGrid branching="0" dimension="3" keepWeightInformation="1" process="MEMadGraph:13,-13,21,21" referenceWeight="2.38166e-10" volume="1" weight="2.3816625858672335878e-10">
+<Boundaries>
+0 1 1 0 1 1 0 1 1 
+</Boundaries>
+</CellGrid>
+</Grids>

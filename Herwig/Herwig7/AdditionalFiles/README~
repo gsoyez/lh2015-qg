@@ -1,0 +1,2 @@
+1. Install MadGraph5 model in order to get coupling mu mu to higgs:
+cp ${PATH_TO_MADGRAPH5}/models/

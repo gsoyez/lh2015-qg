@@ -1,0 +1,21 @@
+read Matchbox/GenericCollider.in
+
+cd /Herwig/EventHandlers
+
+create ThePEG::FixedCMSLuminosity Luminosity FixedCMSLuminosity.so
+set Luminosity:Energy 125
+set EventHandler:LuminosityFunction Luminosity
+set EventHandler:BeamA /Herwig/Particles/mu-
+set EventHandler:BeamB /Herwig/Particles/mu+
+set /Herwig/Shower/ShowerHandler:MPIHandler NULL
+set /Herwig/DipoleShower/DipoleShowerHandler:MPIHandler NULL
+cd /Herwig/MatrixElements/Matchbox
+set Factory:FirstPerturbativePDF No
+set Factory:SecondPerturbativePDF No
+set Factory:PartonExtractor /Herwig/Partons/EEExtractor
+
+set /Herwig/Shower/PartnerFinder:QEDPartner IIandFF
+
+cd /Herwig/Cuts
+set Cuts:MHatMin 22.36*GeV
+

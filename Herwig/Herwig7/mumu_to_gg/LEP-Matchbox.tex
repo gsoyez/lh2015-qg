@@ -1,0 +1,257 @@
+\documentclass{article}
+\usepackage{graphics}
+\begin{document}
+\appendix
+\section[xxx]{\textsc{ThePEG} version devel \cite{ThePEG} Run Information}
+Run name: \textbf{LEP-Matchbox}:\\
+This run was generated using Herwig++~\cite{Bahr:2008pv} and the following models:
+\begin{itemize}
+\item The Shower evolution was performed using an algorithm described in \cite{Marchesini:1983bm,Marchesini:1987cf,Gieseke:2003rz,Bahr:2008pv}.
+\item The hadronization was performed using the cluster model of \cite{Webber:1983if}.
+\item Decays in Herwig++ include full spin correlations, based on \cite{Richardson:2001df}.
+\item Matrix elements have been calculated using MadGraph5
+\item NLO QCD corrections have been calculated using Matchbox \cite{Platzer:2011bc}
+\item The colour algebra has been performed using ColorFull.
+\item Finite width effects for the scalar $f_0$ and $a_0$ mesons follow \cite{Flatte:1976xu}.
+\item In the running of $\alpha_{EM}$, the parametrization of H.~Buckhardt et al. was used. See \cite{KLEISSCERN9808v3pp129}.
+\item Spin-1/2 baryons with one heavy quark were decayed using the form factors in \cite{Singleton:1990ye}.
+\item The ISGW2 form factor model \cite{Scora:1995ty} was used.
+\item The form factor model of \cite{Bauer:1986bm,Wirbel:1985ji} was used for either semi-leptonic or hadronic weak decays
+\item The form factors from \cite{Ivanov:1996fj} were used.
+\item The form factors of \cite{Kiselev:2002vz} for the decay of the $B_c$ meson were used.
+\item The hadronization used the selection algorithm described in \cite{Kupco:1998fx}.
+\item The parameterisation of \cite{Caprini:1997mu} was used for the $B\to D^{(*)}$ form factors together with the parameters from\cite{Snyder:2007qn} for the $D$ and \cite{Aubert:2007rs} for the $D^*$
+\item The weak decay of baryons containing a heavy quark used form factors from \cite{Cheng:1995fe,Cheng:1996cs}.
+\item Some decays used the Fortran HERWIG decay algorithm \cite{Corcella:2000bw}.
+\item The  non-leptonic decays of the Omega baryon were simulated using the NonLeptonicOmegaDecayer class based on the results of\cite{Borasoy:1999ip}.
+\item The CLEO fits of \cite{Muramatsu:2002jp} and \cite{Kopp:2000gv} were used for the decays $D^0\to\bar{K}^0\pi^+\pi^-$ and $D^0\to K^-\pi^+\pi^0$.
+\item The MAMBO algorithm of \cite{Kleiss:1991rn} was used for high multiplicity decays
+\item The decay of I=0 vector mesons to three pions via a current taking into account the rho and a possible direct term is taken from \cite{Aloisio:2003ur}.
+\item The decay of eta to two pions follows \cite{Beisert:2003zs,Gormley:1970qz,Tippens:2001fm}.
+\item The decays of $\eta,\eta'\to\pi^+\pi^-\gamma$ were simulated using the matrix elements from \cite{Venugopal:1998fq,Holstein:2001bt}
+\item The decays of the $a_1$ were modelled using the approach of \cite{Kuhn:1990ad}.
+
+\item The fit of the Mark III collaboration \cite{Adler:1987sd} was used for $D\to K\pi\pi$ decays
+\item The model of \cite{Anjos:1992kb} for $D\to K\pi\pi$ decays was used
+\item The non-leptonic charm decays were simulated using the KornerKramerCharmDecayerclass which implements the model of \cite{Korner:1992wi}.
+\item The non-leptonic hyperon decays were simulated using the NonLeptonicHyperonDecayer class which implements the model of\cite{Borasoy:1999md}
+\item The radiative decays of the heavy baryons were simulated using the results of\cite{Ivanov:1999bk,Ivanov:1998wj}.
+\item The radiative hyperons decays were simulated using the RadiativeHyperonDecayer class which implements the results of \cite{Borasoy:1999nt}.
+\item The strong decays of the heavy baryons were simulated using the results of\cite{Ivanov:1999bk}.
+\end{itemize}
+
+\begin{thebibliography}{99}
+\bibitem{ThePEG} L.~L\"onnblad, Comput.~Phys.~Commun.\ {\bf 118} (1999) 213.
+%\cite{Bahr:2008pv}
+\bibitem{Bahr:2008pv}
+  M.~Bahr {\it et al.},
+  ``Herwig++ Physics and Manual,''
+  Eur.\ Phys.\ J.\  C {\bf 58} (2008) 639
+  [arXiv:0803.0883 [hep-ph]].
+  %%CITATION = EPHJA,C58,639;%%
+
+%\cite{Marchesini:1983bm}
+\bibitem{Marchesini:1983bm}
+  G.~Marchesini and B.~R.~Webber,
+  ``Simulation Of QCD Jets Including Soft Gluon Interference,''
+  Nucl.\ Phys.\  B {\bf 238}, 1 (1984).
+  %%CITATION = NUPHA,B238,1;%%
+%\cite{Marchesini:1987cf}
+\bibitem{Marchesini:1987cf}
+  G.~Marchesini and B.~R.~Webber,
+   ``Monte Carlo Simulation of General Hard Processes with Coherent QCD
+  Radiation,''
+  Nucl.\ Phys.\  B {\bf 310}, 461 (1988).
+  %%CITATION = NUPHA,B310,461;%%
+%\cite{Gieseke:2003rz}
+\bibitem{Gieseke:2003rz}
+  S.~Gieseke, P.~Stephens and B.~Webber,
+  ``New formalism for QCD parton showers,''
+  JHEP {\bf 0312}, 045 (2003)
+  [arXiv:hep-ph/0310083].
+  %%CITATION = JHEPA,0312,045;%%
+
+%\cite{Webber:1983if}
+\bibitem{Webber:1983if}
+  B.~R.~Webber,
+  ``A QCD Model For Jet Fragmentation Including Soft Gluon Interference,''
+  Nucl.\ Phys.\  B {\bf 238}, 492 (1984).
+  %%CITATION = NUPHA,B238,492;%%
+
+%\cite{Richardson:2001df}
+\bibitem{Richardson:2001df}
+  P.~Richardson,
+  ``Spin correlations in Monte Carlo simulations,''
+  JHEP {\bf 0111}, 029 (2001)
+  [arXiv:hep-ph/0110108].
+  %%CITATION = JHEPA,0111,029;%%
+
+
+%\cite{Platzer:2011bc}
+\bibitem{Platzer:2011bc}
+S.~Platzer and S.~Gieseke,
+``Dipole Showers and Automated NLO Matching in Herwig++,''
+arXiv:1109.6256 [hep-ph].
+%%CITATION = ARXIV:1109.6256;%%
+
+%\cite{Flatte:1976xu}
+\bibitem{Flatte:1976xu}
+  S.~M.~Flatte,
+   ``Coupled - Channel Analysis Of The Pi Eta And K Anti-K Systems Near K Anti-K
+  Threshold,''
+  Phys.\ Lett.\  B {\bf 63}, 224 (1976).
+  %%CITATION = PHLTA,B63,224;%%
+
+\bibitem{KLEISSCERN9808v3pp129} R.~Kleiss et al, CERN 89-08, vol.~3, pp 129-131.
+%\cite{Singleton:1990ye}
+\bibitem{Singleton:1990ye}
+  R.~L.~Singleton,
+  %``Semileptonic baryon decays with a heavy quark,''
+  Phys.\ Rev.\  D {\bf 43} (1991) 2939.
+  %%CITATION = PHRVA,D43,2939;%%
+
+\bibitem{Scora:1995ty} D.~Scora and N.~Isgur,Phys.\ Rev.\  D {\bf 52} (1995) 2783 [arXiv:hep-ph/9503486].
+%%CITATION = PHRVA,D52,2783;%%
+
+\bibitem{Bauer:1986bm} M.~Bauer, B.~Stech and M.~Wirbel,
+Z.\ Phys.\  C {\bf 34} (1987) 103.
+%%CITATION = ZEPYA,C34,103;%%
+\bibitem{Wirbel:1985ji} M.~Wirbel, B.~Stech and M.~Bauer,Z.\ Phys.\  C {\bf 29} (1985) 637.
+%%CITATION = ZEPYA,C29,637;%%
+
+%\cite{Ivanov:1996fj}
+\bibitem{Ivanov:1996fj}
+  M.~A.~Ivanov, V.~E.~Lyubovitskij, J.~G.~Korner and P.~Kroll,
+  ``Heavy baryon transitions in a relativistic three-quark model,''
+  Phys.\ Rev.\  D {\bf 56} (1997) 348
+  [arXiv:hep-ph/9612463].
+  %%CITATION = PHRVA,D56,348;%%
+
+\bibitem{Kiselev:2002vz} V.~V.~Kiselev, arXiv:hep-ph/0211021.
+%%CITATION = HEP-PH/0211021;%%
+%\cite{Kupco:1998fx}
+\bibitem{Kupco:1998fx}
+  A.~Kupco,
+  ``Cluster hadronization in HERWIG 5.9,''
+  arXiv:hep-ph/9906412.
+  %%CITATION = HEP-PH/9906412;%%
+
+\bibitem{Caprini:1997mu} I.~Caprini, L.~Lellouch and M.~Neubert,Nucl.\ Phys.\  B {\bf 530} (1998) 153 [arXiv:hep-ph/9712417].
+%%CITATION = NUPHA,B530,153;%%
+\bibitem{Aubert:2007rs} B.~Aubert {\it et al.}  [BABAR Collaboration],arXiv:0705.4008 [hep-ex]. %%CITATION = ARXIV:0705.4008;%%
+\bibitem{Snyder:2007qn} A.~E.~Snyder, [arXiv:hep-ex/0703035].
+%%CITATION = ECONF,C0610161,015;%%
+
+%\cite{Cheng:1995fe}
+\bibitem{Cheng:1995fe}
+  H.~Y.~Cheng and B.~Tseng,
+  %``1/M corrections to baryonic form-factors in the quark model,''
+  Phys.\ Rev.\  D {\bf 53} (1996) 1457
+  [Erratum-ibid.\  D {\bf 55} (1997) 1697]
+  [arXiv:hep-ph/9502391].
+  %%CITATION = PHRVA,D53,1457;%%
+%\cite{Cheng:1996cs}
+\bibitem{Cheng:1996cs}
+  H.~Y.~Cheng,
+  %``Nonleptonic weak decays of bottom baryons,''
+  Phys.\ Rev.\  D {\bf 56} (1997) 2799
+  [arXiv:hep-ph/9612223].
+  %%CITATION = PHRVA,D56,2799;%%
+
+%\cite{Corcella:2000bw}
+\bibitem{Corcella:2000bw}
+  G.~Corcella {\it et al.},
+  %``HERWIG 6.5: an event generator for Hadron Emission Reactions With
+  %Interfering Gluons (including supersymmetric processes),''
+  JHEP {\bf 0101} (2001) 010
+  [arXiv:hep-ph/0011363].
+  %%CITATION = JHEPA,0101,010;%%
+
+\bibitem{Borasoy:1999ip}
+B.~Borasoy and B.~R.~Holstein,
+Phys.\ Rev.\  D {\bf 60} (1999) 054021 [arXiv:hep-ph/9905398].
+%%CITATION = PHRVA,D60,054021;%%
+
+\bibitem{Muramatsu:2002jp} H.~Muramatsu {\it et al.}  [CLEO Collaboration],Phys.\ Rev.\ Lett.\  {\bf 89} (2002) 251802[Erratum-ibid.\  {\bf 90} (2003) 059901] [arXiv:hep-ex/0207067].
+\bibitem{Kopp:2000gv} S.~Kopp {\it et al.}  [CLEO Collaboration], Phys.\ Rev.\  D {\bf 63} (2001) 092001 [arXiv:hep-ex/0011065].
+\bibitem{Kleiss:1991rn} R.~Kleiss and W.~J.~Stirling,
+Nucl.\ Phys.\  B {\bf 385} (1992) 413.
+%%CITATION = NUPHA,B385,413;%%
+
+%\cite{Aloisio:2003ur}
+\bibitem{Aloisio:2003ur}
+  A.~Aloisio {\it et al.}  [KLOE Collaboration],
+  %``Study of the decay Phi --> pi+ pi- pi0 with the KLOE detector,''
+  Phys.\ Lett.\  B {\bf 561}, 55 (2003)
+  [Erratum-ibid.\  B {\bf 609}, 449 (2005)]
+  [arXiv:hep-ex/0303016].
+  %%CITATION = PHLTA,B561,55;%%
+
+%\cite{Beisert:2003zs}
+\bibitem{Beisert:2003zs}
+  N.~Beisert and B.~Borasoy,
+  %``Hadronic decays of eta and eta' with coupled channels,''
+  Nucl.\ Phys.\  A {\bf 716}, 186 (2003)
+  [arXiv:hep-ph/0301058].
+  %%CITATION = NUPHA,A716,186;%%
+%\cite{Gormley:1970qz}
+\bibitem{Gormley:1970qz}
+  M.~Gormley, E.~Hyman, W.~Y.~Lee, T.~Nash, J.~Peoples, C.~Schultz and S.~Stein,
+   ``Experimental determination of the dalitz-plot distribution of the decays
+   eta $\to$ pi+ pi- pi0 and eta $\to$ pi+ pi- gamma, and the branching ratio
+  %eta $\to$ pi+ pi- gamma/eta $\to$ pi+,''
+  Phys.\ Rev.\  D {\bf 2}, 501 (1970).
+  %%CITATION = PHRVA,D2,501;%%
+%\cite{Tippens:2001fm}
+\bibitem{Tippens:2001fm}
+  W.~B.~Tippens {\it et al.}  [Crystal Ball Collaboration],
+  %``Determination of the quadratic slope parameter in eta $\to$ 3pi0 decay,''
+  Phys.\ Rev.\ Lett.\  {\bf 87}, 192001 (2001).
+  %%CITATION = PRLTA,87,192001;%%
+
+\bibitem{Venugopal:1998fq} E.~P.~Venugopal and B.~R.~Holstein,
+Phys.\ Rev.\  D {\bf 57} (1998) 4397 [arXiv:hep-ph/9710382].
+%%CITATION = PHRVA,D57,4397;%%
+\bibitem{Holstein:2001bt} B.~R.~Holstein,
+ Phys.\ Scripta {\bf T99} (2002) 55 [arXiv:hep-ph/0112150].
+%%CITATION = PHSTB,T99,55;%%
+
+\bibitem{Kuhn:1990ad} J.~H.~Kuhn and A.~Santamaria,
+Z.\ Phys.\  C {\bf 48} (1990) 445.
+%%CITATION = ZEPYA,C48,445;%%
+
+\bibitem{Adler:1987sd} J.~Adler {\it et al.} [MARK-III Collaboration], Phys.\ Lett.\  B {\bf 196} (1987) 107.
+\bibitem{Anjos:1992kb} J.~C.~Anjos {\it et al.}  [E691 Collaboration],Phys.\ Rev.\  D {\bf 48} (1993) 56.
+\bibitem{Korner:1992wi}
+J.~G.~Korner and M.~Kramer,
+Z.\ Phys.\  C {\bf 55} (1992) 659.
+%%CITATION = ZEPYA,C55,659;%%
+
+\bibitem{Borasoy:1999md}
+B.~Borasoy and B.~R.~Holstein,
+Phys.\ Rev.\  D {\bf 59} (1999) 094025 [arXiv:hep-ph/9902351].
+%%CITATION = PHRVA,D59,094025;%%
+
+\bibitem{Ivanov:1999bk}
+M.~A.~Ivanov, J.~G.~Korner, V.~E.~Lyubovitskij and A.~G.~Rusetsky,
+Phys.\ Rev.\  D {\bf 60} (1999) 094002
+[arXiv:hep-ph/9904421].
+%%CITATION = PHRVA,D60,094002;%%
+\bibitem{Ivanov:1998wj}
+M.~A.~Ivanov, J.~G.~Korner and V.~E.~Lyubovitskij,
+Phys.\ Lett.\  B {\bf 448} (1999) 143 [arXiv:hep-ph/9811370].
+%%CITATION = PHLTA,B448,143;%%
+
+\bibitem{Borasoy:1999nt}
+B.~Borasoy and B.~R.~Holstein,
+Phys.\ Rev.\  D {\bf 59} (1999) 054019 [arXiv:hep-ph/9902431].
+%%CITATION = PHRVA,D59,054019;%%
+
+\bibitem{Ivanov:1999bk}
+M.~A.~Ivanov, J.~G.~Korner, V.~E.~Lyubovitskij and A.~G.~Rusetsky,
+Phys.\ Rev.\  D {\bf 60} (1999) 094002
+[arXiv:hep-ph/9904421].
+%%CITATION = PHRVA,D60,094002;%%
+
+\end{thebibliography}
+\end{document}
