@@ -1,5 +1,8 @@
 2015-06-05  Gregory Soyez  <soyez@fastjet.fr>
 
+	* MC_LHQG_EE.cc:
+	added a check that FastJet version is at least 3.1.0
+
 	* README.md:
 	updated the desctiption to match the discussion we had on
 	Thursday; added a description of the workflow and of the results

@@ -9,9 +9,14 @@
 #include "Rivet/Projections/VetoedFinalState.hh"
 #include <sstream>
 
-
 #include "fastjet/JetDefinition.hh"
 #include "fastjet/ClusterSequence.hh"
+
+// make sure we have a recent version of FastJet (for the WTA axes)
+#include <fastjet/config.h>
+#if ! (FASTJET_VERSION_NUMBER >= 30100)
+#error "This code requires FastJet >= 3.1.0"
+#endif
 
 using namespace fastjet;
 
