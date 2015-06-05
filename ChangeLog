@@ -1,5 +1,22 @@
 2015-06-05  Gregory Soyez  <soyez@fastjet.fr>
 
+	* README.md:
+	updated the desctiption to match the discussion we had on
+	Thursday; added a description of the workflow and of the results
+	and tools.
+
+	* post-process.sh:               *** ADDED ***
+	added a script that (i) generate the separations (ii) do a bit of
+	rebinning for aesthetic reasons (iii) produce a bunch of plots
+
+	Note that by default existing files are not overwritten. Use
+	FORCE=yes post-process.sh to overwrite everything.
+
+	* yoda-rebin.py:                 *** ADDED ***
+	added a simple script to rebin our output histograms
+	Watch out: this applies to te specific histograms output byu our
+	analysis where different histograms are not rebinned the same way
+
 	* compute-efficiencies.py:
 	added a few quality measures according to Jesse's tex file
 	[only I1/2" saved as a histogram]
