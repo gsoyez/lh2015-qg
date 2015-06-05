@@ -1,5 +1,15 @@
 2015-06-05  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	bugfix: create the rebinned directories if not already present
+	included results from the Sherpa runs
+
+	* Sherpa/Run-hgg.dat:            *** ADDED ***
+	* Sherpa/Run-zqq.dat:            *** ADDED ***
+	* Sherpa/results:                *** ADDED ***
+	added cards and results from Sherpa. Njet describes the maximal
+	number of additional jets included in the Matrix Elements
+
 	* MC_LHQG_EE.cc:
 	added a check that FastJet version is at least 3.1.0
 
