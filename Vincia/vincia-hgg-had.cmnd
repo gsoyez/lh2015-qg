@@ -13,7 +13,7 @@ HiggsSM:ffbar2H = on
 ! 3) Settings to match specific measurement setup
 PDF:lepton = off                   ! switch off electron-within-electron
 SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
-HadronLevel:all = off
+HadronLevel:all = on
 
 ! 4) Les Houches Q/G study setup for VINCIA
 Vincia = on                     ! Vincia on/off (off = pure PYTHIA)

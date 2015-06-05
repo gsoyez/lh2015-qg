@@ -13,17 +13,14 @@ HiggsSM:ffbar2H = on
 ! 3) Settings to match specific measurement setup
 PDF:lepton = off                   ! switch off electron-within-electron
 SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
-HadronLevel:all = off
+HadronLevel:all = on
 
-! 4) Les Houches Q/G study setup for VINCIA
-Vincia = on                     ! Vincia on/off (off = pure PYTHIA)
-Vincia:uncertaintyBands = off   ! Uncertainty bands on/off
-Vincia:alphaSvalue = 0.120
-Vincia:alphaScmw   = on
-Vincia:cutoffScale = 1.0
-Vincia:matchingLO  = 0
-Vincia:matchingNLO = 0
-Vincia:QGemit:chargeFactor =  2.833 
-StringZ:aLund  = 0.52
-StringZ:bLund  = 0.66
-StringPT:sigma = 0.31
+! 4) Les Houches Q/G study setup for PYTHIA
+TimeShower:alphaSvalue = 0.120
+TimeShower:alphaSorder = 2
+TimeShower:alphaSuseCMW = on
+TimeShower:MECorrections = on
+TimeShower:pTmin = 1.0
+StringZ:aLund  = 0.83  
+StringZ:bLund  = 0.97  
+StringPT:sigma = 0.34  

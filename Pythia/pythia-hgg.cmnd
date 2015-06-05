@@ -13,6 +13,7 @@ HiggsSM:ffbar2H = on
 ! 3) Settings to match specific measurement setup
 PDF:lepton = off                   ! switch off electron-within-electron
 SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
+HadronLevel:all = off
 
 ! 4) Les Houches Q/G study setup for PYTHIA
 TimeShower:alphaSvalue = 0.120
