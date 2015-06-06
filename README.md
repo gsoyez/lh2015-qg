@@ -67,8 +67,19 @@ Workflow
 Description of what information/plots are extracted of the result files
 -----------------------------------------------------------------------
 
-To be expanded. Currently, see the Les Houches wiki
+Baseline: Q = 200 GeV, R = 0.6, all Monte Carlo programs optimal
 
+produce a full set of distribution plots for
+ . Quark distribution, gluon distribution, separation, integrated separation
+ . Pythia variations: noME, nogqq, ...
+ . Herwig variations: ...
+ . Sherpa variations: ...
+ . Vincia variations: noME, ...
+
+Produce some variation plots (one plot for each observable and quality measure)
+ . Q = 50, 100, 200, 400, 800 GeV (everything else baseline)
+ . R = 0.2, 0.4, 0.6, 0.8, 1.0 (everything else baseline)
+ . delta alphas / alphas = -0.2, -0.1, 0.0, +0.1, +0.2 (everything else baseline)
 
 Description of the Rivet Routine
 --------------------------------
