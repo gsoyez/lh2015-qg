@@ -54,7 +54,7 @@ for gen in $generators; do
             if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
                 logname=${sepname%yoda}log
                 ./compute-efficiencies.py $fn ${gluname} $sepname > $logname
-                ./produce-separation-data.py ${logname} ${sepname/sep/sum}.yoda
+                ./produce-separation-data.py ${logname} ${sepname/sep/sum}
             fi
         fi
     done
@@ -199,7 +199,7 @@ for gen in $generators; do
     i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
 done
 # config file missing
-safe-rivet-mkhtml -o plots/alphadependence $i_input -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/alphadependence $i_input -t Q=200GeV,R=0.6
 
 # do the R modulation
 message ""
@@ -211,7 +211,7 @@ for gen in $generators; do
     i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
 done
 # config file missing
-safe-rivet-mkhtml -o plots/Rdependence $i_input -t $gen,Q=200GeV
+safe-rivet-mkhtml -o plots/Rdependence $i_input -t Q=200GeV
 
 
 # do the energy modulation
@@ -224,7 +224,7 @@ for gen in $generators; do
     i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
 done
 # config file missing
-safe-rivet-mkhtml -o plots/Qdependence $i_input -t $gen,R=0.6
+safe-rivet-mkhtml -o plots/Qdependence $i_input -t R=0.6
 
 message "all done!"
 date | tee -a $logfile

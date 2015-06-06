@@ -10,7 +10,7 @@
 #
 
 
-import sys,re,yoda,os
+import sys,re,yoda,os,math
 
 if len(sys.argv) != 3:
     sys.exit("Usage: produce-Qdependence-data.py generator output_file")
@@ -27,7 +27,9 @@ for measure in measures:
         separation_scatter = yoda.Scatter2D(title=measure, path="/Qdependence/"+measure+"_"+observable)
         for Q in [50,100,200,400,800]:
             command="./get-separation.sh "+gen+"/results/sep-"+str(Q)+".log "+observable+"_R6 "+measure
-            separation_scatter.addPoint(Q, float(os.popen(command).read().rstrip()))
+            Qmin=Q/math.sqrt(2.0)
+            Qmax=Q*math.sqrt(2.0)
+            separation_scatter.addPoint(Q, float(os.popen(command).read().rstrip()), xerrs=[Q-Qmin,Qmax-Q])
         scatters.append(separation_scatter)
 
 yoda.write(scatters,sys.argv[2])

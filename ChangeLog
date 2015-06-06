@@ -1,5 +1,9 @@
 2015-06-07  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	* produce-Qdependence-data.py:
+	fixed a few issues
+
 	* MC_LHQG_EE.plot:
 	rebinned directly from here
 
