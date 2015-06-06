@@ -1,6 +1,21 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
+	added summary plots
+
+	* separation.plot:              *** ADDED ***
+	added a file with plotting settings for the summary plots
+
+	* produce-separation-plots.py:  *** ADDED ***
+	* get-separation.sh:            *** ADDED ***
+	added a simple script that extract an entry from the separation
+	tables produced by compute-efficiencies.py and a Pythin script
+	that produces yoda files with information useful for summary plots
+
+	* post-process.sh:
+	added Herwig++ dipole-shower hadron-level results to the plots
+
+	* post-process.sh:
 	added Herwig w. hadronisation
 	added a FORCE_PLOTS option which forces only the plots
 	fixed a reordering issue

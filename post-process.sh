@@ -105,6 +105,7 @@ done
 # produce plots
 echo "Producing plots (logging in plots.log)"
 date > plots.log
+mkdir -p plots
 
 echo "  quarks, parton level: plots/MCdep-q200-parton" | tee -a plots.log
 if [ -d plots/MCdep-q200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
@@ -158,6 +159,7 @@ else
                  Sherpa/rebinned/q200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/q200-njet2.yoda:Sherpa-Njet2 \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_def_had_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-q200-hadron >> plots.log 2>&1
 fi
 
@@ -171,6 +173,7 @@ else
                  Sherpa/rebinned/g200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/g200-njet2.yoda:Sherpa-Njet2 \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_def_had_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-g200-hadron >> plots.log 2>&1
 fi
 
@@ -184,8 +187,29 @@ else
                  Sherpa/rebinned/sep200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/sep200-njet2.yoda:Sherpa-Njet2 \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-sep200-hadron >> plots.log 2>&1
 fi
 
+
+# produce efficiency plots
+echo "Producing efficiency tables and plots"
+mkdir -p summary
+./produce-separation-plots.py Pythia/results/sep-200-hadron-mec.log summary/Pythia-hadron-mec-200.yoda
+./produce-separation-plots.py Pythia/results/sep-200-hadron.log summary/Pythia-hadron-200.yoda
+./produce-separation-plots.py Vincia/results/sep-200-hadron.log summary/Vincia-hadron-200.yoda
+./produce-separation-plots.py Sherpa/results/sep200-njet0.log summary/Sherpa-hadron-njet0-200.yoda
+./produce-separation-plots.py Sherpa/results/sep200-njet2.log summary/Sherpa-hadron-njet2-200.yoda
+./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.log summary/Herwig-hadron-200.yoda
+./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E200.log summary/Herwig-hadron-dip-200.yoda
+rivet-mkhtml -c separation.plot -o plots/summary \
+             summary/Pythia-hadron-mec-200.yoda \
+             summary/Pythia-hadron-200.yoda \
+             summary/Vincia-hadron-200.yoda \
+             summary/Sherpa-hadron-njet0-200.yoda \
+             summary/Sherpa-hadron-njet2-200.yoda \
+             summary/Herwig-hadron-200.yoda \
+             summary/Herwig-hadron-dip-200.yoda \
+             >> plots.log 2>&1
 
 echo "You're all set!"
