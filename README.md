@@ -29,7 +29,7 @@ Workflow
    . mu+ mu- -> Higgs    -> g g
 
 - Each Monte Carlo lives in a folder
-    <Generator>-<Version>
+    &lt;Generator>-&lt;Version>
   e.g. Pythia-8.1.85 or Herwig-2.7.1
 
 - Each Monte Carlo should produce several result files (YODA):
@@ -45,7 +45,7 @@ Workflow
   the results can be generated. This potentially goes with additional
   card files (in a "cards" subfolder if possible).
   E.g. the Sherpa-2.1.1/README file should contain something like
-  <this_file.yoda> is obtained by running
+  &lt;this_file.yoda> is obtained by running
      Sherpa NJET:2 ANALYSIS=Rivet -A results/this_file -f cards/Run-hgg.dat
 
 - Consider 5 energies: Q=50, 100, 200, 400, 800 GeV. Variations for
@@ -53,7 +53,7 @@ Workflow
   energies, only produce the "best" prediction.
 
 - Naming conventions for the results should follow the following scheme
-    <Generator>-<Version>/results/<process>-<Q>[flags].yoda
+    < Generator >-< Version >/results/< process >-< Q >[flags].yoda
   where
     . process is either uu or gg
     . the "best" prediction has no flags
