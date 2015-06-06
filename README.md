@@ -30,7 +30,7 @@ Workflow
 
 - Each Monte Carlo lives in a folder
     <Generator>-<Version>
-  e.g. Pythia-8.1.85 or Herwig++-2.7.1
+  e.g. Pythia-8.1.85 or Herwig-2.7.1
 
 - Each Monte Carlo should produce several result files (YODA):
    . their best central prediction
@@ -39,10 +39,11 @@ Workflow
    . a version without g->qqbar splitting
    . any other variations they think might help understanding what is
      going on
+   . By default, run at hadron level
 
 - In each Monte-Carlo folder, there should be a README that tells how
   the results can be generated. This potentially goes with additional
-  card files.
+  card files (in a "cards" subfolder if possible).
   E.g. the Sherpa-2.1.1/README file should contain something like
   <this_file.yoda> is obtained by running
      Sherpa NJET:2 ANALYSIS=Rivet -A results/this_file -f cards/Run-hgg.dat
@@ -59,13 +60,14 @@ Workflow
     . the alphas variations have flags -alphasx08 -alphasx12
     . the switching off of g->qqbar has flags -nogqq
     . any additional variations comes with a friendly flag (e.g. -nome
-      for Matrix-element switched off or -njet0, ...)
-      These should be briefly described in the README
+      for Matrix-element switched off or -njet0, -parton for
+      parton-level studies, ...). These should be briefly described in
+      the README
    
 Description of what information/plots are extracted of the result files
 -----------------------------------------------------------------------
 
-To be expanded. Currently, see the LEs Houches wiki
+To be expanded. Currently, see the Les Houches wiki
 
 
 Description of the Rivet Routine
