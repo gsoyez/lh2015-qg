@@ -1,5 +1,8 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	specified explicitly the configuration file
+
 	* produce-separation-plots.py:
 	produce separate plots for each of the 3 R values
 

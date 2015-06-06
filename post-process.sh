@@ -118,7 +118,7 @@ else
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_E200.yoda:Herwig++-LH15 \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-q200-parton >> plots.log 2>&1
+                 -o plots/MCdep-q200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
 echo "  gluons, parton level: plots/MCdep-g200-parton" | tee -a plots.log
@@ -131,7 +131,7 @@ else
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_E200.yoda:Herwig++-LH15 \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-g200-parton >> plots.log 2>&1
+                 -o plots/MCdep-g200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
 echo "  separations, parton level: plots/MCdep-sep200-parton" | tee -a plots.log
@@ -144,7 +144,7 @@ else
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_E200.yoda:Herwig++-LH15 \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-sep200-parton >> plots.log 2>&1
+                 -o plots/MCdep-sep200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
 
@@ -160,7 +160,7 @@ else
                  Sherpa/rebinned/q200-njet2.yoda:Sherpa-Njet2 \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_def_had_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-q200-hadron >> plots.log 2>&1
+                 -o plots/MCdep-q200-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
 echo "  gluons, hadron level: plots/MCdep-g200-hadron" | tee -a plots.log
@@ -174,7 +174,7 @@ else
                  Sherpa/rebinned/g200-njet2.yoda:Sherpa-Njet2 \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_def_had_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-g200-hadron >> plots.log 2>&1
+                 -o plots/MCdep-g200-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
 echo "  separations, hadron level: plots/MCdep-sep200-hadron" | tee -a plots.log
@@ -188,7 +188,7 @@ else
                  Sherpa/rebinned/sep200-njet2.yoda:Sherpa-Njet2 \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-sep200-hadron >> plots.log 2>&1
+                 -o plots/MCdep-sep200-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
 
