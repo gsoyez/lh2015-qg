@@ -1,5 +1,11 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* README.md:
+	updated the whole workflow after the meeting in Les Houches on June 6th.
+
+	* MC_LHQG_EE.cc:
+	switched to R=0.2, 0.4, 0.6, 0.8, 1.0
+
 	* post-process.sh:
 	added the machinery to do multiple energies; added the 800 GeV results
 

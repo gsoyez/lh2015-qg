@@ -54,8 +54,8 @@ namespace Rivet {
       : Analysis("MC_LHQG_EE"),
         JET_EMIN_OVER_SQRTS(0.4),
         LOG_SCALE_MAX(15.0),
-        nRADII(3),
-        DELTA_RADII(0.3),
+        nRADII(5),
+        DELTA_RADII(0.2),
         LAMBDA(5.0){}
 
     /// Book histograms and initialise projections before the run
