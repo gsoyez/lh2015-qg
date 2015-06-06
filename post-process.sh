@@ -155,9 +155,9 @@ else
                  Pythia/rebinned/qq-200-hadron.yoda:Pythia8-noME \
                  Vincia/rebinned/qq-200-hadron.yoda:Vincia \
                  Vincia/rebinned/qq-200-hadron-nlo.yoda:Vincia-NLO \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E200.yoda:Herwig++ \
                  Sherpa/rebinned/q200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/q200-njet2.yoda:Sherpa-Njet2 \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E200.yoda:Herwig++ \
                  -o plots/MCdep-q200-hadron >> plots.log 2>&1
 fi
 
