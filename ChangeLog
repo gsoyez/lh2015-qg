@@ -1,5 +1,12 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	revamped to match the workflow mentioned in the README
+	STILL PRELIMINARY!!!
+
+	* produce-separation-data.py:
+	fixes some comments; limited to R=0.6
+
 	* produce-separation-plots.py --> produce-separation-data.py:
 	file renamed
 

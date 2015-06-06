@@ -1,219 +1,233 @@
 #!/bin/bash
 #
 # prepare results and plots
+#
+# This assumes that
+#   . each generator has its own directory
 
-# generate separations
-echo "Computing separations"
-echo "  Pythia"
-for fn in Pythia/results/qq*.yoda; do
-    sepname=${fn/qq/sep}
-    gluname=${fn/qq/gg}
-    if [ -f ${gluname} ]; then
-        if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
-            ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
-        fi
-    fi
-done
+# record some logs in that file
+logfile=post-process.log
+date > $logfile
 
-echo "  Vincia"
-for fn in Vincia/results/qq*.yoda; do
-    sepname=${fn/qq/sep}
-    gluname=${fn/qq/gg}
-    if [ -f ${gluname} ]; then
-        if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
-            ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
-        fi
-    fi
-done
+#----------------------------------------------------------------------
+# a helper to output to stdout and logfile
+function message {
+    echo "$1" | tee -a $logfile
+}
 
-echo "  Herwig"
-for fn in Herwig/Herwig7/Parton_level_Results/*_u_u_*.yoda; do
-    sepname=${fn/_u_u_/_sep_}
-    gluname=${fn/_u_u_/_g_g_}
-    if [ -f ${gluname} ]; then
-        if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
-            ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
-        fi
-    fi
-done
-for fn in Herwig/Herwig7/Hadron_level_Results/*_u_u_*.yoda; do
-    sepname=${fn/_u_u_/_sep_}
-    gluname=${fn/_u_u_/_g_g_}
-    if [ -f ${gluname} ]; then
-        if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
-            ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
-        fi
-    fi
-done
-
-echo "  Sherpa"
-for fn in Sherpa/results/q*.yoda; do
-    sepname=${fn/q/sep}
-    gluname=${fn/q/g}
-    if [ -f ${gluname} ]; then
-        if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
-            ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
-        fi
-    fi
-done
-
-# rebin pythia, vincia, herwig
-echo "Rebinning"
-echo "  Pythia"
-mkdir -p Pythia/rebinned
-for fn in Pythia/results/*.yoda; do
-    outname=${fn/results/rebinned} 
-    if [ ! -f ${outname} ] || [ ! -z $FORCE ]; then
-        ./yoda-rebin.py $fn $outname | grep -v "vs."
-    fi
-done
-
-echo "  Vincia"
-mkdir -p Vincia/rebinned
-for fn in Vincia/results/*.yoda; do
-    outname=${fn/results/rebinned} 
-    if [ ! -f ${outname} ] || [ ! -z $FORCE ]; then
-        ./yoda-rebin.py $fn $outname | grep -v "vs."
-    fi
-done
-
-echo "  Herwig"
-mkdir -p Herwig/Herwig7/Parton_level_Rebinned
-for fn in Herwig/Herwig7/Parton_level_Results/*.yoda; do
-    outname=${fn/Results/Rebinned}
-    if [ ! -f ${outname} ] || [ ! -z $FORCE ]; then
-        ./yoda-rebin.py $fn $outname | grep -v "vs."
-    fi
-done
-mkdir -p Herwig/Herwig7/Hadron_level_Rebinned
-for fn in Herwig/Herwig7/Hadron_level_Results/*.yoda; do
-    outname=${fn/Results/Rebinned}
-    if [ ! -f ${outname} ] || [ ! -z $FORCE ]; then
-        ./yoda-rebin.py $fn $outname | grep -v "vs."
-    fi
-done
-
-echo "  Sherpa"
-mkdir -p Sherpa/rebinned
-for fn in Sherpa/results/*.yoda; do
-    outname=${fn/results/rebinned}
-    if [ ! -f ${outname} ] || [ ! -z $FORCE ]; then
-        ./yoda-rebin.py $fn $outname | grep -v "vs."
-    fi
-done
-
-# produce plots
-echo "Producing plots (logging in plots.log)"
-date > plots.log
-mkdir -p plots
-mkdir -p summary
-
-echo "  quarks at 200 GeV, parton level: plots/MCdep-q200-parton" | tee -a plots.log
-if [ -d plots/MCdep-q200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-else
-    rivet-mkhtml Pythia/rebinned/qq-200-parton-mec.yoda:Pythia8 \
-                 Pythia/rebinned/qq-200-parton.yoda:Pythia8-noME \
-                 Vincia/rebinned/qq-200-parton.yoda:Vincia \
-                 Vincia/rebinned/qq-200-parton-nlo.yoda:Vincia-NLO \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_E200.yoda:Herwig++ \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_E200.yoda:Herwig++-LH15 \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-q200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
-fi
-
-echo "  gluons at 200 GeV, parton level: plots/MCdep-g200-parton" | tee -a plots.log
-if [ -d plots/MCdep-g200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-else
-    rivet-mkhtml Pythia/rebinned/gg-200-parton-mec.yoda:Pythia8 \
-                 Pythia/rebinned/gg-200-parton.yoda:Pythia8-noME \
-                 Vincia/rebinned/gg-200-parton.yoda:Vincia \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_E200.yoda:Herwig++ \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_E200.yoda:Herwig++-LH15 \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-g200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
-fi
-
-echo "  separations at 200 GeV, parton level: plots/MCdep-sep200-parton" | tee -a plots.log
-if [ -d plots/MCdep-sep200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-else
-    rivet-mkhtml Pythia/rebinned/sep-200-parton-mec.yoda:Pythia8 \
-                 Pythia/rebinned/sep-200-parton.yoda:Pythia8-noME \
-                 Vincia/rebinned/sep-200-parton.yoda:Vincia \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_E200.yoda:Herwig++ \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_E200.yoda:Herwig++-LH15 \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-sep200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
-fi
-
-for sqrts in 200 800; do 
-
-    echo "  quarks at ${sqrts} GeV, hadron level: plots/MCdep-q${sqrts}-hadron" | tee -a plots.log
-    if [ -d plots/MCdep-q${sqrts}-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-        echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
+# calls rivet-mkhtml with the same argument only if the directory does not exist
+#
+# at the moment, the first arguments have to be -o output_dir    
+function safe-rivet-mkhtml {
+    plot_dir="$2"
+    if [ -d $plot_dir ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+        message "...... $plot_dir already already done. Delete the directory or run FORCE_PLOTS=yes to redo"
     else
-        rivet-mkhtml Pythia/rebinned/qq-${sqrts}-hadron-mec.yoda:Pythia8 \
-                     Pythia/rebinned/qq-${sqrts}-hadron.yoda:Pythia8-noME \
-                     Vincia/rebinned/qq-${sqrts}-hadron.yoda:Vincia \
-                     Vincia/rebinned/qq-${sqrts}-hadron-nlo.yoda:Vincia-NLO \
-                     Sherpa/rebinned/q${sqrts}-njet0.yoda:Sherpa-Njet0 \
-                     Sherpa/rebinned/q${sqrts}-njet2.yoda:Sherpa-Njet2 \
-                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E${sqrts}.yoda:Herwig++ \
-                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
-                     -o plots/MCdep-q${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
+        #rivet-mkhtml $@ >> logfile 2>&1
+        echo "$@"
     fi
+}
 
-    echo "  gluons at ${sqrts} GeV, hadron level: plots/MCdep-g${sqrts}-hadron" | tee -a plots.log
-    if [ -d plots/MCdep-g${sqrts}-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-        echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-    else
-        rivet-mkhtml Pythia/rebinned/gg-${sqrts}-hadron-mec.yoda:Pythia8 \
-                     Pythia/rebinned/gg-${sqrts}-hadron.yoda:Pythia8-noME \
-                     Vincia/rebinned/gg-${sqrts}-hadron.yoda:Vincia \
-                     Sherpa/rebinned/g${sqrts}-njet0.yoda:Sherpa-Njet0 \
-                     Sherpa/rebinned/g${sqrts}-njet2.yoda:Sherpa-Njet2 \
-                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E${sqrts}.yoda:Herwig++ \
-                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
-                     -o plots/MCdep-g${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
+#----------------------------------------------------------------------
+# generic generators
+message ""
+message "Building the list of supported generators"
+#desired_generators="Herwig-2_7_1 Pythia-8.??? Vincia-??? Sherpa-2.1.1"
+desired_generators="Pythia"
+generators=""
+for gen in $desired_generators; do
+    if [ -d $gen/results ]; then
+        generators="$generators $gen"
     fi
-
-    echo "  separations at ${sqrts} GeV, hadron level: plots/MCdep-sep${sqrts}-hadron" | tee -a plots.log
-    if [ -d plots/MCdep-sep${sqrts}-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-        echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-    else
-        rivet-mkhtml Pythia/rebinned/sep-${sqrts}-hadron-mec.yoda:Pythia8 \
-                     Pythia/rebinned/sep-${sqrts}-hadron.yoda:Pythia8-noME \
-                     Vincia/rebinned/sep-${sqrts}-hadron.yoda:Vincia \
-                     Sherpa/rebinned/sep${sqrts}-njet0.yoda:Sherpa-Njet0 \
-                     Sherpa/rebinned/sep${sqrts}-njet2.yoda:Sherpa-Njet2 \
-                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E${sqrts}.yoda:Herwig++ \
-                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
-                     -o plots/MCdep-sep${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
-    fi
-
-
-    # produce efficiency plots
-    echo "  efficiency tables and plots at ${sqrts} GeV"
-
-    ./produce-separation-plots.py Pythia/results/sep-${sqrts}-hadron-mec.log summary/Pythia-hadron-mec-${sqrts}.yoda
-    ./produce-separation-plots.py Pythia/results/sep-${sqrts}-hadron.log summary/Pythia-hadron-${sqrts}.yoda
-    ./produce-separation-plots.py Vincia/results/sep-${post-process.shsqrts}-hadron.log summary/Vincia-hadron-${sqrts}.yoda
-    ./produce-separation-plots.py Sherpa/results/sep${sqrts}-njet0.log summary/Sherpa-hadron-njet0-${sqrts}.yoda
-    ./produce-separation-plots.py Sherpa/results/sep${sqrts}-njet2.log summary/Sherpa-hadron-njet2-${sqrts}.yoda
-    ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E${sqrts}.log summary/Herwig-hadron-${sqrts}.yoda
-    ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E${sqrts}.log summary/Herwig-hadron-dip-${sqrts}.yoda
-    rivet-mkhtml -c separation.plot -o plots/summary-${sqrts} \
-                 summary/Pythia-hadron-mec-${sqrts}.yoda:Pythia \
-                 summary/Pythia-hadron-${sqrts}.yoda:Pythia-noME \
-                 summary/Vincia-hadron-${sqrts}.yoda:Vincia \
-                 summary/Sherpa-hadron-njet0-${sqrts}.yoda:Sherpa-njet0 \
-                 summary/Sherpa-hadron-njet2-${sqrts}.yoda:Sherpa-njet2 \
-                 summary/Herwig-hadron-${sqrts}.yoda:Herwig \
-                 summary/Herwig-hadron-dip-${sqrts}.yoda:Herwig-dip \
-                 >> plots.log 2>&1
-
 done
+message "... Will work with $generators"
+
+# compute separations
+message ""
+message "Computing separations"
+for gen in $generators; do
+    message "... $gen"
+    for fn in $gen/results/qq*.yoda; do
+        gluname=${fn/qq/gg}
+        if [ -f ${gluname} ]; then
+            sepname=${fn/qq/sep}
+            if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
+                logname=${sepname%yoda}log
+                ./compute-efficiencies.py $fn ${gluname} $sepname > $logname
+                ./produce-separation-data.py ${logname} ${sepname/sep/sum}.yoda
+            fi
+        fi
+    done
+done
+
+
+# make plots for each of the generators
+message ""
+message "Plots for individual generators at 200 GeV, R=0.6"
+for gen in $generators; do
+    message "... $gen"
+
+    # build the list of the files to be plottes
+    # we separate the quark, gluon and common files for linedtyle purpose
+    #
+    # At the same time we build the list of generators to include in
+    # the combined plot
+    q_only_files=""
+    g_only_files=""
+    q_both_files=""
+    g_both_files=""
+
+    # search for the quark (and common) ones
+    for fn in $gen/results/qq-200*.yoda; do
+        if [[ $fn != *"-alphax"* ]]; then
+            gluname=${fn/qq/gg}
+            if [ -f ${gluname} ]; then
+                q_both_files="$q_both_files $fn"
+                g_both_files="$g_both_files $gluname"
+            else
+                q_only_files="$q_only_files $fn"
+            fi
+        fi
+    done
+
+    # search for the gluon-only ones
+    for fn in $gen/results/gg-200*.yoda; do
+        if [[ $fn != *"-alphax"* ]]; then
+            quarkname=${fn/qq/gg}
+            if [ ! -f ${quarkname} ]; then
+                g_only_files="$g_only_files $fn"
+            fi
+        fi
+    done
+
+    message "...... quark: $q_both_files $q_only_files"
+    message "...... gluon: $g_both_files $g_only_files"    
+
+    # build the "separation" list
+    s_files=${q_both_files//qq/sep}
+    message "...... separ: $s_files"    
     
-echo "You're all set!"
+    # append the flags to these lists so that the titles come out right
+    q_input=""
+    for tag in $q_both_files $q_only_files; do
+        noyoda=${tag%.yoda}; flags=${noyoda#*qq-200}
+        if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+        q_input="$q_input $tag:$flags"
+    done
+    message "...... plot quark: $q_input"    
+
+    g_input=""
+    for tag in $g_both_files $g_only_files; do
+        noyoda=${tag%.yoda}; flags=${noyoda#*gg-200}
+        if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+        g_input="$g_input $tag:$flags"
+    done
+    message "...... plot gluon: $g_input"
+
+    s_input=""
+    for tag in $s_files; do
+        noyoda=${tag%.yoda}; flags=${noyoda#*sep-200}
+        if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+        s_input="$s_input $tag:$flags"
+    done
+    message "...... plot separ: $s_input"
+
+    # generate the list for the for the "integrated quality" plot
+    i_input=${s_input//sep/sum}
+    message "...... plot integ: $i_input"
+    
+    # the trick below should work as far as I understand the manual
+    # correctly but crashes rivet-cmphistos. So we disable it for now. 
+    # Once it is working, replace -c MC_LHQG_EE.plot below by -c tmp.plot
+    ## 
+    ## # build a custom build plot
+    ## echo "# BEGIN PLOT" > tmp.plot
+    ## echo "DrawOnly=GA_00_00_R06 GA_20_00_R06 GA_10_05_R06 GA_10_10_R06 GA_10_20_R06 log_GA_00_00_R06 log_GA_20_00_R06 log_GA_10_05_R06 log_GA_10_10_R06 log_GA_10_20_R06" >> tmp.plot
+    ## echo "# END PLOT" >> tmp.plot
+    ## echo "" >> tmp.plot
+    ## cat MC_LHQG_EE.plot >> tmp.plot
+    
+    # do the plots
+    safe-rivet-mkhtml -o plots/qq-200-R06-$gen  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/gg-200-R06-$gen  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/sep-200-R06-$gen $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/sum-200-R06-$gen $i_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+done
+
+# do the MC comparison on the baseline
+message ""
+message "Plots for generator comparison at 200 GeV, R=0.6"
+q_input=""
+g_input=""
+s_input=""
+i_input=""
+for gen in $generators; do
+    q_input="$q_input $gen/results/qq-200.yoda:$gen"
+    g_input="$g_input $gen/results/gg-200.yoda:$gen"
+    s_input="$s_input $gen/results/sep-200.yoda:$gen"
+    i_input="$i_input $gen/results/sum-200.yoda:$gen"
+done
+message "... plot quark: $q_input"    
+message "... plot gluon: $g_input"
+message "... plot separ: $s_input"
+message "... plot integ: $i_input"
+    
+# the trick below should work as far as I understand the manual
+# correctly but crashes rivet-cmphistos. So we disable it for now. 
+# Once it is working, replace -c MC_LHQG_EE.plot below by -c tmp.plot
+## 
+## # build a custom build plot
+## echo "# BEGIN PLOT" > tmp.plot
+## echo "DrawOnly=GA_00_00_R06 GA_20_00_R06 GA_10_05_R06 GA_10_10_R06 GA_10_20_R06 log_GA_00_00_R06 log_GA_20_00_R06 log_GA_10_05_R06 log_GA_10_10_R06 log_GA_10_20_R06" >> tmp.plot
+## echo "# END PLOT" >> tmp.plot
+## echo "" >> tmp.plot
+## cat MC_LHQG_EE.plot >> tmp.plot
+    
+# do the plots
+safe-rivet-mkhtml -o plots/qq-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/gg-200-R06-allMCs  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/sep-200-R06-allMCs $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+
+#----------------------------------------------------------------------
+# do the alphas modulation
+mkdir -p modulations
+message ""
+message "Plots of the alphas modulation for individual generators at 200 GeV, R=0.6"
+for gen in $generators; do
+    message "... $gen"
+    ./produce-alphadependence-data $gen modulations/alphadep-$gen.yoda
+    i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
+done
+# config file missing
+safe-rivet-mkhtml -o plots/alphadependence $i_input -t $gen,Q=200GeV,R=0.6
+
+# do the R modulation
+message ""
+message "Plots of the R modulation for individual generators at 200 GeV"
+i_input=""
+for gen in $generators; do
+    message "... $gen"
+    ./produce-Rdependence-data $gen/results/sep-200.log modulations/Rdep-$gen.yoda
+    i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
+done
+# config file missing
+safe-rivet-mkhtml -o plots/Rdependence $i_input -t $gen,Q=200GeV
+
+
+# do the energy modulation
+message ""
+message "Plots of the Q modulation for individual generators at R=0.6"
+i_input=""
+for gen in $generators; do
+    message "... $gen"
+    ./produce-Qdependence-data $gen modulations/Qdep-$gen.yoda
+    i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
+done
+# config file missing
+safe-rivet-mkhtml -o plots/Qdependence $i_input -t $gen,R=0.6
+
+message "all done!"
+date | tee -a $logfile
+
+exit
