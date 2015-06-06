@@ -1,5 +1,8 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* MC_LHQG_EE.plot:
+	set the log thrust to -8
+
 	* post-process.sh:
 	specified explicitly the configuration file
 

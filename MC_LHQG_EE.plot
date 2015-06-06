@@ -161,6 +161,7 @@ YLabel=1/N dN/dT
 Title=Thrust
 XLabel=log(1-T)
 YLabel=T/N dN/dT
+XMin=-8.0
 # END PLOT
 
 #----------------------------------------------------------------------
