@@ -2,6 +2,7 @@
 
 	* post-process.sh:
 	added Herwig w. hadronisation
+	added a FORCE_PLOTS option which forces only the plots
 
 	* MC_LHQG_EE.plot:
 	simplified a few things + set a linear y scale for all plots

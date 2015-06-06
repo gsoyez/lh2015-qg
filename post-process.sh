@@ -107,8 +107,8 @@ echo "Producing plots (logging in plots.log)"
 date > plots.log
 
 echo "  quarks, parton level: plots/MCdep-q200-parton" | tee -a plots.log
-if [ -d plots/MCdep-q200-parton ] && [ -z $FORCE ]; then
-    echo "    plots already made. Delete the directory or run FORCE=yes post-process.sh to regenerate" | tee -a plots.log
+if [ -d plots/MCdep-q200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
     rivet-mkhtml Pythia/rebinned/qq-200-parton-mec.yoda:Pythia8 \
                  Pythia/rebinned/qq-200-parton.yoda:Pythia8-noME \
@@ -116,13 +116,13 @@ else
                  Vincia/rebinned/qq-200-parton-nlo.yoda:Vincia-NLO \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_E200.yoda:Herwig++-LH15 \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_sep_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-q200-parton >> plots.log 2>&1
 fi
 
 echo "  gluons, parton level: plots/MCdep-g200-parton" | tee -a plots.log
-if [ -d plots/MCdep-g200-parton ] && [ -z $FORCE ]; then
-    echo "    plots already made. Delete the directory or run FORCE=yes post-process.sh to regenerate" | tee -a plots.log
+if [ -d plots/MCdep-g200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
     rivet-mkhtml Pythia/rebinned/gg-200-parton-mec.yoda:Pythia8 \
                  Pythia/rebinned/gg-200-parton.yoda:Pythia8-noME \
@@ -134,8 +134,8 @@ else
 fi
 
 echo "  separations, parton level: plots/MCdep-sep200-parton" | tee -a plots.log
-if [ -d plots/MCdep-sep200-parton ] && [ -z $FORCE ]; then
-    echo "    plots already made. Delete the directory or run FORCE=yes post-process.sh to regenerate" | tee -a plots.log
+if [ -d plots/MCdep-sep200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
     rivet-mkhtml Pythia/rebinned/sep-200-parton-mec.yoda:Pythia8 \
                  Pythia/rebinned/sep-200-parton.yoda:Pythia8-noME \
@@ -148,8 +148,8 @@ fi
 
 
 echo "  quarks, hadron level: plots/MCdep-q200-hadron" | tee -a plots.log
-if [ -d plots/MCdep-q200-hadron ] && [ -z $FORCE ]; then
-    echo "    plots already made. Delete the directory or run FORCE=yes post-process.sh to regenerate" | tee -a plots.log
+if [ -d plots/MCdep-q200-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
     rivet-mkhtml Pythia/rebinned/qq-200-hadron-mec.yoda:Pythia8 \
                  Pythia/rebinned/qq-200-hadron.yoda:Pythia8-noME \
@@ -162,8 +162,8 @@ else
 fi
 
 echo "  gluons, hadron level: plots/MCdep-g200-hadron" | tee -a plots.log
-if [ -d plots/MCdep-g200-hadron ] && [ -z $FORCE ]; then
-    echo "    plots already made. Delete the directory or run FORCE=yes post-process.sh to regenerate" | tee -a plots.log
+if [ -d plots/MCdep-g200-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
     rivet-mkhtml Pythia/rebinned/gg-200-hadron-mec.yoda:Pythia8 \
                  Pythia/rebinned/gg-200-hadron.yoda:Pythia8-noME \
@@ -175,8 +175,8 @@ else
 fi
 
 echo "  separations, hadron level: plots/MCdep-sep200-hadron" | tee -a plots.log
-if [ -d plots/MCdep-sep200-hadron ] && [ -z $FORCE ]; then
-    echo "    plots already made. Delete the directory or run FORCE=yes post-process.sh to regenerate" | tee -a plots.log
+if [ -d plots/MCdep-sep200-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
     rivet-mkhtml Pythia/rebinned/sep-200-hadron-mec.yoda:Pythia8 \
                  Pythia/rebinned/sep-200-hadron.yoda:Pythia8-noME \
