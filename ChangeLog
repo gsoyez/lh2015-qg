@@ -1,9 +1,37 @@
+2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
+
+	* README.md:
+	replaced the request for a 500 GeV run by a 400 GeV one (keeps
+	geometric progression);
+	added some description of the latest "scripting" work
+
+	* post-process.sh:
+	fixed wrong names when processing Herwig results
+
+	* produce-separation-plots.py:
+	fixed a bug wit the output file
+
 2015-06-06  Jesse Thaler  <jthaler@mit.edu>
 
 	* compute-efficiencies.py
 	Added correct (?) uncertainties for separation plots
 
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	added summary plots
+
+	* separation.plot:              *** ADDED ***
+	added a file with plotting settings for the summary plots
+
+	* produce-separation-plots.py:  *** ADDED ***
+	* get-separation.sh:            *** ADDED ***
+	added a simple script that extract an entry from the separation
+	tables produced by compute-efficiencies.py and a Pythin script
+	that produces yoda files with information useful for summary plots
+
+	* post-process.sh:
+	added Herwig++ dipole-shower hadron-level results to the plots
 
 	* post-process.sh:
 	added Herwig w. hadronisation
