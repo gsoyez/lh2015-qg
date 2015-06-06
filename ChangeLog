@@ -2,6 +2,7 @@
 
 	* README.md:
 	updated the whole workflow after the meeting in Les Houches on June 6th.
+	mentioned that hadron-level is the default
 
 	* MC_LHQG_EE.cc:
 	switched to R=0.2, 0.4, 0.6, 0.8, 1.0
