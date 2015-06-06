@@ -1,0 +1,19 @@
+! 1) Collider Setup: 
+Beams:eCM =  800.0                ! Total energy of collision (in GeV)
+Beams:idA =  13                    ! Beam A: mu-
+Beams:idB = -13                    ! Beam B: mu+
+Main:numberOfEvents = 200000      ! number of events to generate
+
+! 2) Process Setup for Z
+WeakSingleBoson:ffbar2gmZ = on     ! Process = Z/photon production
+23:onMode = off                    ! Select decay modes indivudually 
+23:onIfAny = 2  
+
+! 3) Settings to match specific measurement setup
+PDF:lepton = off                   ! switch off electron-within-electron
+SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
+HadronLevel:all = on
+
+! 4) Les Houches Q/G study setup for PYTHIA
+! 2-loop variation
+TimeShower:alphaSorder = 2
