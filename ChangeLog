@@ -1,5 +1,8 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* produce-separation-plots.py --> produce-separation-data.py:
+	file renamed
+
 	* README.md:
 	updated the whole workflow after the meeting in Les Houches on June 6th.
 	mentioned that hadron-level is the default
