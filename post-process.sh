@@ -203,13 +203,13 @@ mkdir -p summary
 ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.log summary/Herwig-hadron-200.yoda
 ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E200.log summary/Herwig-hadron-dip-200.yoda
 rivet-mkhtml -c separation.plot -o plots/summary \
-             summary/Pythia-hadron-mec-200.yoda \
-             summary/Pythia-hadron-200.yoda \
-             summary/Vincia-hadron-200.yoda \
-             summary/Sherpa-hadron-njet0-200.yoda \
-             summary/Sherpa-hadron-njet2-200.yoda \
-             summary/Herwig-hadron-200.yoda \
-             summary/Herwig-hadron-dip-200.yoda \
+             summary/Pythia-hadron-mec-200.yoda:Pythia \
+             summary/Pythia-hadron-200.yoda:Pythia-noME \
+             summary/Vincia-hadron-200.yoda:Vincia \
+             summary/Sherpa-hadron-njet0-200.yoda:Sherpa-njet0 \
+             summary/Sherpa-hadron-njet2-200.yoda:Sherpa-njet2 \
+             summary/Herwig-hadron-200.yoda:Herwig \
+             summary/Herwig-hadron-dip-200.yoda:Herwig-dip \
              >> plots.log 2>&1
 
 echo "You're all set!"
