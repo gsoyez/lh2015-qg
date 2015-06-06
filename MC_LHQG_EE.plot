@@ -1,97 +1,84 @@
+# some global setups
+#----------------------------------------------------------------------
+
+# BEGIN PLOT /MC_LHQG_EE/
+LogY=0
+# END PLOT
+
+# BEGIN PLOT /MC_LHQG_EE/GA
+XLabel=$\lambda$
+YLabel=1/N dN/d$\lambda$
+# END PLOT
+
+# BEGIN PLOT /MC_LHQG_EE/log_GA
+XLabel=log($\lambda$)
+YLabel=$\lambda$/N dN/d$\lambda$
+# END PLOT
+
 # generalised angularities
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/GA_00_00_R3
 Title=$\lambda$($\kappa$=0, $\beta$=0) [multiplicity], R=0.3
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_00_00_R6
 Title=$\lambda$($\kappa$=0, $\beta$=0) [multiplicity], R=0.6
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_00_00_R9
 Title=$\lambda$($\kappa$=0, $\beta$=0) [multiplicity], R=0.9
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/GA_10_05_R3
 Title=$\lambda$($\kappa$=1, $\beta$=0.5), R=0.3
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_10_05_R6
 Title=$\lambda$($\kappa$=1, $\beta$=0.5), R=0.6
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_10_05_R9
 Title=$\lambda$($\kappa$=1, $\beta$=0.5), R=0.9
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/GA_10_10_R3
 Title=$\lambda$($\kappa$=1, $\beta$=1) [width], R=0.3
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_10_10_R6
 Title=$\lambda$($\kappa$=1, $\beta$=1) [width], R=0.6
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_10_10_R9
 Title=$\lambda$($\kappa$=1, $\beta$=1) [width], R=0.9
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/GA_10_20_R3
 Title=$\lambda$($\kappa$=1, $\beta$=2) [mass], R=0.3
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_10_20_R6
 Title=$\lambda$($\kappa$=1, $\beta$=2) [mass], R=0.6
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_10_20_R9
 Title=$\lambda$($\kappa$=1, $\beta$=2) [mass], R=0.9
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/GA_20_00_R3
 Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.3
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_20_00_R6
 Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.6
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/GA_20_00_R9
 Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.9
-XLabel=$\lambda$
-YLabel=1/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
@@ -99,96 +86,66 @@ YLabel=1/N dN/d$\lambda$
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/log_GA_00_00_R3
 Title=$\lambda$($\kappa$=0, $\beta$=0) [multiplicity], R=0.3
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_00_00_R6
 Title=$\lambda$($\kappa$=0, $\beta$=0) [multiplicity], R=0.6
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_00_00_R9
 Title=$\lambda$($\kappa$=0, $\beta$=0) [multiplicity], R=0.9
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_05_R3
 Title=$\lambda$($\kappa$=1, $\beta$=0.5), R=0.3
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_05_R6
 Title=$\lambda$($\kappa$=1, $\beta$=0.5), R=0.6
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_05_R9
 Title=$\lambda$($\kappa$=1, $\beta$=0.5), R=0.9
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_10_R3
 Title=$\lambda$($\kappa$=1, $\beta$=1) [width], R=0.3
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_10_R6
 Title=$\lambda$($\kappa$=1, $\beta$=1) [width], R=0.6
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_10_R9
 Title=$\lambda$($\kappa$=1, $\beta$=1) [width], R=0.9
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_20_R3
 Title=$\lambda$($\kappa$=1, $\beta$=2) [mass], R=0.3
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_20_R6
 Title=$\lambda$($\kappa$=1, $\beta$=2) [mass], R=0.6
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_10_20_R9
 Title=$\lambda$($\kappa$=1, $\beta$=2) [mass], R=0.9
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/log_GA_20_00_R3
 Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.3
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_20_00_R6
 Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.6
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/log_GA_20_00_R9
 Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.9
-XLabel=log($\lambda$)
-YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
 #----------------------------------------------------------------------

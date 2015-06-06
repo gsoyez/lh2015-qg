@@ -1,4 +1,29 @@
+2015-06-06  Jesse Thaler  <jthaler@mit.edu>
+
+	* compute-efficiencies.py
+	Added correct (?) uncertainties for separation plots
+
+2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	added Herwig w. hadronisation
+	added a FORCE_PLOTS option which forces only the plots
+	fixed a reordering issue
+
+	* MC_LHQG_EE.plot:
+	simplified a few things + set a linear y scale for all plots
+
 2015-06-05  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	bugfix: create the rebinned directories if not already present
+	included results from the Sherpa runs
+
+	* Sherpa/Run-hgg.dat:            *** ADDED ***
+	* Sherpa/Run-zqq.dat:            *** ADDED ***
+	* Sherpa/results:                *** ADDED ***
+	added cards and results from Sherpa. Njet describes the maximal
+	number of additional jets included in the Matrix Elements
 
 	* MC_LHQG_EE.cc:
 	added a check that FastJet version is at least 3.1.0

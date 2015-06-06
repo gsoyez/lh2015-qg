@@ -99,6 +99,9 @@ while 1:
         wq = float(colsq[2])
         wg = float(colsg[2])
 
+        w2q = float(colsq[3])
+        w2g = float(colsg[3])
+
         # check if we cross one of the interesting percentiles
 
         # test the cut "observed < cut" for 20%
@@ -140,6 +143,10 @@ while 1:
         # compute the measures based on mutual info
         I05_second_local=0.5*(wq-wg)*(wq-wg)/(wq+wg) if wq+wg>0 else 0.0
         I05_second += I05_second_local
+        
+        I05_second_local_error=0.25*(wq-wg)*(wq-wg) \
+         *(w2q*(3.0*wg+wq)*(3.0*wg+wq)+w2g*(wg+3.0*wq)*(wg+3.0*wq)) \
+         /((wq+wg)*(wq+wg)*(wq+wg)*(wq+wg)) if wq+wg>0 else 0.0
 
         I05+=(0.5*wq*math.log(2*wq/(wq+wg))/math.log(2.0) if wq>0 else 0.0)
         I05+=(0.5*wg*math.log(2*wg/(wq+wg))/math.log(2.0) if wg>0 else 0.0)
@@ -155,10 +162,11 @@ while 1:
         # update directly in the quark columns
         lo=float(colsq[0])
         q=I05_second_local
+        q2=I05_second_local_error
         colsq[2] = str(q)
-        colsq[3] = str(q*q) # wrong but not crucial at this stage
+        colsq[3] = str(q2)
         colsq[4] = str(lo*q) # wrong but not crucial at this stage
-        colsq[5] = str(lo*lo*q) # wrong but not crucial at this stage
+        colsq[5] = str(lo*lo*q2) # wrong but not crucial at this stage
         colsq[6] = str(int(100000*q)) # again not ideal
 
         strsep=" "
