@@ -54,15 +54,17 @@ Workflow
 
 - Naming conventions for the results should follow the following scheme
     < Generator >-< Version >/results/< process >-< Q >[flags].yoda
+
   where
-    . process is either uu or gg
-    . the "best" prediction has no flags
-    . the alphas variations have flags -alphasx08 -alphasx12
-    . the switching off of g->qqbar has flags -nogqq
-    . any additional variations comes with a friendly flag (e.g. -nome
-      for Matrix-element switched off or -njet0, -parton for
-      parton-level studies, ...). These should be briefly described in
-      the README
+
+   - process is either uu or gg
+   - the "best" prediction has no flags
+   - the alphas variations have flags -alphasx08 -alphasx12
+   - the switching off of g->qqbar has flags -nogqq
+   - any additional variations comes with a friendly flag (e.g. -nome
+     for Matrix-element switched off or -njet0, -parton for
+     parton-level studies, ...). These should be briefly described in
+     the README
    
 Description of what information/plots are extracted of the result files
 -----------------------------------------------------------------------
