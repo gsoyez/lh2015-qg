@@ -29,7 +29,7 @@ done
 echo "  Herwig"
 for fn in Herwig/Herwig7/Parton_level_Results/*_u_u_*.yoda; do
     sepname=${fn/_u_u_/_sep_}
-    gluname=${fn/_g_g_/_sep_}
+    gluname=${fn/_u_u_/_g_g_}
     if [ -f ${gluname} ]; then
         if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
             ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
@@ -38,7 +38,7 @@ for fn in Herwig/Herwig7/Parton_level_Results/*_u_u_*.yoda; do
 done
 for fn in Herwig/Herwig7/Hadron_level_Results/*_u_u_*.yoda; do
     sepname=${fn/_u_u_/_sep_}
-    gluname=${fn/_g_g_/_sep_}
+    gluname=${fn/_u_u_/_g_g_}
     if [ -f ${gluname} ]; then
         if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
             ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log

@@ -1,5 +1,8 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	fixed wrong names when processing Herwig results
+
 	* produce-separation-plots.py:
 	fixed a bug wit the output file
 
