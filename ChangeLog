@@ -1,3 +1,8 @@
+2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
+
+	* produce-separation-plots.py:
+	fixed a bug wit the output file
+
 2015-06-06  Jesse Thaler  <jthaler@mit.edu>
 
 	* compute-efficiencies.py

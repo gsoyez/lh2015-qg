@@ -12,7 +12,7 @@
 
 import sys,re,yoda,os
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     sys.exit("Usage: produce-separation-files.py  separation_table")
 
 # open the files
@@ -30,5 +30,5 @@ for measure in measures:
     scatters.append(separation_scatter)
 
 
-yoda.write(scatters,"test.yoda")
+yoda.write(scatters,sys.argv[2])
 

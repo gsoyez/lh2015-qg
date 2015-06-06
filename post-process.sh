@@ -117,7 +117,7 @@ else
                  Vincia/rebinned/qq-200-parton-nlo.yoda:Vincia-NLO \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_E200.yoda:Herwig++ \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_E200.yoda:Herwig++-LH15 \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_sep_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-q200-parton >> plots.log 2>&1
 fi
 
