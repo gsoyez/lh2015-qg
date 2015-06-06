@@ -140,4 +140,5 @@ Contributors
 
 Gregory Soyez
 Jesse Thaler
+Andrzej Siodmok
 ...
