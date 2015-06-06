@@ -49,7 +49,7 @@ Processes to consider:
 
 Energies [GeV]: (Q=sqrts)
  - 1st batch: 50, 200, 800
- - 2nd batch: 100, 500, 1600, 3200
+ - 2nd batch: 100, 400, 1600, 3200
 
 For the pp study [ !!! OUT OF DATE !!! ]
 ----------------
@@ -66,9 +66,27 @@ File contents
 
 - MC_LHQG.cc     Rivet Analysis for the pp studies [OUT OF DATE and "bugged"]
 
-- Pythia/Vincia/Herwig directories contain codes and/or yoda files for
+- Pythia/Vincia/Herwig/Sherpa directories contain codes and/or yoda files for
   the different generators
 
+- some helper scripts
+   . post-process.sh   an overall script that creates the separation tables and the plots
+                       This is the script you run to get results out of a git checkout
+                       The other files below are secondary.
+
+   . compute-efficiencies.py <quark>.yoda <gluon>.yoda <efficiency>.yoda
+      will, given the quark and gluon output, produce
+      <efficiency>.yoda with the efficiency histograms and output to
+      stdout a table with a bunch of quality measures (see notes in
+      tex/ for details) . compute_efficiencies.py
+
+   . get-separation.sh separation_table observable measure
+      simple helper that extracts one number (corresponding to a given
+      observable and separation measure) from a separation table
+      (output of compute-efficiencies.py)
+
+   . produce-separation-plots.py
+      creates a yoda file with summary information for a given separation table
 
 Workflow
 --------
@@ -94,15 +112,21 @@ If you only want to process yoda files, you can skip steps 2 and 4.
      rivet --analysis=MC_LHQG_EE fifo.hepmc -H your_preferred_output.yoda
    For q/g enrichment, run it once for quarks and once for gluons.
 
-5. To produce efficiency information, run
-     ./compute-efficiencies.py <quark>.yoda <gluon>.yoda <efficiency>.yoda
-   which will, given the quark and gluon output, produce
-   <efficiency>.yoda with the efficiency histograms and output to
-   stdout a table with a bunch of quality measures (see notes in tex/
-   for details)
+5. Produce the separation information and plots by runnung
+     ./post-process.sh
 
-6. create the plots [from the yoda files] running
-     rivet-mkhtml <list of yoda files to plot>
+   This does a few things:
+     - it creates the separation tables and yoda histograms for all the results
+     - it rebins the histograms for nicer plots
+     - it produces the quark, gluon and separation MC comparison plots
+       (parton and hadron level)
+     - it generate summary histograms ans plot them
+   Check plots.log for details of the run and enjoy the plots in plots/...
+
+Note that individual results can be obtained by individual tools (see
+the file description above) and the rivet-mkhtml tool.
+
+     rivet-mkhtml <list of yoda files to plot> -o directory [-c config file]
 
 
 Results available

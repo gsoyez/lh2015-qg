@@ -1,5 +1,10 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* README.md:
+	replaced the request for a 500 GeV run by a 400 GeV one (keeps
+	geometric progression);
+	added some description of the latest "scripting" work
+
 	* post-process.sh:
 	fixed wrong names when processing Herwig results
 
