@@ -47,9 +47,9 @@ for fn in Herwig/Herwig7/Hadron_level_Results/*_u_u_*.yoda; do
 done
 
 echo "  Sherpa"
-for fn in Sherpa/results/q*.yoda; do
-    sepname=${fn/q/sep}
-    gluname=${fn/q/g}
+for fn in Sherpa/results/uu-*.yoda; do
+    sepname=${fn/uu/sep}
+    gluname=${fn/uu/gg}
     if [ -f ${gluname} ]; then
         if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
             ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
@@ -158,8 +158,8 @@ for sqrts in 200 800; do
                      Pythia/rebinned/qq-${sqrts}-hadron.yoda:Pythia8-noME \
                      Vincia/rebinned/qq-${sqrts}-hadron.yoda:Vincia \
                      Vincia/rebinned/qq-${sqrts}-hadron-nlo.yoda:Vincia-NLO \
-                     Sherpa/rebinned/q${sqrts}-njet0.yoda:Sherpa-Njet0 \
-                     Sherpa/rebinned/q${sqrts}-njet2.yoda:Sherpa-Njet2 \
+                     Sherpa/rebinned/uu-${sqrts}-njet0.yoda:Sherpa-Njet0 \
+                     Sherpa/rebinned/uu-${sqrts}-njet2.yoda:Sherpa-Njet2 \
                      Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E${sqrts}.yoda:Herwig++ \
                      Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
                      -o plots/MCdep-q${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
@@ -172,8 +172,8 @@ for sqrts in 200 800; do
         rivet-mkhtml Pythia/rebinned/gg-${sqrts}-hadron-mec.yoda:Pythia8 \
                      Pythia/rebinned/gg-${sqrts}-hadron.yoda:Pythia8-noME \
                      Vincia/rebinned/gg-${sqrts}-hadron.yoda:Vincia \
-                     Sherpa/rebinned/g${sqrts}-njet0.yoda:Sherpa-Njet0 \
-                     Sherpa/rebinned/g${sqrts}-njet2.yoda:Sherpa-Njet2 \
+                     Sherpa/rebinned/gg-${sqrts}-njet0.yoda:Sherpa-Njet0 \
+                     Sherpa/rebinned/gg-${sqrts}-njet2.yoda:Sherpa-Njet2 \
                      Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E${sqrts}.yoda:Herwig++ \
                      Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
                      -o plots/MCdep-g${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
@@ -186,8 +186,8 @@ for sqrts in 200 800; do
         rivet-mkhtml Pythia/rebinned/sep-${sqrts}-hadron-mec.yoda:Pythia8 \
                      Pythia/rebinned/sep-${sqrts}-hadron.yoda:Pythia8-noME \
                      Vincia/rebinned/sep-${sqrts}-hadron.yoda:Vincia \
-                     Sherpa/rebinned/sep${sqrts}-njet0.yoda:Sherpa-Njet0 \
-                     Sherpa/rebinned/sep${sqrts}-njet2.yoda:Sherpa-Njet2 \
+                     Sherpa/rebinned/sep-${sqrts}-njet0.yoda:Sherpa-Njet0 \
+                     Sherpa/rebinned/sep-${sqrts}-njet2.yoda:Sherpa-Njet2 \
                      Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E${sqrts}.yoda:Herwig++ \
                      Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
                      -o plots/MCdep-sep${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
@@ -199,9 +199,9 @@ for sqrts in 200 800; do
 
     ./produce-separation-plots.py Pythia/results/sep-${sqrts}-hadron-mec.log summary/Pythia-hadron-mec-${sqrts}.yoda
     ./produce-separation-plots.py Pythia/results/sep-${sqrts}-hadron.log summary/Pythia-hadron-${sqrts}.yoda
-    ./produce-separation-plots.py Vincia/results/sep-${post-process.shsqrts}-hadron.log summary/Vincia-hadron-${sqrts}.yoda
-    ./produce-separation-plots.py Sherpa/results/sep${sqrts}-njet0.log summary/Sherpa-hadron-njet0-${sqrts}.yoda
-    ./produce-separation-plots.py Sherpa/results/sep${sqrts}-njet2.log summary/Sherpa-hadron-njet2-${sqrts}.yoda
+    ./produce-separation-plots.py Vincia/results/sep-${sqrts}-hadron.log summary/Vincia-hadron-${sqrts}.yoda
+    ./produce-separation-plots.py Sherpa/results/sep-${sqrts}-njet0.log summary/Sherpa-hadron-njet0-${sqrts}.yoda
+    ./produce-separation-plots.py Sherpa/results/sep-${sqrts}-njet2.log summary/Sherpa-hadron-njet2-${sqrts}.yoda
     ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E${sqrts}.log summary/Herwig-hadron-${sqrts}.yoda
     ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E${sqrts}.log summary/Herwig-hadron-dip-${sqrts}.yoda
     rivet-mkhtml -c separation.plot -o plots/summary-${sqrts} \
