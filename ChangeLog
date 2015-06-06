@@ -1,5 +1,9 @@
 2015-06-07  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	made sure that "best" comes first
+
+	* post-process.sh:
 	* produce-separation-data.py:
 	Switched list of generators without Sherpa (until it has the right
 	R values)

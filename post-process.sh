@@ -77,7 +77,9 @@ for gen in $generators; do
     g_both_files=""
 
     # search for the quark (and common) ones
-    for fn in $gen/results/uu-200*.yoda; do
+    q_both_files="$gen/results/uu-200.yoda"
+    g_both_files="$gen/results/gg-200.yoda"
+    for fn in $gen/results/uu-200-*.yoda; do
         if [[ $fn != *"-alphasx"* ]]; then
             gluname=${fn/uu/gg}
             if [ -f ${gluname} ]; then
@@ -90,7 +92,7 @@ for gen in $generators; do
     done
 
     # search for the gluon-only ones
-    for fn in $gen/results/gg-200*.yoda; do
+    for fn in $gen/results/gg-200-*.yoda; do
         if [[ $fn != *"-alphasx"* ]]; then
             quarkname=${fn/uu/gg}
             if [ ! -f ${quarkname} ]; then
