@@ -35,7 +35,15 @@ for fn in Herwig/Herwig7/Parton_level_Results/*_u_u_*.yoda; do
             ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
         fi
     fi
-
+done
+for fn in Herwig/Herwig7/Hadron_level_Results/*_u_u_*.yoda; do
+    sepname=${fn/_u_u_/_sep_}
+    gluname=${fn/_g_g_/_sep_}
+    if [ -f ${gluname} ]; then
+        if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
+            ./compute-efficiencies.py $fn ${gluname} $sepname > ${sepname%yoda}log
+        fi
+    fi
 done
 
 echo "  Sherpa"
@@ -77,6 +85,13 @@ for fn in Herwig/Herwig7/Parton_level_Results/*.yoda; do
         ./yoda-rebin.py $fn $outname | grep -v "vs."
     fi
 done
+mkdir -p Herwig/Herwig7/Hadron_level_Rebinned
+for fn in Herwig/Herwig7/Hadron_level_Results/*.yoda; do
+    outname=${fn/Results/Rebinned}
+    if [ ! -f ${outname} ] || [ ! -z $FORCE ]; then
+        ./yoda-rebin.py $fn $outname | grep -v "vs."
+    fi
+done
 
 echo "  Sherpa"
 mkdir -p Sherpa/rebinned
@@ -99,7 +114,8 @@ else
                  Pythia/rebinned/qq-200-parton.yoda:Pythia8-noME \
                  Vincia/rebinned/qq-200-parton.yoda:Vincia \
                  Vincia/rebinned/qq-200-parton-nlo.yoda:Vincia-NLO \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_E200.yoda:Herwig++-LH15 \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-q200-parton >> plots.log 2>&1
 fi
@@ -111,7 +127,8 @@ else
     rivet-mkhtml Pythia/rebinned/gg-200-parton-mec.yoda:Pythia8 \
                  Pythia/rebinned/gg-200-parton.yoda:Pythia8-noME \
                  Vincia/rebinned/gg-200-parton.yoda:Vincia \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_E200.yoda:Herwig++-LH15 \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-g200-parton >> plots.log 2>&1
 fi
@@ -123,7 +140,8 @@ else
     rivet-mkhtml Pythia/rebinned/sep-200-parton-mec.yoda:Pythia8 \
                  Pythia/rebinned/sep-200-parton.yoda:Pythia8-noME \
                  Vincia/rebinned/sep-200-parton.yoda:Vincia \
-                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_E200.yoda:Herwig++ \
+                 Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_E200.yoda:Herwig++-LH15 \
                  Herwig/Herwig7/Parton_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_E200.yoda:Herwig++-dip \
                  -o plots/MCdep-sep200-parton >> plots.log 2>&1
 fi
@@ -137,6 +155,7 @@ else
                  Pythia/rebinned/qq-200-hadron.yoda:Pythia8-noME \
                  Vincia/rebinned/qq-200-hadron.yoda:Vincia \
                  Vincia/rebinned/qq-200-hadron-nlo.yoda:Vincia-NLO \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E200.yoda:Herwig++ \
                  Sherpa/rebinned/q200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/q200-njet2.yoda:Sherpa-Njet2 \
                  -o plots/MCdep-q200-hadron >> plots.log 2>&1
@@ -151,6 +170,7 @@ else
                  Vincia/rebinned/gg-200-hadron.yoda:Vincia \
                  Sherpa/rebinned/g200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/g200-njet2.yoda:Sherpa-Njet2 \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E200.yoda:Herwig++ \
                  -o plots/MCdep-g200-hadron >> plots.log 2>&1
 fi
 
@@ -163,6 +183,7 @@ else
                  Vincia/rebinned/sep-200-hadron.yoda:Vincia \
                  Sherpa/rebinned/sep200-njet0.yoda:Sherpa-Njet0 \
                  Sherpa/rebinned/sep200-njet2.yoda:Sherpa-Njet2 \
+                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.yoda:Herwig++ \
                  -o plots/MCdep-sep200-hadron >> plots.log 2>&1
 fi
 

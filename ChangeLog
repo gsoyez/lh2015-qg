@@ -1,3 +1,11 @@
+2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	added Herwig w. hadronisation
+
+	* MC_LHQG_EE.plot:
+	simplified a few things + set a linear y scale for all plots
+
 2015-06-05  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
