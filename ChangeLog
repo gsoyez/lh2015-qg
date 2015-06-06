@@ -1,5 +1,14 @@
 2015-06-07  Gregory Soyez  <soyez@fastjet.fr>
 
+	* produce-separation-data.py:
+	Switched list of generators without Sherpa (until it has the right
+	R values)
+	Note that Pythia should be moved in a directory including its
+	version number
+
+	* produce-Rdependence-data.py:
+	fixed output of R values
+
 	* post-process.sh:
 	* produce-Qdependence-data.py:
 	fixed a few issues

@@ -9,8 +9,8 @@
 logfile=post-process.log
 date > $logfile
 
-#desired_generators="Herwig-2_7_1 Pythia-8.??? Vincia-??? Sherpa-2.1.1"
-desired_generators="Sherpa-2.1.1"
+desired_generators="Herwig-2.7.1 Pythia Vincia-x.y.z"
+# Sherpa-2.1.1 to be rerun with correct R
 
 #----------------------------------------------------------------------
 # a helper to output to stdout and logfile
