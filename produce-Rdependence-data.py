@@ -19,13 +19,13 @@ if len(sys.argv) != 3:
 table = sys.argv[1]
 
 measures=["grej20", "grej50", "qrej20", "qrej50", "srej", "I", "I2"]
-Rvalues=[2, 4, 6, 8, 10]
+Rvalues=[3, 6, 9]
 observables=["GA_00_00", "GA_20_00", "GA_10_05", "GA_10_10", "GA_10_20"]
 
 scatters=[]
 for measure in measures:
     for observable in observables:
-        separation_scatter = yoda.Scatter2D(title=measure, path="/separation/"+measure+"_"+observable)
+        separation_scatter = yoda.Scatter2D(title=measure, path="/Rdependence/"+measure+"_"+observable)
         for Rval in Rvalues:
             command="./get-separation.sh "+table+" "+observable+"_R"+str(Rval)+" "+measure
             separation_scatter.addPoint(0.2*Rval, float(os.popen(command).read().rstrip()), xerrs=0.1)

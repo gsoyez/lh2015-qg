@@ -24,9 +24,9 @@ observables=["GA_00_00", "GA_20_00", "GA_10_05", "GA_10_10", "GA_10_20"]
 scatters=[]
 for measure in measures:
     for observable in observables:
-        separation_scatter = yoda.Scatter2D(title=measure, path="/separation/"+measure+"_"+observable)
+        separation_scatter = yoda.Scatter2D(title=measure, path="/Qdependence/"+measure+"_"+observable)
         for Q in [50,100,200,400,800]:
-            command="./get-separation.sh "+gen+"/results/sum-"+str(Q)+".ioda "+observable+"_R06 "+measure
+            command="./get-separation.sh "+gen+"/results/sep-"+str(Q)+".log "+observable+"_R6 "+measure
             separation_scatter.addPoint(Q, float(os.popen(command).read().rstrip()))
         scatters.append(separation_scatter)
 

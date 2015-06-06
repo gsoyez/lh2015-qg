@@ -9,6 +9,9 @@
 logfile=post-process.log
 date > $logfile
 
+#desired_generators="Herwig-2_7_1 Pythia-8.??? Vincia-??? Sherpa-2.1.1"
+desired_generators="Sherpa-2.1.1"
+
 #----------------------------------------------------------------------
 # a helper to output to stdout and logfile
 function message {
@@ -23,8 +26,7 @@ function safe-rivet-mkhtml {
     if [ -d $plot_dir ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
         message "...... $plot_dir already already done. Delete the directory or run FORCE_PLOTS=yes to redo"
     else
-        #rivet-mkhtml $@ >> logfile 2>&1
-        echo "$@"
+        rivet-mkhtml $@ >> logfile 2>&1
     fi
 }
 
@@ -32,8 +34,6 @@ function safe-rivet-mkhtml {
 # generic generators
 message ""
 message "Building the list of supported generators"
-#desired_generators="Herwig-2_7_1 Pythia-8.??? Vincia-??? Sherpa-2.1.1"
-desired_generators="Pythia"
 generators=""
 for gen in $desired_generators; do
     if [ -d $gen/results ]; then
@@ -47,10 +47,10 @@ message ""
 message "Computing separations"
 for gen in $generators; do
     message "... $gen"
-    for fn in $gen/results/qq*.yoda; do
-        gluname=${fn/qq/gg}
+    for fn in $gen/results/uu*.yoda; do
+        gluname=${fn/uu/gg}
         if [ -f ${gluname} ]; then
-            sepname=${fn/qq/sep}
+            sepname=${fn/uu/sep}
             if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
                 logname=${sepname%yoda}log
                 ./compute-efficiencies.py $fn ${gluname} $sepname > $logname
@@ -77,9 +77,9 @@ for gen in $generators; do
     g_both_files=""
 
     # search for the quark (and common) ones
-    for fn in $gen/results/qq-200*.yoda; do
-        if [[ $fn != *"-alphax"* ]]; then
-            gluname=${fn/qq/gg}
+    for fn in $gen/results/uu-200*.yoda; do
+        if [[ $fn != *"-alphasx"* ]]; then
+            gluname=${fn/uu/gg}
             if [ -f ${gluname} ]; then
                 q_both_files="$q_both_files $fn"
                 g_both_files="$g_both_files $gluname"
@@ -91,8 +91,8 @@ for gen in $generators; do
 
     # search for the gluon-only ones
     for fn in $gen/results/gg-200*.yoda; do
-        if [[ $fn != *"-alphax"* ]]; then
-            quarkname=${fn/qq/gg}
+        if [[ $fn != *"-alphasx"* ]]; then
+            quarkname=${fn/uu/gg}
             if [ ! -f ${quarkname} ]; then
                 g_only_files="$g_only_files $fn"
             fi
@@ -103,13 +103,13 @@ for gen in $generators; do
     message "...... gluon: $g_both_files $g_only_files"    
 
     # build the "separation" list
-    s_files=${q_both_files//qq/sep}
+    s_files=${q_both_files//uu/sep}
     message "...... separ: $s_files"    
     
     # append the flags to these lists so that the titles come out right
     q_input=""
     for tag in $q_both_files $q_only_files; do
-        noyoda=${tag%.yoda}; flags=${noyoda#*qq-200}
+        noyoda=${tag%.yoda}; flags=${noyoda#*uu-200}
         if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
         q_input="$q_input $tag:$flags"
     done
@@ -147,10 +147,10 @@ for gen in $generators; do
     ## cat MC_LHQG_EE.plot >> tmp.plot
     
     # do the plots
-    safe-rivet-mkhtml -o plots/qq-200-R06-$gen  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/uu-200-R06-$gen  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
     safe-rivet-mkhtml -o plots/gg-200-R06-$gen  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
     safe-rivet-mkhtml -o plots/sep-200-R06-$gen $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-    safe-rivet-mkhtml -o plots/sum-200-R06-$gen $i_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/sum-200-R06-$gen $i_input -t $gen,Q=200GeV,R=0.6
 done
 
 # do the MC comparison on the baseline
@@ -161,7 +161,7 @@ g_input=""
 s_input=""
 i_input=""
 for gen in $generators; do
-    q_input="$q_input $gen/results/qq-200.yoda:$gen"
+    q_input="$q_input $gen/results/uu-200.yoda:$gen"
     g_input="$g_input $gen/results/gg-200.yoda:$gen"
     s_input="$s_input $gen/results/sep-200.yoda:$gen"
     i_input="$i_input $gen/results/sum-200.yoda:$gen"
@@ -183,10 +183,10 @@ message "... plot integ: $i_input"
 ## cat MC_LHQG_EE.plot >> tmp.plot
     
 # do the plots
-safe-rivet-mkhtml -o plots/qq-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/uu-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/gg-200-R06-allMCs  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/sep-200-R06-allMCs $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -t $gen,Q=200GeV,R=0.6
 
 #----------------------------------------------------------------------
 # do the alphas modulation
@@ -195,7 +195,7 @@ message ""
 message "Plots of the alphas modulation for individual generators at 200 GeV, R=0.6"
 for gen in $generators; do
     message "... $gen"
-    ./produce-alphadependence-data $gen modulations/alphadep-$gen.yoda
+    ./produce-alphadependence-data.py $gen modulations/alphadep-$gen.yoda
     i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
 done
 # config file missing
@@ -207,7 +207,7 @@ message "Plots of the R modulation for individual generators at 200 GeV"
 i_input=""
 for gen in $generators; do
     message "... $gen"
-    ./produce-Rdependence-data $gen/results/sep-200.log modulations/Rdep-$gen.yoda
+    ./produce-Rdependence-data.py $gen/results/sep-200.log modulations/Rdep-$gen.yoda
     i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
 done
 # config file missing
@@ -220,7 +220,7 @@ message "Plots of the Q modulation for individual generators at R=0.6"
 i_input=""
 for gen in $generators; do
     message "... $gen"
-    ./produce-Qdependence-data $gen modulations/Qdep-$gen.yoda
+    ./produce-Qdependence-data.py $gen modulations/Qdep-$gen.yoda
     i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
 done
 # config file missing

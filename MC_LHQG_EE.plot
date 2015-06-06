@@ -15,6 +15,22 @@ XLabel=log($\lambda$)
 YLabel=$\lambda$/N dN/d$\lambda$
 # END PLOT
 
+# BEGIN PLOT /MC_LHQG_EE/GA_10
+Rebin=5
+# END PLOT
+
+# BEGIN PLOT /MC_LHQG_EE/GA_20
+Rebin=5
+# END PLOT
+
+# BEGIN PLOT /MC_LHQG_EE/log_GA_10
+Rebin=5
+# END PLOT
+
+# BEGIN PLOT /MC_LHQG_EE/log_GA_20
+Rebin=5
+# END PLOT
+
 # generalised angularities
 #----------------------------------------------------------------------
 # BEGIN PLOT /MC_LHQG_EE/GA_00_00_R3
@@ -155,6 +171,7 @@ Title=$\lambda$($\kappa$=2, $\beta$=0) [$p_{tD}^2$], R=0.9
 Title=Thrust
 XLabel=T
 YLabel=1/N dN/dT
+Rebin=5
 # END PLOT
 
 # BEGIN PLOT /MC_LHQG_EE/Thrust_log
@@ -162,6 +179,7 @@ Title=Thrust
 XLabel=log(1-T)
 YLabel=T/N dN/dT
 XMin=-8.0
+Rebin=5
 # END PLOT
 
 #----------------------------------------------------------------------

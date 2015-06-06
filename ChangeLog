@@ -1,4 +1,14 @@
+2015-06-07  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_EE.plot:
+	rebinned directly from here
+
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
+
+	* produce-Qdependence-data.py:         *** ADDED ***
+	* produce-Rdependence-data.py:	       *** ADDED ***
+	* produce-alphadependence-data.py:     *** ADDED ***
+	added scrpiuts to produce the various dependence results we want to study
 
 	* post-process.sh:
 	revamped to match the workflow mentioned in the README
