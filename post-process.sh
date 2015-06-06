@@ -60,7 +60,6 @@ for gen in $generators; do
     done
 done
 
-
 # make plots for each of the generators
 message ""
 message "Plots for individual generators at 200 GeV, R=0.6"
@@ -229,5 +228,3 @@ safe-rivet-mkhtml -o plots/Qdependence $i_input -t $gen,R=0.6
 
 message "all done!"
 date | tee -a $logfile
-
-exit
