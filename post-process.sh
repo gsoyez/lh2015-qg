@@ -106,8 +106,9 @@ done
 echo "Producing plots (logging in plots.log)"
 date > plots.log
 mkdir -p plots
+mkdir -p summary
 
-echo "  quarks, parton level: plots/MCdep-q200-parton" | tee -a plots.log
+echo "  quarks at 200 GeV, parton level: plots/MCdep-q200-parton" | tee -a plots.log
 if [ -d plots/MCdep-q200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
     echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
@@ -121,7 +122,7 @@ else
                  -o plots/MCdep-q200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
-echo "  gluons, parton level: plots/MCdep-g200-parton" | tee -a plots.log
+echo "  gluons at 200 GeV, parton level: plots/MCdep-g200-parton" | tee -a plots.log
 if [ -d plots/MCdep-g200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
     echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
@@ -134,7 +135,7 @@ else
                  -o plots/MCdep-g200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
-echo "  separations, parton level: plots/MCdep-sep200-parton" | tee -a plots.log
+echo "  separations at 200 GeV, parton level: plots/MCdep-sep200-parton" | tee -a plots.log
 if [ -d plots/MCdep-sep200-parton ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
     echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
 else
@@ -147,69 +148,72 @@ else
                  -o plots/MCdep-sep200-parton -c MC_LHQG_EE.plot >> plots.log 2>&1
 fi
 
+for sqrts in 200 800; do 
 
-echo "  quarks, hadron level: plots/MCdep-q200-hadron" | tee -a plots.log
-if [ -d plots/MCdep-q200-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-else
-    rivet-mkhtml Pythia/rebinned/qq-200-hadron-mec.yoda:Pythia8 \
-                 Pythia/rebinned/qq-200-hadron.yoda:Pythia8-noME \
-                 Vincia/rebinned/qq-200-hadron.yoda:Vincia \
-                 Vincia/rebinned/qq-200-hadron-nlo.yoda:Vincia-NLO \
-                 Sherpa/rebinned/q200-njet0.yoda:Sherpa-Njet0 \
-                 Sherpa/rebinned/q200-njet2.yoda:Sherpa-Njet2 \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E200.yoda:Herwig++ \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_def_had_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-q200-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
-fi
+    echo "  quarks at ${sqrts} GeV, hadron level: plots/MCdep-q${sqrts}-hadron" | tee -a plots.log
+    if [ -d plots/MCdep-q${sqrts}-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+        echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
+    else
+        rivet-mkhtml Pythia/rebinned/qq-${sqrts}-hadron-mec.yoda:Pythia8 \
+                     Pythia/rebinned/qq-${sqrts}-hadron.yoda:Pythia8-noME \
+                     Vincia/rebinned/qq-${sqrts}-hadron.yoda:Vincia \
+                     Vincia/rebinned/qq-${sqrts}-hadron-nlo.yoda:Vincia-NLO \
+                     Sherpa/rebinned/q${sqrts}-njet0.yoda:Sherpa-Njet0 \
+                     Sherpa/rebinned/q${sqrts}-njet2.yoda:Sherpa-Njet2 \
+                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_def_had_E${sqrts}.yoda:Herwig++ \
+                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_u_u_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
+                     -o plots/MCdep-q${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
+    fi
 
-echo "  gluons, hadron level: plots/MCdep-g200-hadron" | tee -a plots.log
-if [ -d plots/MCdep-g200-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-else
-    rivet-mkhtml Pythia/rebinned/gg-200-hadron-mec.yoda:Pythia8 \
-                 Pythia/rebinned/gg-200-hadron.yoda:Pythia8-noME \
-                 Vincia/rebinned/gg-200-hadron.yoda:Vincia \
-                 Sherpa/rebinned/g200-njet0.yoda:Sherpa-Njet0 \
-                 Sherpa/rebinned/g200-njet2.yoda:Sherpa-Njet2 \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E200.yoda:Herwig++ \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_def_had_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-g200-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
-fi
+    echo "  gluons at ${sqrts} GeV, hadron level: plots/MCdep-g${sqrts}-hadron" | tee -a plots.log
+    if [ -d plots/MCdep-g${sqrts}-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+        echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
+    else
+        rivet-mkhtml Pythia/rebinned/gg-${sqrts}-hadron-mec.yoda:Pythia8 \
+                     Pythia/rebinned/gg-${sqrts}-hadron.yoda:Pythia8-noME \
+                     Vincia/rebinned/gg-${sqrts}-hadron.yoda:Vincia \
+                     Sherpa/rebinned/g${sqrts}-njet0.yoda:Sherpa-Njet0 \
+                     Sherpa/rebinned/g${sqrts}-njet2.yoda:Sherpa-Njet2 \
+                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_def_had_E${sqrts}.yoda:Herwig++ \
+                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_g_g_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
+                     -o plots/MCdep-g${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
+    fi
 
-echo "  separations, hadron level: plots/MCdep-sep200-hadron" | tee -a plots.log
-if [ -d plots/MCdep-sep200-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
-    echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
-else
-    rivet-mkhtml Pythia/rebinned/sep-200-hadron-mec.yoda:Pythia8 \
-                 Pythia/rebinned/sep-200-hadron.yoda:Pythia8-noME \
-                 Vincia/rebinned/sep-200-hadron.yoda:Vincia \
-                 Sherpa/rebinned/sep200-njet0.yoda:Sherpa-Njet0 \
-                 Sherpa/rebinned/sep200-njet2.yoda:Sherpa-Njet2 \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.yoda:Herwig++ \
-                 Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E200.yoda:Herwig++-dip \
-                 -o plots/MCdep-sep200-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
-fi
+    echo "  separations at ${sqrts} GeV, hadron level: plots/MCdep-sep${sqrts}-hadron" | tee -a plots.log
+    if [ -d plots/MCdep-sep${sqrts}-hadron ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
+        echo "    plots already made. Delete the directory or run FORCE_PLOTS=yes post-process.sh to regenerate" | tee -a plots.log
+    else
+        rivet-mkhtml Pythia/rebinned/sep-${sqrts}-hadron-mec.yoda:Pythia8 \
+                     Pythia/rebinned/sep-${sqrts}-hadron.yoda:Pythia8-noME \
+                     Vincia/rebinned/sep-${sqrts}-hadron.yoda:Vincia \
+                     Sherpa/rebinned/sep${sqrts}-njet0.yoda:Sherpa-Njet0 \
+                     Sherpa/rebinned/sep${sqrts}-njet2.yoda:Sherpa-Njet2 \
+                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E${sqrts}.yoda:Herwig++ \
+                     Herwig/Herwig7/Hadron_level_Rebinned/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E${sqrts}.yoda:Herwig++-dip \
+                     -o plots/MCdep-sep${sqrts}-hadron -c MC_LHQG_EE.plot >> plots.log 2>&1
+    fi
 
 
-# produce efficiency plots
-echo "Producing efficiency tables and plots"
-mkdir -p summary
-./produce-separation-plots.py Pythia/results/sep-200-hadron-mec.log summary/Pythia-hadron-mec-200.yoda
-./produce-separation-plots.py Pythia/results/sep-200-hadron.log summary/Pythia-hadron-200.yoda
-./produce-separation-plots.py Vincia/results/sep-200-hadron.log summary/Vincia-hadron-200.yoda
-./produce-separation-plots.py Sherpa/results/sep200-njet0.log summary/Sherpa-hadron-njet0-200.yoda
-./produce-separation-plots.py Sherpa/results/sep200-njet2.log summary/Sherpa-hadron-njet2-200.yoda
-./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E200.log summary/Herwig-hadron-200.yoda
-./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E200.log summary/Herwig-hadron-dip-200.yoda
-rivet-mkhtml -c separation.plot -o plots/summary \
-             summary/Pythia-hadron-mec-200.yoda:Pythia \
-             summary/Pythia-hadron-200.yoda:Pythia-noME \
-             summary/Vincia-hadron-200.yoda:Vincia \
-             summary/Sherpa-hadron-njet0-200.yoda:Sherpa-njet0 \
-             summary/Sherpa-hadron-njet2-200.yoda:Sherpa-njet2 \
-             summary/Herwig-hadron-200.yoda:Herwig \
-             summary/Herwig-hadron-dip-200.yoda:Herwig-dip \
-             >> plots.log 2>&1
+    # produce efficiency plots
+    echo "  efficiency tables and plots at ${sqrts} GeV"
 
+    ./produce-separation-plots.py Pythia/results/sep-${sqrts}-hadron-mec.log summary/Pythia-hadron-mec-${sqrts}.yoda
+    ./produce-separation-plots.py Pythia/results/sep-${sqrts}-hadron.log summary/Pythia-hadron-${sqrts}.yoda
+    ./produce-separation-plots.py Vincia/results/sep-${post-process.shsqrts}-hadron.log summary/Vincia-hadron-${sqrts}.yoda
+    ./produce-separation-plots.py Sherpa/results/sep${sqrts}-njet0.log summary/Sherpa-hadron-njet0-${sqrts}.yoda
+    ./produce-separation-plots.py Sherpa/results/sep${sqrts}-njet2.log summary/Sherpa-hadron-njet2-${sqrts}.yoda
+    ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_def_had_E${sqrts}.log summary/Herwig-hadron-${sqrts}.yoda
+    ./produce-separation-plots.py Herwig/Herwig7/Hadron_level_Results/LEP-Matchbox_mum_mup_to_sep_MG_dip_def_had_E${sqrts}.log summary/Herwig-hadron-dip-${sqrts}.yoda
+    rivet-mkhtml -c separation.plot -o plots/summary-${sqrts} \
+                 summary/Pythia-hadron-mec-${sqrts}.yoda:Pythia \
+                 summary/Pythia-hadron-${sqrts}.yoda:Pythia-noME \
+                 summary/Vincia-hadron-${sqrts}.yoda:Vincia \
+                 summary/Sherpa-hadron-njet0-${sqrts}.yoda:Sherpa-njet0 \
+                 summary/Sherpa-hadron-njet2-${sqrts}.yoda:Sherpa-njet2 \
+                 summary/Herwig-hadron-${sqrts}.yoda:Herwig \
+                 summary/Herwig-hadron-dip-${sqrts}.yoda:Herwig-dip \
+                 >> plots.log 2>&1
+
+done
+    
 echo "You're all set!"

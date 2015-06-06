@@ -1,5 +1,8 @@
 2015-06-06  Gregory Soyez  <soyez@fastjet.fr>
 
+	* post-process.sh:
+	added the machinery to do multiple energies; added the 800 GeV results
+
 	* MC_LHQG_EE.plot:
 	set the log thrust to -8
 
