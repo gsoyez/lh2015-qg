@@ -1,0 +1,31 @@
+! %Generator = vincia%
+! 1) Collider Setup: 
+Beams:eCM =  $SQRTS%               ! Total energy of collision (in GeV)
+Beams:idA =  13                    ! Beam A: mu-
+Beams:idB = -13                    ! Beam B: mu+
+Main:numberOfEvents = 200000      ! number of events to generate
+
+! 2) Process Setup for Z
+WeakSingleBoson:ffbar2gmZ = on     ! Process = Z/photon production
+23:onMode = off                    ! Select decay modes indivudually 
+23:onIfAny = 2 
+
+! 3) Settings to match specific measurement setup
+PDF:lepton = off                   ! switch off electron-within-electron
+SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
+HadronLevel:all = on
+
+! 4) Les Houches Q/G study setup for VINCIA
+Vincia = on                     ! Vincia on/off (off = pure PYTHIA)
+Vincia:uncertaintyBands = off   ! Uncertainty bands on/off
+Vincia:tuneFile = jeppsson5.cmnd
+Vincia:alphaSvalue = %ALPHAS%                !jeppsson5 value: 0.139
+Vincia:alphaSorder = %SHOWER_ALPHAS_ORDER%   !jeppsson5 value: 1
+Vincia:alphaSmode = %ALPHAS_MODE%            !jeppsson5 value: 1
+Vincia:alphaSkMu = %ALHAS_KMU%               !jeppsson5 value: 1.0
+Vincia:alphaSkMuSplit = %ALHAS_KMU_SPLIT%    !jeppsson5 value: 1.0
+Vincia:matchingLO = %MATCHING_LO%            ! default: 3
+Vincia:QGemit:chargeFactor = %CHARGE_FACTOR% ! default: 3.0
+Vincia:nGluonToQuark = %NGLUONTOQUARK%       ! default: 5
+Vincia:kineMapType = %KINE_MAP_TYPE%         ! default: 3
+

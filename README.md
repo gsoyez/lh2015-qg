@@ -218,8 +218,31 @@ the post-process.sh script does the following
 Note that by default existing files are not overwritten. Use FORCE=yes
 post-process.sh to overwrite everything.
 
+Batch run
+---------
 
-    
+The workdir directory contains a script to run with different configuration. The
+script is called multirun. It requires for each code, including rivet, a bash
+file containing the shell environment required to run the code. The files must
+be placed in the lh2015-qg directory checked out from git and must be named:
+setup-rivet, setup-pythia, setup-vincia, setup-sherpa. For Pythia and Vincia,
+the PATH must include the respective examples directories and the example
+executables main42 and vinci01 must be compiled.
+
+When multirun is executed without any option it creates a directory for each
+configuration containing a datacard and a script, job.sh, to run the
+analysis. When the --submit option is used in addition to the directory
+creation jobs are sent on the LSF batch system. For batch submission the runloop
+script must be run on lxplus from the AFS area.
+
+The datacards are produced from the .template files located in
+lh2015-qg/Sherpa-2.1.1, lh2015-qg/Vincia, lh2015-qg/Pythia. The tags %xxx%
+contained in the templates are replaced by selected value by the multirun
+script. The part at the end of this script can be edited to choice different run
+configurations.
+
+Note: the multirun script uses fifo for every generator and the analysis section
+of the Sherpa configuration file is therefore ignored.
 
 Contributors
 ============
@@ -227,4 +250,5 @@ Contributors
 Gregory Soyez
 Jesse Thaler
 Andrzej Siodmok
+Philippe Gras
 ...

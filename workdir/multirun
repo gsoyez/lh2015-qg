@@ -1,0 +1,272 @@
+#!/bin/bash
+
+# Usage: multirun [--submit]
+#
+# This script creates different setups to run the generator 
+# and Rivet analysis with different setting. A directory is created 
+# for each setup with the datacard and a job.sh script  to run
+# the analysis.
+#
+# With --submit option, jobs are sent to the CERN LSF batch facility.
+# For job submission it is required to run on lxplus in AFS area.
+
+myself=`readlink -f $0`
+mydir="`dirname "$myself"`"
+
+######################################################################
+# Configuration
+
+#Base directory checked out from github and containing
+#the setup-xxx.sh files
+basedir="$mydir/.."
+
+#
+######################################################################
+pythia_card_dir="$basedir/Pythia"
+vincia_card_dir="$basedir/Vincia"
+sherpa_card_dir="$basedir/Sherpa-2.1.1"
+
+#number of events per run
+nevents=200000
+
+#baseline settings:
+baseline_alphas_factor=1
+baseline_NJET=2
+baseline_Q=200
+baseline_mec=On
+baseline_hadronization=On
+baseline_shower_recoil=Off
+baseline_shower_alphas_order=1
+baseline_alphas_mode=1
+baseline_alphas_kmu=1
+baseline_alphas_kmu_split=1.0
+baseline_mathing_lo=3
+baseline_qgemit_charge_factor=3.0
+baseline_muq=Off
+baseline_noqq=Off
+baseline_nlo=Off
+
+die(){
+    echo "$@" 1>&2
+    exit 1
+}
+
+subst(){
+    sed "s/%NEVENTS%/$nevents/
+s/%NJET%/$NJET/
+s/%SQRTS%/$Q/
+s/%HIST_OUTPUT%/$setting.yoda/
+s/%ALPHAS%/$alphas/
+s/%HADRONIZATION%/$hadronization_datacard/
+s/%SHOWER_RECOIL%/$shower_recoil/
+s/%SHOWER_ALPHAS_ORDER%/$shower_alphas_order/
+s/%MEC%/$mec/
+s/%NGLUONTOQUARK%/$n_gluon_to_quark/
+s/%ALPHAS_MODE%/$alphas_mode/
+s/%ALHAS_KMU%/$alphas_kmu/
+s/%ALHAS_KMU_SPLIT%/$alphas_kmu_split/
+s/%MATCHING_LO%/$mathing_lo/
+s/%MATCHING_NLO%/$mathing_nlo/
+s/%QGEMIT_CHARGE_FACTOR%/$qgemit_charge_factor/
+s/%KINE_MAP_TYPE%/$kine_map_type/
+s@%BASE_DIR%@$basedir@" "$1"
+}
+
+
+setup_pythia(){
+    alphas=`echo "$alphas_factor * 0.1383" |  bc -l`
+    d=pythia_$setting
+    mkdir "$d" || return $?
+    subst $pythia_card_dir/pythia_$fs.template > $d/$setting.cmnd
+    (cd $d && ln -sf $setting.cmnd datacard) || die "Failed to set datacard link"
+    subst job.template > $d/job.sh
+}
+
+setup_vincia(){
+    alphas=`echo "$alphas_factor * 0.139" |  bc -l`
+    d=vincia_$setting
+    mkdir "$d" || return $?
+    subst $vincia_card_dir/vincia_$fs.template > $d/$setting.cmnd
+    (cd $d && ln -sf $setting.cmnd datacard) || die "Failed to set datacard link"
+    subst job.template > $d/job.sh
+}
+
+setup_sherpa(){
+    alphas=`echo "$alphas_factor * 0.118" |  bc -l`
+    d=sherpa_$setting
+    echo "alpha_s = $alphas"
+    mkdir "$d" || return $?
+    subst $sherpa_card_dir/sherpa_$fs.template > $d/Run_${setting}.dat
+    (cd $d && ln -sf Run_${setting}.dat datacard) || die "Failed to set datacard link"; 
+    subst job.template > $d/job.sh
+}
+
+
+unset submit
+if [ "$1" == --submit ]; then
+    submit=y
+fi   
+
+set_labels(){
+
+    fs=${parton}${parton}
+
+    if [ "$parton" = g ]; then
+	plabel=-hgg
+    elif [ "$parton" = u ]; then
+	plabel=-zqq
+    else
+	die "Bad parton value."
+    fi
+
+    if [ "$NJET" != 2 ]; then
+	njet_label=-njet${NJET}
+    else
+	njet_label=""
+    fi
+    
+    if [ "$hadronization" = Off ]; then
+	hadronization_label="-parton"
+	hadronization_datacard=Off
+    elif [ "$hadronization" = On ]; then
+	hadronization_label=""
+	[ $generator = sherpa ] &&  hadronization_datacard=Ahadic || hadronization_datacard=On
+    else
+	die "Bad value for hadronization"
+    fi
+    
+    if [ "$mec" = Off ]; then
+	nomec_label="-nome"
+	matching_lo=0
+	qgemit_charge_factor=2.833
+    elif [ "$mec" = On ]; then
+	matching_lo=$baseline_matching_lo
+	qgemit_charge_factor=$baseline_qgemit_charge_factor
+	nomec_label=""
+    else
+	die "Bad value for mec."
+    fi
+
+    if [ "$noqq" = On ]; then
+	n_gluon_to_quark=0
+    elif [ "$noqq" = Off ]; then
+	n_gluon_to_quark=5
+    fi
+
+    if [ "$alphas_factor" = 1 ]; then
+	alphas_label=""
+    else
+	alphas_label="-alphasx`echo $alphas_factor | sed 's/\.//'`"
+    fi
+    
+    if [ "$shower_recoil" = On ]; then
+	recoil_label=-recoil
+	kine_map_type=2
+    elif [ "$shower_recoil" = Off ]; then
+	recoil_label=""
+	kine_map_type=3
+    else
+	die "Bad value for shower_recoil!"
+    fi
+    
+    if [ $muq = On ]; then
+	alphas_mode=0; 
+	alphas_kmu=0.5; 
+	alphas_kmu_split=0.5
+    elif [  $muq = Off ]; then
+	alphas_mode=$baseline_alphas_mode
+	alphas_kmu=$baseline_kmu
+	alphas_kmu_split=$baseline_kmu_split
+    else
+	die "Bad value for muq"
+    fi
+    
+    if [ "$nlo" = On ]; then
+	matching_lo=3
+	matching_nlo=2
+    elif [ "$nlo" = Off ]; then
+	matching_lo=0
+	matching_nlo=0
+    else
+	die "Bad value for nlo"
+    fi
+
+    if [ "$muq" = On ]; then
+	muq_label=-muq
+    elif [ "$muq" = Off ]; then
+	muq_label=""
+    else
+	die "Bad value for muq"
+    fi
+
+    if [ "$shower_alphas_order" != $baseline_shower_alphas_order ]; then
+	alphas_order_label=-asorder$shower_alphas_order
+    else
+	alphas_order_label=""
+    fi
+
+    setting=${fs}-${Q}${njet_label}${nomec_label}${hadronization_label}${recoil_label}${muq_label}${alphas_order_label}${alphas_label}
+}
+
+run(){
+    for parton in g u; do
+	set_labels
+	echo "$generator $setting: $fs, njet=$NJET, Q=$Q GeV, alphas_fact x$alphas_factor, hadronization $hadronization, ME correction $mec, muq $muq, recoil $shower_recoil"
+	case $generator in
+	    sherpa) setup_sherpa;;
+	    pythia) setup_pythia;;
+	    vincia) setup_vincia;;
+	    *) die "Bad generator value";;
+	esac
+	[ $? = 0 ] || continue
+	chmod a+x $d/job.sh
+	if [ "$submit" = y ]; then
+	    (cd $d && bsub -q 8nh -J $setting job.sh)
+	fi
+    done
+}
+
+#baseline:
+alphas_factor=$baseline_alphas_factor
+NJET=$baseline_NJET
+Q=$baseline_Q
+mec=$baseline_mec
+hadronization=$baseline_hadronization
+generator=sherpa
+shower_recoil=$baseline_shower_recoil
+shower_alphas_order=$baseline_shower_alphas_order
+mec=$baseline_mec
+alphas_mode=$baseline_alphas_mode
+alphas_kmu=$baseline_alphas_kmu
+alphas_kmu_split=$baseline_alphas_kmu_split
+mathing_lo=$baseline_mathing_lo    
+qgemit_charge_factor=$baseline_qgemit_charge_factor
+noqq=$baseline_noqq
+nlo=$baseline_nlo
+muq=$baseline_muq
+
+for generator in pythia sherpa; do
+    run
+done
+
+#variations
+for generator in pythia sherpa; do
+    hadronization=Off; run; hadronization=$baseline_hadronization
+    for Q in 50 100 400 800; do run; done; Q=$baseline_Q
+    for alphas_factor in 0.8 0.9 1.1 1.2; do run; done; alphas_factor=$baseline_alphas_factor
+done
+
+#variations specific to Sherpa:
+NJET=0; run; NJET=$baseline_NJET
+
+#variations specific to Pythia and Vincia:
+for generator in  pythia; do
+    shower_recoil=On; run; shower_recoil=$baseline_shower_recoil
+    shower_alphas_order=2; run; shower_alphas_order=$baseline_shower_alphas_order
+    mec=Off; run; mec=$baseline_mec
+done
+
+#variations specific to Vincia
+#generator=vincia
+#muq=On; run; muq=$baseline_muq
+#nlo=On; run; nlo=$baseline_nlo

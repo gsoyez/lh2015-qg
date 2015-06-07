@@ -1,0 +1,109 @@
+#!/bin/bash
+
+# Les Houches 2015. Quarky/Gluony discriminant study. Job script template 
+# for LSF submission.
+#
+# Place holder to be substituted before submission:
+#  %BASE_DIR%: base directory which should contains the Rivet and
+#  generator environmnent setup files: setup-rivet.sh, setup-sherpa.sh,
+#  setup-pythia.sh,... Each file is sourced before running the correcponding
+#  code
+#  %HIST_OUTPUT%: Name of the output .yoda file
+#  Check the naming convention in the Readme.md file.
+#
+# Adding support new generators:
+#  - Creates a method named after the generator name, that will be used 
+#    on the command line to select it.
+#  - Add the generator name on the line checking the GENERATOR variable
+
+#Display an error message and exit
+die(){
+    echo "$@"
+    exit 1
+}
+
+#extract line containing string %Generator=Blah-Blah% and output
+#GENERATOR=Blah-Blah
+read_gen(){
+    sed -n 's/^.*%Generator[[:space:]]*[=:][[:space:]]*\([^%[:space:]]*\)[[:space:]]*%.*$/GENERATOR=\1/p' | tail -n 1
+}
+
+#For LSF batch run. Move to submisson directory
+[ -n "$LS_SUBCWD" ] && cd "$LS_SUBCWD"
+
+tmp=`read_gen < datacard`
+[ -n "$tmp" ] || die "File datacard must contain in his header a comment line containing the string %Generator=..% specifying the generator. That line not found."
+eval "$tmp"
+[ "$GENERATOR" = pythia ] || [ "$GENERATOR" = sherpa ] \
+    || [ "$GENERATOR" = vincia ] || ie "Generator specification found in \"datacard\" file is unknown!"
+
+
+#For Sherpa. Check from the logs if new library need to be compiled
+check_new_lib(){
+    rm .newlib
+    tee .log
+    grep -q "New libraries created. Please compile." .log && touch .newlib
+}
+
+######################################################################
+# Generator hooks. The generator must write HepMC 2 events in
+# the file fifo.hep2mg (a fifo to pipe events to Rivet)
+
+#Function called to run Sherpa
+sherpa() {
+    source %BASE_DIR%/setup-sherpa.sh || die "Failed to source file %BASE_DIR%/setup-sherpa.sh."
+    touch .newlib
+    while [ -f .newlib ]; do
+	Sherpa -f datacard "EVENT_OUTPUT=HepMC_GenEvent[fifo]" | check_new_lib
+	[ -f .newlib ] && ./makelibs
+    done
+    mv .log sherpa.log
+}
+
+#Function called to run Pythia
+pythia() {
+    source %BASE_DIR%/setup-pythia.sh || die "Failed to source file %BASE_DIR%/setup-pythia.sh."
+    main42 datacard fifo.hepmc2g
+}
+
+
+#Function called to run Vincia
+vincia() {
+    source %BASE_DIR%/setup-vincia.sh || die "Failed to source file %BASE_DIR%/setup-vincia.sh."
+    vincia01 datacard fifo.hepmc2g
+}
+#
+######################################################################
+
+TEMPDIR="`mktemp -t -d gen-XXXXXX`" || die "Failed to create a temporary directory"
+#.hepm2g extension required for Sherpa
+FIFO="$TEMPDIR"/fifo.hepmc2g
+
+#Called on exit for clean-up
+onexit(){
+    rm "$FIFO" 2> /dev/null
+    rm "`basename "$FIFO"`" 2> /dev/null
+    rmdir "$TEMPDIR"
+}
+trap onexit 0
+
+#FIFO cannot be made on AFS, create it in local /tmp local disk
+mkfifo "$FIFO" || die "Failed to create FIFO $FIFO."
+ln -sf "$FIFO" .
+
+#Starts Rivet:
+(source %BASE_DIR%/setup-rivet.sh || die "Failed to source file %BASE_DIR%/setup-rivet.sh."
+rm histos.yoda 2> /dev/null
+rivet --analysis=MC_LHQG_EE fifo.hepmc2g -H %HIST_OUTPUT%
+) &
+
+#Checks Rivet execution:
+rivet_pid=$!
+sleep 1
+ps -opid | grep -q $rivet_pid
+[ $? = 0 ] || die "Failed to start rivet!"
+
+#Starts Generator
+(eval "$GENERATOR")
+
+wait
