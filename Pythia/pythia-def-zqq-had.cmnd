@@ -1,5 +1,5 @@
 ! 1) Collider Setup: 
-Beams:eCM =  50.0                ! Total energy of collision (in GeV)
+Beams:eCM =  100.0                ! Total energy of collision (in GeV)
 Beams:idA =  13                    ! Beam A: mu-
 Beams:idB = -13                    ! Beam B: mu+
 Main:numberOfEvents = 200000      ! number of events to generate
