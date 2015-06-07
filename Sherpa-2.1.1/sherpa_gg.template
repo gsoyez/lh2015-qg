@@ -1,0 +1,68 @@
+% %Generator = sherpa%
+% Sherpa run card to generate
+%   mu+ mu- \to Z/gamma \to q qbar
+%
+% The only parameter one is supposed to adjust in this run is the com
+% energy specifped as SQRTS below.
+%
+% This is based on the Jets_at_LEP example from SHERPA and includes
+% the followinf modifications
+%
+%  - changed to a muon collider
+%
+%  - no initial state radiation [according to Frank, switching the PDFs
+%    off is enough]
+%
+%  - kept the default ALPHAS settings (alternative commented out)
+%
+%  - output to a HepMC file fifoq.hepmc2g
+
+(run){
+  SQRTS:=%SQRTS%;
+  % collider setup
+  BEAM_1  13; BEAM_ENERGY_1 SQRTS/2;
+  BEAM_2 -13; BEAM_ENERGY_2 SQRTS/2;
+  % general settings
+  EVENTS %NEVENTS%; 
+  NJET:=%NJET%;
+  % model parameters
+  MODEL = SM+EHC;
+  ACTIVE[22] = 0;
+  ACTIVE[23] = 0;
+  ACTIVE[25] = 1;
+  MASS[25] = %SQRTS%;
+  YUKAWA[13] = 0.1;
+  YUKAWA[1]  = 0.0;
+  YUKAWA[2]  = 0.0;
+  YUKAWA[3]  = 0.0;
+  YUKAWA[4]  = 0.0;
+  YUKAWA[5]  = 0.0;
+  YUKAWA[24] = 0.0;
+  %MASSIVE_PS 4 5;
+  ANALYSIS_OUTPUT results/g200;
+  %ORDER_ALPHAS = 1;
+  % integrator option
+  AMEGIC_INTEGRATOR 4;
+  ALPHAS(MZ) = %ALPHAS%;
+}(run)
+
+(fragmentation){
+  FRAGMENTATION = %HADRONIZATION%;
+}(fragmentation)
+
+(processes){
+  Process 13 -13 -> 93 93 93{NJET}
+  CKKW pow(10,-2.25);
+  Order_EW 2;
+  End process;
+}(processes)
+
+(isr){
+  PDF_LIBRARY None;
+}(isr)
+
+(analysis){
+  BEGIN_RIVET {
+    -a MC_LHQG_EE
+  } END_RIVET
+}(analysis)
