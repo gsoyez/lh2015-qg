@@ -70,7 +70,8 @@ pythia() {
 #Function called to run Vincia
 vincia() {
     source %BASE_DIR%/setup-vincia.sh || die "Failed to source file %BASE_DIR%/setup-vincia.sh."
-    vincia01 datacard fifo.hepmc2g
+    ln -s datacard vincia01.cmnd
+    vincia11 fifo.hepmc2g
 }
 #
 ######################################################################
@@ -91,19 +92,35 @@ trap onexit 0
 mkfifo "$FIFO" || die "Failed to create FIFO $FIFO."
 ln -sf "$FIFO" .
 
+## #Starts Rivet:
+## (source %BASE_DIR%/setup-rivet.sh || die "Failed to source file %BASE_DIR%/setup-rivet.sh."
+## rm histos.yoda 2> /dev/null
+## rivet --analysis=MC_LHQG_EE fifo.hepmc2g -H %HIST_OUTPUT%
+## ) &
+## 
+## #Checks Rivet execution:
+## rivet_pid=$!
+## sleep 1
+## ps -opid | grep -q $rivet_pid
+## [ $? = 0 ] || die "Failed to start rivet!"
+## 
+## #Starts Generator
+## (eval "$GENERATOR")
+
+
+
+#Starts Generator
+(eval "$GENERATOR")&
+
+#Checks Generator execution:
+generator_pid=$!
+sleep 1
+ps -opid | grep -q $generator_pid
+[ $? = 0 ] || die "Failed to start generator!"
+
 #Starts Rivet:
 (source %BASE_DIR%/setup-rivet.sh || die "Failed to source file %BASE_DIR%/setup-rivet.sh."
 rm histos.yoda 2> /dev/null
 rivet --analysis=MC_LHQG_EE fifo.hepmc2g -H %HIST_OUTPUT%
-) &
-
-#Checks Rivet execution:
-rivet_pid=$!
-sleep 1
-ps -opid | grep -q $rivet_pid
-[ $? = 0 ] || die "Failed to start rivet!"
-
-#Starts Generator
-(eval "$GENERATOR")
-
+)
 wait

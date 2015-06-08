@@ -44,6 +44,14 @@
   % integrator option
   AMEGIC_INTEGRATOR 4;
   ALPHAS(MZ) = %ALPHAS%;
+
+  CSS_ENHANCE S{G}{d}{db} %GQQ_ENH%;
+  CSS_ENHANCE S{G}{u}{ub} %GQQ_ENH%;
+  CSS_ENHANCE S{G}{s}{sb} %GQQ_ENH%;
+  CSS_ENHANCE S{G}{c}{cb} %GQQ_ENH%;
+  CSS_ENHANCE S{G}{b}{bb} %GQQ_ENH%;
+  CSS_ENHANCE S{G}{t}{tb} %GQQ_ENH%;
+
 }(run)
 
 (fragmentation){
