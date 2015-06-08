@@ -1,3 +1,9 @@
+2015-06-08  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	set generator list to Pythia-8205 Sherpa-2.1.1 Vincia-1201
+	fixed a small bug introducing a bad behaviour of tha alpha dependence
+
 2015-06-07  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:

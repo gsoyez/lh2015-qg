@@ -9,7 +9,9 @@
 logfile=post-process.log
 date > $logfile
 
-desired_generators="Herwig-2.7.1 Pythia Vincia-x.y.z Sherpa-2.1.1"
+# add Herwig later since it's not done yet:
+#desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
+desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201"
 
 #----------------------------------------------------------------------
 # a helper to output to stdout and logfile
@@ -194,6 +196,7 @@ safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -t $gen,Q=200GeV,R=0.6
 mkdir -p modulations
 message ""
 message "Plots of the alphas modulation for individual generators at 200 GeV, R=0.6"
+i_input=""
 for gen in $generators; do
     message "... $gen"
     ./produce-alphadependence-data.py $gen modulations/alphadep-$gen.yoda
