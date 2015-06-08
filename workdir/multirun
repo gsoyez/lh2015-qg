@@ -69,7 +69,8 @@ s/%MATCHING_LO%/$mathing_lo/
 s/%MATCHING_NLO%/$mathing_nlo/
 s/%QGEMIT_CHARGE_FACTOR%/$qgemit_charge_factor/
 s/%KINE_MAP_TYPE%/$kine_map_type/
-s@%BASE_DIR%@$basedir@" "$1"
+s@%BASE_DIR%@$basedir@
+s/%GQQ_ENH%/$gqq_enh/" "$1"
 }
 
 
@@ -148,9 +149,17 @@ set_labels(){
     fi
 
     if [ "$noqq" = On ]; then
+	#disable g->qq~
 	n_gluon_to_quark=0
+	gqq_enh=0.
+	noqq_label="-noqq"
     elif [ "$noqq" = Off ]; then
+	#enable g->qq~
 	n_gluon_to_quark=5
+	gqq_enh=1.
+	noqq_label=""
+    else
+	die "Bad value for noqq!"
     fi
 
     if [ "$alphas_factor" = 1 ]; then
@@ -205,13 +214,13 @@ set_labels(){
 	alphas_order_label=""
     fi
 
-    setting=${fs}-${Q}${njet_label}${nomec_label}${hadronization_label}${recoil_label}${muq_label}${alphas_order_label}${alphas_label}
+    setting=${fs}-${Q}${njet_label}${nomec_label}${hadronization_label}${recoil_label}${muq_label}${noqq_label}${alphas_order_label}${alphas_label}
 }
 
 run(){
     for parton in g u; do
 	set_labels
-	echo "$generator $setting: $fs, njet=$NJET, Q=$Q GeV, alphas_fact x$alphas_factor, hadronization $hadronization, ME correction $mec, muq $muq, recoil $shower_recoil"
+	echo "$generator $setting: $fs, njet=$NJET, Q=$Q GeV, alphas_fact x$alphas_factor, hadronization $hadronization, ME correction $mec, muq $muq, recoil $shower_recoil, noqq $noqq"
 	case $generator in
 	    sherpa) setup_sherpa;;
 	    pythia) setup_pythia;;
@@ -244,6 +253,10 @@ qgemit_charge_factor=$baseline_qgemit_charge_factor
 noqq=$baseline_noqq
 nlo=$baseline_nlo
 muq=$baseline_muq
+
+
+NJET=1; generator=sherpa; run; NJET=$baseline_NJET
+NJET=1; noqq=On; generator=sherpa; run; NJET=$baseline_NJET; noqq=$baseline_noqq
 
 for generator in pythia sherpa; do
     run
