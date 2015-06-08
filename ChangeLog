@@ -4,6 +4,8 @@
 	added a consistency check that the corresponding u & g files are
 	different
 
+	(desired_generators): reordered the generators
+
 	* post-process.sh:
 	used the latest style files
 

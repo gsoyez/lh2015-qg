@@ -11,7 +11,7 @@ date > $logfile
 
 # add Herwig later since it's not done yet:
 #desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
-desired_generators="Herwig-2_7_1 Pythia-8205 Sherpa-2.1.1 Vincia-1201"
+desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
 
 #----------------------------------------------------------------------
 # a helper to output to stdout and logfile
