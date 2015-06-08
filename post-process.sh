@@ -194,7 +194,7 @@ message "... plot integ: $i_input"
 safe-rivet-mkhtml -o plots/uu-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/gg-200-R06-allMCs  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/sep-200-R06-allMCs $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -c style-separation.plot -t $gen,Q=200GeV,R=0.6
 
 #----------------------------------------------------------------------
 # do the alphas modulation
