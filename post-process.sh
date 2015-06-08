@@ -54,6 +54,11 @@ for gen in $generators; do
             sepname=${fn/uu/sep}
             if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
                 logname=${sepname%yoda}log
+                # check if the files differ
+                if diff $fn ${gluname} > /dev/null ; then
+                    echo "...... WARNING: ${fn} $gluname HAVE THE SAME CONTENTS"
+                fi
+                # do the computation
                 ./compute-efficiencies.py $fn ${gluname} $sepname > $logname
                 ./produce-separation-data.py ${logname} ${sepname/sep/sum}
             fi
