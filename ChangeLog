@@ -1,6 +1,9 @@
 2015-06-08  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
+	added comments
+
+	* post-process.sh:
 	added a consistency check that the corresponding u & g files are
 	different
 

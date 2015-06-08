@@ -2,26 +2,40 @@
 #
 # prepare results and plots
 #
-# This assumes that
-#   . each generator has its own directory
+# This assumes that the file format is as described in the README.md
+# file.
+#
+# Note that this scripts avoids to re-generate information that is
+# already there. You can use
+#
+#   FORCE=yes ./post-process.sh
+#
+# to force the re-generation of everythiung.
+#
+# As an alternative, you can remove the sub-directory in plots/ that
+# correcponds to the plots that have to be re-generated.
+#
+# Possible improvements:
+#  - use modification times to see if something needs to be regenerated
+#  - in safe-rivet-mkhtml, browse the arguments so as not to force the
+#    presence of -o output_dir as the forst arguments.
 
 # record some logs in that file
 logfile=post-process.log
 date > $logfile
 
 # add Herwig later since it's not done yet:
-#desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
 desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
 
 #----------------------------------------------------------------------
-# a helper to output to stdout and logfile
+# a helper to output both to stdout and logfile
 function message {
     echo "$1" | tee -a $logfile
 }
 
 # calls rivet-mkhtml with the same argument only if the directory does not exist
 #
-# at the moment, the first arguments have to be -o output_dir    
+# at the moment, the first arguments have to be "-o output_dir"
 function safe-rivet-mkhtml {
     plot_dir="$2"
     if [ -d $plot_dir ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
@@ -67,6 +81,8 @@ for gen in $generators; do
 done
 
 # make plots for each of the generators
+# Note that here we will only plot the _R06 results
+
 message ""
 message "Plots for individual generators at 200 GeV, R=0.6"
 for gen in $generators; do
