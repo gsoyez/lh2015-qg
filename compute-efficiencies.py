@@ -8,7 +8,7 @@
 # The output is under the format of another yoda file. At the moment,
 # only the average weights are meaningfull.
 
-import sys,math,re
+import sys,math,re,os,yoda
 
 if len(sys.argv) != 4:
     sys.exit("Usage: compute-efficiencies quark.yoda gluon.yoda output.yoda")

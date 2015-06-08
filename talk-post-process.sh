@@ -9,6 +9,9 @@ if [ ! -d $talkdir ]; then
   mkdir $talkdir
 fi
 
-cp plots/uu-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.*
-cp plots/gg-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.*
-cp plots/sep-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.*
+mkdir $talkdir/LHAQ-best
+mkdir $talkdir/LHAG-best
+mkdir $talkdir/LHAsep-best 
+cp plots/uu-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.* $talkdir/LHAQ-best
+cp plots/gg-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.* $talkdir/LHAG-best
+cp plots/sep-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.* $talkdir/LHAsep-best
