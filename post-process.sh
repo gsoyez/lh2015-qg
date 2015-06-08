@@ -9,7 +9,9 @@
 logfile=post-process.log
 date > $logfile
 
-desired_generators="Herwig-2.7.1 Pythia Vincia-x.y.z Sherpa-2.1.1"
+# add Herwig later since it's not done yet:
+#desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
+desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201"
 
 #----------------------------------------------------------------------
 # a helper to output to stdout and logfile
@@ -151,7 +153,7 @@ for gen in $generators; do
     safe-rivet-mkhtml -o plots/uu-200-R06-$gen  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
     safe-rivet-mkhtml -o plots/gg-200-R06-$gen  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
     safe-rivet-mkhtml -o plots/sep-200-R06-$gen $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-    safe-rivet-mkhtml -o plots/sum-200-R06-$gen $i_input -t $gen,Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/sum-200-R06-$gen $i_input -c style-separation.plot -t $gen,Q=200GeV,R=0.6
 done
 
 # do the MC comparison on the baseline
@@ -194,13 +196,14 @@ safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -t $gen,Q=200GeV,R=0.6
 mkdir -p modulations
 message ""
 message "Plots of the alphas modulation for individual generators at 200 GeV, R=0.6"
+i_input=""
 for gen in $generators; do
     message "... $gen"
     ./produce-alphadependence-data.py $gen modulations/alphadep-$gen.yoda
     i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
 done
 # config file missing
-safe-rivet-mkhtml -o plots/alphadependence $i_input -t Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
 
 # do the R modulation
 message ""
@@ -212,7 +215,7 @@ for gen in $generators; do
     i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
 done
 # config file missing
-safe-rivet-mkhtml -o plots/Rdependence $i_input -t Q=200GeV
+safe-rivet-mkhtml -o plots/Rdependence -c style-Rdependence.plot $i_input -t Q=200GeV
 
 
 # do the energy modulation
@@ -225,7 +228,7 @@ for gen in $generators; do
     i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
 done
 # config file missing
-safe-rivet-mkhtml -o plots/Qdependence $i_input -t R=0.6
+safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
 
 message "all done!"
 date | tee -a $logfile

@@ -1,3 +1,20 @@
+2015-06-08  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	used the latest style files
+
+	* separation.plot -> style-separation.plot:
+	renamed
+
+	* style-Qdependence.plot:        *** ADDED ***
+	* style-Rdependence.plot:	 *** ADDED ***
+	* style-alphadependence.plot:    *** ADDED ***
+	added some style files for the modulation plots
+
+	* post-process.sh:
+	set generator list to Pythia-8205 Sherpa-2.1.1 Vincia-1201
+	fixed a small bug introducing a bad behaviour of tha alpha dependence
+
 2015-06-07  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
