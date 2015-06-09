@@ -14,13 +14,19 @@ This run was generated using Herwig++~\cite{Bahr:2008pv} and the following model
 \item The colour algebra has been performed using ColorFull.
 \item Finite width effects for the scalar $f_0$ and $a_0$ mesons follow \cite{Flatte:1976xu}.
 \item In the running of $\alpha_{EM}$, the parametrization of H.~Buckhardt et al. was used. See \cite{KLEISSCERN9808v3pp129}.
+\item Lambda_b to Lambda_c1(*) used the formfactors from \cite{Huang:2000xw}.
 \item Spin-1/2 baryons with one heavy quark were decayed using the form factors in \cite{Singleton:1990ye}.
 \item The ISGW2 form factor model \cite{Scora:1995ty} was used.
+\item The decay $b\to s\gamma$ was simulated using the hadronic mass spectrum from\cite{Kagan:1998ym}.
+
 \item The form factor model of \cite{Bauer:1986bm,Wirbel:1985ji} was used for either semi-leptonic or hadronic weak decays
 \item The form factors from \cite{Ivanov:1996fj} were used.
+\item The form factors of \cite{Ball:2004rg} for $B_{d,s}\to\rho,\omega,K^*,\phi$ were used.
+\item The form factors of \cite{Ball:2004ye} for $B\to\pi, K, \eta$ were used.
 \item The form factors of \cite{Kiselev:2002vz} for the decay of the $B_c$ meson were used.
 \item The hadronization used the selection algorithm described in \cite{Kupco:1998fx}.
 \item The parameterisation of \cite{Caprini:1997mu} was used for the $B\to D^{(*)}$ form factors together with the parameters from\cite{Snyder:2007qn} for the $D$ and \cite{Aubert:2007rs} for the $D^*$
+\item The quark model calculation of \cite{Schlumpf:1994fb} was usedfor the weak decay of the light baryons
 \item The weak decay of baryons containing a heavy quark used form factors from \cite{Cheng:1995fe,Cheng:1996cs}.
 \item Some decays used the Fortran HERWIG decay algorithm \cite{Corcella:2000bw}.
 \item The  non-leptonic decays of the Omega baryon were simulated using the NonLeptonicOmegaDecayer class based on the results of\cite{Borasoy:1999ip}.
@@ -29,6 +35,8 @@ This run was generated using Herwig++~\cite{Bahr:2008pv} and the following model
 \item The decay of I=0 vector mesons to three pions via a current taking into account the rho and a possible direct term is taken from \cite{Aloisio:2003ur}.
 \item The decay of eta to two pions follows \cite{Beisert:2003zs,Gormley:1970qz,Tippens:2001fm}.
 \item The decays of $\eta,\eta'\to\pi^+\pi^-\gamma$ were simulated using the matrix elements from \cite{Venugopal:1998fq,Holstein:2001bt}
+\item The decays of $\eta,\eta'\to\pi^0\gamma\gamma$ were simulated using the matrix elements of \cite{Holstein:2001bt}
+\item The decays of onium resonances to lighter states and pion pairs were modelled using the matrix element of \cite{Brown:1975dz}. The results of \cite{Bai:1999mj} are used for $\psi'\to\psi$ and \cite{Cronin-Hennessy:2007sj} for $\Upsilon(3S)$ and $\Upsilon(2S)$ decays. The remaining parameters are choosen to approximately reproduce the distributions from \cite{Aubert:2006bm} and \cite{Adam:2005mr}.
 \item The decays of the $a_1$ were modelled using the approach of \cite{Kuhn:1990ad}.
 
 \item The fit of the Mark III collaboration \cite{Adler:1987sd} was used for $D\to K\pi\pi$ decays
@@ -103,6 +111,15 @@ arXiv:1109.6256 [hep-ph].
   %%CITATION = PHLTA,B63,224;%%
 
 \bibitem{KLEISSCERN9808v3pp129} R.~Kleiss et al, CERN 89-08, vol.~3, pp 129-131.
+%\cite{Huang:2000xw}
+\bibitem{Huang:2000xw}
+  M.~Q.~Huang, J.~P.~Lee, C.~Liu and H.~S.~Song,
+  %``Leading Isgur-Wise form factor of Lambda/b to Lambda/c1 transition  using
+  %QCD sum rules,''
+  Phys.\ Lett.\  B {\bf 502}, 133 (2001)
+  [arXiv:hep-ph/0012114].
+  %%CITATION = PHLTA,B502,133;%%
+
 %\cite{Singleton:1990ye}
 \bibitem{Singleton:1990ye}
   R.~L.~Singleton,
@@ -112,6 +129,10 @@ arXiv:1109.6256 [hep-ph].
 
 \bibitem{Scora:1995ty} D.~Scora and N.~Isgur,Phys.\ Rev.\  D {\bf 52} (1995) 2783 [arXiv:hep-ph/9503486].
 %%CITATION = PHRVA,D52,2783;%%
+
+\bibitem{Kagan:1998ym} A.~L.~Kagan and M.~Neubert,
+Eur.\ Phys.\ J.\  C {\bf 7} (1999) 5 [arXiv:hep-ph/9805303].
+%%CITATION = EPHJA,C7,5;%%
 
 \bibitem{Bauer:1986bm} M.~Bauer, B.~Stech and M.~Wirbel,
 Z.\ Phys.\  C {\bf 34} (1987) 103.
@@ -127,6 +148,14 @@ Z.\ Phys.\  C {\bf 34} (1987) 103.
   [arXiv:hep-ph/9612463].
   %%CITATION = PHRVA,D56,348;%%
 
+\bibitem{Ball:2004rg} P.~Ball and R.~Zwicky, 
+Phys.\ Rev.\  D {\bf 71} (2005) 014029 [arXiv:hep-ph/0412079].
+%%CITATION = PHRVA,D71,014029;%%
+
+\bibitem{Ball:2004ye} P.~Ball and R.~Zwicky,
+ Phys.\ Rev.\  D {\bf 71} (2005) 014015 [arXiv:hep-ph/0406232].
+%%CITATION = PHRVA,D71,014015;%%
+
 \bibitem{Kiselev:2002vz} V.~V.~Kiselev, arXiv:hep-ph/0211021.
 %%CITATION = HEP-PH/0211021;%%
 %\cite{Kupco:1998fx}
@@ -141,6 +170,11 @@ Z.\ Phys.\  C {\bf 34} (1987) 103.
 \bibitem{Aubert:2007rs} B.~Aubert {\it et al.}  [BABAR Collaboration],arXiv:0705.4008 [hep-ex]. %%CITATION = ARXIV:0705.4008;%%
 \bibitem{Snyder:2007qn} A.~E.~Snyder, [arXiv:hep-ex/0703035].
 %%CITATION = ECONF,C0610161,015;%%
+
+\bibitem{Schlumpf:1994fb}
+F.~Schlumpf,
+Phys.\ Rev.\  D {\bf 51} (1995) 2262 [arXiv:hep-ph/9409272].
+%%CITATION = PHRVA,D51,2262;%%
 
 %\cite{Cheng:1995fe}
 \bibitem{Cheng:1995fe}
@@ -216,6 +250,15 @@ Phys.\ Rev.\  D {\bf 57} (1998) 4397 [arXiv:hep-ph/9710382].
  Phys.\ Scripta {\bf T99} (2002) 55 [arXiv:hep-ph/0112150].
 %%CITATION = PHSTB,T99,55;%%
 
+\bibitem{Holstein:2001bt} B.~R.~Holstein,
+ Phys.\ Scripta {\bf T99} (2002) 55 [arXiv:hep-ph/0112150].
+%%CITATION = PHSTB,T99,55;%%
+
+\bibitem{Brown:1975dz} L.~S.~Brown and R.~N.~Cahn,Phys.\ Rev.\ Lett.\  {\bf 35} (1975) 1.%%CITATION = PRLTA,35,1;%%
+\bibitem{Bai:1999mj} J.~Z.~Bai {\it et al.}  [BES Collaboration],Phys.\ Rev.\  D {\bf 62} (2000) 032002 [arXiv:hep-ex/9909038].%%CITATION = PHRVA,D62,032002;%%
+\bibitem{Cronin-Hennessy:2007sj} D.~Cronin-Hennessy{\it et al.} [CLEO Collaboration], arXiv:0706.2317 [hep-ex].%%CITATION = ARXIV:0706.2317;%%
+\bibitem{Aubert:2006bm} B.~Aubert {\it et al.}  [BABAR Collaboration],Phys.\ Rev.\ Lett.\  {\bf 96} (2006) 232001 [arXiv:hep-ex/0604031].%%CITATION = PRLTA,96,232001;%%
+\bibitem{Adam:2005mr} N.~E.~Adam {\it et al.}  [CLEO Collaboration],Phys.\ Rev.\ Lett.\  {\bf 96} (2006) 082004 [arXiv:hep-ex/0508023].%%CITATION = PRLTA,96,082004;%%
 \bibitem{Kuhn:1990ad} J.~H.~Kuhn and A.~Santamaria,
 Z.\ Phys.\  C {\bf 48} (1990) 445.
 %%CITATION = ZEPYA,C48,445;%%

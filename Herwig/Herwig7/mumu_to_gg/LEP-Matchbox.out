@@ -9,8 +9,8 @@ Statistics for event handler 'EventHandler':
 ==============================================================================
 Total (from   weighted events): including vetoed events            2.38166e-10
 ==============================================================================
-Total (from unweighted events):             1000         1000      2.38166e-10
+Total (from unweighted events):           100000       100000      2.38166e-10
 ==============================================================================
 Per matrix element breakdown:
-MEMadGraph[mu-,mu+->g,g]                    1000         1000      2.38166e-10
+MEMadGraph[mu-,mu+->g,g]                  100000       100000      2.38166e-10
 ==============================================================================

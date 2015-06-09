@@ -3357,6 +3357,7 @@ Step 4 performed by DecayHandler
                                  0.192    -0.633    -1.136     1.322     0.140
 ------------------------------------------------------------------------------
      Sum of momenta:                 0         0         0       125       125
+MamboDecayer::decay - The Decay mode rho0->pi+ pi- pi+ pi-  cannot proceed as there is not enough phase space.
 final integrated cross section is ( 2.38166e-10 +/- 0 ) nb
 No exceptions reported in this run.
 
@@ -3377,7 +3378,7 @@ Miscellaneous output from modules to the standard output:
 # and 3rd party plugin jet algorithms. See COPYING file for details.
 #--------------------------------------------------------------------------
 [0;32mRivet.Analysis.Handler: INFO [0m Finalising analyses
-[0;32mRivet.Analysis.Handler: INFO [0m Processed 1000 events
+[0;32mRivet.Analysis.Handler: INFO [0m Processed 100000 events
 
 The MCnet usage guidelines apply to Rivet: see http://www.montecarlonet.org/GUIDELINES
 Please acknowledge plots made with Rivet analyses, and cite arXiv:1003.0694 (http://arxiv.org/abs/1003.0694)

@@ -1,0 +1,37 @@
+For this study, we mostly use LO Vincia, since NLO corrections are not implemented for H->ggg. The most recent LO tune for Vincia is called "jeppsson5", with all parameters listed in share/Vincia/tunes/jeppsson5.cmnd
+
+Variations:
+
+Vincia-nomec:
+No matrix-element corrections.
+Colour-factor for QG->QGG = average of 2CF and CA, needed since ME corrections no longer impose CF for the Q side and CA for the G side.
+  - Vincia:MatchingLO = 0     
+  - Vincia:QGemit:chargeFactor =  2.833
+
+Vincia-a2L:
+2-loop running (default for LO Vincia is 1-loop running)
+  - Vincia:alphaSorder = 2
+
+Vincia-aHi:
+High AlphaS variation (default alphaS *= 1.2)
+  - Vincia:alphaSvalue = 0.1668
+
+Vincia-aLo:
+Low AlphaS variation (default alphaS /= 1.2)
+  - Vincia:alphaSvalue = 0.115833
+
+Vincia-muq:
+Variation using the mother antenna mass / 2 as the renormalization scale.
+Should be considered quite extreme (theoretically wrong)
+  - Vincia:alphaSmode = 0
+  - Vincia:alphaSkMu  = 0.5
+  - Vincia:alphaSkMuSplit = 0.5
+
+Vincia-noqq:
+g->qq splittings switched off
+  - Vincia:nGluonToQuark = 0
+
+Vincia-recoil:
+Variation using a dipole-style recoil map, with the hardest daughter parton recoiling purely longitudinally, instead of the default antenna one in which recoil is shared smoothly between the two sides. Should be considered theoretically ill-motivated since our ME comparisons for Z decay show systematically better agreement with the antenna-style recoil map.
+  - Vincia:kineMapType = 2
+
