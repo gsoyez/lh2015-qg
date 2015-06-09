@@ -20,4 +20,4 @@ HadronLevel:all = on
 Vincia = on                     ! Vincia on/off (off = pure PYTHIA)
 Vincia:uncertaintyBands = off   ! Uncertainty bands on/off
 Vincia:tuneFile = jeppsson5.cmnd
-Vincia:alphaSvalue = 0.1668
+Vincia:alphaSvalue = 0.15544

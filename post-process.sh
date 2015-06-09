@@ -82,11 +82,18 @@ done
 
 # make plots for each of the generators
 # Note that here we will only plot the _R06 results
-
+mkdir -p post-process-tmpfiles
+rm -Rf post-process-tmpfiles/*
 message ""
 message "Plots for individual generators at 200 GeV, R=0.6"
 for gen in $generators; do
     message "... $gen"
+
+    # clean things up
+    mkdir post-process-tmpfiles/u
+    mkdir post-process-tmpfiles/g
+    mkdir post-process-tmpfiles/s
+    mkdir post-process-tmpfiles/i
 
     # build the list of the files to be plottes
     # we separate the quark, gluon and common files for linedtyle purpose
@@ -135,7 +142,9 @@ for gen in $generators; do
     for tag in $q_both_files $q_only_files; do
         noyoda=${tag%.yoda}; flags=${noyoda#*uu-200}
         if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
-        q_input="$q_input $tag:$flags"
+        yodacnv $tag -m "GA.*_R6|/Thrust" post-process-tmpfiles/u/${flags}.yoda
+        q_input="$q_input post-process-tmpfiles/u/${flags}.yoda"
+        #q_input="$q_input $tag:$flags"
     done
     message "...... plot quark: $q_input"    
 
@@ -143,7 +152,8 @@ for gen in $generators; do
     for tag in $g_both_files $g_only_files; do
         noyoda=${tag%.yoda}; flags=${noyoda#*gg-200}
         if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
-        g_input="$g_input $tag:$flags"
+        yodacnv $tag -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${flags}.yoda
+        g_input="$g_input post-process-tmpfiles/g/${flags}.yoda"
     done
     message "...... plot gluon: $g_input"
 
@@ -151,7 +161,8 @@ for gen in $generators; do
     for tag in $s_files; do
         noyoda=${tag%.yoda}; flags=${noyoda#*sep-200}
         if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
-        s_input="$s_input $tag:$flags"
+        yodacnv $tag -m "GA.*_R6" post-process-tmpfiles/s/${flags}.yoda
+        s_input="$s_input post-process-tmpfiles/s/${flags}.yoda"
     done
     message "...... plot separ: $s_input"
 
@@ -175,6 +186,8 @@ for gen in $generators; do
     safe-rivet-mkhtml -o plots/gg-200-R06-$gen  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
     safe-rivet-mkhtml -o plots/sep-200-R06-$gen $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
     safe-rivet-mkhtml -o plots/sum-200-R06-$gen $i_input -c style-separation.plot -t $gen,Q=200GeV,R=0.6
+
+    rm -Rf post-process-tmpfiles/*
 done
 
 # do the MC comparison on the baseline
@@ -184,33 +197,33 @@ q_input=""
 g_input=""
 s_input=""
 i_input=""
+mkdir post-process-tmpfiles/u
+mkdir post-process-tmpfiles/g
+mkdir post-process-tmpfiles/s
+mkdir post-process-tmpfiles/i
 for gen in $generators; do
-    q_input="$q_input $gen/results/uu-200.yoda:$gen"
-    g_input="$g_input $gen/results/gg-200.yoda:$gen"
-    s_input="$s_input $gen/results/sep-200.yoda:$gen"
-    i_input="$i_input $gen/results/sum-200.yoda:$gen"
+    yodacnv $gen/results/uu-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/u/${gen}.yoda
+    yodacnv $gen/results/gg-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${gen}.yoda
+    yodacnv $gen/results/sep-200.yoda -m "GA.*_R6" post-process-tmpfiles/s/${gen}.yoda
+    yodacnv $gen/results/sum-200.yoda -m "GA.*_R6" post-process-tmpfiles/i/${gen}.yoda
+    q_input="$q_input post-process-tmpfiles/u/${gen}.yoda"
+    g_input="$g_input post-process-tmpfiles/g/${gen}.yoda "
+    s_input="$s_input post-process-tmpfiles/s/${gen}.yoda"
+    i_input="$i_input post-process-tmpfiles/i/${gen}.yoda"
 done
 message "... plot quark: $q_input"    
 message "... plot gluon: $g_input"
 message "... plot separ: $s_input"
 message "... plot integ: $i_input"
     
-# the trick below should work as far as I understand the manual
-# correctly but crashes rivet-cmphistos. So we disable it for now. 
-# Once it is working, replace -c MC_LHQG_EE.plot below by -c tmp.plot
-## 
-## # build a custom build plot
-## echo "# BEGIN PLOT" > tmp.plot
-## echo "DrawOnly=GA_00_00_R06 GA_20_00_R06 GA_10_05_R06 GA_10_10_R06 GA_10_20_R06 log_GA_00_00_R06 log_GA_20_00_R06 log_GA_10_05_R06 log_GA_10_10_R06 log_GA_10_20_R06" >> tmp.plot
-## echo "# END PLOT" >> tmp.plot
-## echo "" >> tmp.plot
-## cat MC_LHQG_EE.plot >> tmp.plot
     
 # do the plots
 safe-rivet-mkhtml -o plots/uu-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/gg-200-R06-allMCs  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/sep-200-R06-allMCs $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
 safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -c style-separation.plot -t $gen,Q=200GeV,R=0.6
+
+rm -Rf post-process-tmpfiles/*
 
 #----------------------------------------------------------------------
 # do the alphas modulation
@@ -221,35 +234,42 @@ i_input=""
 for gen in $generators; do
     message "... $gen"
     ./produce-alphadependence-data.py $gen modulations/alphadep-$gen.yoda
-    i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
+    if [ -f modulations/alphadep-$gen.yoda ]; then
+        i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
+    fi
 done
-# config file missing
-safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
+# safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
 
 # do the R modulation
 message ""
 message "Plots of the R modulation for individual generators at 200 GeV"
-i_input=""
+# i_input=""
 for gen in $generators; do
     message "... $gen"
     ./produce-Rdependence-data.py $gen/results/sep-200.log modulations/Rdep-$gen.yoda
-    i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
+    if [ -f modulations/Rdep-$gen.yoda ]; then
+        i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
+    fi
 done
-# config file missing
-safe-rivet-mkhtml -o plots/Rdependence -c style-Rdependence.plot $i_input -t Q=200GeV
+# safe-rivet-mkhtml -o plots/Rdependence -c style-Rdependence.plot $i_input -t Q=200GeV
 
 
 # do the energy modulation
 message ""
 message "Plots of the Q modulation for individual generators at R=0.6"
-i_input=""
+# i_input=""
 for gen in $generators; do
     message "... $gen"
-    ./produce-Qdependence-data.py $gen modulations/Qdep-$gen.yoda
-    i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
+        ./produce-Qdependence-data.py $gen modulations/Qdep-$gen.yoda
+    if [ -f modulations/Qdep-$gen.yoda ]; then
+        i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
+    fi
 done
-# config file missing
-safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
+message ""
+message "Plot everything"
+message "... input: $i_input"
+# safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
+safe-rivet-mkhtml -o plots/modulations -c style-modulations.plot $i_input -t R=0.6,_default_Q=200_GeV
 
 message "all done!"
 date | tee -a $logfile

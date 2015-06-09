@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #
 # generate yoda files with scatter plots with efficiencies for a few
 # observables for a given MC genertor. Do one scatter plot per
