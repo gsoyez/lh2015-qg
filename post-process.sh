@@ -264,7 +264,7 @@ message "Plots of the Q modulation for individual generators at R=0.6"
 # i_input=""
 for gen in $generators; do
     message "... $gen"
-        ./produce-Qdependence-data.py $gen modulations/Qdep-$gen.yoda
+    ./produce-Qdependence-data.py $gen modulations/Qdep-$gen.yoda
     if [ -f modulations/Qdep-$gen.yoda ]; then
         i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
     fi

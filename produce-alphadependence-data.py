@@ -25,9 +25,9 @@ scatters=[]
 for measure in measures:
     for observable in observables:
         separation_scatter = yoda.Scatter2D(title=measure, path="/alphasdependence/"+measure+"_"+observable)
-        for flag,value in zip(["-alphasx08","","-alphasx12"],[0.8,1.0,1.2]):
+        for flag,value in zip(["-alphasx08","-alphasx09","","-alphasx11","-alphasx12"],[0.8,0.9,1.0,1.1,1.2]):
             command="./get-separation.sh "+gen+"/results/sep-200"+flag+".log "+observable+"_R6 "+measure
-            separation_scatter.addPoint(value, float(os.popen(command).read().rstrip()), xerrs=0.1)
+            separation_scatter.addPoint(value, float(os.popen(command).read().rstrip()), xerrs=0.05)
         scatters.append(separation_scatter)
 
 yoda.write(scatters,sys.argv[2])

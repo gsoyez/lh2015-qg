@@ -1,5 +1,14 @@
 2015-06-09  Gregory Soyez  <soyez@fastjet.fr>
 
+	* get-separation.sh:
+	returned a "0" separation when the file is not present
+
+	* produce-alphadependence-data.py:
+	added the 0.9 and 1.1 factors
+
+	* style-modulations.plot:
+	fixed a typo causing issues with alpha_s-dependence plots
+
 	* post-process.sh:
 	fixed a bug in generating the "sum" plots, fixed a minor issue in
 	a set of titles

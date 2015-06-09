@@ -18,12 +18,14 @@ fi
 
 if [ ! -f $1 ]; then
     >&2 echo "get-separation.sh: file $1 not found"
+    echo "0.0";
     exit
 fi
 
 line=`grep ^$2 $1`
 if [ -z "$line" ]; then
     >&2 echo "get-separation.sh: observable $2 not found in file $1"
+    echo "0.0";
     exit
 fi
 
@@ -52,6 +54,7 @@ case $3 in
         ;;
     *)
         >&2 echo "get-separation.sh: measure has to be one of grej20 grej50 qrej20 qrej50 srej I I2"
+        echo "0.0";
         exit
         ;;
 esac
