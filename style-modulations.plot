@@ -5,7 +5,7 @@ LegendXPos=0.68
 # END PLOT
 
 # BEGIN PLOT /alphasdependence/
-XLabel=$\alpha_s$
+XLabel=$\alpha_s/\alpha_{s_0}$
 XMin=0.7
 XMax=1.59
 # END PLOT
@@ -17,7 +17,7 @@ XMax=1.7
 # END PLOT
 
 # BEGIN PLOT /Qdependence/
-XLabel=$Q$
+XLabel=$Q$ [GeV]
 LogX=1
 XMin=30.0
 XMax=7000.0
