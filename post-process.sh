@@ -157,17 +157,21 @@ for gen in $generators; do
     done
     message "...... plot gluon: $g_input"
 
+    # generate the list for the separation plots and for the for the
+    # "integrated quality" plot. For the latter, only R=0.6 enters the
+    # tables so we can directly use the sum files
     s_input=""
+    i_input=""
     for tag in $s_files; do
         noyoda=${tag%.yoda}; flags=${noyoda#*sep-200}
         if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+        i_input="$i_input $tag:$flags"
         yodacnv $tag -m "GA.*_R6" post-process-tmpfiles/s/${flags}.yoda
         s_input="$s_input post-process-tmpfiles/s/${flags}.yoda"
     done
     message "...... plot separ: $s_input"
 
-    # generate the list for the for the "integrated quality" plot
-    i_input=${s_input//sep/sum}
+    i_input=${i_input//sep/sum}
     message "...... plot integ: $i_input"
     
     # the trick below should work as far as I understand the manual
@@ -205,7 +209,7 @@ for gen in $generators; do
     yodacnv $gen/results/uu-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/u/${gen}.yoda
     yodacnv $gen/results/gg-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${gen}.yoda
     yodacnv $gen/results/sep-200.yoda -m "GA.*_R6" post-process-tmpfiles/s/${gen}.yoda
-    yodacnv $gen/results/sum-200.yoda -m "GA.*_R6" post-process-tmpfiles/i/${gen}.yoda
+    yodacnv $gen/results/sum-200.yoda post-process-tmpfiles/i/${gen}.yoda
     q_input="$q_input post-process-tmpfiles/u/${gen}.yoda"
     g_input="$g_input post-process-tmpfiles/g/${gen}.yoda "
     s_input="$s_input post-process-tmpfiles/s/${gen}.yoda"
@@ -218,10 +222,10 @@ message "... plot integ: $i_input"
     
     
 # do the plots
-safe-rivet-mkhtml -o plots/uu-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-safe-rivet-mkhtml -o plots/gg-200-R06-allMCs  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-safe-rivet-mkhtml -o plots/sep-200-R06-allMCs $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
-safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -c style-separation.plot -t $gen,Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/uu-200-R06-allMCs  $q_input -c MC_LHQG_EE.plot -t Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/gg-200-R06-allMCs  $g_input -c MC_LHQG_EE.plot -t Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/sep-200-R06-allMCs $s_input -c MC_LHQG_EE.plot -t Q=200GeV,R=0.6
+safe-rivet-mkhtml -o plots/sum-200-R06-allMCs $i_input -c style-separation.plot -t Q=200GeV,R=0.6
 
 rm -Rf post-process-tmpfiles/*
 
