@@ -25,6 +25,8 @@ cp plots/uu-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.pdf $talkdir/1-LHAQ-best
 cp plots/gg-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.pdf $talkdir/2-LHAG-best
 cp plots/sep-200-R06-allMCs/MC_LHQG_EE/GA_10_05_R6.pdf $talkdir/3-LHAsep-best
 cp plots/sum-200-R06-allMCs/separation/I2_R6.pdf $talkdir/4-Summary
+cp plots/sum-200-R06-allMCs/separation/grej50_R6.pdf $talkdir/4-Summary
+cp plots/sum-200-R06-allMCs/separation/grej20_R6.pdf $talkdir/4-Summary
 
 cp plots/sum-200-R06-Pythia-8205/separation/I2_R6.pdf $talkdir/5-Pythia-8205
 cp plots/sum-200-R06-Sherpa-2.1.1/separation/I2_R6.pdf $talkdir/6-Sherpa-2.1.1
