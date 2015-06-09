@@ -28,30 +28,6 @@ date > $logfile
 desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
 
 #----------------------------------------------------------------------
-# some helper to give a style to the various MC generators
-#
-# a : separated list of options for the various MC. See
-# https://rivet.hepforge.org/make-plots.html for the various options.
-function style_options {
-    case $1 in
-        Pythia-8205)
-            echo "LineStyle=solid"
-        ;;
-        Sherpa-2.1.1)
-            echo "LineStyle=solid"
-        ;;
-        Vincia-1201)
-            #echo "LineStyle=dotdashed"
-            echo "LineStyle=solid"
-        ;;
-        Herwig-2_7_1)
-            #echo "LineStyle=dashed"
-            echo "LineStyle=solid"
-        ;;
-    esac
-}
-
-#----------------------------------------------------------------------
 # a helper to output both to stdout and logfile
 function message {
     echo "$1" | tee -a $logfile
@@ -234,10 +210,10 @@ for gen in $generators; do
     yodacnv $gen/results/gg-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${gen}.yoda
     yodacnv $gen/results/sep-200.yoda -m "GA.*_R6" post-process-tmpfiles/s/${gen}.yoda
     yodacnv $gen/results/sum-200.yoda post-process-tmpfiles/i/${gen}.yoda
-    q_input="$q_input post-process-tmpfiles/u/${gen}.yoda:${gen}:$(style_options $gen)"
-    g_input="$g_input post-process-tmpfiles/g/${gen}.yoda:${gen}:$(style_options $gen)"
-    s_input="$s_input post-process-tmpfiles/s/${gen}.yoda:${gen}:$(style_options $gen)"
-    i_input="$i_input post-process-tmpfiles/i/${gen}.yoda:${gen}:$(style_options $gen)"
+    q_input="$q_input post-process-tmpfiles/u/${gen}.yoda"
+    g_input="$g_input post-process-tmpfiles/g/${gen}.yoda "
+    s_input="$s_input post-process-tmpfiles/s/${gen}.yoda"
+    i_input="$i_input post-process-tmpfiles/i/${gen}.yoda"
 done
 message "... plot quark: $q_input"    
 message "... plot gluon: $g_input"
@@ -263,7 +239,7 @@ for gen in $generators; do
     message "... $gen"
     ./produce-alphadependence-data.py $gen modulations/alphadep-$gen.yoda
     if [ -f modulations/alphadep-$gen.yoda ]; then
-        i_input="$i_input modulations/alphadep-$gen.yoda:$gen:$(style_options $gen)"
+        i_input="$i_input modulations/alphadep-$gen.yoda:$gen"
     fi
 done
 # safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
@@ -276,7 +252,7 @@ for gen in $generators; do
     message "... $gen"
     ./produce-Rdependence-data.py $gen/results/sep-200.log modulations/Rdep-$gen.yoda
     if [ -f modulations/Rdep-$gen.yoda ]; then
-        i_input="$i_input modulations/Rdep-$gen.yoda:$gen:$(style_options $gen)"
+        i_input="$i_input modulations/Rdep-$gen.yoda:$gen"
     fi
 done
 # safe-rivet-mkhtml -o plots/Rdependence -c style-Rdependence.plot $i_input -t Q=200GeV
@@ -290,7 +266,7 @@ for gen in $generators; do
     message "... $gen"
     ./produce-Qdependence-data.py $gen modulations/Qdep-$gen.yoda
     if [ -f modulations/Qdep-$gen.yoda ]; then
-        i_input="$i_input modulations/Qdep-$gen.yoda:$gen:$(style_options $gen)"
+        i_input="$i_input modulations/Qdep-$gen.yoda:$gen"
     fi
 done
 message ""

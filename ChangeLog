@@ -1,8 +1,5 @@
 2015-06-09  Gregory Soyez  <soyez@fastjet.fr>
 
-	* post-process.sh:
-	added style options relevant to the generators.
-
 	* get-separation.sh:
 	returned a "0" separation when the file is not present
 
