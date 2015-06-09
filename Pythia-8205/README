@@ -1,0 +1,29 @@
+For this study, we use the Monash 2013 tune of Pythia 8.2 as baseline, with parameters described in arXiv:1404.5630.
+
+Variations:
+
+Pythia-nomec:
+No matrix-element corrections. Remember: PYTHIA's MECs *reduce* the amount of hard raditation, relative to the pure shower, while Herwig's *increase* the amount of hard radiation (by filling in the dead zone)
+  - TimeShower: = 0     
+
+Pythia-a2L:
+2-loop running (default for Pythia is 1-loop running)
+  - TimeShower:alphaSorder = 2
+
+Pythia-aHi:
+High AlphaS variation (default alphaS *= 1.2)
+  - TimeShower:alphaSvalue = 0.1638
+
+Pythia-aLo:
+Low AlphaS variation (default alphaS /= 1.2)
+  - TimeShower:alphaSvalue = 0.113750
+
+Pythia-noqq:
+g->qq splittings switched off
+  - TimeShower:nGluonToQuark = 0
+
+Pythia-recoil:
+Variation using a global recoil map instead of the dipole-style one
+  - TimeShower:globalRecoil = on
+
+
