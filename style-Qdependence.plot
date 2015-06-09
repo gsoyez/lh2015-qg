@@ -1,5 +1,5 @@
 # BEGIN PLOT /Qdependence/
-XLabel=Q
+XLabel=Q [GeV]
 YLabel=quality
 LogY=0
 LogX=1

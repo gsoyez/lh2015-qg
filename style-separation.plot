@@ -1,5 +1,5 @@
 # BEGIN PLOT /separation/
-XLabel=observable
+XLabel=observable ($\kappa,\beta$)
 YLabel=quality
 LogY=0
 XMax=7

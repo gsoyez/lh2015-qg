@@ -1,5 +1,5 @@
 # BEGIN PLOT /alphasdependence/
-XLabel=$\alpha_s$
+XLabel=$\alpha_s/\alpha_{s_0}$
 YLabel=quality
 LogY=0
 XMin=0.7
