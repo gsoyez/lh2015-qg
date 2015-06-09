@@ -17,4 +17,4 @@ SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
 HadronLevel:all = on
 
 ! 4) Les Houches Q/G study setup for PYTHIA
-TimeShower:alphaSvalue = 0.113750
+TimeShower:alphaSvalue = 0.12489

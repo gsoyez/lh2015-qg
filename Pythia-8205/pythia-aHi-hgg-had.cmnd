@@ -18,4 +18,4 @@ HadronLevel:all = on
 
 ! 4) Les Houches Q/G study setup for PYTHIA
 ! High alphaS variation
-TimeShower:alphaSvalue = 0.15265
+TimeShower:alphaSvalue = 0.1638
