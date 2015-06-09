@@ -1,3 +1,9 @@
+2015-06-09  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	fixed a bug in generating the "sum" plots, fixed a minor issue in
+	a set of titles
+
 2015-06-08  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
