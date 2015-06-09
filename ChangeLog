@@ -1,6 +1,13 @@
 2015-06-08  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
+	only plotted the distributions for R=0.6 results (and Thrust)
+
+	combined all the variations in a unique series of "modulations"
+	plots (previous version commented in the script so easy to fold
+	back)
+
+	* post-process.sh:
 	added comments
 
 	* post-process.sh:
