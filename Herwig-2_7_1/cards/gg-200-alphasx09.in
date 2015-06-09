@@ -43,6 +43,10 @@ set theLHReader:WeightWarnings    false
 #############################################################
 # Create an LHAPDF (set up & assigned below) ...            #
 #############################################################
+set /Herwig/Shower/AlphaQCD:InputOption AlphaMZ
+set /Herwig/Shower/AlphaQCD:AlphaMZ 0.108
+set /Herwig/Shower/AlphaQCD:NumberOfLoops 2 
+
 cd /Herwig/Partons
 create ThePEG::LHAPDF thePDFset ThePEGLHAPDF.so
 
@@ -109,5 +113,5 @@ cd /Herwig/Generators
 ##################################################
 
 cd /Herwig/Generators
-saverun gg-200 theGenerator
+saverun gg-200-alphasx09 theGenerator
 

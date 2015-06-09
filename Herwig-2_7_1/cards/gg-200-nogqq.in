@@ -11,6 +11,15 @@
 ##############################################################
 
 #read MC4BSM.model
+cd /Herwig/Shower
+
+
+do SplittingGenerator:DeleteFinalSplitting g->u,ubar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->d,dbar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->s,sbar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->c,cbar; /Herwig/Shower/GtoccbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->b,bbar; /Herwig/Shower/GtobbbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->t,tbar; /Herwig/Shower/GtoQQbarSudakov
 
 ##############################################################
 # Create a cuts object		                             #
@@ -109,5 +118,5 @@ cd /Herwig/Generators
 ##################################################
 
 cd /Herwig/Generators
-saverun gg-200 theGenerator
+saverun gg-200-nogqq theGenerator
 

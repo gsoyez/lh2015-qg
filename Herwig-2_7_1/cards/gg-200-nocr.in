@@ -46,6 +46,10 @@ set theLHReader:WeightWarnings    false
 cd /Herwig/Partons
 create ThePEG::LHAPDF thePDFset ThePEGLHAPDF.so
 
+set /Herwig/Hadronization/ColourReconnector:ColourReconnection No
+set /Herwig/Hadronization/ColourReconnector:ReconnectionProbability 0.0
+
+
 #############################################################
 # Setup the Les Houches event handler ...                   #
 #############################################################
@@ -109,5 +113,5 @@ cd /Herwig/Generators
 ##################################################
 
 cd /Herwig/Generators
-saverun gg-200 theGenerator
+saverun gg-200-nocr theGenerator
 

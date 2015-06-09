@@ -46,6 +46,11 @@ set theLHReader:WeightWarnings    false
 cd /Herwig/Partons
 create ThePEG::LHAPDF thePDFset ThePEGLHAPDF.so
 
+set /Herwig/Shower/AlphaQCD:InputOption AlphaMZ
+set /Herwig/Shower/AlphaQCD:AlphaMZ 0.108	
+set /Herwig/Shower/AlphaQCD:NumberOfLoops 2 
+
+
 #############################################################
 # Setup the Les Houches event handler ...                   #
 #############################################################
@@ -62,7 +67,7 @@ set LesHouchesHandler:HadronizationHandler /Herwig/Hadronization/ClusterHadHandl
 set LesHouchesHandler:DecayHandler /Herwig/Decays/DecayHandler
 
 # Input event file name:
-set theLHReader:FileName                /data/lh2015-qg/lh2015-qg/lhef/h200.lhe
+set theLHReader:FileName                /data/lh2015-qg/lh2015-qg/lhef/z200.lhe
 
 
 set theLHReader:MomentumTreatment      Accept
@@ -109,5 +114,5 @@ cd /Herwig/Generators
 ##################################################
 
 cd /Herwig/Generators
-saverun gg-200 theGenerator
+saverun uu-200-alphasx09 theGenerator
 

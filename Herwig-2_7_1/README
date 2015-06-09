@@ -1,0 +1,7 @@
+Herwig++ various options/file:
+ 1. parton - parton level (w/o hadronization)
+ 2. nocr   - no colour reconnection (this is part of Multiple Partonic Interaction model)
+ 3. nogqq  - a version without g->qqbar splitting  
+ 4. dipole - dipole shower
+ 5. dipoleNoCR - dipole shower w/o colour reconnection
+ 6. alphasxY   - variations of alphas  

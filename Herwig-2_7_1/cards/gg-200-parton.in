@@ -72,8 +72,8 @@ set theLHReader:MomentumTreatment      Accept
 #########################################################    
 cd /Herwig/EventHandlers                                     
 #set LesHouchesHandler:CascadeHandler        NULL        
-#set LesHouchesHandler:DecayHandler          NULL      
-#set LesHouchesHandler:HadronizationHandler  NULL              
+set LesHouchesHandler:DecayHandler          NULL      
+set LesHouchesHandler:HadronizationHandler  NULL              
 # The handler for multiple parton interactions               
 set /Herwig/Shower/ShowerHandler:MPIHandler       NULL      
 
@@ -109,5 +109,5 @@ cd /Herwig/Generators
 ##################################################
 
 cd /Herwig/Generators
-saverun gg-200 theGenerator
+saverun gg-200-parton theGenerator
 

@@ -11,6 +11,15 @@
 ##############################################################
 
 #read MC4BSM.model
+cd /Herwig/Shower
+
+
+do SplittingGenerator:DeleteFinalSplitting g->u,ubar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->d,dbar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->s,sbar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->c,cbar; /Herwig/Shower/GtoccbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->b,bbar; /Herwig/Shower/GtobbbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->t,tbar; /Herwig/Shower/GtoQQbarSudakov
 
 ##############################################################
 # Create a cuts object		                             #
@@ -62,7 +71,7 @@ set LesHouchesHandler:HadronizationHandler /Herwig/Hadronization/ClusterHadHandl
 set LesHouchesHandler:DecayHandler /Herwig/Decays/DecayHandler
 
 # Input event file name:
-set theLHReader:FileName                /data/lh2015-qg/lh2015-qg/lhef/h200.lhe
+set theLHReader:FileName                /data/lh2015-qg/lh2015-qg/lhef/z200.lhe
 
 
 set theLHReader:MomentumTreatment      Accept
@@ -109,5 +118,5 @@ cd /Herwig/Generators
 ##################################################
 
 cd /Herwig/Generators
-saverun gg-200 theGenerator
+saverun uu-200-nogqq theGenerator
 
