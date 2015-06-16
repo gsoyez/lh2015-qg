@@ -139,22 +139,46 @@
 
 \begin{document}
 
-\title{Quark/Gluon Enrichment}
-\author{Deepak Kar,}
-\author{Andrzej Siodmok,}
-\author{Peter Skands,}
-\author{Gregory Soyez,}
-\author[a]{Jesse Thaler,}
-\affiliation[a]{Center for Theoretical Physics, Massachusetts Institute of Technology, \\ Cambridge, MA 02139, U.S.A.}
-\author{\jdt{and so on}}
 
+\title{Systematics of Quark/Gluon Tagging}
+
+\author{Samuel Bein,}
+\emailAdd{samuel.bein@gmail.com}
+\author{Andy Buckley,}
+\emailAdd{andy.buckley@cern.ch}
+\author{Mario Campanelli,}
+\emailAdd{mario.campanelli@cern.ch}
+\author{Marat Freytsis,}
+\emailAdd{freytsis@physics.harvard.edu}
+\author{Philippe Gras,}
+\emailAdd{philippe.gras@cern.ch}
+\author{\\Deepak Kar,}
+\emailAdd{deepak.kar@cern.ch}
+\author{Simon Pl\"atzer,}
+\emailAdd{simon.plaetzer@desy.de}
+\author{Chris Pollard,}
+\emailAdd{cspollard@gmail.com}
+\author{Salvatore Rappoccio,}
+\emailAdd{rappoccio@gmail.com}
+\author{Andrzej Siodmok,}
+\emailAdd{andrzej@cern.ch}
+\author{Peter Skands,}
+\emailAdd{peter.skands@monash.edu}
+\author{Dave Soper,}
+\emailAdd{soper@uoregon.edu}
+\author{Gregory Soyez,}
+\emailAdd{soyez@lpthe.jussieu.fr}
+\author{Frank Tackmann,}
+\emailAdd{frank.tackmann@desy.de}
+\author[a]{Jesse Thaler}
+\affiliation[a]{Center for Theoretical Physics, Massachusetts Institute of Technology, \\ Cambridge, MA 02139, U.S.A.}
 \emailAdd{jthaler@mit.edu}
 
 %\date{\today}
 
-\abstract{Les Houches study}
+\abstract{\jdt{Author list is going to contract.  This abstract is aspirational at the moment.}  By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined by the color factor of the initiating parton ($C_F$ versus $C_A$).  The goal of this paper is to go beyond this leading order understanding, using both parton shower generators and first-principles calculations to assess the impact of higher-order perturbative and non-perturbative physics.  In the idealized context of electron-positron collisions, where there is an unambiguous definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and non-perturbative hadronization effects.  Turning to proton-proton collisions, we highlight a core set of measurements which would constrain the leading uncertainties in quark/gluon tagging and improve the overall modeling of jets at the Large Hadron Collider.}
 
-\preprint{xxx}
+\preprint{MIT--CTP xxxx}
 
 \maketitle
 
@@ -162,9 +186,28 @@
 \section{Introduction}
 \label{introduction}
 
-\jdt{yada yada}
+Jets are a robust proxy for studying short-distance collisions involving quarks and gluons.  With a suitable jet definition, one can connect jet measurements made on clusters of hadrons to perturbative calculations made on clusters of partons \cite{}.  More ambitiously, one can try to tag jets with a suitably-defined flavor label, with the aim of isolating a sample of quark-tagged and gluon-tagged jets.  A wide variety of quark/gluon discriminants have been proposed \cite{}, and while these methods have not yet been fully established at the Large Hadron Collider (LHC), there is a growing catalog of LHC quark/gluon studies \cite{}.
 
-\section{Metrics for Discrimination Power}
+In this paper, we will argue that a prerequisite to robust quark/gluon tagging is first gaining theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  As we will see, though, quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to non-perturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this paper is to highlight these uncertainties and suggest a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
+
+A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem, since quarks and gluons carry color while jets are composed of color-singlet hadrons.  Certainly the label ``quark'' and ``gluon'' is ambiguous, just as the definition of a jet is ambiguous.  As discussed in \Sec{sec:quarkgluondef}, for quark/gluon tagging to be useful, it must be defined in the context of unambiguous hadron-level cross section measurements.  In this sense, quark/gluon tagging is as well-defined as any technique intended to enhance signals over backgrounds.
+
+To avoid some of the polemical issues... \jdt{I am here.}
+
+
+
+
+
+
+\section{What is a Quark/Gluon Jet?}
+\label{sec:quarkgluondef}
+
+
+\section{Preliminaries}
+
+\subsection{Generalized Angularities}
+
+\subsection{Metrics for Discrimination Power}
 
 For our studies, we need a way to quantify quark/gluon separation power in a robust way that does not require enormous Monte Carlo data sets.
 
@@ -220,6 +263,33 @@ The first derivative is sometimes called relative entropy and the second derivat
 \{I_\frac{1}{2}, I''_{\frac{1}{2}} \}.
 \ee
 To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(T;A)$ in bins of $a$ and use Poisson statistics.  Note that there is a binning bias in $I_\frac{1}{2}$, so we use the method explained in Appendix A.3 of \Ref{Larkoski:2014pca} and use half the $\Delta a$ bin size on the combined quark/gluon sample compared to the individual quark/gluon samples.
+
+\subsection{Parton-level Quark/Gluon Tags}
+
+\section{Idealized Quark/Gluon Tagging}
+
+\subsection{Parton-Level Performance}
+
+\subsection{Hadron-Level Performance}
+
+\subsection{Predictions from Resummation}
+
+\section{Quark/Gluon Tagging at the LHC}
+
+\subsection{Enriched Quark/Gluon Samples}
+
+\subsection{Tagging Performance}
+
+
+\section{Conclusions}
+
+
+
+
+\begin{acknowledgments}
+We thank Jon Butterworth, Peter Loch, Alexander Schmidt
+
+\end{acknowledgments}
 
 
 \bibliographystyle{JHEP}
