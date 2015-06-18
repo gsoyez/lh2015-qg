@@ -190,7 +190,7 @@ Jets are a robust tool for studying short-distance collisions involving quarks a
 
 In order to achieve robust quark/gluon tagging, though, one needs theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  In this paper, we will demonstrate that quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to non-perturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this paper is to highlight these uncertainties and suggest a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
 
-A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are intrinsically ambiguous.  But this is philosophically no different from the fact that a ``jet'' is intrinsically ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:quarkgluondef}, we can think about quark/gluon discrimination in the context of unambiguous hadron-level measurements.  In this sense, quark/gluon tagging is a well-defined technique for enhancing desired signals over undesired backgrounds.
+A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are intrinsically ambiguous.  But this is philosophically no different from the fact that a ``jet'' is intrinsically ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:quarkgluondef}, the proper way to think about quark/gluon discrimination is in the context of unambiguous hadron-level measurements.  In that sense, quark/gluon tagging is a well-defined technique for enhancing desired signals over undesired backgrounds.
 
 There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power, discussed further in  \Sec{sec:prelim}.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{} at five different $(\kappa, \beta)$ working points.  These roughly map onto five variables in common use in the literature:
 \be
@@ -200,7 +200,7 @@ where LHA refers to the ``Les Houches Angularity'', named after the workshop whe
 \be
 \Delta =  \frac{1}{2} \int \df \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
 \ee
-where $p_q$ ($p_g$) is the probability distribution for a pure quark (gluon) sample,  though we also show some results in terms of ROC curves.
+where $p_q$ ($p_g$) is the probability distribution for a pure quark (gluon) sample.   For compare to previous studies, we also show some results in terms of more familiar ROC curves.
 
 To avoid some of the complications in properly defining quark and gluon samples, we start our study in \Sec{sec:ee} by comparing the jets produced in the following processes:
 \begin{align}
@@ -216,19 +216,36 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \end{itemize}
 As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We verify some of the observed behavior in the generators with analytic resummed calculations.
 
-Turning to the LHC in \Sec{sec:pp}, we
+Turning to the LHC in \Sec{sec:pp}, we  \jdt{I'm not sure what the right kind of study is}.
 
-
-
-
-
-
-
-
-
+We present our conclusion and recommendations in \Sec{sec:conclude}.
 
 \section{What is a Quark/Gluon Jet?}
 \label{sec:quarkgluondef}
+
+As part of the 2015 Les Houches workshop on ``Physics at TeV Colliders'', an attempt was made to define exactly what is meant by a quark or gluon jet.  Here are some suggested options for defining a quark jet, in order from most ill-defined to most well-defined.
+\begin{itemize}
+\item \textbf{A quark parton.}  To the extent that there is a roughly one-to-one map between a jet and its initiating parton, this definition is perhaps ok, but it neglects the important role of final state radiation in determining the structure of a jet.
+\item \textbf{A Born-level quark parton.}  This definition at least acknowledges the importance of radiative corrections to jet production, but leaves open the question of how to define the Born-level process from an observed final state. \item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind, which is sometime referred to as the ``max-$p_T$'' prescription \cite{}.  In the strongly ordered limit, this semi-classical picture is ok, but it neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
+\item \textbf{An eikonal line with baryon number 1/3 and carrying triplet color charge.}  This definition attempts to use a well-defined limit of QCD to define a quark in terms of light-like Wilson lines.  Philosophically, this is similar to the parton shower picture, with a similar concern about how to extrapolate this definition outside of the eikonal limit.
+\item \textbf{A parton-level jet object that has been quark-tagged using an infrared and collinear (IRC) safe flavored jet algorithm.}  This is the strategy adopted in \cite{}.  While this definition neglects the impact of hadronization, it does allow the perturbative calculation of quark jet cross sections at all perturbative orders.
+\end{itemize}
+The unifying these of the above definitions is that they are trying to identify a quark as an object unto itself, without reference to the specific final state of interest.  However, it is well-known that a ``quark'' in one process may not look like a ``quark'' in other process, due to color correlations with the rest of the event.  The next definition attempts to deal with the process dependence in defining quarks. 
+\begin{itemize}
+\item \textbf{A quark operator appearing in a hard matrix element in the context of a factorization theorem.}  This is similar to the attitude taken in \cite{}, where in the context of a well-defined (and factorizable) cross section measurement, one can go to a limit of phase space where the hard production of short-distance quarks factorizes from the subsequent long-distance fragmentation.  This gives quarks a nice (gauge-covariant) operator definition, though it does not offer a prescription beyond leading power.
+\end{itemize}
+The definition we adopt in this paper is inspired by the idea that one always has to think about quark tagging in the context of a measurement, but tries to avoid relying on the presence of a factorization theorem.
+\begin{itemize}
+\item \textbf{A phase space region (as defined by an unambiguous hadronic fiducial cross section measurement) that yields an enriched sample of quarks (as interpreted by some suitable, though fundamentally ambiguous, criterion).}  Here, the goal is to \emph{tag} a phase space region as being quark-like, rather than try to determine a truth definition of a quark.  This definition has the advantage of being explicitly tied to hadronic final states.  
+\end{itemize}  
+Of course, the main challenge with this last definition is how to determine the criterion that corresponds to successful quark-enrichment, and for that we will have to rely to some degree on the other less well-defined notions of what a quark is.
+
+It is worth emphasizing that this last definition separates the measurement process from the interpretation process.  Ultimately, we will be recommending that the LHC experiments perform measurements of the generalized angularities $\lambda_\beta^\kappa$ in well-defined (hadron-level) final states.  It is then a separate interpretation step to infer something about quark/gluon radiation patterns from these hadron-level measurements.
+
+\jdt{Need to think more about how to discuss the quark-enrichment criterion.}
+
+
+
 
 
 \section{Preliminaries}
@@ -313,6 +330,7 @@ To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(
 
 
 \section{Conclusions}
+\label{sec:conclude}
 
 
 
