@@ -176,7 +176,7 @@
 
 %\date{\today}
 
-\abstract{\jdt{Author list is going to contract.  This abstract is aspirational at the moment.}  By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined by the color factor of the initiating parton ($C_F$ versus $C_A$).  The goal of this paper is to go beyond this leading order understanding, using both parton shower generators and first-principles calculations to assess the impact of higher-order perturbative and non-perturbative physics.  In the idealized context of electron-positron collisions, where there is an unambiguous definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and non-perturbative hadronization effects.  Turning to proton-proton collisions, we highlight a core set of measurements which would constrain the leading uncertainties in quark/gluon tagging and improve the overall modeling of jets at the Large Hadron Collider.}
+\abstract{\jdt{Author list is going to contract.  This abstract is aspirational at the moment.}  By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined solely by the color factor of the initiating parton ($C_F$ versus $C_A$).  The goal of this paper is to go beyond this leading order understanding, using both parton shower generators and first-principles calculations to assess the impact of higher-order perturbative and non-perturbative physics.  In the idealized context of electron-positron collisions, where there exists an unambiguous definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and non-perturbative hadronization effects.  Turning to proton-proton collisions, we highlight a core set of measurements which would constrain the leading uncertainties in quark/gluon tagging and improve the overall modeling of jets at the Large Hadron Collider.}
 
 \preprint{MIT--CTP xxxx}
 
@@ -186,13 +186,41 @@
 \section{Introduction}
 \label{introduction}
 
-Jets are a robust proxy for studying short-distance collisions involving quarks and gluons.  With a suitable jet definition, one can connect jet measurements made on clusters of hadrons to perturbative calculations made on clusters of partons \cite{}.  More ambitiously, one can try to tag jets with a suitably-defined flavor label, with the aim of isolating a sample of quark-tagged and gluon-tagged jets.  A wide variety of quark/gluon discriminants have been proposed \cite{}, and while these methods have not yet been fully established at the Large Hadron Collider (LHC), there is a growing catalog of LHC quark/gluon studies \cite{}.
+Jets are a robust tool for studying short-distance collisions involving quarks and gluons.  With a suitable jet definition, one can connect jet measurements made on clusters of hadrons to perturbative calculations made on clusters of partons \cite{}.  More ambitiously, one can try to tag jets with a suitably-defined flavor label, thereby enhancing the fraction of, say, quark-tagged jets over gluon-tagged jets.  This is relevant for searches for physics beyond the standard model, where signals of interest are often dominated by quarks while the corresponding backgrounds are dominated by gluons.  A wide variety of quark/gluon discriminants have been proposed \cite{}, and there is a growing catalog of quark/gluon studies at the Large Hadron Collider (LHC) \cite{}.
 
-In this paper, we will argue that a prerequisite to robust quark/gluon tagging is first gaining theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  As we will see, though, quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to non-perturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this paper is to highlight these uncertainties and suggest a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
+In order to achieve robust quark/gluon tagging, though, one needs theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  In this paper, we will demonstrate that quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to non-perturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this paper is to highlight these uncertainties and suggest a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
 
-A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem, since quarks and gluons carry color while jets are composed of color-singlet hadrons.  Certainly the label ``quark'' and ``gluon'' is ambiguous, just as the definition of a jet is ambiguous.  As discussed in \Sec{sec:quarkgluondef}, for quark/gluon tagging to be useful, it must be defined in the context of unambiguous hadron-level cross section measurements.  In this sense, quark/gluon tagging is as well-defined as any technique intended to enhance signals over backgrounds.
+A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are intrinsically ambiguous.  But this is philosophically no different from the fact that a ``jet'' is intrinsically ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:quarkgluondef}, we can think about quark/gluon discrimination in the context of unambiguous hadron-level measurements.  In this sense, quark/gluon tagging is a well-defined technique for enhancing desired signals over undesired backgrounds.
 
-To avoid some of the polemical issues... \jdt{I am here.}
+There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power, discussed further in  \Sec{sec:prelim}.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{} at five different $(\kappa, \beta)$ working points.  These roughly map onto five variables in common use in the literature:
+\be
+\text{multiplicity}, \quad p_T^D, \quad \text{LHA}, \quad \text{width}, \quad \text{mass},
+\ee
+where LHA refers to the ``Les Houches Angularity'', named after the workshop where this study was initiated.  To quantify discrimination performance, we focus on classifier separation \cite{}:
+\be
+\Delta =  \frac{1}{2} \int \df \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
+\ee
+where $p_q$ ($p_g$) is the probability distribution for a pure quark (gluon) sample,  though we also show some results in terms of ROC curves.
+
+To avoid some of the complications in properly defining quark and gluon samples, we start our study in \Sec{sec:ee} by comparing the jets produced in the following processes:
+\begin{align}
+\text{``quark jets''}: \quad & e^+e^- \to (\gamma/Z)^* \to u \overline{u}, \\
+\text{``gluon jets''}: \quad & e^+e^- \to h^* \to g g.
+\end{align}
+These processes are physically distinguishable by the quantum numbers of the associated color singlet production operator, giving a way to label quarks and gluons without reference to the final state.  We compare four different Monte Carlo generators, not only at their default configurations but also with physically-motivated changes.
+\begin{itemize}
+\item \textsc{Pythia 8.205} \cite{}
+\item \textsc{Vincia 1.201} \cite{}
+\item \textsc{Herwig++ 2.7.1} \cite{}
+\item \textsc{Sherpa 2.1.1} \cite{}
+\end{itemize}
+As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We verify some of the observed behavior in the generators with analytic resummed calculations.
+
+Turning to the LHC in \Sec{sec:pp}, we
+
+
+
+
 
 
 
@@ -204,6 +232,7 @@ To avoid some of the polemical issues... \jdt{I am here.}
 
 
 \section{Preliminaries}
+\label{sec:prelim}
 
 \subsection{Generalized Angularities}
 
@@ -267,6 +296,7 @@ To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(
 \subsection{Parton-level Quark/Gluon Tags}
 
 \section{Idealized Quark/Gluon Tagging}
+\label{sec:ee}
 
 \subsection{Parton-Level Performance}
 
@@ -275,6 +305,7 @@ To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(
 \subsection{Predictions from Resummation}
 
 \section{Quark/Gluon Tagging at the LHC}
+\label{sec:pp}
 
 \subsection{Enriched Quark/Gluon Samples}
 
