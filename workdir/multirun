@@ -22,8 +22,8 @@ basedir="$mydir/.."
 
 #
 ######################################################################
-pythia_card_dir="$basedir/Pythia"
-vincia_card_dir="$basedir/Vincia"
+pythia_card_dir="$basedir/Pythia-8205"
+vincia_card_dir="$basedir/Vincia-1201"
 sherpa_card_dir="$basedir/Sherpa-2.1.1"
 
 #number of events per run
@@ -255,9 +255,6 @@ nlo=$baseline_nlo
 muq=$baseline_muq
 
 
-NJET=1; generator=sherpa; run; NJET=$baseline_NJET
-NJET=1; noqq=On; generator=sherpa; run; NJET=$baseline_NJET; noqq=$baseline_noqq
-
 for generator in pythia sherpa; do
     run
 done
@@ -271,6 +268,9 @@ done
 
 #variations specific to Sherpa:
 NJET=0; run; NJET=$baseline_NJET
+NJET=1; generator=sherpa; run; NJET=$baseline_NJET
+NJET=1; noqq=On; generator=sherpa; run; NJET=$baseline_NJET; noqq=$baseline_noqq
+
 
 #variations specific to Pythia and Vincia:
 for generator in  pythia; do
