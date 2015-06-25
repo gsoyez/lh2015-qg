@@ -17,6 +17,12 @@ https://github.com/gsoyez/lh2015-qg
 Brief description and Guidelines for the ee study
 =================================================
 
+Contents
+ - Workflow (includes naming conventions for MC users -- please read)
+ - Status of the different MC runs
+ - what plots we do
+ - description of the Rivet routine
+
 Workflow
 --------
 
@@ -53,19 +59,52 @@ Workflow
   energies, only produce the "best" prediction.
 
 - Naming conventions for the results should follow the following scheme
-    < Generator >-< Version >/results/< process >-< Q >[flags].yoda
+    < Generator >-< Version >/< level >/< process >-< Q >[flags].yoda
 
   where
-
+   - level is either hadron or parton
    - process is either uu or gg
    - the "best" prediction has no flags
    - the alphas variations have flags -alphasx08 -alphasx12
    - the switching off of g->qqbar has flags -nogqq
    - any additional variations comes with a friendly flag (e.g. -nome
-     for Matrix-element switched off or -njet0, -parton for
-     parton-level studies, ...). These should be briefly described in
-     the README
-   
+     for Matrix-element switched off or -njet0, ...). These should be
+     briefly described in the README
+
+
+
+Status of the MC simulations
+----------------------------
+
+Status of the results:
+
+  |-----------------|--------------------------------------|--------------------------------------|
+  |                 |                hadron                |                parton                |
+  |-----------------|------------|------------|------------|------------|------------|------------|
+  |                 |   Q dep    | alphas dep |  no g->qq  |   Q dep    | alphas dep |  no g->qq  |  
+  |-----------------|------------|------------|------------|------------|------------|------------|
+  ! Herwig-2_7_1    |     ok     |     ok     |     ok     |     ok     |     ok     |     ok     |
+  | Herwig-7-dipole |     ok     |     ok     |   MISSING  |     ok     |     ok     |   MISSING  |
+  | Pythia-8205     |     ok     |     ok     |     ok     |     ok     |     ok     |   MISSING  |
+  | Sherpa-2.1.1    |     ok     |     ok     |   MISSING  |   MISSING  |     ok     |   MISSING  |
+  | Vincia-1201     |     ok     |     ok     |   MISSING  |     ok     |     ok     |   MISSING  |
+  |-----------------|------------|------------|------------|------------|------------|------------|
+
+Notes:
+ - Herwig runs are missing the alphasx12 results. Not an issue.
+
+Status of the other files
+
+  |-----------------|------------|--------------------------------|
+  |                 |   README   |         code/cards             |
+  |-----------------|------------|--------------------------------|
+  ! Herwig-2_7_1    |    ok      | cards, no code needed          |
+  | Herwig-7-dipole |  MISSING   | MISSING                        |
+  | Pythia-8205     |    ok      | cards ok, CODE MISSING         |
+  | Sherpa-2.1.1    |  MISSING   | template cards, no code needed |
+  | Vincia-1201     |    ok      | cards ok, CODE MISSING         |
+  |-----------------|------------|--------------------------------|
+
 Description of what information/plots are extracted of the result files
 -----------------------------------------------------------------------
 
@@ -82,6 +121,8 @@ Produce some variation plots (one plot for each observable and quality measure)
  . Q = 50, 100, 200, 400, 800 GeV (everything else baseline)
  . R = 0.2, 0.4, 0.6, 0.8, 1.0 (everything else baseline)
  . delta alphas / alphas = -0.2, -0.1, 0.0, +0.1, +0.2 (everything else baseline)
+
+
 
 Description of the Rivet Routine
 --------------------------------
@@ -113,8 +154,12 @@ Energies [GeV]: (Q=sqrts)
  - 1st batch: 50, 200, 800
  - 2nd batch: 100, 400, 1600, 3200
 
+
+
+
+
 For the pp study [ !!! OUT OF DATE !!! ]
-----------------
+================
 
 Hopefully the same as above with an extra rapidity cut
 
