@@ -1,3 +1,26 @@
+2015-06-26  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	. fixed a few typos
+	. generate a plot/index.html file for easier navigation
+
+2015-06-25  Gregory Soyez  <soyez@fastjet.fr>
+
+	* README.md:
+	various updated, included a contents table and status info
+
+	* post-process.sh:
+	process things separately for the hadron and parton-level results
+	Note that this changes the output names for the plots
+
+	Other (smaller) modifications:
+	. do not plot individual MC variations if they only contain a single curve
+	. revamped a few comments
+
+	* produce-Qdependence-data.py:
+	* produce-alphadependence-data.py:
+	read the results in the hadron or parto directory instead of "result"
+
 2015-06-16  Jesse Thaler  <jthaler@mit.edu>
 
 	* lh2015_qg.tex:

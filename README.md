@@ -18,13 +18,14 @@ Brief description and Guidelines for the ee study
 =================================================
 
 Contents
- - Workflow (includes naming conventions for MC users -- please read)
+ - Description (includes naming conventions for MC users -- please read)
  - Status of the different MC runs
  - what plots we do
  - description of the Rivet routine
+ - Workflow (includes setting the rivet environment variables needed for many things)
 
-Workflow
---------
+Description
+-----------
 
 - There is a Rivet routine that computes a bunch of observables at a
   few R values (see "Description of the Rivet Routine" below for
@@ -156,13 +157,6 @@ Energies [GeV]: (Q=sqrts)
 
 
 
-
-
-For the pp study [ !!! OUT OF DATE !!! ]
-================
-
-Hopefully the same as above with an extra rapidity cut
-
 File contents
 -------------
 
@@ -195,7 +189,7 @@ File contents
    . produce-separation-plots.py
       creates a yoda file with summary information for a given separation table
 
-Workflow
+Workflow     
 --------
 
 This describes how to run the Rivet analysis and produce some
@@ -236,7 +230,7 @@ the file description above) and the rivet-mkhtml tool.
      rivet-mkhtml <list of yoda files to plot> -o directory [-c config file]
 
 
-Results available
+Results available --- OUTDATED
 -----------------
 
 As of 2015-06-05, 
@@ -252,7 +246,7 @@ As of 2015-06-05,
   Yoda files provided by Deepak [some renaming will probably be needed at some point]
 
 
-Plots wanted
+Plots wanted --- OUTDATED
 ------------
 
 the post-process.sh script does the following
