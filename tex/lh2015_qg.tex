@@ -192,7 +192,7 @@ In order to achieve robust quark/gluon tagging, though, one needs theoretical an
 
 A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are intrinsically ambiguous.  But this is philosophically no different from the fact that a ``jet'' is intrinsically ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:quarkgluondef}, the proper way to think about quark/gluon discrimination is in the context of unambiguous hadron-level measurements.  In that sense, quark/gluon tagging is a well-defined technique for enhancing desired signals over undesired backgrounds.
 
-There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power, discussed further in  \Sec{sec:prelim}.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{} at five different $(\kappa, \beta)$ working points.  These roughly map onto five variables in common use in the literature:
+There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power, both discussed further in  \Sec{sec:prelim}.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{} at five different $(\kappa, \beta)$ working points.  These roughly map onto five variables in common use in the literature:
 \be
 \text{multiplicity}, \quad p_T^D, \quad \text{LHA}, \quad \text{width}, \quad \text{mass},
 \ee
@@ -200,7 +200,7 @@ where LHA refers to the ``Les Houches Angularity'', named after the workshop whe
 \be
 \Delta =  \frac{1}{2} \int \df \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
 \ee
-where $p_q$ ($p_g$) is the probability distribution for a pure quark (gluon) sample.   For compare to previous studies, we also show some results in terms of more familiar ROC curves.
+where $p_q$ ($p_g$) is the probability distribution for a pure quark (gluon) sample.   To compare to previous studies, we also show some results in terms of more familiar ROC curves.
 
 To avoid some of the complications in properly defining quark and gluon samples, we start our study in \Sec{sec:ee} by comparing the jets produced in the following processes:
 \begin{align}
@@ -216,7 +216,7 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \end{itemize}
 As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We verify some of the observed behavior in the generators with analytic resummed calculations.
 
-Turning to the LHC in \Sec{sec:pp}, we  \jdt{I'm not sure what the right kind of study is}.
+Turning to the LHC in \Sec{sec:pp}, we  \jdt{I'm not sure what the right kind of study is}.  \jdt{I am thinking Z + jet and Higgs + jet are the right processes to get enriched samples.}
 
 We present our conclusion and recommendations in \Sec{sec:conclude}.
 
@@ -226,7 +226,8 @@ We present our conclusion and recommendations in \Sec{sec:conclude}.
 As part of the 2015 Les Houches workshop on ``Physics at TeV Colliders'', an attempt was made to define exactly what is meant by a quark or gluon jet.  Here are some suggested options for defining a quark jet, in order from most ill-defined to most well-defined.
 \begin{itemize}
 \item \textbf{A quark parton.}  To the extent that there is a roughly one-to-one map between a jet and its initiating parton, this definition is perhaps ok, but it neglects the important role of final state radiation in determining the structure of a jet.
-\item \textbf{A Born-level quark parton.}  This definition at least acknowledges the importance of radiative corrections to jet production, but leaves open the question of how to define the Born-level process from an observed final state. \item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind, which is sometime referred to as the ``max-$p_T$'' prescription \cite{}.  In the strongly ordered limit, this semi-classical picture is ok, but it neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
+\item \textbf{A Born-level quark parton.}  This definition at least acknowledges the importance of radiative corrections to jet production, but leaves open the question of how to define the Born-level process from an observed final state. 
+\item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind, which is sometime referred to as the ``max-$p_T$'' prescription \cite{}.  In the strongly ordered limit, this semi-classical picture is ok, but it neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
 \item \textbf{An eikonal line with baryon number 1/3 and carrying triplet color charge.}  This definition attempts to use a well-defined limit of QCD to define a quark in terms of light-like Wilson lines.  Philosophically, this is similar to the parton shower picture, with a similar concern about how to extrapolate this definition outside of the eikonal limit.
 \item \textbf{A parton-level jet object that has been quark-tagged using an infrared and collinear (IRC) safe flavored jet algorithm.}  This is the strategy adopted in \cite{}.  While this definition neglects the impact of hadronization, it does allow the perturbative calculation of quark jet cross sections at all perturbative orders.
 \end{itemize}
