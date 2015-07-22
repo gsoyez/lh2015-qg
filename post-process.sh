@@ -182,7 +182,7 @@ for gen in $generators; do
         q_input=""
         for tag in $q_both_files $q_only_files; do
             noyoda=${tag%.yoda}; flags=${noyoda#*uu-200}
-            if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+            if [ -z $flags ]; then flags="baseline"; else flags=${flags#-}; fi
             yodacnv $tag -m "GA.*_R6|/Thrust" post-process-tmpfiles/u/${flags}.yoda
             q_input="$q_input post-process-tmpfiles/u/${flags}.yoda"
             #q_input="$q_input $tag:$flags"
@@ -192,7 +192,7 @@ for gen in $generators; do
         g_input=""
         for tag in $g_both_files $g_only_files; do
             noyoda=${tag%.yoda}; flags=${noyoda#*gg-200}
-            if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+            if [ -z $flags ]; then flags="baseline"; else flags=${flags#-}; fi
             yodacnv $tag -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${flags}.yoda
             g_input="$g_input post-process-tmpfiles/g/${flags}.yoda"
         done
@@ -205,7 +205,7 @@ for gen in $generators; do
         i_input=""
         for tag in $s_files; do
             noyoda=${tag%.yoda}; flags=${noyoda#*sep-200}
-            if [ -z $flags ]; then flags="best"; else flags=${flags#-}; fi
+            if [ -z $flags ]; then flags="baseline"; else flags=${flags#-}; fi
             i_input="$i_input $tag:$flags"
             yodacnv $tag -m "GA.*_R6" post-process-tmpfiles/s/${flags}.yoda
             s_input="$s_input post-process-tmpfiles/s/${flags}.yoda"
