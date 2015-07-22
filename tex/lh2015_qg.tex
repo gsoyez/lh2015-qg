@@ -218,14 +218,14 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \item \textsc{Sherpa 2.1.1} \cite{}
 \item \jdt{Is Deductor going to be on this list?}
 \end{itemize}
-As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We verify some of the observed behavior in the generators with analytic resummed calculations.
+As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We also verify some of the observed behavior in the generators with analytic resummed calculations.
 
-Turning to the LHC in \Sec{sec:pp}, we consider quark/gluon enriched samples:
+Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:
 \begin{align}
 \text{``quark enriched''}: \quad & pp \to Z + \text{jet}, \\
-\text{``gluon enriched''}: \quad & pp \to h + \text{jet}.
+\text{``gluon enriched''}: \quad & pp \to h + \text{jet},
 \end{align}
-Of course, this second process has a relatively small cross section at the LHC, but it is a useful benchmark for our Monte Carlo comparisons since it again allows us to flavor enrich the final state jet without direct reference to the jet constituents.  In practice at the LHC, one would likely obtain gluon-enriched samples from dijet events, though it has a smaller parton-level gluon fraction than the Higgs plus jet process studied here.
+where ``enriched'' means that the Born-level process contributing to these channels is dominated by the corresponding jet flavor.  Of course, this second process has a relatively small cross section at the LHC, but it is a useful benchmark for our Monte Carlo comparisons since it again allows us to flavor enrich the final state jet without direct reference to the jet constituents.  In practice at the LHC, one can obtain gluon-enriched samples from dijet events (see e.g.~\cite{}), though that process has a smaller parton-level gluon fraction than the Higgs plus jet process studied here.
 
 We present our conclusion and recommendations in \Sec{sec:conclude}.
 
@@ -234,21 +234,20 @@ We present our conclusion and recommendations in \Sec{sec:conclude}.
 
 As part of the 2015 Les Houches workshop on ``Physics at TeV Colliders'', an attempt was made to define exactly what is meant by a quark or gluon jet.  Here are some suggested options for defining a quark jet, in order from most ill-defined to most well-defined.
 \begin{itemize}
-\item \textbf{A quark parton.}  To the extent that there is a roughly one-to-one map between a jet and its initiating parton, this definition is perhaps ok, but it neglects the important role of final state radiation in determining the structure of a jet.
-\item \textbf{A Born-level quark parton.}  This definition at least acknowledges the importance of radiative corrections to jet production, but leaves open the question of how to define the Born-level process from an observed final state. 
-\item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind, which is sometime referred to as the ``max-$p_T$'' prescription \cite{}.  In the strongly ordered limit, this semi-classical picture is ok, but it neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
+\item \textbf{A quark parton.}  This definition (incorrectly) assumes that there is a one-to-one map between a jet and its initiating parton.  Because it neglects the important role of final state radiation in determining the structure of a jet, we immediately dismiss this definition.
+\item \textbf{A Born-level quark parton.}  This definition at least acknowledges the importance of radiative corrections to jet production, but leaves open the question of how exactly to define the Born-level process from an observed final state.  For one answer, see flavored jet algorithms below.
+\item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind.  This is sometime referred to as the ``max-$p_T$'' prescription \cite{}, though it assumes that the parton shower history is meaningful, which may not be the case beyond the strongly-ordered or leading-logarithmic approximation.  Because the parton shower is semi-classical, this definition neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
 \item \textbf{An eikonal line with baryon number 1/3 and carrying triplet color charge.}  This definition attempts to use a well-defined limit of QCD to define a quark in terms of light-like Wilson lines.  Philosophically, this is similar to the parton shower picture, with a similar concern about how to extrapolate this definition outside of the eikonal limit.
-\item \textbf{A parton-level jet object that has been quark-tagged using an infrared and collinear (IRC) safe flavored jet algorithm.}  This is the strategy adopted in \cite{} (see also \cite{}).  While this definition neglects the impact of hadronization, it does allow the perturbative calculation of quark jet cross sections at all perturbative orders.
+\item \textbf{A parton-level jet object that has been quark-tagged using an infrared and collinear (IRC) safe flavored jet algorithm.}  This is the strategy adopted in \cite{} (see also \cite{}).  While this definition neglects the impact of hadronization, it does allow the calculation of quark jet cross sections at all perturbative orders.
 \end{itemize}
 The unifying theme in the above definitions is that they are trying to identify a quark as an object unto itself, without reference to the specific final state of interest.  However, it is well-known that a ``quark'' in one process may not look like a ``quark'' in other process, due to color correlations with the rest of the event.  The next definition attempts to deal with the process dependence in defining quarks. 
 \begin{itemize}
-\item \textbf{A quark operator appearing in a hard matrix element in the context of a factorization theorem.}  This is similar to the attitude taken in \cite{}, where in the context of a well-defined (and factorizable) cross section measurement, one can go to a limit of phase space where the hard production of short-distance quarks factorizes from the subsequent long-distance fragmentation.  This gives quarks a nice (gauge-covariant) operator definition, though it does not offer a prescription beyond leading power.
+\item \textbf{A quark operator appearing in a hard matrix element in the context of a factorization theorem.}  This is similar to the attitude taken in \cite{}, where in the context of a well-defined cross section measurement, one can (sometimes) go to a limit of phase space where the hard production of short-distance quarks factorizes from the subsequent long-distance fragmentation.  This gives quarks a nice (gauge-covariant) operator definition, though even if a factorization theorem does exist for the measurement of interest, this definition is potentially ambiguous beyond leading power.
 \end{itemize}
-The definition we adopt in this paper is inspired by the idea that one always has to think about quark tagging in the context of a measurement, but tries to avoid relying on the presence of a factorization theorem.
+The definition we adopt in this paper is inspired by the idea that one should always think about quark tagging in the context of a specific measurement, but tries to avoid relying on the presence of a factorization theorem.
 \begin{itemize}
-\item \textbf{A phase space region (as defined by an unambiguous hadronic fiducial cross section measurement) that yields an enriched sample of quarks (as interpreted by some suitable, though fundamentally ambiguous, criterion).}  Here, the goal is to \emph{tag} a phase space region as being quark-like, rather than try to determine a truth definition of a quark.  This definition has the advantage of being explicitly tied to hadronic final states.  
+\item \textbf{A phase space region (as defined by an unambiguous hadronic fiducial cross section measurement) that yields an enriched sample of quarks (as interpreted by some suitable, though fundamentally ambiguous, criterion).}  Here, the goal is to \emph{tag} a phase space region as being quark-like, rather than try to determine a truth definition of a quark.  This definition has the advantage of being explicitly tied to hadronic final states.   Of course, the main challenge with this definition is how to determine the criterion that corresponds to successful quark-enrichment, and for that, we will have to rely to some degree on the other less well-defined notions of what a quark is.
 \end{itemize}  
-Of course, the main challenge with this last definition is how to determine the criterion that corresponds to successful quark-enrichment, and for that we will have to rely to some degree on the other less well-defined notions of what a quark is.
 
 It is worth emphasizing that this last definition separates the measurement process from the interpretation process.  Ultimately, we will be recommending that the LHC experiments perform measurements of the generalized angularities $\lambda_\beta^\kappa$ in well-defined (hadron-level) final states.  It is then a separate interpretation step to infer something about quark/gluon radiation patterns from these hadron-level measurements.
 
@@ -263,7 +262,7 @@ It is worth emphasizing that this last definition separates the measurement proc
 \label{fig:lambda_space}
 \includegraphics[scale = 0.7]{figures/lambda_space.pdf}
 }
-\caption{(a) Two parameter family of generalized angularities, adapted from \cite{}.}
+\caption{(a)  Two parameter family of generalized angularities, adapted from \cite{}.}
 \end{figure}
 
 A wide variety of quark/gluon discriminants have been proposed (see \cite{} for a catalog), but here we limit ourselves to a two-parameter family of generalized angularities \cite{}, shown in \Fig{fig:lambda_space}.  These are defined in general as
@@ -440,10 +439,35 @@ $\quad$
 \includegraphics[width = 0.45\columnwidth]{figures/I2_GA_10_05_hadron_alphadep.pdf}
 \label{fig:sweep_as_hadron}
 }
-\caption{(a) $Q$ (b) $R$ (c) $\alpha_s$}
+\caption{Hadron-level (a) $Q$ (b) $R$ (c) $\alpha_s$}
 \end{figure}
 
+
 \subsection{Parton-Level Performance}
+
+
+\begin{figure}
+\centering
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_GA_10_05_parton_Qdep.pdf}
+\label{fig:sweep_Q_parton}
+}
+$\quad$
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_GA_10_05_parton_Rdep.pdf}
+\label{fig:sweep_R_parton}
+}
+$\quad$
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_GA_10_05_parton_alphadep.pdf}
+\label{fig:sweep_as_parton}
+}
+\caption{Parton-level (a) $Q$ (b) $R$ (c) $\alpha_s$}
+\end{figure}
+
+
+
+
 
 
 

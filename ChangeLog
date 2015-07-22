@@ -1,3 +1,11 @@
+2015-07-21  Jesse Thaler  <jthaler@mit.edu>
+
+	* lh2015_qg.tex:
+	. Adding some parton-level figures
+
+	* tex-post-process.sh  *** ADDED ***
+	. New script to copy files to tex/figures
+
 2015-07-20  Jesse Thaler  <jthaler@mit.edu>
 
 	* lh2015_qg.tex:
