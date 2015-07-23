@@ -314,13 +314,15 @@ for level in hadron parton; do
     message "... plot integ: $i_input"
 
     # prepare the style file with the appropriate labels
-    sed "s/@GENLABEL@/$level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
-    sed "s/@GENLABEL@/$level, Q=200GeV, R=0.6/g" style-separation.plot > style-separation-tmp.plot
         
     # do the plots
+    sed "s/@GENLABEL@/quark, $level, Q=200GeV/g"      style-variations.plot > style-variations-tmp.plot
     safe-rivet-mkhtml -o plots/uu-200-R06-allMCs-${level}  $q_input -c style-variations-tmp.plot -t Q=200GeV,R=0.6
+    sed "s/@GENLABEL@/gluon, $level, Q=200GeV/g"      style-variations.plot > style-variations-tmp.plot
     safe-rivet-mkhtml -o plots/gg-200-R06-allMCs-${level}  $g_input -c style-variations-tmp.plot -t Q=200GeV,R=0.6
+    sed "s/@GENLABEL@/separation, $level, Q=200GeV/g" style-variations.plot > style-variations-tmp.plot
     safe-rivet-mkhtml -o plots/sep-200-R06-allMCs-${level} $s_input -c style-variations-tmp.plot -t Q=200GeV,R=0.6
+    sed "s/@GENLABEL@/$level, Q=200GeV, R=0.6/g" style-separation.plot > style-separation-tmp.plot
     safe-rivet-mkhtml -o plots/sum-200-R06-allMCs-${level} $i_input -c style-separation-tmp.plot -t Q=200GeV,R=0.6
 
     rm -Rf post-process-tmpfiles/*

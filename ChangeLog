@@ -2,6 +2,7 @@
 
 	* post-process.sh:
 	added {quark, gluon, separation} to the plot titles
+	[and propagated this to the generator comparison plots]
 
 	* post-process.sh:
 	added an extra entry in the HTML summary table that lists the
