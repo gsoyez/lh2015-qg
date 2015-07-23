@@ -124,7 +124,7 @@ message "Plots for individual generators at 200 GeV, R=0.6"
 
 echo "<h3>Distributions for individual generators</h3>" >> $web_global
 echo "<table border=\"1\" cellspacing=\"0\" cellpadding=\"3\">" >> $web_global
-echo "<tr><th>generator</th><th colspan=\"4\">hadron</th><th colspan=\"4\">parton</th>" >> $web_global
+echo "<tr><th>generator</th><th colspan=\"5\">hadron</th><th colspan=\"5\">parton</th>" >> $web_global
 for gen in $generators; do
     echo -n "<tr><td>$gen</td>" >> $web_global
     for level in hadron parton; do
@@ -201,11 +201,20 @@ for gen in $generators; do
         # generate the list for the separation plots and for the for the
         # "integrated quality" plot. For the latter, only R=0.6 enters the
         # tables so we can directly use the sum files
+        #
+        # We also generate a list of labels that will go on the html page
         s_input=""
         i_input=""
+        labels=""
         for tag in $s_files; do
             noyoda=${tag%.yoda}; flags=${noyoda#*sep-200}
-            if [ -z $flags ]; then flags="baseline"; else flags=${flags#-}; fi
+            if [ -z $flags ]; then
+                flags="baseline";
+                labels="base"
+            else
+                flags=${flags#-};
+                labels="${labels}, $flags"
+            fi
             i_input="$i_input $tag:$flags"
             yodacnv $tag -m "GA.*_R6" post-process-tmpfiles/s/${flags}.yoda
             s_input="$s_input post-process-tmpfiles/s/${flags}.yoda"
@@ -225,6 +234,10 @@ for gen in $generators; do
         ## echo "# END PLOT" >> tmp.plot
         ## echo "" >> tmp.plot
         ## cat MC_LHQG_EE.plot >> tmp.plot
+
+        # prepare the style file with the appropriate labels
+        sed "s/@GENLABEL@/$gen, $level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
+        sed "s/@GENLABEL@/$gen, $level, Q=200GeV, R=0.6/g" style-separation.plot > style-separation-tmp.plot
         
         # do the plots
         spc="${q_input//[^ ]}";
@@ -232,7 +245,7 @@ for gen in $generators; do
             message "...... only one quark input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
-            safe-rivet-mkhtml -o plots/uu-200-R06-$gen-$level  $q_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+            safe-rivet-mkhtml -o plots/uu-200-R06-$gen-$level  $q_input -c style-variations-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"uu-200-R06-$gen-$level/MC_LHQG_EE/index.html\">quark</a></td>" >> $web_global
         fi
         spc="${g_input//[^ ]}";
@@ -240,7 +253,7 @@ for gen in $generators; do
             message "...... only one gluon input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
-            safe-rivet-mkhtml -o plots/gg-200-R06-$gen-$level  $g_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+            safe-rivet-mkhtml -o plots/gg-200-R06-$gen-$level  $g_input -c style-variations-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"gg-200-R06-$gen-$level/MC_LHQG_EE/index.html\">gluon</a></td>" >> $web_global
         fi
         spc="${s_input//[^ ]}";
@@ -248,7 +261,7 @@ for gen in $generators; do
             message "...... only one separation input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
-            safe-rivet-mkhtml -o plots/sep-200-R06-$gen-$level $s_input -c MC_LHQG_EE.plot -t $gen,Q=200GeV,R=0.6
+            safe-rivet-mkhtml -o plots/sep-200-R06-$gen-$level $s_input -c style-variations-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"sep-200-R06-$gen-$level/MC_LHQG_EE/index.html\">separation</a></td>" >> $web_global
         fi
         spc="${i_input//[^ ]}";
@@ -256,9 +269,12 @@ for gen in $generators; do
             message "...... only one summary input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
-            safe-rivet-mkhtml -o plots/sum-200-R06-$gen-$level $i_input -c style-separation.plot -t $gen,Q=200GeV,R=0.6
+            safe-rivet-mkhtml -o plots/sum-200-R06-$gen-$level $i_input -c style-separation-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"sum-200-R06-$gen-$level/separation/index.html\">summary</a></td>" >> $web_global
         fi
+
+        # show the list of flags in the sumamry table
+        echo -n "<td align=\"left\">${labels}</td>" >> $web_global
 
         rm -Rf post-process-tmpfiles/*
     done # level
@@ -294,12 +310,16 @@ for level in hadron parton; do
     message "... plot gluon: $g_input"
     message "... plot separ: $s_input"
     message "... plot integ: $i_input"
-    
+
+    # prepare the style file with the appropriate labels
+    sed "s/@GENLABEL@/$level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
+    sed "s/@GENLABEL@/$level, Q=200GeV, R=0.6/g" style-separation.plot > style-separation-tmp.plot
+        
     # do the plots
-    safe-rivet-mkhtml -o plots/uu-200-R06-allMCs-${level}  $q_input -c MC_LHQG_EE.plot -t Q=200GeV,R=0.6
-    safe-rivet-mkhtml -o plots/gg-200-R06-allMCs-${level}  $g_input -c MC_LHQG_EE.plot -t Q=200GeV,R=0.6
-    safe-rivet-mkhtml -o plots/sep-200-R06-allMCs-${level} $s_input -c MC_LHQG_EE.plot -t Q=200GeV,R=0.6
-    safe-rivet-mkhtml -o plots/sum-200-R06-allMCs-${level} $i_input -c style-separation.plot -t Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/uu-200-R06-allMCs-${level}  $q_input -c style-variations-tmp.plot -t Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/gg-200-R06-allMCs-${level}  $g_input -c style-variations-tmp.plot -t Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/sep-200-R06-allMCs-${level} $s_input -c style-variations-tmp.plot -t Q=200GeV,R=0.6
+    safe-rivet-mkhtml -o plots/sum-200-R06-allMCs-${level} $i_input -c style-separation-tmp.plot -t Q=200GeV,R=0.6
 
     rm -Rf post-process-tmpfiles/*
 done
@@ -331,6 +351,9 @@ for level in hadron parton; do
     done
     # safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
 
+    sed "s/@LEVELLABEL@/$level/g" style-modulations.plot > style-modulations-tmp.plot
+
+    
     # do the R modulation
     # i_input=""
     # for gen in $generators; do
@@ -348,7 +371,7 @@ for level in hadron parton; do
     message "... Plot everything"
     message "... input: $i_input"
     # safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
-    safe-rivet-mkhtml -o plots/modulations-${level} -c style-modulations.plot $i_input -t R=0.6,_default_Q=200_GeV
+    safe-rivet-mkhtml -o plots/modulations-${level} -c style-modulations-tmp.plot $i_input -t R=0.6,_default_Q=200_GeV
 
 done
 

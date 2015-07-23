@@ -1,3 +1,16 @@
+2015-07-23  Gregory Soyez  <soyez@fastjet.fr>
+
+	* post-process.sh:
+	added an extra entry in the HTML summary table that lists the
+	variants present for each generator
+
+	* post-process.sh:
+	* style-modulations.plot:
+	* style-separation.plot:
+	* style-variations.plot:     *** ADDED ***
+	adapted the style files (and the script) so that the plots can be
+	understood outside of the context of the webpages
+
 2015-07-21  Jesse Thaler  <jthaler@mit.edu>
 
 	* lh2015_qg.tex:
