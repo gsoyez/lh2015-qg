@@ -236,8 +236,6 @@ for gen in $generators; do
         ## cat MC_LHQG_EE.plot >> tmp.plot
 
         # prepare the style file with the appropriate labels
-        sed "s/@GENLABEL@/$gen, $level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
-        sed "s/@GENLABEL@/$gen, $level, Q=200GeV, R=0.6/g" style-separation.plot > style-separation-tmp.plot
         
         # do the plots
         spc="${q_input//[^ ]}";
@@ -245,6 +243,7 @@ for gen in $generators; do
             message "...... only one quark input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
+            sed "s/@GENLABEL@/quark, $gen, $level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
             safe-rivet-mkhtml -o plots/uu-200-R06-$gen-$level  $q_input -c style-variations-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"uu-200-R06-$gen-$level/MC_LHQG_EE/index.html\">quark</a></td>" >> $web_global
         fi
@@ -253,6 +252,7 @@ for gen in $generators; do
             message "...... only one gluon input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
+            sed "s/@GENLABEL@/gluon, $gen, $level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
             safe-rivet-mkhtml -o plots/gg-200-R06-$gen-$level  $g_input -c style-variations-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"gg-200-R06-$gen-$level/MC_LHQG_EE/index.html\">gluon</a></td>" >> $web_global
         fi
@@ -261,6 +261,7 @@ for gen in $generators; do
             message "...... only one separation input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
+            sed "s/@GENLABEL@/separation, $gen, $level, Q=200GeV/g"        style-variations.plot > style-variations-tmp.plot
             safe-rivet-mkhtml -o plots/sep-200-R06-$gen-$level $s_input -c style-variations-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"sep-200-R06-$gen-$level/MC_LHQG_EE/index.html\">separation</a></td>" >> $web_global
         fi
@@ -269,6 +270,7 @@ for gen in $generators; do
             message "...... only one summary input, no need to plot"
             echo -n "<td align=\"center\">-</td>" >> $web_global
         else
+            sed "s/@GENLABEL@/$gen, $level, Q=200GeV, R=0.6/g" style-separation.plot > style-separation-tmp.plot
             safe-rivet-mkhtml -o plots/sum-200-R06-$gen-$level $i_input -c style-separation-tmp.plot -t $gen,Q=200GeV,R=0.6
             echo -n "<td><a target=\"_blank\" href=\"sum-200-R06-$gen-$level/separation/index.html\">summary</a></td>" >> $web_global
         fi

@@ -1,6 +1,9 @@
 2015-07-23  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
+	added {quark, gluon, separation} to the plot titles
+
+	* post-process.sh:
 	added an extra entry in the HTML summary table that lists the
 	variants present for each generator
 
