@@ -1,0 +1,24 @@
+! 1) Collider Setup:
+Beams:eCM =  200.0      ! Total energy of collision (in GeV)
+25:m0     =  200.       ! Set Higgs mass = eCM
+Beams:idA =  13         ! Beam A: mu-
+Beams:idB = -13         ! Beam B: mu+
+Main:numberOfEvents = 200000  ! number of events to generate
+
+! 2) Process Setup for H->gg
+HiggsSM:ffbar2H = on
+25:onMode = off
+25:onIfAny = 21
+25:mMin = 25
+
+! 3) Settings to match specific measurement setup
+PDF:lepton = off                   ! switch off electron-within-electron
+SpaceShower:QEDshowerByL = off     ! switch off electron bremsstrahlung
+HadronLevel:all = off
+
+! 4) Les Houches Q/G study setup for VINCIA
+Vincia = on                     ! Vincia on/off (off = pure PYTHIA)
+Vincia:uncertaintyBands = off   ! Uncertainty bands on/off
+Vincia:tuneFile = jeppsson5.cmnd
+Vincia:matchingLO = 0
+Vincia:QGemit:chargeFactor =  2.833
