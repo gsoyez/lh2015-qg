@@ -222,7 +222,7 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \end{itemize}
 As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We also verify some of the observed behavior in the generators with analytic resummed calculations.
 
-Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:
+Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:  \jdt{Is is better to do dijet instead, since that will actually be measured?}
 \begin{align}
 \text{``quark enriched''}: \quad & pp \to Z + \text{jet}, \\
 \text{``gluon enriched''}: \quad & pp \to h + \text{jet},
@@ -471,7 +471,7 @@ $\quad$
 \includegraphics[width = 0.4\columnwidth]{figures/I2_GA_10_05_parton_alphadep.pdf}
 \label{fig:sweep_as_parton}
 }
-\caption{Sweeping the collision energy $Q$ (top row), jet radius $R$ (middle row), and coupling constant $\alpha_s/\alpha_{s0}$ (bottom row).  Results are shown at hadron level (left column) as well as at parton level (right column).}
+\caption{Sweeping the collision energy $Q$ (top row), jet radius $R$ (middle row), and coupling constant $\alpha_s/\alpha_{s0}$ (bottom row).  Results are shown at hadron level (left column) as well as at parton level (right column).  \jdt{Is this for LHA or some other variable?}}
 \label{fig:ee_sweep}
 \end{figure}
 
@@ -485,25 +485,51 @@ $\quad$
 }
 $\quad$
 \subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_R6_parton_pythia.pdf}
+\label{fig:summary_parton_pythia}
+}
+$\quad$
+\subfloat[]{
 \includegraphics[width = 0.45\columnwidth]{figures/I2_R6_hadron_vincia.pdf}
 \label{fig:summary_hadron_vincia}
 }
 $\quad$
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_R6_parton_vincia.pdf}
+\label{fig:summary_parton_vincia}
+}
+\caption{Settings variants in \pythia (top row) and \vincia (bottom row).  Shown are hadron-level results (left column) and parton-level results (right column).}
+\label{fig:settings_variation_1}
+\end{figure}
+
+\begin{figure}
+\centering
 \subfloat[]{
 \includegraphics[width = 0.45\columnwidth]{figures/I2_R6_hadron_herwig.pdf}
 \label{fig:summary_hadron_herwig}
 }
 $\quad$
 \subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_R6_parton_herwig.pdf}
+\label{fig:summary_parton_herwig}
+}
+$\quad$
+\subfloat[]{
 \includegraphics[width = 0.45\columnwidth]{figures/I2_R6_hadron_sherpa.pdf}
 \label{fig:summary_hadron_sherpa}
 }
-\caption{Hadron-level settings variants in (a) \pythia, (b) \vincia, (c) \herwig, and (d) \sherpa.}
+$\quad$
+\subfloat[]{
+\jdt{Placeholder}
+%\includegraphics[width = 0.45\columnwidth]{figures/I2_R6_parton_sherpa.pdf}
+\label{fig:summary_parton_sherpa}
+}
+\caption{Same as \Fig{fig:settings_variation_1}, but for (top row) \herwig and (bottom row) \sherpa.}
 \end{figure}
 
 Formally, parton shower generators are only accurate to modified leading logarithmic (MLL) accuracy, though they include physically important effects like energy/momentum conservation and matrix element corrections that go beyond MLL.  We now assess the impact of these higher-order effects by changing the baseline parameter settings in each of the generators.
 
-\jdt{We should split into hadron-level and parton-level settings changes, starting with parton level first.}
+\jdt{We should split into hadron-level and parton-level settings changes.}
 
 
 \begin{itemize}
@@ -533,7 +559,7 @@ Formally, parton shower generators are only accurate to modified leading logarit
 
 
 \begin{acknowledgments}
-We thank Jon Butterworth, Andrew Larkoski, Peter Loch, Alexander Schmidt \jdt{and anyone else who wants to take their name off of the paper}.  We thank L'\'{E}cole de Physique des Houches and the organizers of the 2015 Les Houches workshop on ``Physics at TeV Colliders'' for a stimulating environment while this work was being initiated.  J.T. is supported by the U.S. Department of Energy (DOE) under cooperative research agreement DE-SC-00012567, the DOE Early Career research program DE-SC-0006389, and by a Sloan Research Fellowship from the Alfred P. Sloan Foundation.
+We thank Jon Butterworth, Andrew Larkoski \jdt{wants to be author?}, Peter Loch, Alexander Schmidt, Wouter Waalewijn\jdt{wants to be author?}  \jdt{and anyone else who wants to take their name off of the paper}.  We thank L'\'{E}cole de Physique des Houches and the organizers of the 2015 Les Houches workshop on ``Physics at TeV Colliders'' for a stimulating environment while this work was being initiated.  J.T. is supported by the U.S. Department of Energy (DOE) under cooperative research agreement DE-SC-00012567, the DOE Early Career research program DE-SC-0006389, and by a Sloan Research Fellowship from the Alfred P. Sloan Foundation.
 
 \end{acknowledgments}
 
