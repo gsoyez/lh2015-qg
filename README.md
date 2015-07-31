@@ -78,7 +78,7 @@ Status of the MC simulations
 ----------------------------
 
 Status of the results:
-
+<pre>
   |-----------------|--------------------------------------|--------------------------------------|
   |                 |                hadron                |                parton                |
   |-----------------|------------|------------|------------|------------|------------|------------|
@@ -90,12 +90,12 @@ Status of the results:
   | Sherpa-2.1.1    |     ok     |     ok     |   MISSING  |   MISSING  |     ok     |   MISSING  |
   | Vincia-1201     |     ok     |     ok     |   MISSING  |     ok     |     ok     |   MISSING  |
   |-----------------|------------|------------|------------|------------|------------|------------|
-
+</pre>
 Notes:
  - Herwig runs are missing the alphasx12 results. Not an issue.
 
 Status of the other files
-
+<pre>
   |-----------------|------------|--------------------------------|
   |                 |   README   |         code/cards             |
   |-----------------|------------|--------------------------------|
@@ -105,7 +105,7 @@ Status of the other files
   | Sherpa-2.1.1    |  MISSING   | template cards, no code needed |
   | Vincia-1201     |    ok      | cards ok, CODE MISSING         |
   |-----------------|------------|--------------------------------|
-
+</pre>
 Description of what information/plots are extracted of the result files
 -----------------------------------------------------------------------
 
