@@ -159,6 +159,8 @@
 \emailAdd{philippe.gras@cern.ch}
 \author{\\Deepak Kar,}
 \emailAdd{deepak.kar@cern.ch}
+\author{Andrew Larkoski,}
+\emailAdd{larkoski@mit.edu}
 \author{Simon Pl\"atzer,}
 \emailAdd{simon.plaetzer@desy.de}
 \author{Chris Pollard,}
@@ -175,9 +177,12 @@
 \emailAdd{soyez@lpthe.jussieu.fr}
 \author{Frank Tackmann,}
 \emailAdd{frank.tackmann@desy.de}
-\author[a]{Jesse Thaler}
+\author[a]{\\Jesse Thaler,}
 \affiliation[a]{Center for Theoretical Physics, Massachusetts Institute of Technology, \\ Cambridge, MA 02139, U.S.A.}
 \emailAdd{jthaler@mit.edu}
+\author{Wouter Waalewijn}
+\emailAdd{wouterw@nikhef.nl}
+
 
 %\date{\today}
 
@@ -222,26 +227,26 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \end{itemize}
 As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We also verify some of the observed behavior in the generators with analytic resummed calculations.
 
-Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:  \jdt{Is is better to do dijet instead, since that will actually be measured?}
+Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:  \jdt{Is is better to do dijet instead, since that will actually be measured?  Probably want to make samples for everything, including $W$ and $\gamma$ as well.}
 \begin{align}
 \text{``quark enriched''}: \quad & pp \to Z + \text{jet}, \\
 \text{``gluon enriched''}: \quad & pp \to h + \text{jet},
 \end{align}
-where ``enriched'' means that the Born-level process contributing to these channels is dominated by the corresponding jet flavor.  Of course, this second process has a relatively small cross section at the LHC, but it is a useful benchmark for our Monte Carlo comparisons since it again allows us to flavor enrich the final state jet without direct reference to the jet constituents.  In practice at the LHC, one can obtain gluon-enriched samples from dijet events (see e.g.~\cite{}), though that process has a smaller parton-level gluon fraction than the Higgs plus jet process studied here.
+where ``enriched'' means that the Born-level process contributing to these channels is dominated by the corresponding jet flavor.  Of course, this second process has a relatively small cross section at the LHC, but it is a useful benchmark for our Monte Carlo comparisons since it again allows us to flavor-enrich the final state jet without direct reference to the jet constituents.  In practice at the LHC, one can obtain gluon-enriched samples from dijet events (see e.g.~\cite{}), though that process has a smaller parton-level gluon fraction than the Higgs plus jet process studied here.  \jdt{Need to verify that last statement.}
 
 We present our conclusion and recommendations in \Sec{sec:conclude}.
 
 \section{What is a Quark/Gluon Jet?}
 \label{sec:quarkgluondef}
 
-As part of the 2015 Les Houches workshop on ``Physics at TeV Colliders'', an attempt was made to define exactly what is meant by a quark or gluon jet.  Here are some suggested options for defining a quark jet, in order from most ill-defined to most well-defined.
+As part of the 2015 Les Houches workshop on ``Physics at TeV Colliders'', an attempt was made to define exactly what is meant by a ``quark jet'' or ``gluon jet''.  Here are some suggested options for defining a quark jet, in order from most ill-defined to most well-defined.
 
 ~\\
 \noindent \textbf{A quark jet is...}
 \begin{itemize}
 \item \textbf{A quark parton.}  This definition (incorrectly) assumes that there is a one-to-one map between a jet and its initiating parton.  Because it neglects the important role of additional radiation in determining the structure of a jet, we immediately dismiss this definition.
 \item \textbf{A Born-level quark parton.}  This definition at least acknowledges the importance of radiative corrections to jet production, but leaves open the question of how exactly to define the underlying Born-level process from an observed final state.  For one answer, see flavored jet algorithms below.
-\item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind.  This is sometime referred to as the ``max-$p_T$'' prescription \cite{}, though it assumes that the parton shower history is meaningful, which may not be the case beyond the strongly-ordered or leading-logarithmic approximation.  Because the parton shower is semi-classical, this definition neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
+\item \textbf{The initiating quark parton in a final state parton shower.}  We suspect that this is the definition most LHC experimentalists have in mind.  This is sometime referred to as the ``max-$p_T$'' prescription \cite{}, though it assumes that the parton shower history is meaningful, which may not be the case beyond the strongly-ordered or leading-logarithmic approximations.  Because the parton shower is semi-classical, this definition neglects the impact of genuinely quantum radiative corrections as well as non-perturbative hadronization. 
 \item \textbf{An eikonal line with baryon number 1/3 and carrying triplet color charge.}  This is another semi-classical definition that attempts to use a well-defined limit of QCD to define a quark in terms of light-like Wilson lines.  Philosophically, this is similar to the parton shower picture, with a similar concern about how to extrapolate this definition away from the strict eikonal limit.
 \item \textbf{A parton-level jet object that has been quark-tagged using an infrared and collinear (IRC) safe flavored jet algorithm.}  This is the strategy adopted in \cite{} (see also \cite{}).  While this definition neglects the impact of hadronization, it does allow for the calculation of quark jet cross sections at all perturbative orders, including quantum corrections.
 \end{itemize}
@@ -251,7 +256,7 @@ The unifying theme in the above definitions is that they are trying to identify 
 \end{itemize}
 The definition we adopt in this paper is inspired by the idea that one should always think about quark tagging in the context of a specific measurement, but it tries to avoid relying on the presence of a factorization theorem.
 \begin{itemize}
-\item \textbf{A phase space region (as defined by an unambiguous hadronic fiducial cross section measurement) that yields an enriched sample of quarks (as interpreted by some suitable, though fundamentally ambiguous, criterion).}  Here, the goal is to \emph{tag} a phase space region as being quark-like, rather than try to determine a truth definition of a quark.  This definition has the advantage of being explicitly tied to hadronic final states and to the discriminant variables of interest.   Of course, the main challenge with this definition is how to determine the criterion that corresponds to successful quark-enrichment.  For that, we will have to rely to some degree on the other less well-defined notions of what a quark is.
+\item \textbf{A phase space region (as defined by an unambiguous hadronic fiducial cross section measurement) that yields an enriched sample of quarks (as interpreted by some suitable, though fundamentally ambiguous, criterion).}  Here, the goal is to \emph{tag} a phase space region as being quark-like, rather than try to determine a truth definition of a quark.  This definition has the advantage of being explicitly tied to hadronic final states and to the discriminant variables of interest.   Of course, the main challenge with this definition is how to determine the criterion that corresponds to successful quark-enrichment.  For that, we will have to rely to some degree on the other less well-defined notions of what a quark jet is.
 \end{itemize}  
 
 It is worth emphasizing that this last definition separates the measurement process from the interpretation process.  That is, one first measures hadron-level discriminant variables on a final state of interest, and only later does one interpret exactly what that discrimination accomplishes (either as quark/gluon separation or as some more sophisticated classification).  Ultimately, we will be recommending that the LHC experiments perform measurements of the generalized angularities $\lambda_\beta^\kappa$ in well-defined hadron-level final states.  It is then a separate interpretation step to infer something about parton-level quark/gluon radiation patterns from these hadron-level measurements.
@@ -275,9 +280,9 @@ A wide variety of quark/gluon discriminants have been proposed (see \cite{} for 
 \label{eq:genang}
 \genang{\kappa}{\beta} = \sum_{i \in \text{jet}} z_i^\kappa \theta_i^\beta,
 \end{equation}
-where $i$ runs over the jet constituents, $z_i \in [0,1]$ is a momentum fraction, and $\theta_i \in [0,1]$ is a (normalized) recoil-free angle. The parameters $\kappa \ge 0$ and $\beta \ge 0$ determine the momentum and angle weighting, respectively.  For $\kappa = 1$, the generalized angularities are IRC safe, though there are techniques to treat the $\kappa \not= 1$ case using generalized fragmentation functions \cite{Larkoski:2014pca}.  In our Monte Carlo studies, we will calculate $\genang{\kappa}{\beta}$ using all constituents of a jet, though one could also consider using charged-particle-only angularities to improve robustness to pileup.
+where $i$ runs over the jet constituents, $z_i \in [0,1]$ is a momentum fraction, and $\theta_i \in [0,1]$ is a (normalized) recoil-free angle. The parameters $\kappa \ge 0$ and $\beta \ge 0$ determine the momentum and angle weighting, respectively.  For $\kappa = 1$, the generalized angularities are IRC safe, though there are techniques to treat the $\kappa \not= 1$ case using generalized fragmentation functions \cite{Larkoski:2014pca}.  In our Monte Carlo studies, we determine $\genang{\kappa}{\beta}$ using all constituents of a jet, though one could also consider using charged-particle-only angularities to improve robustness to pileup.
 
-For our $e^+ e^-$ study, we cluster jets using the $ee$-variant of the anti-$k_t$ algorithm \cite{}, with $|\vec{p}|$-ordered winner-take-all recombination \cite{} to determine the jet axis $\hat{n}$.  Note that unlike standard $E$-scheme recombination, the jet axis $\hat{n}$ is not necessarily aligned with the jet momentum $\vec{p}$, which turns out to be a desirable feature for avoiding soft recoil effects \cite{}.  We then define
+For our $e^+ e^-$ study, we cluster jets using the $ee$-variant of the anti-$k_t$ algorithm \cite{}, with $|\vec{p}|$-ordered winner-take-all recombination \cite{} to determine the jet axis $\hat{n}$.  Note that unlike in standard $E$-scheme recombination, the jet axis $\hat{n}$ is not necessarily aligned with the jet momentum $\vec{p}$, which turns out to be a desirable feature for avoiding soft recoil effects \cite{}.  We then define
 \be
 z_i \equiv \frac{E_i}{E_{\rm jet}}, \qquad \theta_i \equiv \frac{\Omega_{i \hat{n}}}{R},
 \ee
@@ -308,7 +313,7 @@ where equality holds in the extreme eikonal limit.\footnote{This equality also r
 
 \subsection{Metrics for Discrimination Power}
 
-Since we will be testing many Monte Carlo variants, we need a way to quantify quark/gluon separation power in a robust way that can easily be summarized in a single number.  For that purpose we use classifier separation \cite{}:
+Since we will be testing many Monte Carlo variants, we need a way to quantify quark/gluon separation power in a robust way that can easily be summarized by a single number.  For that purpose we use classifier separation \cite{}:
 \be
 \Delta =  \frac{1}{2} \int \df \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
 \ee
@@ -360,6 +365,7 @@ The choice $f = 1/2$ was used in \Ref{Larkoski:2014pca},
 I(T;A)\big|_{f = \frac{1}{2}} \equiv I_{\frac{1}{2}},
 \ee though other $f$ choices are plausible.  Though we will not use mutual information in our studies, it is amusing to note that the second derivative of $I(T;A)$ with respect to $f$ is directly related to classifier separation:
 \be
+\label{eq:altdeltadef}
 - \frac{\log 2}{4} \frac{\partial^2 I(T;A)}{\partial f^2} \Big|_{f = \frac{1}{2}} \equiv I''_\frac{1}{2} \equiv \Delta.
 \ee
 More generally, the dependence of $I(T;A)$ on $f$ can be related to other concepts in statistics, as visualized in \Fig{fig:truth_overlap}.  At $f = 0$ and $f = 1$, the mutual information itself is zero, but the derivatives are:
@@ -374,6 +380,32 @@ The first derivative is sometimes called relative entropy and the second derivat
 %\{I_\frac{1}{2}, I''_{\frac{1}{2}} \}.
 %\ee
 %To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(T;A)$ in bins of $a$ and use Poisson statistics.  Note that there is a binning bias in $I_\frac{1}{2}$, so we use the method explained in Appendix A.3 of \Ref{Larkoski:2014pca} and use half the $\Delta a$ bin size on the combined quark/gluon sample compared to the individual quark/gluon samples.
+
+\subsection{Baseline Expectation from Casimir Scaling}
+
+At LL accuracy for the IRC safe angularities, the quark/gluon discrimination performance only depends on the color factor ratio $C_A/C_F$.  The reason is that the angularity distributions satisfy a property called Casimir scaling.  Let us first introduce the notation for the cumulative distribution $\Sigma(\lambda)$, which is defined by
+\be
+\Sigma(\lambda) = \int_0^\lambda \df \lambda' \, p(\lambda'), \qquad p(\lambda) = \frac{\df \Sigma}{\df \lambda}.
+\ee
+If an observable satisfies Casimir scaling, then the quark and gluon cumulative distributions can be written as
+\be
+\Sigma_q(\lambda) = e^{-C_F r(\lambda)}, \qquad \Sigma_g(\lambda) = e^{-C_A r(\lambda)},
+\ee
+where $r(\lambda)$ is monotonically decreasing, and the only difference between quarks and gluons appears in $C_F = 4/3$ versus $C_A = 3$.
+
+Observables that satisfy Casimir scaling have universal ROC curves \cite{} and universal truth overlaps \cite{}, which are independent of the precise functional form of $r(\lambda)$ and only depend on the ratio $C_A/C_F$.  We can derive the same universality for classifier separation, using $p_i(\lambda) = - C_i r'(\lambda) e^{-C_i r(\lambda)}$ and the change of variables $u = e^{-C_F r(\lambda)}$:
+\begin{align}
+\Delta &=  -\frac{1}{2} \int \df \lambda \, r'(\lambda) \frac{\bigl(C_F e^{-C_F r(\lambda)} - C_A e^{-C_A r(\lambda)}\bigr)^2}{C_F e^{-C_F r(\lambda)}+ C_A e^{-C_A r(\lambda)}} , \\
+& = \frac{1}{2} \int_0^1 \frac{\df u}{u} \frac{\bigl(u - (C_A / C_F) u^{C_A/C_F}\bigr)^2}{u + (C_A/C_F) u^{C_A/C_F}} , \\
+& = 2 \left({}_2F_1\left[1,\frac{C_F}{C_A - C_F}; \frac{C_A}{C_A - C_F}; - \frac{C_A}{C_F}\right] - \frac{1}{2}  \right),
+\end{align}
+where ${}_2F_1[a,b;c;z]$ is the hypergeometric function.\footnote{An alternative way to derive this result is taking the result for $I(T;A)$ in \Ref{Larkoski:2014pca} and using \Eq{eq:altdeltadef} to extract $\Delta$.  \jdt{Haven't explicitly checked that last statement yet.}}  For the case of QCD with $C_A/C_F = 9/4$,\footnote{In large $N_c$ QCD where $C_A/C_F \to 2$, $\Delta \to \ln 3 - 1 \simeq 0.0986$.}
+\be
+\Delta_{\rm QCD} \simeq  0.1286.
+\ee
+We mark this benchmark value on the subsequent plots for reference.  \jdt{We don't yet, but we should.}  
+
+Going beyond LL accuracy, Casimir scaling is typically violated, and $\Delta$ depends on the precise observable in question.  Thus, all of the differences we see in our subsequent studies are effects that are truly higher-order (or non-perturbative) effects.
 
 \subsection{Parton-level Quark/Gluon Tags}
 
@@ -407,7 +439,7 @@ $\quad$
 
 In \Fig{fig:LHA_hadron} we show distributions of the LHA in the quark sample ($p_q$) and gluon sample ($p_g$), comparing the baseline settings of four different parton shower generators at a center-of-mass collision energy of $Q = 200~\GeV$. In the quark sample, there is relatively little variation between the generators, which is not surprising since all four programs have been tuned to match LEP data (though LEP never measured the LHA itself).  There are somewhat larger variations between the generators in the gluon sample, since there is no data to directly constrain $e^+ e^- \to gg$.
 
-In \Fig{fig:LHA_hadron_separation}, we plot the integrand of classified separation:
+In \Fig{fig:LHA_hadron_separation}, we plot the integrand of classifier separation:
 \be
 \label{eq:deltaintegrand}
 \frac{1}{2} \frac{\bigl(p_q - p_g\bigr)^2}{p_q + p_g}.
@@ -428,17 +460,17 @@ To summarize the overall discrimination power, we integrate \Eq{eq:deltaintegran
 \subsection{Parameter Dependence}
 \label{sec:ee_scales}
 
-Given the large absolute differences in discrimination power, we next want to check if the four generators exhibit similar or dissimilar trends as parameter are varied.  We perform three parameter sweeps:
+Given the large absolute differences in discrimination power, we next want to check if the four generators exhibit similar or dissimilar trends as parameters are varied.  We perform three parameter sweeps, using the bolded values below as defaults:
 \be
 \begin{aligned}
-\text{Collision Energy}: Q &= \{ 50, 100, 200, 400, 800\}~\GeV, \\
-\text{Jet Radius}: R &= \{ 0.2, 0.4, 0.6, 0.8, 1.0\}, \\
-\text{Strong Coupling}: \alpha_s / \alpha_{s0} &= \{0.8,0.9,1.0,1.1,1.2\}, \\
+\text{Collision Energy}: Q &= \{ 50, 100, \mathbf{200}, 400, 800\}~\GeV, \\
+\text{Jet Radius}: R &= \{ 0.2, 0.4, \mathbf{0.6}, 0.8, 1.0\}, \\
+\text{Strong Coupling}: \alpha_s / \alpha_{s0} &= \{0.8,0.9,\mathbf{1.0},1.1,1.2\}, \\
 \end{aligned}
 \ee
-where $\alpha_{s0}$ is the default value of the coupling, which is different between generators (and sometimes different between different aspects of the same generator).
+where $\alpha_{s0}$ is the default value of the coupling, which is different between generators (and sometimes different between different aspects of the same generator.
 
-The resulting values of $\Delta$ are shown in \Fig{fig:ee_sweep}, which not only shows hadron-level results, but also parton-level results where the hadronization step in each program has been turned off.  Even for the IRC safe angularities, the effect of hadronization is rather large, both on the absolute scale of discrimination and the trends.  The second is that the slope of the trends can flip signs between different generators.  \jdt{More discussion.}
+The resulting values of $\Delta$ are shown in \Fig{fig:ee_sweep}, which not only shows hadron-level results, but also parton-level results where the hadronization step in each program has been turned off.  There are number of surprising features in these plots.  First, even for the IRC safe angularities, the effect of hadronization is rather large, both on the absolute scale of discrimination and the trends.  Second, the slope of the trends can flip signs between different generators.  \jdt{More discussion.}
 
 \begin{figure}
 \centering
@@ -559,7 +591,7 @@ Formally, parton shower generators are only accurate to modified leading logarit
 
 
 \begin{acknowledgments}
-We thank Jon Butterworth, Andrew Larkoski \jdt{wants to be author?}, Peter Loch, Alexander Schmidt, Wouter Waalewijn\jdt{wants to be author?}  \jdt{and anyone else who wants to take their name off of the paper}.  We thank L'\'{E}cole de Physique des Houches and the organizers of the 2015 Les Houches workshop on ``Physics at TeV Colliders'' for a stimulating environment while this work was being initiated.  J.T. is supported by the U.S. Department of Energy (DOE) under cooperative research agreement DE-SC-00012567, the DOE Early Career research program DE-SC-0006389, and by a Sloan Research Fellowship from the Alfred P. Sloan Foundation.
+We thank Jon Butterworth, Peter Loch, Alexander Schmidt, \jdt{and anyone else who wants to take their name off of the paper}.  We thank L'\'{E}cole de Physique des Houches and the organizers of the 2015 Les Houches workshop on ``Physics at TeV Colliders'' for a stimulating environment while this work was being initiated.  J.T. is supported by the U.S. Department of Energy (DOE) under cooperative research agreement DE-SC-00012567, the DOE Early Career research program DE-SC-0006389, and by a Sloan Research Fellowship from the Alfred P. Sloan Foundation.
 
 \end{acknowledgments}
 

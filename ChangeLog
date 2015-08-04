@@ -1,3 +1,9 @@
+2015-08-03  Jesse Thaler  <jthaler@mit.edu>
+
+	* lh2015_qg.tex:
+	. Small tweaks (including updating author list)
+	. Subsection on LL value of classifier separation
+
 2015-07-23  Gregory Soyez  <soyez@fastjet.fr>
 
 	* post-process.sh:
