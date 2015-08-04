@@ -3,6 +3,9 @@
 	* lh2015_qg.tex:
 	. Adding Sherpa parton-level results to file
 
+	* AnalyticResum/QvGAnalytics.nb:
+	. Adding Andrew's mathematica notebook to github
+
 2015-08-03  Jesse Thaler  <jthaler@mit.edu>
 
 	* lh2015_qg.tex:
