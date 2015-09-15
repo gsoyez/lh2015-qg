@@ -28,7 +28,7 @@ Rvalues=["02", "04", "06", "08", "10"]
 betas=["05", "10", "20"]
 
 # an array for all the scatter plots
-scatters=[]
+yoda_histograms=[]
 
 # loop over the beta and R values
 for beta in betas:
@@ -38,13 +38,13 @@ for beta in betas:
         f = open(input_filename, 'r')
 
         # declare the yoda 2D scatter
-        yoda_scatter = yoda.Scatter2D(path="/MC_LHQG_EE/GA_10_"+beta+"_R"+str(int(Rval)))
+        yoda_histo = yoda.Histo1D(500, 0.0, 1.0, path="/MC_LHQG_EE/GA_10_"+beta+"_R"+str(int(Rval)))
 
         # parse the input file and construct the scatter plot
         for line in f:
             tokens=line.split()
-            yoda_scatter.addPoint((float(tokens[0]) + float(tokens[1]))/2.0, float(tokens[2]), xerrs=(float(tokens[1]) - float(tokens[0]))/2.0)
+            yoda_histo.fill((float(tokens[0]) + float(tokens[1]))/2.0, float(tokens[2])*(float(tokens[1])-float(tokens[0])))
 
-        scatters.append(yoda_scatter)
+        yoda_histograms.append(yoda_histo)
 
-yoda.write(yoda_scatter, output_filename)
+yoda.write(yoda_histograms, output_filename)
