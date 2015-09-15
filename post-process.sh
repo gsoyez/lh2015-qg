@@ -10,7 +10,7 @@
 #
 #   FORCE=yes ./post-process.sh
 #
-# to force the re-generation of everythiung.
+# to force the re-generation of everything.
 #
 # As an alternative, you can remove the sub-directory in plots/ that
 # correcponds to the plots that have to be re-generated.
@@ -25,7 +25,7 @@ logfile=post-process.log
 date > $logfile
 
 # add Herwig later since it's not done yet:
-desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Herwig-7-dipole"
+desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Herwig-7-dipole AnalyticResum"
 
 #----------------------------------------------------------------------
 # a helper to output both to stdout and logfile

@@ -33,6 +33,9 @@ cp plots/sum-200-R06-Sherpa-2.1.1/separation/I2_R6.pdf $talkdir/6-Sherpa-2.1.1
 cp plots/sum-200-R06-Vincia-1201/separation/I2_R6.pdf $talkdir/7-Vincia-1201
 cp plots/sum-200-R06-Herwig-2_7_1/separation/I2_R6.pdf $talkdir/8-Herwig-2_7_1
 
+
+
+
 cp plots/modulations/Qdependence/I2_GA_10_05.pdf $talkdir/9-Qdep
 cp plots/modulations/Rdependence/I2_GA_10_05.pdf $talkdir/10-Rdep
 cp plots/modulations/alphasdependence/I2_GA_10_05.pdf $talkdir/11-alphadep

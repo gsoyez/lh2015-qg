@@ -212,6 +212,8 @@ where LHA refers to the ``Les Houches Angularity'', named after the workshop whe
 \ee
 where $p_q$ ($p_g$) is the probability distribution for a quark-tagged (gluon-tagged) sample.   To compare to previous studies, we also show some results in terms of more familiar ROC curves.
 
+\jdt{\Sec{sec:analytic}}
+
 To avoid some of the complications in properly defining quark and gluon samples, we start our study in \Sec{sec:ee} by comparing the jets produced in the following processes:
 \begin{align}
 \text{``quark jets''}: \quad & e^+e^- \to (\gamma/Z)^* \to u \overline{u}, \\
@@ -381,6 +383,15 @@ The first derivative is sometimes called relative entropy and the second derivat
 %\ee
 %To assign statistical errors to these quantities in Monte Carlo, we evaluate $I(T;A)$ in bins of $a$ and use Poisson statistics.  Note that there is a binning bias in $I_\frac{1}{2}$, so we use the method explained in Appendix A.3 of \Ref{Larkoski:2014pca} and use half the $\Delta a$ bin size on the combined quark/gluon sample compared to the individual quark/gluon samples.
 
+\subsection{Parton-level Quark/Gluon Tags}
+
+Keeping in the discussion in mind the discussion in \Sec{sec:quarkgluondef}, it is still useful to ask the question about 
+
+\jdt{Do we want to say anything here about QCDAware or flavored jet algorithms?  Are we going to use them?  If Andy has a specific use case in mind, we can try, but my intuition is to stick to our fiducial cross section story.}  \jdt{Answer, yes, we want to do this.}
+
+\section{Analytic Predictions for Quark/Gluon Tagging}
+\label{sec:analytic}
+
 \subsection{Baseline Expectation from Casimir Scaling}
 
 At LL accuracy for the IRC safe angularities, the quark/gluon discrimination performance only depends on the color factor ratio $C_A/C_F$.  The reason is that the angularity distributions satisfy a property called Casimir scaling.  Let us first introduce the notation for the cumulative distribution $\Sigma(\lambda)$, which is defined by
@@ -407,9 +418,9 @@ We mark this benchmark value on the subsequent plots for reference.  \jdt{We don
 
 Going beyond LL accuracy, Casimir scaling is typically violated, and $\Delta$ depends on the precise observable in question.  Thus, all of the differences we see in our subsequent studies are effects that are truly higher-order (or non-perturbative) effects.
 
-\subsection{Parton-level Quark/Gluon Tags}
+\subsection{Resummation and Shape Functions}
 
-\jdt{Do we want to say anything here about QCDAware or flavored jet algorithms?  Are we going to use them?  If Andy has a specific use case in mind, we can try, but my intuition is to stick to our fiducial cross section story.}  \jdt{Answer, yes, we want to do this.}
+\jdt{I need to explain our calculation here.}
 
 \section{Idealized Quark/Gluon Tagging}
 \label{sec:ee}
@@ -558,6 +569,23 @@ $\quad$
 \caption{Same as \Fig{fig:settings_variation_1}, but for (top row) \herwig and (bottom row) \sherpa.}
 \end{figure}
 
+
+\begin{figure}
+\centering
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_R6_hadron_analytic.pdf}
+\label{fig:summary_hadron_analytic}
+}
+$\quad$
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/I2_R6_parton_analytic.pdf}
+\label{fig:summary_parton_analytic}
+}
+\caption{Same as \Fig{fig:settings_variation_1}, but for the analytic calculation.}
+\end{figure}
+
+
+
 Formally, parton shower generators are only accurate to modified leading logarithmic (MLL) accuracy, though they include physically important effects like energy/momentum conservation and matrix element corrections that go beyond MLL.  We now assess the impact of these higher-order effects by changing the baseline parameter settings in each of the generators.
 
 \jdt{We should split into hadron-level and parton-level settings changes.}
@@ -572,9 +600,6 @@ Formally, parton shower generators are only accurate to modified leading logarit
 
 \clearpage
 
-\subsection{Predictions from Resummation}
-
-\jdt{Talk to Frank if this is feasible.  At minimum, we can do LL/NLL based on my paper with Andrew and Wouter.}
 
 \section{Quark/Gluon Tagging at the LHC}
 \label{sec:pp}

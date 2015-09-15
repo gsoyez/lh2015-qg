@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
-# export Jesse's 2-column format (x-y) into a yoda scatter plot.  It
-# also merges mutiple beta and R valeus in a single yoda file in order
+# export Jesse's 3-column format (xmin-xmax-y) into a yoda scatter plot.  It
+# also merges multiple beta and R values in a single yoda file in order
 # to reach the same format as the output of the MC_QG_EE Rivet
 # analysis.
 #

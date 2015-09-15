@@ -14,11 +14,14 @@ cp plots/sum-200-R06-Pythia-8205-hadron/separation/I2_R6.pdf  $texfigdir/I2_R6_h
 cp plots/sum-200-R06-Sherpa-2.1.1-hadron/separation/I2_R6.pdf $texfigdir/I2_R6_hadron_sherpa.pdf
 cp plots/sum-200-R06-Vincia-1201-hadron/separation/I2_R6.pdf  $texfigdir/I2_R6_hadron_vincia.pdf
 cp plots/sum-200-R06-Herwig-2_7_1-hadron/separation/I2_R6.pdf $texfigdir/I2_R6_hadron_herwig.pdf
+cp plots/sum-200-R06-AnalyticResum-hadron/separation/I2_R6.pdf $texfigdir/I2_R6_hadron_analytic.pdf
+
 
 cp plots/sum-200-R06-Pythia-8205-parton/separation/I2_R6.pdf  $texfigdir/I2_R6_parton_pythia.pdf
 cp plots/sum-200-R06-Sherpa-2.1.1-parton/separation/I2_R6.pdf $texfigdir/I2_R6_parton_sherpa.pdf
 cp plots/sum-200-R06-Vincia-1201-parton/separation/I2_R6.pdf  $texfigdir/I2_R6_parton_vincia.pdf
 cp plots/sum-200-R06-Herwig-2_7_1-parton/separation/I2_R6.pdf $texfigdir/I2_R6_parton_herwig.pdf
+cp plots/sum-200-R06-AnalyticResum-parton/separation/I2_R6.pdf $texfigdir/I2_R6_parton_analytic.pdf
 
 cp plots/modulations-hadron/Qdependence/I2_GA_10_05.pdf      $texfigdir/I2_GA_10_05_hadron_Qdep.pdf
 cp plots/modulations-hadron/Rdependence/I2_GA_10_05.pdf      $texfigdir/I2_GA_10_05_hadron_Rdep.pdf
