@@ -198,9 +198,9 @@
 
 Jets are a robust tool for studying short-distance collisions involving quarks and gluons.  With a suitable jet definition, one can connect jet measurements made on clusters of hadrons to perturbative calculations made on clusters of partons \cite{}.  More ambitiously, one can try to tag jets with a suitably-defined flavor label, thereby enhancing the fraction of, say, quark-tagged jets over gluon-tagged jets.  This is relevant for searches for physics beyond the standard model, where signals of interest are often dominated by quarks while the corresponding backgrounds are dominated by gluons.  A wide variety of quark/gluon discriminants have been proposed \cite{}, and there is a growing catalog of quark/gluon studies at the Large Hadron Collider (LHC) \cite{}.
 
-In order to achieve robust quark/gluon tagging, though, one needs theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  In this paper, we will demonstrate that quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to non-perturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this paper is to highlight these uncertainties and suggest a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
+In order to achieve robust quark/gluon tagging, though, one needs theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  In this paper, we demonstrate that quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to non-perturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this paper is to highlight these uncertainties and suggest a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
 
-A common misconception about quark/gluon tagging is that it is somehow an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are fundamentally ambiguous.  But this is philosophically no different from the fact that a ``jet'' is fundamentally ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:quarkgluondef}, the proper way to think about quark/gluon discrimination is in the context of unambiguous hadron-level measurements.  In that sense, quark/gluon tagging is a well-defined technique for enhancing desired signals over undesired backgrounds.
+A common misconception about quark/gluon tagging is that it is an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are fundamentally ambiguous.  But this is philosophically no different from the fact that a ``jet'' is fundamentally ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:quarkgluondef}, the proper way to think about quark/gluon discrimination is in the context of unambiguous hadron-level measurements.  In that sense, quark/gluon tagging is a well-defined technique for enhancing desired signals over undesired backgrounds.
 
 There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power, both discussed further in  \Sec{sec:prelim}.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{} at five different $(\kappa, \beta)$ working points.  These roughly map onto five variables in common use in the literature:
 \be
@@ -227,12 +227,12 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \end{itemize}
 As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We also verify some of the observed behavior in the generators with analytic resummed calculations.
 
-Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:  \jdt{Is is better to do dijet instead, since that will actually be measured?  Probably want to make samples for everything, including $W$ and $\gamma$ as well.}
+Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:
 \begin{align}
-\text{``quark enriched''}: \quad & pp \to Z + \text{jet}, \\
-\text{``gluon enriched''}: \quad & pp \to h + \text{jet},
+\text{``quark enriched''}: \quad & pp \to W/Z/\gamma + \text{jet}, \\
+\text{``gluon enriched''}: \quad & pp \to \text{dijets},
 \end{align}
-where ``enriched'' means that the Born-level process contributing to these channels is dominated by the corresponding jet flavor.  Of course, this second process has a relatively small cross section at the LHC, but it is a useful benchmark for our Monte Carlo comparisons since it again allows us to flavor-enrich the final state jet without direct reference to the jet constituents.  In practice at the LHC, one can obtain gluon-enriched samples from dijet events (see e.g.~\cite{}), though that process has a smaller parton-level gluon fraction than the Higgs plus jet process studied here.  \jdt{Need to verify that last statement.}
+where ``enriched'' means that the Born-level process contributing to these channels is dominated by the corresponding jet flavor.  For completeness, we also study the gluon-enriched process $pp \to H + \rm{jet}$; even though this process has a relatively small cross section at the LHC, it is a useful benchmark for our Monte Carlo comparisons.  By making judicious kinematic cuts, we could further flavor-enrich these samples \cite{}, though we will not pursue that in this paper for simplicity.
 
 We present our conclusion and recommendations in \Sec{sec:conclude}.
 
@@ -409,7 +409,7 @@ Going beyond LL accuracy, Casimir scaling is typically violated, and $\Delta$ de
 
 \subsection{Parton-level Quark/Gluon Tags}
 
-\jdt{Do we want to say anything here about QCDAware or flavored jet algorithms?  Are we going to use them?  If Andy has a specific use case in mind, we can try, but my intuition is to stick to our fiducial cross section story.}
+\jdt{Do we want to say anything here about QCDAware or flavored jet algorithms?  Are we going to use them?  If Andy has a specific use case in mind, we can try, but my intuition is to stick to our fiducial cross section story.}  \jdt{Answer, yes, we want to do this.}
 
 \section{Idealized Quark/Gluon Tagging}
 \label{sec:ee}
@@ -570,6 +570,7 @@ Formally, parton shower generators are only accurate to modified leading logarit
 \item \sherpa\ : njeto0, njet1-noqq, njet1
 \end{itemize}
 
+\clearpage
 
 \subsection{Predictions from Resummation}
 
@@ -579,6 +580,17 @@ Formally, parton shower generators are only accurate to modified leading logarit
 \label{sec:pp}
 
 \subsection{Enriched Quark/Gluon Samples}
+
+\begin{figure}
+\centering
+\subfloat{
+\includegraphics[width = 0.45\columnwidth]{figures/parton_level_qg_composition.pdf}
+}
+\caption{Quark fraction of jets at parton level, as defined by the generator-level parton flavor..}
+\label{fig:parton_level_qg_composition}
+\end{figure}
+
+Because the definition of a quark/gluon jet is ambiguous, we will aim for quark/gluon-enriched samples, as defined by the flavor label of the jet in the corresponding Born-level partonic process.  As shown in \Fig{fig:parton_level_qg_composition}, the Born-level jet in $W/Z/\gamma + \text{jet}$ is more than 70\% quark enriched over the entire jet $p_T$ range of interest.  For jets softer than around 200 GeV, the Born-level jet in dijets or $H+\text{jet}$ is more than 60\% gluon enriched, with that fraction decreasing as the jet $p_T$ increases.  
 
 \subsection{Tagging Performance}
 

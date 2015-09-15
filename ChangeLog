@@ -1,3 +1,17 @@
+2015-09-15  Jesse Thaler  <jthaler@mit.edu>
+
+	* AnalyticResum/txt2yoda
+	. Updated file to use xmin and xmax
+	. Updated corresponding analytic results files to match.
+
+2015-09-14  Jesse Thaler  <jthaler@mit.edu>
+
+	* lh2015_qg.tex:
+	. adding information about quark/gluon composition at parton level
+
+	* AnalyticResum/QvGAnalytics.nb:
+	. First pass at generating analytic histogram files for Yoda processing
+
 2015-08-04  Jesse Thaler  <jthaler@mit.edu>
 
 	* lh2015_qg.tex:

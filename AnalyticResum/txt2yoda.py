@@ -16,6 +16,6 @@ yoda_scatter = yoda.Scatter2D(title="my_distribution", path="/MC_LHQG_EE/GA_00_0
 
 for line in f:
     tokens=line.split()
-    yoda_scatter.addPoint(float(tokens[0]), float(tokens[1]), xerrs=0.0005)
+    yoda_scatter.addPoint((float(tokens[0]) + float(tokens[1]))/2.0, float(tokens[2]), xerrs=(float(tokens[1]) - float(tokens[0]))/2.0)
 
 yoda.write(yoda_scatter, output_filename)
