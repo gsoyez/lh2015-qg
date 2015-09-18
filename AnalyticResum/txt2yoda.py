@@ -22,6 +22,7 @@ if len(sys.argv) != 2:
 # filename info
 base = sys.argv[1]
 output_filename = base+".yoda"
+sys.stdout.write("Processing: " + output_filename + "\n")
 
 # the R and beta values we shall loop over
 Rvalues=["02", "04", "06", "08", "10"]
