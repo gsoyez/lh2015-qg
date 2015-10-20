@@ -186,7 +186,7 @@
 
 %\date{\today}
 
-\abstract{\jdt{Author list is going to contract.  This abstract is aspirational at the moment.}  By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined solely by the color factor of the initiating parton ($C_F$ versus $C_A$).  The goal of this paper is to go beyond this leading-order understanding, using both parton shower generators and first-principles calculations to assess the impact of higher-order perturbative and non-perturbative physics.  In the idealized context of electron-positron collisions, where there exists an unambiguous definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and non-perturbative hadronization effects.  Turning to proton-proton collisions, we highlight a core set of measurements which would constrain current uncertainties in quark/gluon tagging and improve the overall modeling of jets at the Large Hadron Collider.}
+\abstract{\jdt{Author list is going to contract.  This abstract is aspirational at the moment.}  By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined solely by the color factor of the initiating parton ($C_F$ versus $C_A$).  The goal of this paper is to confront the challenges faced when going beyond this leading-order understanding, using both parton shower generators and first-principles calculations to assess the impact of higher-order perturbative and non-perturbative physics.  In the idealized context of electron-positron collisions, where there exists an unambiguous definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and non-perturbative hadronization effects.  Turning to proton-proton collisions, we highlight a core set of measurements that would constrain current uncertainties in quark/gluon tagging and improve the overall modeling of jets at the Large Hadron Collider.}
 
 \preprint{MIT--CTP xxxx}
 
@@ -227,16 +227,16 @@ These processes are physically distinguishable by the quantum numbers of the ass
 \item \textsc{Sherpa 2.1.1} \cite{}
 \item \jdt{Is Deductor going to be on this list?}
 \end{itemize}
-As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We also see substantial differences in the behavior of the generators compared to the analytic resummed calculations.
+As we will see, the dominant differences between programs arise from physics at the interface between perturbative showering and non-perturbative fragmentation.  We also see substantial differences in the behavior of the generators compared to the analytic resummed calculations.  
 
-Turning to the LHC in \Sec{sec:pp}, the distinction between quark jets and gluon jets becomes more subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  In order to restrict ourselves to hadron-level measurements, we consider quark/gluon enriched samples:
+In \Sec{sec:pp}, we suggest a possible analysis strategy at the LHC to constrain quark/gluon radiation patterns.  At a hadron collider, the distinction between quark jets and gluon jets is rather subtle, since radiation patterns depend on color connections between the measured final state jets and the unmeasured initial state partons.  That said, we find that one can already learn a lot from hadron-level measurements, without trying to isolate ``pure'' quark or gluon samples.  In particular, we advocate measuring the generalized angularities on quark/gluon enriched samples:
 \begin{align}
 \text{``quark enriched''}: \quad & pp \to W/Z/\gamma + \text{jet}, \\
 \text{``gluon enriched''}: \quad & pp \to \text{dijets},
 \end{align}
 where ``enriched'' means that the Born-level process contributing to these channels is dominated by the corresponding jet flavor.  For completeness, we also study the gluon-enriched process $pp \to H + \rm{jet}$; even though this process has a relatively small cross section at the LHC, it is a useful benchmark for our Monte Carlo comparisons.  By making judicious kinematic cuts, we could further flavor-enrich these samples \cite{}, though we will not pursue that in this paper for simplicity.
 
-We present our recommendations and conclusion in \Sec{sec:conclude}.
+We present our final recommendations and conclusions in \Sec{sec:conclude}.  The main take home message from this study is that, contrary to the standard lore, measurements at $e^+e^-$ colliders are insufficient to constrain uncertainties in the final state shower.   Therefore, gluon-enriched measurements at the LHC will be crucial to constrain final state radiation patterns.
 
 \section{What is a Quark/Gluon Jet?}
 \label{sec:quarkgluondef}
@@ -444,7 +444,7 @@ Going to NLL accuracy is straightforward, using the formalism of \cite{}.\footno
 where $R(e_\beta)$ is known as the radiator function, $\gamma_E$ is the Euler-Mascheroni constant, $\Gamma$ is the gamma function, and primes indicate logarithmic derivatives:
 \be
 \label{eq:R_der}
-R'(e_\beta) = -\frac{\partial}{\partial \log e_\beta} R(e_\beta) \ .
+R'(e_\beta) = -\frac{\partial}{\partial \log e_\beta} R(e_\beta).
 \ee
 The $e^{-R(e_\beta)}$ factor in \Eq{eq:NLLcaesar} is just the Sudakov form factor, and the prefactor containing $R'(e_\beta)$ captures the effect of multiple emissions on the $e_\beta$ distribution.
 
@@ -477,9 +477,9 @@ where $\hat{\sigma}$ refers to the perturbative distribution.
 
 The shape function $F$ has to be extracted from data, but we can use a simple parametrization of the shape function that accounts for some aspects of its known behavior \cite{}:
 \be
-F(\epsilon) = \frac{4 \epsilon}{\epsilon_0^2} e^{-2 \epsilon/\epsilon_0}.
+F(\epsilon) = \frac{\pi \epsilon}{2 \epsilon_0^2} \exp\left[-\frac{\pi}{4} \frac{\epsilon^2}{\epsilon_0^2} \right].
 \ee
-This function goes linearly to zero at $\epsilon \to 0$, falls exponentially as $\delta \to \infty$, is normalized by $\int \df \epsilon \,  F(\epsilon) = 1$, and has an expectation value $\vev{\epsilon} = \int \df \epsilon \, \epsilon \, F(\epsilon) = \epsilon_0$.  The parameter $\epsilon_0$ is the average shift of the perturbative distribution.
+This function goes linearly to zero at $\epsilon \to 0$, falls exponentially as $\delta \to \infty$, is normalized by $\int \df \epsilon \,  F(\epsilon) = 1$, and has an expectation value $\vev{\epsilon} = \int \df \epsilon \, \epsilon \, F(\epsilon) = \epsilon_0$.  The parameter $\epsilon_0$ is the average shift of the perturbative distribution.\footnote{In \Ref{}, an alternative form of $F(\epsilon) = (4\epsilon/\epsilon_0^2) e^{-2 \epsilon/\epsilon_0}$ was proposed which has the same rough features.  We find that this functional form has a large of a high-side tail and gives rather unrealistic angularity distributions for gluons.}
 
 Following the work of \Refs{} (see also \cite{}), one can estimate $\epsilon_0$ as a function of $\beta$.  Non-perturbative modes have $k_t \simeq \Lambda_{\rm QCD}$, which implies the relationship
 \be
@@ -513,7 +513,7 @@ We see that soft modes dominate for $\beta > 1$, collinear modes dominate for $\
 
 \jdt{Have to decide whether we do soft drop here.}
 
-We begin our quark/gluon studies with the idealized case of discriminating $e^+ e^- \to (\gamma/Z)^* \to u \bar{u}$ (quark-tagged) from $e^+ e^- \to h^* \to gg$ (gluon-tagged).  Here, the flavor of the outgoing jets is fixed by the Lorentz structure of the production vertex.  Of course, even in the quark-tagged sample, there can be ``gluon jets'', as in $e^+ e^- \to u \bar{u} g$ where a hard gluon recoils against a nearly collinear $u \bar{u}$.  This reflects the intrinsic ambiguity in the definition of jet flavor.   To resolve that ambiguity, we rely on the production vertex alone to define the truth-level jet flavor.
+To demonstrate the importance of final state evolution, we begin our quark/gluon studies with the idealized case of discriminating $e^+ e^- \to (\gamma/Z)^* \to u \bar{u}$ (quark-tagged) from $e^+ e^- \to h^* \to gg$ (gluon-tagged).  Here, the flavor of the outgoing jets is fixed by the Lorentz structure of the production vertex.  Of course, even in the quark-tagged sample, there can be ``gluon jets'', as in $e^+ e^- \to u \bar{u} g$ where a hard gluon recoils against a nearly collinear $u \bar{u}$.  This reflects the intrinsic ambiguity in the definition of jet flavor.   To resolve that ambiguity, we rely on the production vertex alone to define the truth-level jet flavor.
 
 \begin{figure}
 \centering
@@ -706,7 +706,9 @@ Despite these shape differences, the overall non-perturbative shift predicted by
 \section{Quark/Gluon Tagging at the LHC}
 \label{sec:pp}
 
-It is clear from our $e^+e^-$ study that quark/gluon radiation patterns are not under good theoretical control.  Beyond just the application to quark/gluon tagging, this is an important challenge for any analysis that uses jets.  In order to resolve these issues and improve parton shower modeling of jets, measurements from the LHC will be essential (as will improved analytic calculations).  In this section, we will repeat the $e^+e^-$ study for $pp$ collisions, now with the additional complications faced by hadronic collisions.
+\jdt{Turn this section into a recommendation for the LHC.  Do not do infinite generator options, since that is going to be too much.}
+
+It is clear from our $e^+e^-$ study that quark/gluon radiation patterns are not under good theoretical control, even accounting only for final state physics effects.  Beyond just the application to quark/gluon tagging, this is an important challenge for any analysis that uses jets.  In order to resolve these issues and improve parton shower modeling of jets, measurements from the LHC will be essential (as will improved analytic calculations).  In this section, we perform an example analysis for $pp$ collisions that highlights the kind of information one can gain about quark/gluon radiation patterns, despite the additional complications faced by hadronic collisions.
 
 \subsection{Enriched Quark/Gluon Samples}
 
@@ -723,20 +725,16 @@ There is no way to isolate pure samples of quark or gluon jets at the LHC, but w
 
 In \Fig{}, we show LHA distributions for quark-enriched and gluon-enriched samples.  \jdt{Need plot to say more.}
 
-\subsection{Parameter Dependence}
+\subsection{Jet Momentum and Radius Dependence}
 
 \jdt{Do the same sweeps}
-
-\subsection{Impact of Generator Settings}
-
-\jdt{Do the same switch choices}
 
 \section{Recommendations and Conclusions}
 \label{sec:conclude}
 
 By measuring the substructure of jets, it is possible to gain information about the quark/gluon composition of a jet sample.  The challenge we have identified in this paper is that the precise radiation pattern of quark and gluon jets is poorly understood, in the sense that parton shower generators give rather different predictions for absolute quark/gluon discrimination power as well as relative trends as a function of the jet kinematics.  At the moment, analytic calculations are not at a level of accuracy where they can offer any useful guide.  Therefore, LHC data is the best hope to constrain quark/gluon radiation patterns and enable quark/gluon discrimination to be a robust tool.
 
-In terms of specific measurements that should be highest priority for ATLAS and CMS, our study has not revealed a silver bullet.  \jdt{Still true in pp with grooming?}  Rather, all of the generalized angularities studies showed similar levels of disagreement between generators, so a systematic LHC study of one observable is likely to offer crucial new information.  What is essential is to make measurements at multiple jet $p_T$ scales and multiple jet radii $R$.  Unfolded distributions would likely be most useful for parton shower tuning, but even detector-level measurements compared to detector-simulated parton showers would help spot troubling trends.
+In terms of specific measurements that should be highest priority for ATLAS and CMS, our study has not revealed a silver bullet.  \jdt{Still true in pp with grooming?}  Rather, all of the generalized angularities studies showed similar levels of disagreement between generators, so a systematic LHC study of even one observable is likely to offer crucial new information.  What is essential is to make measurements at multiple jet $p_T$ scales and multiple jet radii $R$.  Unfolded distributions would likely be most useful for parton shower tuning, but even detector-level measurements compared to detector-simulated parton showers would help spot troubling trends.
 
 The key lesson to parton shower authors is that LEP data \emph{does not} constrain all of the relevant aspects of the final state parton shower.  While we have extensive information about quark jet radiation patterns, gluon jet radiation patterns are essentially unconstrained.  This has important implications for parton shower tuning strategies.  Specific recommendations:
 \begin{itemize}
