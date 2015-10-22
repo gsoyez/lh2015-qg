@@ -141,6 +141,9 @@
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 \newcommand{\jdt}[1]{\textbf{\textcolor{darkgreen}{(#1 --jdt)}}}
 
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\newcommand{\gs}[1]{\textbf{\textcolor{darkblue}{(#1 --gs)}}}
+
 
 \begin{document}
 
@@ -311,7 +314,10 @@ By adjusting $\kappa$ and $\beta$, one can probe different aspects of the jet fr
 \ee
 Except for the LHA, these angularities (or their close cousins) have already been used in quark/gluon discrimination studies.  The LHA has been included to have an IRC safe angularity that weights energies more heavily than angles, similar in spirit to the $\beta = 0.2$ value advocated in \Ref{}.
 
-For the IRC safe case of $\kappa = 1$, there is an alternative version of the angularities based on energy correlation functions \jdt{not sure about my definition here, especially factors of 2.}
+For the IRC safe case of $\kappa = 1$, there is an alternative version
+of the angularities based on energy correlation functions \jdt{not
+  sure about my definition here, especially factors of 2.}\gs{I
+  usually define this without the $1/2$ and normalised by $1/R^\beta$}
 \be
 \text{ecf}_\beta = \frac{1}{2}\sum_{i \not= j \in \text{jet}} z_i z_j \theta_{ij}^\beta \simeq \genang{1}{\beta},
 \ee
@@ -418,7 +424,14 @@ where $r(\lambda)$ is monotonically decreasing, and the only difference between 
 \label{eq:LLform}
 \Sigma_{\rm LL}(e_\beta) = \exp \left[ - \frac{\alpha_s C_i}{\pi \beta} \log^2 e_\beta  \right],
 \ee
-where $C_i$ is the color factor, exactly as needed for \Eq{eq:casimirform}.  This LL result can be understood from the fact that quarks and gluons have identical leading splitting functions ($P(z) \simeq 2/z$ \jdt{factor of two correct?}), and therefore the Sudakov form factor (which is the only thing that appears in \Eq{eq:LLform}) differs only by the color factor in the exponent.
+where $C_i$ is the color factor, exactly as needed for
+\Eq{eq:casimirform}.  This LL result can be understood from the fact
+that quarks and gluons have identical leading splitting functions
+($P(z) \simeq 2/z$ \jdt{factor of two correct?} \gs{I think that
+  \eqref{eq:LLform} is correct but I'd define $P=2C_i/z$, implynig a
+  sentence like ``the splitting functions are te same up to the
+  overall multiplicative colour factor''}
+  ), and therefore the Sudakov form factor (which is the only thing that appears in \Eq{eq:LLform}) differs only by the color factor in the exponent.
 
 Observables that satisfy Casimir scaling have universal ROC curves \cite{} and universal truth overlaps \cite{}, which are independent of the precise functional form of $r(\lambda)$ and only depend on the ratio $C_A/C_F$.  We can derive the same universality for classifier separation, using $p_i(\lambda) = - C_i r'(\lambda) e^{-C_i r(\lambda)}$ and the change of variables $u = e^{-C_F r(\lambda)}$:
 \begin{align}
@@ -479,7 +492,9 @@ The shape function $F$ has to be extracted from data, but we can use a simple pa
 \be
 F(\epsilon) = \frac{\pi \epsilon}{2 \epsilon_0^2} \exp\left[-\frac{\pi}{4} \frac{\epsilon^2}{\epsilon_0^2} \right].
 \ee
-This function goes linearly to zero at $\epsilon \to 0$, falls exponentially as $\delta \to \infty$, is normalized by $\int \df \epsilon \,  F(\epsilon) = 1$, and has an expectation value $\vev{\epsilon} = \int \df \epsilon \, \epsilon \, F(\epsilon) = \epsilon_0$.  The parameter $\epsilon_0$ is the average shift of the perturbative distribution.\footnote{In \Ref{}, an alternative form of $F(\epsilon) = (4\epsilon/\epsilon_0^2) e^{-2 \epsilon/\epsilon_0}$ was proposed which has the same rough features.  We find that this functional form has a large of a high-side tail and gives rather unrealistic angularity distributions for gluons.}
+This function goes linearly to zero at $\epsilon \to 0$, falls
+exponentially as $\delta \to \infty$ \gs{you mean $\epsilon\to\infty$,
+  right?}, is normalized by $\int \df \epsilon \,  F(\epsilon) = 1$, and has an expectation value $\vev{\epsilon} = \int \df \epsilon \, \epsilon \, F(\epsilon) = \epsilon_0$.  The parameter $\epsilon_0$ is the average shift of the perturbative distribution.\footnote{In \Ref{}, an alternative form of $F(\epsilon) = (4\epsilon/\epsilon_0^2) e^{-2 \epsilon/\epsilon_0}$ was proposed which has the same rough features.  We find that this functional form has a large of a high-side tail and gives rather unrealistic angularity distributions for gluons.}
 
 Following the work of \Refs{} (see also \cite{}), one can estimate $\epsilon_0$ as a function of $\beta$.  Non-perturbative modes have $k_t \simeq \Lambda_{\rm QCD}$, which implies the relationship
 \be
