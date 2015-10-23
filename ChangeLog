@@ -1,3 +1,15 @@
+2015-10-23  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_Zjet.cc:             *** ADDED ***
+	* MC_LHQG_dijet.cc:            *** ADDED ***
+	added preliminary verasions of the pp analyses
+	compared to their ee equivalent:
+	- they use the same observables (using pt,DeltaR instead of E,angle)
+	- they directly target physics processes, either Z+jet or dijet
+	  with no flavour specified initially
+	- the cuts change and are slightly different in the two cases
+	- we included measures on mMDT jets to have a feeling of the impact
+
 2015-09-18  Jesse Thaler  <jthaler@mit.edu>
 
 	* lh2015_qg.tex:
