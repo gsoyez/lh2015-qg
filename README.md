@@ -156,39 +156,6 @@ Energies [GeV]: (Q=sqrts)
  - 2nd batch: 100, 400, 1600, 3200
 
 
-
-File contents
--------------
-
-- Shapes.{hh,cc}: contains (FastJet-style) implementation of useful
-  jet shapes (only GeneralisedAngularity so far)
-
-- MC_LHQG_EE.cc  Rivet Analysis for the e+e- studies
-
-- MC_LHQG.cc     Rivet Analysis for the pp studies [OUT OF DATE and "bugged"]
-
-- Pythia/Vincia/Herwig/Sherpa directories contain codes and/or yoda files for
-  the different generators
-
-- some helper scripts
-   . post-process.sh   an overall script that creates the separation tables and the plots
-                       This is the script you run to get results out of a git checkout
-                       The other files below are secondary.
-
-   . compute-efficiencies.py <quark>.yoda <gluon>.yoda <efficiency>.yoda
-      will, given the quark and gluon output, produce
-      <efficiency>.yoda with the efficiency histograms and output to
-      stdout a table with a bunch of quality measures (see notes in
-      tex/ for details) . compute_efficiencies.py
-
-   . get-separation.sh separation_table observable measure
-      simple helper that extracts one number (corresponding to a given
-      observable and separation measure) from a separation table
-      (output of compute-efficiencies.py)
-
-   . produce-separation-plots.py
-      creates a yoda file with summary information for a given separation table
-
 Workflow     
 --------
 
@@ -257,8 +224,92 @@ the post-process.sh script does the following
 Note that by default existing files are not overwritten. Use FORCE=yes
 post-process.sh to overwrite everything.
 
+Description of the pp analysis
+==============================
+
+The pp analyses are implemented as Rivet routines in two files: 
+
+- MC_LHQG_Zjet.cc which studies Z+jet events.
+
+  The event reconstruction goes as follows. First, a Z boson decaying
+  to muons with a mass between 66 and 116 GeV and a pT of at least 100
+  GeV is recontructed ("bare" Z finder). Then, we require a jet with a
+  pT of at least 60% of the Z pT (if more than one, we keep the
+  hardest one only). We study the observables listed below.
+
+
+- MC_LHQG_dijet.cc which studies dijet events. 
+
+  The event reconstruction goes as follows. We select the 2 hardest
+  jest in the event. We require that their pT sum is at least 200 GeV
+  and that the pT of the second hardest jet is at least 60% of the pT
+  of the leading jet. Both jets are then kept for study.
+
+Studies: The jet selection described above is repeated for R=0.2, 0.4,
+0.6, 0.8 and 1.0. The WTA recombination scheme is used For each of the
+selected jets, we compute the same angularities as for the ee study,
+this time defined in terms of pT and rapidity-phi distances.
+
+We also add a study of the same quantities computed on the jet groomed
+with teh modified MassDrop tagger (with zcut=0.1).
+
+
+Open questions: 
+
+ - is that setup OK with everyone?
+
+ - what rapidity acceptance do we use? [At the moment, I use +-4 but I
+   would rather suggest +-2.5 if everyone agrees]
+
+ - I would tend to apply the extra requirement that the rapidity
+   difference between the 2 jets (or between the jet and the Z boson)
+   is at most 1. This selects cleaner events. Is that fine with
+   everyone?
+
+ - I would tend to use the E-scheme to select the jet (since that is
+   what people use in practice) and recluster the jet constituents
+   with the WTA scheme to define the angularity axis. Anyone against
+   that option? We could event recluster the jet with the
+   Cambridge/Aachen algorithm which is already used for the mMDT.
+
+File contents
+=============
+
+- Shapes.{hh,cc}: contains (FastJet-style) implementation of useful
+  jet shapes (only GeneralisedAngularity so far)
+
+- MC_LHQG_EE.cc  Rivet Analysis for the e+e- studies
+
+- MC_LHQG_Zjet.cc    Rivet Analysis for the pp studies
+  MC_LHQG_dijet.cc
+
+- MC_LHQG.cc     Rivet Analysis for the pp studies [OUT OF DATE and "bugged"]
+
+
+- Pythia/Vincia/Herwig/Sherpa directories contain codes and/or yoda files for
+  the different generators
+
+- some helper scripts
+   . post-process.sh   an overall script that creates the separation tables and the plots
+                       This is the script you run to get results out of a git checkout
+                       The other files below are secondary.
+
+   . compute-efficiencies.py <quark>.yoda <gluon>.yoda <efficiency>.yoda
+      will, given the quark and gluon output, produce
+      <efficiency>.yoda with the efficiency histograms and output to
+      stdout a table with a bunch of quality measures (see notes in
+      tex/ for details) . compute_efficiencies.py
+
+   . get-separation.sh separation_table observable measure
+      simple helper that extracts one number (corresponding to a given
+      observable and separation measure) from a separation table
+      (output of compute-efficiencies.py)
+
+   . produce-separation-plots.py
+      creates a yoda file with summary information for a given separation table
+
 Batch run
----------
+=========
 
 The workdir directory contains a script to run with different configuration. The
 script is called multirun. It requires for each code, including rivet, a bash
@@ -290,4 +341,5 @@ Gregory Soyez
 Jesse Thaler
 Andrzej Siodmok
 Philippe Gras
+Deepak Kar
 ...
