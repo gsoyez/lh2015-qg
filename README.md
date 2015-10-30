@@ -169,7 +169,7 @@ If you only want to process yoda files, you can skip steps 2 and 4.
      source ${rivet_path}/rivetenv.(c)sh
 
 2. build the analysis using
-     rivet-buildplugin RivetMC_LHQG.so MC_LHQG.cc MC_LHQG_EE.cc
+     rivet-buildplugin RivetMC_LHQG.so MC_LHQG_dijet.cc MC_LHQG_Zjet.cc MC_LHQG_EE.cc
 
 3. set the current directory in the Rivet analyses path by including . in 
    the RIVET_ANALYSIS_PATH environment variable

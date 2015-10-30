@@ -118,7 +118,7 @@ namespace Rivet {
                                        bookHisto1D("log_mMDT_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
 
         // control plots
-        h_delta_phi_Zjet.add_entry(bookHisto1D("deltaphi_Zjet"+Rlab, 100, 0.0, pi));
+        h_delta_phi_Zjet.push_back(bookHisto1D("deltaphi_Zjet"+Rlab, 100, 0.0, pi));
       }
 
     }
@@ -162,7 +162,7 @@ namespace Rivet {
         PseudoJet mmdt_jet = (*mmdt)(jet);
 
         // control plot: deltaphi with the Z boson
-        double dphi = std::abs(jet.delta_phi_to(zmom));
+        double dphi = abs(jet.delta_phi_to(zmom));
         h_delta_phi_Zjet[iR]->fill(dphi, weight);
         
         // now compute the angularities for the plain and groomed jets

@@ -1,6 +1,12 @@
 2015-10-30  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_Zjet.cc:
+	fixed a few compilation bugs in the previous (untested) code
+
+	* README.md:
+	small tweaks to the workflow
+
+	* MC_LHQG_Zjet.cc:
 	Following the discussion with the group:
 	- set the acceptance down to -2.5 .. 2.5
 	- used dressed muons (R=0.1) [copied from ATLAS_2011_I928289_Z]
