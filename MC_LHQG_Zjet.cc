@@ -61,12 +61,12 @@ namespace Rivet {
     /// Book histograms and initialise projections before the run
     void init() {
       
-      FinalState fs(-4, 4, 0.0*GeV);
+      FinalState fs(-2.5, 2.5, 0.0*GeV);
       
       // for the Z boson (-> mumu)
       Cut cut =  pT >= JET_PTMIN_FRACTION*GeV;
-      ZFinder zfinder_mm_bare(fs, cut, PID::MUON, 66.0*GeV, 116.0*GeV, 0.0, ZFinder::CLUSTERNODECAY, ZFinder::NOTRACK);
-      addProjection(zfinder_mm_bare, "ZFinder_mm_bare");
+      ZFinder zfinder_mm_dressed(fs, cut, PID::MUON, 66.0*GeV, 116.0*GeV, 0.1, ZFinder::CLUSTERNODECAY, ZFinder::NOTRACK);
+      addProjection(zfinder_mm_dressed, "ZFinder_mm_dressed");
       
       // for the jets
       VetoedFinalState jet_input(fs);
@@ -86,7 +86,7 @@ namespace Rivet {
       _kappa_betas.push_back(pair_double(1.0, 2.0));
       _kappa_betas.push_back(pair_double(2.0, 0.0));
 
-      // histogram bbookings
+      // histogram bookings
       for (unsigned int iR=1;iR<nRADII+1; iR++){
         double R=DELTA_RADII*iR;
         ostringstream Rlabel;
@@ -116,19 +116,23 @@ namespace Rivet {
                                        bookHisto1D("log_mMDT_GA_10_20"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
         _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_20_00"+Rlab, 500, 0.0, 1.0),
                                        bookHisto1D("log_mMDT_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+
+        // control plots
+        h_delta_phi_Zjet.add_entry(bookHisto1D("deltaphi_Zjet"+Rlab, 100, 0.0, pi));
       }
+
     }
 
 
     /// Perform the per-event analysis
     void analyze(const Event& e) {
       // see if we find a Z boson
-      const ZFinder& zfinder  = applyProjection<ZFinder>(e, "ZFinder_mm_bare"   );
+      const ZFinder& zfinder  = applyProjection<ZFinder>(e, "ZFinder_mm_dressed"   );
       if (zfinder.bosons().size() != 1) return;
 
       // deduce the cut to apply on jets
-      const FourMomentum zmom = zfinder.bosons()[0].momentum();
-      double ptmin_jet = JET_PTMIN_FRACTION*zmom.pT();
+      const PseudoJet zmom = zfinder.bosons()[0].pseudojet();
+      double ptmin_jet = JET_PTMIN_FRACTION*zmom.pt();
 
       // a few shortcuts
       const double weight = e.weight();
@@ -157,6 +161,11 @@ namespace Rivet {
         PseudoJet jet = (SelectorNHardest(1)(jets))[0];
         PseudoJet mmdt_jet = (*mmdt)(jet);
 
+        // control plot: deltaphi with the Z boson
+        double dphi = std::abs(jet.delta_phi_to(zmom));
+        h_delta_phi_Zjet[iR]->fill(dphi, weight);
+        
+        // now compute the angularities for the plain and groomed jets
         compute_and_record(jet,      R, ngas*(2*iR),   weight);
         compute_and_record(mmdt_jet, R, ngas*(2*iR+1), weight);
         
@@ -176,6 +185,8 @@ namespace Rivet {
   private:
     vector<pair_double> _kappa_betas;
     vector<HistogramHolder> _gas;
+
+    vector<Histo1DPtr> h_delta_phi_Zjet;
     
     SharedPtr<contrib::ModifiedMassDropTagger> mmdt;
 

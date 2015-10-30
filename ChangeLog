@@ -1,3 +1,11 @@
+2015-10-30  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_Zjet.cc:
+	Following the discussion with the group:
+	- set the acceptance down to -2.5 .. 2.5
+	- used dressed muons (R=0.1) [copied from ATLAS_2011_I928289_Z]
+	- added a control plot for the Zjet delta phi distribution
+
 2015-10-23  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_Zjet.cc:             *** ADDED ***
