@@ -9,6 +9,7 @@
 
 #include "fastjet/JetDefinition.hh"
 #include "fastjet/ClusterSequence.hh"
+#include "fastjet/tools/Recluster.hh"
 #include "fastjet/contrib/ModifiedMassDropTagger.hh"
 using namespace fastjet;
 
@@ -42,9 +43,10 @@ namespace Rivet {
     /// parameters
     const double JET_AVG_PTMIN;       ///< minimal pt for the avg of the 2 hardest jets pt
     const double JET_MIN_PT_FRACTION; ///< 2nd hardest needs to e at least that fraction of hardest
-    const double LOG_SCALE_MAX;      ///< max value of for the log binning (abs)
-    const unsigned int nRADII;       ///< number of radii under consideration
-    const double DELTA_RADII;        ///< radius step size
+    const double DELTA_RAP_MAX_DIJET; ///< max rapidity difference between the two jets
+    const double LOG_SCALE_MAX;       ///< max value of for the log binning (abs)
+    const unsigned int nRADII;        ///< number of radii under consideration
+    const double DELTA_RADII;         ///< radius step size
 
     
     /// Constructor
@@ -52,6 +54,7 @@ namespace Rivet {
       : Analysis("MC_LHQG_dijet"),
         JET_AVG_PTMIN(100.0),      // avg of the two hardest has that minimum
         JET_MIN_PT_FRACTION(0.6),  // 2nd hardest is at least 0.6 * hardest
+        DELTA_RAP_MAX_DIJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),
         DELTA_RADII(0.2)
@@ -60,7 +63,7 @@ namespace Rivet {
     /// Book histograms and initialise projections before the run
     void init() {
       
-      FinalState fs(-4, 4, 0.0*GeV);
+      FinalState fs(-2.5, 2.5, 0.0*GeV);
       
       // for the jets
       VetoedFinalState jet_input(fs);
@@ -69,9 +72,11 @@ namespace Rivet {
       addProjection(jet_input, "JET_INPUT");
 
       // mMDT
+      ca_wta_recluster = Recluster(JetDefinition(cambridge_algorithm, JetDefinition::max_allowable_R, WTA_pt_scheme),
+                                   false, Recluster::keep_only_hardest);
       mmdt.reset(new contrib::ModifiedMassDropTagger(0.1));
       mmdt->set_grooming_mode();
-      mmdt->set_reclustering(true);
+      mmdt->set_reclustering(false);
 
       // shape parameter definitions
       _kappa_betas.push_back(pair_double(0.0, 0.0));
@@ -110,6 +115,9 @@ namespace Rivet {
                                        bookHisto1D("log_mMDT_GA_10_20"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
         _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_20_00"+Rlab, 500, 0.0, 1.0),
                                        bookHisto1D("log_mMDT_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+
+        // control plots
+        h_delta_phi_dijet.push_back(bookHisto1D("deltaphi_dijet"+Rlab, 100, 0.0, pi));
       }
     }
 
@@ -140,19 +148,30 @@ namespace Rivet {
         //
         // we'll keep jets above a certain fraction of the total energy 
         double R=DELTA_RADII*(iR+1);
-        JetDefinition jet_def(antikt_algorithm, R, WTA_pt_scheme);
+        //JetDefinition jet_def(antikt_algorithm, R, WTA_pt_scheme);
+        JetDefinition jet_def(antikt_algorithm, R);
         vector<PseudoJet> jets = (SelectorNHardest(2) * SelectorPtMin(ptmin_jet))(jet_def(particles));
       
         if(jets.size()<2) continue;
 
         // impose the cuts
-        PseudoJet jet1 = jets[0];
-        PseudoJet jet2 = jets[1];
+        PseudoJet orig_jet1 = jets[0];
+        PseudoJet orig_jet2 = jets[1];
 
-        if (jet1.pt() + jet2.pt() < 2*JET_AVG_PTMIN) continue;
-        if (jet2.pt() / jet1.pt() < JET_MIN_PT_FRACTION) continue;
+        if (orig_jet1.pt() + orig_jet2.pt() < 2*JET_AVG_PTMIN) continue;
+        if (orig_jet2.pt() / orig_jet1.pt() < JET_MIN_PT_FRACTION) continue;
 
+        // require that the jets are within 1 unit in rapidity of each other
+        if (std::abs(orig_jet1.rap()-orig_jet2.rap())<DELTA_RAP_MAX_DIJET) continue;
+
+        // control plot: deltaphi with the Z boson
+        double dphi = std::abs(orig_jet2.delta_phi_to(orig_jet1));
+        h_delta_phi_dijet[iR]->fill(dphi, weight);
+        
         // grooming
+        PseudoJet jet1 = ca_wta_recluster(orig_jet1);
+        PseudoJet jet2 = ca_wta_recluster(orig_jet2);
+
         PseudoJet mmdt_jet1 = (*mmdt)(jet1);
         PseudoJet mmdt_jet2 = (*mmdt)(jet2);
 
@@ -179,9 +198,10 @@ namespace Rivet {
   private:
     vector<pair_double> _kappa_betas;
     vector<HistogramHolder> _gas;
+    vector<Histo1DPtr> h_delta_phi_dijet;
     
+    Recluster ca_wta_recluster;
     SharedPtr<contrib::ModifiedMassDropTagger> mmdt;
-
 
     void compute_and_record(const PseudoJet &jet, double R, unsigned int offset, double weight){
       unsigned int ngas = _kappa_betas.size();

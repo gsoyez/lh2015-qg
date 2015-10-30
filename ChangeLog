@@ -1,7 +1,29 @@
 2015-10-30  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_Zjet.cc:
-	fixed a few compilation bugs in the previous (untested) code
+	* MC_LHQG_dijet.cc:
+	used E-scheme for the initial clustering. Then re-clustered the
+	jet with C/A and the WTA scheme to (i) compute the angularities
+	and (ii) apply mMDT
+
+	* produce-Qdependence-avg.py:         *** ADDED ***
+	* produce-Rdependence-avg.py:         *** ADDED ***
+	* post-process.sh:
+	added a series of plots with the average of the quark and gluon
+	distributions (for the three IRC-safe angulairties)
+
+	* MC_LHQG_dijet.cc:
+	restricted the acceptance for particles to -2.5 .. 2.5
+	imposed a max rapidity difference of 1 between the 2 jets
+	histogrammed the depta phi between the 2 jets as a cross-check
+
+	* README.md:
+	fixed the command-line to build the Rivet plugin + added a note
+	abbout the link to fastjet-contrib.
+
+	* MC_LHQG_Zjet.cc:
+	- added a max rapidity difference between the jet and the Z boson
+	- fixed a few compilation bugs in the previous (untested) code
 
 	* README.md:
 	small tweaks to the workflow

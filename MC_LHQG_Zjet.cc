@@ -10,6 +10,7 @@
 
 #include "fastjet/JetDefinition.hh"
 #include "fastjet/ClusterSequence.hh"
+#include "fastjet/tools/Recluster.hh"
 #include "fastjet/contrib/ModifiedMassDropTagger.hh"
 using namespace fastjet;
 
@@ -43,6 +44,7 @@ namespace Rivet {
     /// parameters
     const double BOSON_PTMIN;        ///< minimal boson pt
     const double JET_PTMIN_FRACTION; ///< min value of jet_pt/boson_pt
+    const double DELTA_RAP_MAX_ZJET; ///< max rapidity difference between Z and jet
     const double LOG_SCALE_MAX;      ///< max value of for the log binning (abs)
     const unsigned int nRADII;       ///< number of radii under consideration
     const double DELTA_RADII;        ///< radius step size
@@ -53,6 +55,7 @@ namespace Rivet {
       : Analysis("MC_LHQG_Zjet"),
         BOSON_PTMIN(100.0),
         JET_PTMIN_FRACTION(0.6),
+        DELTA_RAP_MAX_ZJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),
         DELTA_RADII(0.2)
@@ -75,9 +78,11 @@ namespace Rivet {
       addProjection(jet_input, "JET_INPUT");
 
       // mMDT
+      ca_wta_recluster = Recluster(JetDefinition(cambridge_algorithm, JetDefinition::max_allowable_R, WTA_pt_scheme),
+                                   false, Recluster::keep_only_hardest);
       mmdt.reset(new contrib::ModifiedMassDropTagger(0.1));
       mmdt->set_grooming_mode();
-      mmdt->set_reclustering(true);
+      mmdt->set_reclustering(false); // we'll recluster ourselves with C/A and the WTA axis
 
       // shape parameter definitions
       _kappa_betas.push_back(pair_double(0.0, 0.0));
@@ -152,17 +157,23 @@ namespace Rivet {
         //
         // we'll keep jets above a certain fraction of the total energy 
         double R=DELTA_RADII*(iR+1);
-        JetDefinition jet_def(antikt_algorithm, R, WTA_pt_scheme);
+        JetDefinition jet_def(antikt_algorithm, R);
         vector<PseudoJet> jets = SelectorPtMin(ptmin_jet)(jet_def(particles));
       
         if(!jets.size()) continue;
 
         // select only the hardest jet
-        PseudoJet jet = (SelectorNHardest(1)(jets))[0];
+        PseudoJet orig_jet = (SelectorNHardest(1)(jets))[0];
+
+        // require that the jet is within 1 unit in rapidity of the Z boson
+        if (std::abs(zmom.rap()-orig_jet.rap())<DELTA_RAP_MAX_ZJET) continue;
+
+        // recluster the jet to get a broadening-free axis and apply grooming
+        PseudoJet jet = ca_wta_recluster(orig_jet);
         PseudoJet mmdt_jet = (*mmdt)(jet);
 
         // control plot: deltaphi with the Z boson
-        double dphi = abs(jet.delta_phi_to(zmom));
+        double dphi = std::abs(jet.delta_phi_to(zmom));
         h_delta_phi_Zjet[iR]->fill(dphi, weight);
         
         // now compute the angularities for the plain and groomed jets
@@ -185,9 +196,9 @@ namespace Rivet {
   private:
     vector<pair_double> _kappa_betas;
     vector<HistogramHolder> _gas;
-
     vector<Histo1DPtr> h_delta_phi_Zjet;
-    
+
+    Recluster ca_wta_recluster;
     SharedPtr<contrib::ModifiedMassDropTagger> mmdt;
 
 
