@@ -336,6 +336,7 @@ message "Plots of the alphas, Q and R modulation for individual generators at 20
 for level in hadron parton; do
     message "... $level"
     i_input=""
+    a_input=""
     for gen in $generators; do
         message "... $gen"
         ./produce-alphadependence-data.py $gen $level modulations/alphadep-$gen-$level.yoda
@@ -352,6 +353,17 @@ for level in hadron parton; do
         if [ -f modulations/Qdep-$gen-$level.yoda ]; then
             i_input="$i_input modulations/Qdep-$gen-$level.yoda:$gen"
         fi
+
+        ./produce-Rdependence-avg.py $gen $level  modulations/avg-Rdep-$gen-$level.yoda
+        if [ -f modulations/avg-Rdep-$gen-$level.yoda ]; then
+            a_input="$a_input modulations/avg-Rdep-$gen-$level.yoda:$gen"
+        fi
+
+        ./produce-Qdependence-avg.py $gen $level modulations/avg-Qdep-$gen-$level.yoda
+        if [ -f modulations/avg-Qdep-$gen-$level.yoda ]; then
+            a_input="$a_input modulations/avg-Qdep-$gen-$level.yoda:$gen"
+        fi
+
     done
     # safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
 
@@ -375,7 +387,10 @@ for level in hadron parton; do
     message "... Plot everything"
     message "... input: $i_input"
     # safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
-    safe-rivet-mkhtml -o plots/modulations-${level} -c style-modulations-tmp.plot $i_input -t R=0.6,_default_Q=200_GeV
+    safe-rivet-mkhtml -o plots/modulations-${level} -c style-modulations-tmp.plot $i_input -t default_R=0.6,_default_Q=200_GeV
+    message "... avg  : $a_input"
+    # safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
+    safe-rivet-mkhtml -o plots/averages-${level} -c style-modulations-tmp.plot $a_input -t default_R=0.6,_default_Q=200_GeV
 
 done
 
@@ -398,6 +413,9 @@ cat >> $web_global <<EOF
 <tr><td>variations </td>
     <td><a target="_blank" href="modulations-hadron/index.html">hadron</a></td>
     <td><a target="_blank" href="modulations-parton/index.html">parton</a></td></tr>
+<tr><td>Averages   </td>
+    <td><a target="_blank" href="averages-hadron/index.html">hadron</a></td>
+    <td><a target="_blank" href="averages-parton/index.html">parton</a></td></tr>
 </table>
 </body>
 </html>

@@ -46,7 +46,7 @@ YMin=0
 YMax=0.301
 # END PLOT
 
-# BEGIN PLOT /Qdependence/I
+# BEGIN PLOT /Rdependence/I
 YLabel=separation: $I_{1/2}$
 YMin=0
 YMax=0.301
@@ -166,3 +166,20 @@ YMin=0.6
 YMax=0.801
 # END PLOT
 
+
+
+# BEGIN PLOT /Qdependence/uu
+YLabel=separation: mean, quark
+# END PLOT
+
+# BEGIN PLOT /Rdependence/uu
+YLabel=separation: mean, quark
+# END PLOT
+
+# BEGIN PLOT /Qdependence/gg
+YLabel=separation: mean, gluon
+# END PLOT
+
+# BEGIN PLOT /Rdependence/gg
+YLabel=separation: mean, gluon
+# END PLOT
