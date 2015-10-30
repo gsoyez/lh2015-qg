@@ -169,7 +169,9 @@ If you only want to process yoda files, you can skip steps 2 and 4.
      source ${rivet_path}/rivetenv.(c)sh
 
 2. build the analysis using
-     rivet-buildplugin RivetMC_LHQG.so MC_LHQG_dijet.cc MC_LHQG_Zjet.cc MC_LHQG_EE.cc
+     rivet-buildplugin RivetMC_LHQG.so MC_LHQG_dijet.cc MC_LHQG_Zjet.cc MC_LHQG_EE.cc \
+       -L<path_to_fastjet> -lfastjetcontribfragile
+   (See note below)
 
 3. set the current directory in the Rivet analyses path by including . in 
    the RIVET_ANALYSIS_PATH environment variable
@@ -196,6 +198,24 @@ the file description above) and the rivet-mkhtml tool.
 
      rivet-mkhtml <list of yoda files to plot> -o directory [-c config file]
 
+
+Compilation Note:
+
+  The proton-proton analyses both use the modifiedMassDropTagger from
+  fastjet-contrib. One therefore need to instsall fastjet-contrib and
+  link against it.
+
+  Since Rivet builds shared libraries, it is advised to also install
+  fastjet-contrib as a shared library which is done by running
+  
+    make fragile-shared-install
+
+  after the regular installation in the fastjet-contrib directory.
+  An alternative is to build the static libraries with the
+  "-DPIC -fPIC" compilation flags.
+
+  If you just incluide the EE analysis in the Rivet plugin, linking
+  against fastjet-contrib is not required.
 
 Results available --- OUTDATED
 -----------------
@@ -251,26 +271,7 @@ selected jets, we compute the same angularities as for the ee study,
 this time defined in terms of pT and rapidity-phi distances.
 
 We also add a study of the same quantities computed on the jet groomed
-with teh modified MassDrop tagger (with zcut=0.1).
-
-
-Open questions: 
-
- - is that setup OK with everyone?
-
- - what rapidity acceptance do we use? [At the moment, I use +-4 but I
-   would rather suggest +-2.5 if everyone agrees]
-
- - I would tend to apply the extra requirement that the rapidity
-   difference between the 2 jets (or between the jet and the Z boson)
-   is at most 1. This selects cleaner events. Is that fine with
-   everyone?
-
- - I would tend to use the E-scheme to select the jet (since that is
-   what people use in practice) and recluster the jet constituents
-   with the WTA scheme to define the angularity axis. Anyone against
-   that option? We could event recluster the jet with the
-   Cambridge/Aachen algorithm which is already used for the mMDT.
+with the modified MassDrop tagger (with zcut=0.1).
 
 File contents
 =============
