@@ -1,3 +1,8 @@
+2015-10-30  Jesse Thaler  <jthaler@mit.edu>
+
+	* AnalyticResum/QvGAnalytics.nb
+	Adding NGL piece to calculation, corresponding yoda/pdf files updated
+
 2015-10-30  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_Zjet.cc:
