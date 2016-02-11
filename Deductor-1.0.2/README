@@ -1,0 +1,44 @@
+Deductor 1.0.2
+Two files for electron-positron annihilation at sqrt(s) = 200 GeV 
+One is for a hard process that produces just up + upbar
+The other is for a hard process that produces just two gluons
+These are both at the parton level.
+
+Deductor is a dipole shower with virtuality based ordering. It uses a color aproximation that goes beyond leading color (LC), namely the LC+ approximation. This includes some -- but certainly not all -- corrections to order 1/N_c^4. However, I find that there is no substantial difference for the observables considered between LC and LC+. Rather, differences with other parton shower algorithms presumably come from a different ordering variable, different splitting functions, and a different recoil scheme.
+
+I have added two hard processes, for e+ e- to u + ubar and e+ e- to g + g, to Deductor 1.0.2 for this study.
+
+Deductor 1.0.2 specifically is described in
+
+  Z.~Nagy and D.~E.~Soper,
+  %``Effects of subleading color in a parton shower,''
+  JHEP {\bf 1507} (2015) 119
+  doi:10.1007/JHEP07(2015)119
+  [arXiv:1501.00778 [hep-ph]].
+  %%CITATION = doi:10.1007/JHEP07(2015)119;%%
+
+The code is available at http://pages.uoregon.edu/soper/deductor/.
+
+For more information, one can consult
+
+  Z.~Nagy and D.~E.~Soper,
+  %``A parton shower based on factorization of the quantum density matrix,''
+  JHEP {\bf 1406} (2014) 097
+  doi:10.1007/JHEP06(2014)097
+  [arXiv:1401.6364 [hep-ph]].
+  %%CITATION = doi:10.1007/JHEP06(2014)097;%%
+
+  Z.~Nagy and D.~E.~Soper,
+  %``Ordering variable for parton showers,''
+  JHEP {\bf 1406} (2014) 178
+  doi:10.1007/JHEP06(2014)178
+  [arXiv:1401.6366 [hep-ph]].
+  %%CITATION = doi:10.1007/JHEP06(2014)178;%%
+
+  Z.~Nagy and D.~E.~Soper,
+  %``Parton distribution functions in the context of parton showers,''
+  JHEP {\bf 1406} (2014) 179
+  doi:10.1007/JHEP06(2014)179
+  [arXiv:1401.6368 [hep-ph]].
+  %%CITATION = doi:10.1007/JHEP06(2014)179;%%
+
