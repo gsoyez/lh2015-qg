@@ -148,8 +148,8 @@ while 1:
          *(w2q*(3.0*wg+wq)*(3.0*wg+wq)+w2g*(wg+3.0*wq)*(wg+3.0*wq)) \
          /((wq+wg)*(wq+wg)*(wq+wg)*(wq+wg)) if wq+wg>0 else 0.0
 
-        I05+=(0.5*wq*math.log(2*wq/(wq+wg))/math.log(2.0) if wq>0 else 0.0)
-        I05+=(0.5*wg*math.log(2*wg/(wq+wg))/math.log(2.0) if wg>0 else 0.0)
+        I05+=(0.5*wq*math.log(2*wq/(wq+wg))/math.log(2.0) if (wq>0 and wg+wq>0) else 0.0)
+        I05+=(0.5*wg*math.log(2*wg/(wq+wg))/math.log(2.0) if (wg>0 and wg+wq>0) else 0.0)
         # I00_prime +=(  if wq>0 else 0.0)
         # I10_prime +=(  if wq>0 else 0.0)
         # I00_second+=(  if wq>0 else 0.0)

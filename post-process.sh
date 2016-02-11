@@ -25,7 +25,7 @@ logfile=post-process.log
 date > $logfile
 
 # add Herwig later since it's not done yet:
-desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Herwig-7-dipole AnalyticResum"
+desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Herwig-7-dipole AnalyticResum Deductor-1.0.2"
 
 #----------------------------------------------------------------------
 # a helper to output both to stdout and logfile
@@ -51,7 +51,7 @@ message ""
 message "Building the list of supported generators"
 generators=""
 for gen in $desired_generators; do
-    if [ -d $gen/hadron ]; then
+    if [ -d $gen/hadron ] || [ -d $gen/parton ]; then
         generators="$generators $gen"
     fi
 done
@@ -147,9 +147,14 @@ for gen in $generators; do
         g_both_files=""
 
         # search for the quark (and common) ones
-        q_both_files="$gen/${level}/uu-200.yoda"
-        g_both_files="$gen/${level}/gg-200.yoda"
-        for fn in $gen/${level}/uu-200-*.yoda; do
+        # make sure that the baseline comes first
+        if [ -f $gen/${level}/uu-200.yoda ]; then 
+            q_both_files="$gen/${level}/uu-200.yoda"
+        fi
+        if [ -f $gen/${level}/gg-200.yoda ]; then 
+            g_both_files="$gen/${level}/gg-200.yoda"
+        fi
+        for fn in `ls $gen/${level}/uu-200-*.yoda 2>/dev/null`; do
             if [[ $fn != *"-alphasx"* ]]; then
                 gluname=${fn/uu/gg}
                 if [ -f ${gluname} ]; then
@@ -162,7 +167,7 @@ for gen in $generators; do
         done
 
         # search for the gluon-only ones
-        for fn in $gen/${level}/gg-200-*.yoda; do
+        for fn in `ls $gen/${level}/gg-200-*.yoda 2>/dev/null`; do
             if [[ $fn != *"-alphasx"* ]]; then
                 quarkname=${fn/uu/gg}
                 if [ ! -f ${quarkname} ]; then
@@ -299,14 +304,22 @@ for level in hadron parton; do
     mkdir post-process-tmpfiles/s
     mkdir post-process-tmpfiles/i
     for gen in $generators; do
-        yodacnv $gen/${level}/uu-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/u/${gen}.yoda
-        yodacnv $gen/${level}/gg-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${gen}.yoda
-        yodacnv $gen/${level}/sep-200.yoda -m "GA.*_R6" post-process-tmpfiles/s/${gen}.yoda
-        yodacnv $gen/${level}/sum-200.yoda post-process-tmpfiles/i/${gen}.yoda
-        q_input="$q_input post-process-tmpfiles/u/${gen}.yoda"
-        g_input="$g_input post-process-tmpfiles/g/${gen}.yoda "
-        s_input="$s_input post-process-tmpfiles/s/${gen}.yoda"
-        i_input="$i_input post-process-tmpfiles/i/${gen}.yoda"
+        if [ -f $gen/${level}/uu-200.yoda ]; then
+           yodacnv $gen/${level}/uu-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/u/${gen}.yoda
+           q_input="$q_input post-process-tmpfiles/u/${gen}.yoda"
+        fi
+        if [ -f $gen/${level}/gg-200.yoda ]; then
+           yodacnv $gen/${level}/gg-200.yoda  -m "GA.*_R6|/Thrust" post-process-tmpfiles/g/${gen}.yoda
+           g_input="$g_input post-process-tmpfiles/g/${gen}.yoda "
+        fi
+        if [ -f $gen/${level}/sep-200.yoda ]; then 
+           yodacnv $gen/${level}/sep-200.yoda -m "GA.*_R6" post-process-tmpfiles/s/${gen}.yoda
+           s_input="$s_input post-process-tmpfiles/s/${gen}.yoda"
+        fi
+        if [ -f $gen/${level}/sum-200.yoda ]; then
+           yodacnv $gen/${level}/sum-200.yoda post-process-tmpfiles/i/${gen}.yoda
+           i_input="$i_input post-process-tmpfiles/i/${gen}.yoda"
+        fi
     done
     message "... plot quark: $q_input"    
     message "... plot gluon: $g_input"
@@ -339,6 +352,10 @@ for level in hadron parton; do
     a_input=""
     for gen in $generators; do
         message "... $gen"
+
+        # skip if the base files are not present
+        if [ ! -f $gen/${level}/sep-200.log ]; then continue; fi
+        
         ./produce-alphadependence-data.py $gen $level modulations/alphadep-$gen-$level.yoda
         if [ -f modulations/alphadep-$gen-$level.yoda ]; then
             i_input="$i_input modulations/alphadep-$gen-$level.yoda:$gen"
