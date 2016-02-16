@@ -48,8 +48,8 @@ def read_until_matching_and_print(fin, pattern, fout):
 # repeatedly look for a "BEGIN" line
 while 1:
     # file header
-    lineq = read_until_matching(fileq, re.compile("^# BEGIN"));
-    lineg = read_until_matching(fileg, re.compile("^# BEGIN"));
+    lineq = read_until_matching(fileq, re.compile("^BEGIN|^# BEGIN"));
+    lineg = read_until_matching(fileg, re.compile("^BEGIN|^# BEGIN"));
     fileo.write(lineq);
     lineq = read_until_matching(fileq, re.compile("^Path="));
     label=lineq.replace("Path=/MC_LHQG_EE/","").rstrip("\n")
@@ -72,7 +72,7 @@ while 1:
     # histogram itself
     lineq=fileq.readline().rstrip()
     lineg=fileg.readline().rstrip()
-    pattern_end=re.compile("^# END")
+    pattern_end=re.compile("^END|^# END")
 
     # initialise the things we need to compute during the histogram browsing
     wtotq=0.0  # for cumulative calculations and overflow calculations

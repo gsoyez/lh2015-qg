@@ -30,7 +30,7 @@ for flavour in flavours:
     for observable in observables:
         separation_scatter = yoda.Scatter2D(title=observable, path="/Rdependence/"+flavour+"_"+observable)
         hnamebase="/MC_LHQG_EE/"+observable+"_R"
-        dict_all=yoda.read(gen+"/"+level+"/"+flavour+"-200.yoda", True, hnamebase)
+        dict_all=yoda.read(gen+"/"+level+"/"+flavour+"-200.yoda", True)
         for Rval in Rvalues:
             separation_scatter.addPoint(0.1*Rval, dict_all[hnamebase+str(Rval)].xMean(), xerrs=0.1)
             # add that for stddev as errorbars: , yerrs=dict_all[hnamebase+str(Rval)].xStdDev())

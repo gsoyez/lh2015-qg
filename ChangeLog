@@ -1,3 +1,12 @@
+2016-02-16  Gregory Soyez  <soyez@fastjet.fr>
+
+	* compute-efficiencies.py:
+	allowed blocks to start with BEGIN (on top of "# BEGIN")
+
+	* produce-Qdependence-avg.py:
+	* produce-Rdependence-avg.py:
+	fixed bug in computations of averages
+
 2015-10-30  Jesse Thaler  <jthaler@mit.edu>
 
 	* AnalyticResum/QvGAnalytics.nb

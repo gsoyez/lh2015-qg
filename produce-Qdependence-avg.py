@@ -30,7 +30,7 @@ for flavour in flavours:
         separation_scatter = yoda.Scatter2D(title=observable, path="/Qdependence/"+flavour+"_"+observable)
         for Q in [50,100,200,400,800]:
             hname="/MC_LHQG_EE/"+observable
-            dict_all=yoda.read(gen+"/"+level+"/"+flavour+"-"+str(Q)+".yoda", True, hname)
+            dict_all=yoda.read(gen+"/"+level+"/"+flavour+"-"+str(Q)+".yoda", True)
             Qmin=Q/math.sqrt(2.0)
             Qmax=Q*math.sqrt(2.0)
             separation_scatter.addPoint(Q, dict_all[hname].xMean(), xerrs=[Q-Qmin,Qmax-Q])
