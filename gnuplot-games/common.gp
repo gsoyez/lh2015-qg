@@ -20,17 +20,23 @@ generators(level)= (level eq "parton") \
 # set style line 4 lt 1 dt 2 lc rgb "#000000" lw 3  # Herwig
 # set style line 5 lt 1 dt 4 lc rgb "#888888" lw 3  # Deductor
 
-set style line 1 lt 1 dt 1       lc rgb "#8888ff" lw 3 ps 0.0 # Pythia
-set style line 2 lt 1 dt (12,12) lc rgb "#0000ff" lw 3 ps 0.0 # Sherpa
-set style line 3 lt 1 dt 1       lc rgb "#ff8888" lw 3 ps 0.0 # Vincia
-set style line 4 lt 1 dt (12,12) lc rgb "#ff0000" lw 3 ps 0.0 # Herwig
-set style line 5 lt 1 dt (2,4)   lc rgb "#000000" lw 3 ps 0.0 # Deductor
+# set style line 1 lt 1 dt 1       lc rgb "#8888ff" lw 3 ps 0.0 # Pythia
+# set style line 2 lt 1 dt (12,12) lc rgb "#0000ff" lw 3 ps 0.0 # Sherpa
+# set style line 3 lt 1 dt 1       lc rgb "#ff8888" lw 3 ps 0.0 # Vincia
+# set style line 4 lt 1 dt (12,12) lc rgb "#ff0000" lw 3 ps 0.0 # Herwig
+# set style line 5 lt 1 dt (2,4)   lc rgb "#000000" lw 3 ps 0.0 # Deductor
+
+set style line 1 lt 1 dt (12,12) lc rgb "#ff0000" lw 4 ps 0.0 # Pythia
+set style line 2 lt 1 dt 1       lc rgb "#ffaa66" lw 4 ps 0.0 # Sherpa
+set style line 3 lt 1 dt (12,12) lc rgb "#0000ff" lw 4 ps 0.0 # Vincia
+set style line 4 lt 1 dt 1       lc rgb "#66aaff" lw 4 ps 0.0 # Herwig
+set style line 5 lt 1 dt (2,4)   lc rgb "#000000" lw 4 ps 0.0 # Deductor
 
 set style increment user
 set bar small
 
 # make sure all the plots have a common look/ratio
-set term pdfcairo enhanced color fontscale 1 size 15cm,13cm
+set term pdfcairo enhanced color font "Palatino" fontscale 0.9 size 15cm,13cm
 
 # a dirty trick to escape "_" in gnuplot labels
 escape(label)=system('echo "'.label.'" | sed "s/_/\\\\_/g"')
