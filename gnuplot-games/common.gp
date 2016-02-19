@@ -11,7 +11,7 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 # generators
 generators(level)= (level eq "parton") \
   ? "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Deductor-1.0.2" \
-  : "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1"
+  : "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Deductor-1.0.2"
 
 # line styles
 
