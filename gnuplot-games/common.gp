@@ -10,8 +10,8 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 
 # generators
 generators(level)= (level eq "parton") \
-  ? "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Deductor-1.0.2" \
-  : "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Deductor-1.0.2"
+  ? "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Deductor-1.0.2 Ariadne" \
+  : "Pythia-8205 Sherpa-2.1.1 Vincia-1201 Herwig-2_7_1 Deductor-1.0.2 Ariadne"
 
 # line styles
 
@@ -20,8 +20,8 @@ set style line 2 lt 1 dt 1       lc rgb "#ffaa66" lw 4 ps 0.0 # Sherpa
 set style line 3 lt 1 dt (12,12) lc rgb "#0000ff" lw 4 ps 0.0 # Vincia
 set style line 4 lt 1 dt 1       lc rgb "#66aaff" lw 4 ps 0.0 # Herwig
 set style line 5 lt 1 dt (2,4)   lc rgb "#000000" lw 4 ps 0.0 # Deductor
-set style line 6 lt 1 dt (12,8,2,8)  lc rgb "#88ff00" lw 4 ps 0.0
-set style line 7 lt 1 dt (12,4,4,4,4,4) lc rgb "#00ff88" lw 4 ps 0.0
+set style line 6 lt 1 dt (12,4,4,4,4,4) lc rgb "#88ff00" lw 4 ps 0.0
+set style line 7 lt 1 dt (12,8,2,8)     lc rgb "#00ff88" lw 4 ps 0.0
 
 set style increment user
 set bar small

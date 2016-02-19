@@ -19,7 +19,7 @@ set xlabel 'observable ({/Symbol k},{/Symbol l})'
 set xrange [-0.5:7.0]
 
 # extract a given distribution from a given file
-sep(measure,generator,level,tag)=yodaget(sprintf("separation/%s",measure), '../'.generator.'/'.level.'/sum-200'.tag.'.yoda')
+sep(measure,generator,level,tag)=yodaget(sprintf("separation/%s_",measure), '../'.generator.'/'.level.'/sum-200'.tag.'.yoda')
 
 #----------------------------------------------------------------------
 # now really plot things
@@ -30,7 +30,7 @@ set key at graph 0.99,0.96
 do for [level in "parton hadron"]{
     # looop over generators
     do for [gen in generators(level)]{
-        print gen." - ".level
+        print "  ".gen." - ".level
         
         # hardcode the list of curves (allows for a cleaner title)
         if (gen eq "Pythia-8205"){
@@ -52,6 +52,10 @@ do for [level in "parton hadron"]{
         if (gen eq "Deductor-1.0.2"){
             tags='""'
             names='"baseline"'
+        }
+        if (gen eq "Ariadne"){
+            tags='"" -noswing'
+            names='"baseline" "no swing"'
         }
 
         # the following plots (loop over separation measures) all go in

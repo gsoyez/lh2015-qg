@@ -33,7 +33,8 @@ set xrange [30:9990]
 set log x
 do for [level in "parton hadron"]{
     gens=generators(level)
-
+    print "  Q - ".level
+    
     # the following plots (loop over separation measures) all go in
     # the same file
     set out 'variations-Q-'.level.'.pdf'
@@ -62,6 +63,7 @@ set xrange [0.7:1.6]
 set xtics (0.8, 0.9, 1.0, 1.1, 1.2)
 do for [level in "parton hadron"]{
     gens=generators(level)
+    print "  alphas - ".level
 
     # the following plots (loop over separation measures) all go in
     # the same file
@@ -90,6 +92,7 @@ set xrange [0.0:1.7]
 set xtics 0.2
 do for [level in "parton hadron"]{
     gens=generators(level)
+    print "  R - ".level
 
     # the following plots (loop over separation measures) all go in
     # the same file

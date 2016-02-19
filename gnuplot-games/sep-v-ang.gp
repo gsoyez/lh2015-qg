@@ -20,7 +20,7 @@ set xlabel 'observable ({/Symbol k},{/Symbol l})'
 set xrange [-0.5:7.0]
 
 # extract a given distribution from a given file
-sep(measure,generator,level)=yodaget(sprintf("separation/%s",measure), '../'.generator.'/'.level.'/sum-200.yoda')
+sep(measure,generator,level)=yodaget(sprintf("separation/%s_",measure), '../'.generator.'/'.level.'/sum-200.yoda')
 
 #----------------------------------------------------------------------
 # now really plot things
@@ -30,7 +30,8 @@ set key at graph 0.99,0.96
 # loop over parton and hadron levels
 do for [level in "parton hadron"]{
     gens=generators(level)
-
+    print "  ".level
+    
     # the following plots (loop over separation measures) all go in
     # the same file
     set out 'sep-v-ang-'.level.'.pdf'

@@ -42,6 +42,7 @@ do for [itype=1:words(types)]{
     # loop over parton and hadron levels
     do for [level in "parton hadron"]{
         gens=generators(level)
+        print "  ".type." - ".level
 
         # the following plots (loop over angularitues) all go in the
         # same file
