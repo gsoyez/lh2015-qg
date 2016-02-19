@@ -1,0 +1,166 @@
+mkdir /Ariadne5/MultiLEP
+cd /Ariadne5/MultiLEP
+create ThePEG::MultiEventGenerator MultiLEPGenerator MultiEventGenerator.so
+
+library MadGraphReader.so
+create ThePEG::LesHouchesFileReader h200
+set h200:FileName h200.lhe
+set h200:InitPDFs false
+set h200:WeightWarnings false
+set h200:PDFA /Defaults/Partons/NoPDF
+set h200:PDFB /Defaults/Partons/NoPDF
+create ThePEG::Cuts NoCuts
+set h200:Cuts NoCuts
+
+cp h200 z200
+set z200:FileName z200.lhe
+
+cp h200 h50
+set h50:FileName h50.lhe
+
+cp h200 z50
+set z50:FileName z50.lhe
+
+cp h200 h400
+set h400:FileName h400.lhe
+
+cp h200 z400
+set z400:FileName z400.lhe
+
+cp h200 h800
+set h800:FileName h800.lhe
+
+cp h200 z800
+set z800:FileName z800.lhe
+
+cp /LesHouches/LesHouchesHandler LesHouchesHandler
+set MultiLEPGenerator:EventHandler LesHouchesHandler
+set MultiLEPGenerator:RandomNumberGenerator /Ariadne5/Generators/LEP/LEPGenerator:RandomNumberGenerator
+cp  /Defaults/Random RandomArg
+set MultiLEPGenerator:SeparateRandom RandomArg
+set MultiLEPGenerator:StandardModelParameters /Ariadne5/Generators/LEP/LEPGenerator:StandardModelParameters
+set MultiLEPGenerator:Strategy /Ariadne5/StdStrategy
+set MultiLEPGenerator:DebugLevel 0
+set MultiLEPGenerator:PrintEvent 0
+
+create ThePEG::RivetAnalysis RivetLEP RivetAnalysis.so
+insert RivetLEP:Paths[0] .
+insert RivetLEP:Analyses[0] MC_LHQG_EE
+insert MultiLEPGenerator:AnalysisHandlers[0] RivetLEP
+
+set LesHouchesHandler:CascadeHandler /Ariadne5/Cascade/AriadneCascade
+set LesHouchesHandler:HadronizationHandler /Ariadne5/Defaults/Frag8
+cp /Defaults/Handlers/StandardDecayHandler DecayHandler
+set DecayHandler:MaxLifeTime 100
+set LesHouchesHandler:DecayHandler DecayHandler
+
+set /Ariadne5/Cascade/BasicConsistency:CheckGluonPT Off
+erase /Ariadne5/Cascade/Models/FSGluon:Reweighters[0]
+
+cp /Ariadne5/Cascade/AriadneCascade AriadneSwingCascade
+set AriadneSwingCascade:PurgeStrategy BeforeAndAfter
+set AriadneSwingCascade:PurgeFactor 1.0
+create Ariadne5::DipoleSwinger Swinger
+do Swinger:SetRmax -2.7
+set Swinger:SizeOpt 1
+set Swinger:Lambda 1
+set Swinger:Linear Logarithmic
+set Swinger:RhoCut -1.0
+insert AriadneSwingCascade:Emitters[0] Swinger
+
+cp LesHouchesHandler SwingHandler
+set SwingHandler:CascadeHandler AriadneSwingCascade
+
+create ThePEG::ProgressLog Logger ProgressLog.so
+set Logger:Interval 600
+insert MultiLEPGenerator:AnalysisHandlers[0] Logger
+
+cp MultiLEPGenerator MultiLEPGeneratorSw
+set MultiLEPGeneratorSw:EventHandler SwingHandler
+
+
+set MultiLEPGenerator:NumberOfEvents 10000000
+
+set /Ariadne5/Defaults/Frag8:StringZ_aLund 0.32
+set /Ariadne5/Defaults/Frag8:StringZ_bLund 0.39
+set /Ariadne5/Defaults/Frag8:StringPT_sigma 0.32
+set /Ariadne5/Defaults/Frag8:StringFlav_probQQtoQ 0.078
+set /Ariadne5/Defaults/Frag8:StringFlav_probStoUD 0.22
+
+insert LesHouchesHandler:LesHouchesReaders[0] z200
+saverun uu-200-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h200
+saverun gg-200-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] z50
+saverun uu-50-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h50
+saverun gg-50-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] z400
+saverun uu-400-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h400
+saverun gg-400-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] z800
+saverun uu-800-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h800
+saverun gg-800-noswing MultiLEPGenerator
+set LesHouchesHandler:HadronizationHandler NULL
+set LesHouchesHandler:DecayHandler NULL
+set LesHouchesHandler:LesHouchesReaders[0] z200
+saverun parton-uu-200-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h200
+saverun parton-gg-200-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] z50
+saverun parton-uu-50-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h50
+saverun parton-gg-50-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] z400
+saverun parton-uu-400-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h400
+saverun parton-gg-400-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] z800
+saverun parton-uu-800-noswing MultiLEPGenerator
+set LesHouchesHandler:LesHouchesReaders[0] h800
+saverun parton-gg-800-noswing MultiLEPGenerator
+
+set MultiLEPGeneratorSw:NumberOfEvents 10000000
+
+set /Ariadne5/Defaults/Frag8:StringZ_aLund 0.42
+set /Ariadne5/Defaults/Frag8:StringZ_bLund 0.40
+set /Ariadne5/Defaults/Frag8:StringPT_sigma 0.32
+set /Ariadne5/Defaults/Frag8:StringFlav_probQQtoQ 0.084
+set /Ariadne5/Defaults/Frag8:StringFlav_probStoUD 0.22
+
+insert SwingHandler:LesHouchesReaders[0] z200
+saverun uu-200-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h200
+saverun gg-200-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] z50
+saverun uu-50-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h50
+saverun gg-50-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] z400
+saverun uu-400-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h400
+saverun gg-400-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] z800
+saverun uu-800-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h800
+saverun gg-800-default MultiLEPGeneratorSw
+set SwingHandler:HadronizationHandler NULL
+set SwingHandler:DecayHandler NULL
+set SwingHandler:LesHouchesReaders[0] z200
+saverun parton-uu-200-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h200
+saverun parton-gg-200-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] z50
+saverun parton-uu-50-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h50
+saverun parton-gg-50-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] z400
+saverun parton-uu-400-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h400
+saverun parton-gg-400-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] z800
+saverun parton-uu-800-default MultiLEPGeneratorSw
+set SwingHandler:LesHouchesReaders[0] h800
+saverun parton-gg-800-default MultiLEPGeneratorSw
