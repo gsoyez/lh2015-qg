@@ -38,5 +38,16 @@ set bar small
 # make sure all the plots have a common look/ratio
 set term pdfcairo enhanced color font "Palatino" fontscale 0.9 size 15cm,13cm
 
+# make sure that the plotting area is the same independently on axes format
+set bmargin at screen 0.14
+set tmargin at screen 0.93
+set lmargin at screen 0.15
+set rmargin at screen 0.97
+set xlabel '' offset 0,0.4
+set title '' offset 0,-0.7
+
 # a dirty trick to escape "_" in gnuplot labels
 escape(label)=system('echo "'.label.'" | sed "s/_/\\\\_/g"')
+
+# allow to get rid of all the values which are 0
+treat_zero_as_nan(x)=(x==0) ? 1/0 : x
