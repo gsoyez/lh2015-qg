@@ -1,6 +1,5 @@
-# plot quark, gluon and separation distributions comparing the
-# generators (each page of the pdf corresponds to a different
-# generalised angularity)
+# plot the dependence of the separation as a function of several
+# physics parameters: Q, R and the alphas value
 
 call 'common.gp'
 

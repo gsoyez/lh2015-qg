@@ -1,6 +1,6 @@
-# plot quark, gluon and separation distributions comparing the
-# generators (each page of the pdf corresponds to a different
-# generalised angularity)
+# plot the separation as a function of the shape for the MC baselines
+#
+# each page of the plot corresponds to a different separation measure
 
 call 'common.gp'
 
