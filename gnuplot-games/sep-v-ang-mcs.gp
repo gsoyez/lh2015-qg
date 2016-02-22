@@ -1,5 +1,53 @@
 # same as sep-v-ang but now we plot each MonteCarlo generator
 # separately with internal variations
+#
+# Included options (full)
+#                       Py   Vi  Hw  Sh  De  Ar   ls
+#  ""         baseline  vv   vv  vv  vv  vv  vv    1          
+#  nogqq      no gqq    vv   vv  vv  vv       v    2    
+#  norec      no rec    vv   vv  vv                3
+#  nome       no ME     vv   vv                    4     
+#  njet0      njet=0                 vv            4
+#  njet1      njet=1                 vv            5
+#  CR1        CR1       vv                         5
+#  CR2        CR2       vv                         6
+#  a2L        2-loop    vv   vv                    7    
+#  muq        mu_q           vv                    5    
+#  dipole                         v                5 
+#  dipolenoCR                     v                6
+#  noswing                                   vv    3
+#
+# reduce to 6
+#                       Py   Vi  Hw  Sh  De  Ar   ls
+#  ""         baseline  vv   vv  vv  vv  vv  vv    1          
+#  nogqq      no gqq    vv   vv  vv  vv       v    2    
+#  norec      no rec    vv   vv                    3
+#  no cr      no CR              vv                3
+#  noswing                                   vv    3
+#  nome       no ME     vv   vv                    4     
+#  njet0      njet=0                 vv            4
+#  njet1      njet=1                 vv            5 (drop?)
+#  CR1        CR1       vv                         5
+#  dipole     dipole              v                4 
+#  dipolenoCR dip,no CR           v                5
+#  muq        mu_q           vv                    5    
+#  a2L        2-loop    vv   vv                    6    
+#
+# reduce to 5
+#                       Py   Vi  Hw  Sh  De  Ar   ls
+#  ""         baseline  vv   vv  vv  vv  vv  vv    1          
+#  nogqq      no gqq    vv   vv  vv  vv       v    2    
+#  no cr      no CR              vv                3
+#  noswing                                   vv    3
+#  nome       no ME     vv   vv                    3     
+#  njet0      njet=0                 vv            3
+#  njet1      njet=1                 vv            4
+#  dipole     dipole              v                4 
+#  dipolenoCR dip,no CR           v                5
+#  a2L        2-loop    vv   vv                    4    
+#  CR1        CR1       vv                         5
+#  muq        mu_q           vv                    5    
+
 
 call 'common.gp'
 
