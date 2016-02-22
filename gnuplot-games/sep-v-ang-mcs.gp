@@ -26,10 +26,16 @@ sep(measure,generator,level,tag)=yodaget(sprintf("separation/%s_",measure), '../
 
 set key at graph 0.99,0.96
 
+set label 1 '{/*0.9 Q=200 GeV}' left at graph 0.75,0.38
+set label 2 '{/*0.9 R=0.6}'     left at graph 0.75,0.32
+
 # loop over parton and hadron levels
 do for [level in "parton hadron"]{
     # looop over generators
-    do for [gen in generators(level)]{
+    gens=generators(level)
+    gtags=gentags(level)
+    do for [igen=1:words(gens)]{
+        gen=word(gens,igen)
         print "  ".gen." - ".level
         
         # hardcode the list of curves (allows for a cleaner title)
@@ -61,7 +67,7 @@ do for [level in "parton hadron"]{
         # the following plots (loop over separation measures) all go in
         # the same file
         set out 'sep-v-ang-'.gen.'-'.level.'.pdf'
-        set title level.', Q=200 GeV, R=0.6'
+        set title '{/:Bold '.word(gtags,igen).', '.level.'} {/: }'
         
         do for [imeas=1:words(measures)]{
             set ylabel 'separation: '.word(mlabs,imeas)

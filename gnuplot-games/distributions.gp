@@ -22,7 +22,7 @@ mtics ="4   4   4   5  4"
 rebins="5   5   5   1  5"
 
 # get the label associated with a shape
-lambda(kappa,beta)=sprintf("{/Symbol l}(%s,%s)", kappa, beta)
+lambda(kappa,beta)=sprintf("{/Symbol l}@^%s_%s", kappa, beta)
 extrax(kappa,beta)=(beta>0) ? '' : (kappa==0) ? ' [multiplicity]' : (kappa==2) ? ' [(p@_T^D)^2]' : ''
 
 # extract a given distribution from a given file
@@ -34,6 +34,9 @@ distrib(kappa,beta,typetag,generator,level,nreb)=yodaget(sprintf("GA_%02d_%02d_R
 set yrange [0:]
 set key at graph 0.99,0.96
 
+set label 1 '{/*0.9 Q=200 GeV}' right at graph 0.95,0.48
+set label 2 '{/*0.9 R=0.6}'     right at graph 0.95,0.42
+
 # loop over quarks, gluons and separation
 do for [itype=1:words(types)]{
     type=word(types, itype)
@@ -42,12 +45,13 @@ do for [itype=1:words(types)]{
     # loop over parton and hadron levels
     do for [level in "parton hadron"]{
         gens=generators(level)
+        gtags=gentags(level)
         print "  ".type." - ".level
 
         # the following plots (loop over angularitues) all go in the
         # same file
         set out 'distributions-'.typetag.'-'.level.'.pdf'
-        set title type.', '.level.', Q=200 GeV, R=0.6'
+        set title '{/:Bold '.type.', '.level.'} {/: }'
 
         do for [iang=1:words(kappas)]{
             kappa=word(kappas,iang)
@@ -59,7 +63,7 @@ do for [itype=1:words(types)]{
 
             set xlabel lambda(kappa,beta).extrax(kappa,beta)
             set ylabel '1/N dN/d'.lambda(kappa,beta)
-            plot for [gen in gens] distrib(kappa,beta,typetag,gen,level,nreb) u 2:4 t escape(gen) w l
+            plot for [igen=1:words(gens)] distrib(kappa,beta,typetag,word(gens,igen),level,nreb) u 2:4 t word(gtags,igen) w l
         }
     }
 }
