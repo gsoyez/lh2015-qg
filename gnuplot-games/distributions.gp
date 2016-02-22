@@ -6,8 +6,12 @@ call 'common.gp'
 
 #----------------------------------------------------------------------
 # the different types of distributions we shall plot
-types="quark gluon separation"
+types="Quark Gluon Separation"
 typetags="uu gg sep"
+
+# the different levels of distributions we shall plot
+levels="parton-level hadron-level"
+leveltags="parton hadron"
 
 # the shapes (we made sure that LHA was first, it might be more
 # convenient to keep the ordering the same as when we plot things with
@@ -22,8 +26,8 @@ mtics ="4   4   4   5  4"
 rebins="5   5   5   1  5"
 
 # get the label associated with a shape
-lambda(kappa,beta)=sprintf("{/Symbol l}@^%s_%s", kappa, beta)
-extrax(kappa,beta)=(beta>0) ? '' : (kappa==0) ? ' [multiplicity]' : (kappa==2) ? ' [(p@_T^D)^2]' : ''
+lambda(kappa,beta)=sprintf("{/Symbol l}@^{%s}_{%s}", kappa, beta)
+extrax(kappa,beta)=(beta==0.5 && kappa==1) ? ' [LHA]' : (beta>0) ? '' : (kappa==0) ? ' [multiplicity]' : (kappa==2) ? ' [(p@_T^D)^2]' : ''
 
 # extract a given distribution from a given file
 distrib(kappa,beta,typetag,generator,level,nreb)=yodaget(sprintf("GA_%02d_%02d_R6",10*kappa,10*beta), '../'.generator.'/'.level.'/'.typetag.'-200.yoda').' | ./rebin.pl -2 -rc '.nreb
@@ -43,14 +47,16 @@ do for [itype=1:words(types)]{
     typetag=word(typetags, itype)
 
     # loop over parton and hadron levels
-    do for [level in "parton hadron"]{
-        gens=generators(level)
-        gtags=gentags(level)
+    do for [jtype=1:words(levels)]{
+        level=word(levels,jtype)
+        leveltag=word(leveltags,jtype) 
+        gens=generators(leveltag)
+        gtags=gentags(leveltag)
         print "  ".type." - ".level
 
         # the following plots (loop over angularitues) all go in the
         # same file
-        set out 'distributions-'.typetag.'-'.level.'.pdf'
+        set out 'distributions-'.typetag.'-'.leveltag.'.pdf'
         set title '{/:Bold '.type.', '.level.'} {/: }'
 
         do for [iang=1:words(kappas)]{
@@ -62,8 +68,10 @@ do for [itype=1:words(types)]{
             nreb=word(rebins, iang)
 
             set xlabel lambda(kappa,beta).extrax(kappa,beta)
-            set ylabel '1/N dN/d'.lambda(kappa,beta)
-            plot for [igen=1:words(gens)] distrib(kappa,beta,typetag,word(gens,igen),level,nreb) u 2:4 t word(gtags,igen) w l
+            #set ylabel '1/N dN/d'.lambda(kappa,beta)
+            set ylabel ((itype==1) ? 'p_q('.lambda(kappa,beta).')' : (itype==2) ? 'p_g('.lambda(kappa,beta).')' : 'd{/Symbol D}\/d'.lambda(kappa,beta) )
+	
+            plot for [igen=1:words(gens)] distrib(kappa,beta,typetag,word(gens,igen),leveltag,nreb) u 2:4 t word(gtags,igen) w l
         }
     }
 }
