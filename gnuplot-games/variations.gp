@@ -87,6 +87,8 @@ set xtics (0.8, 0.9, 1.0, 1.1, 1.2)
 set label 1 '{/*0.9 Q=200 GeV}' right at graph 0.95,0.48
 set label 2 '{/*0.9 R=0.6}'     right at graph 0.95,0.42
 
+# for the alphas sweep, manually remove deductor from the list of curves
+genindices="1 2 3 4 6"
 
 do for [jtype=1:words(levels)]{
     level=word(levels,jtype)
@@ -109,7 +111,7 @@ do for [jtype=1:words(levels)]{
             set title '{/:Bold '.lambda(kappa,beta).extrax(kappa,beta).', '. level.'} {/: }'
 
             #plot for [gen in gens] sep("alpha","alphas",word(measures,imeas),kappa,beta,gen,leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t escape(gen) w xerr
-            plot for [igen=1:words(gens)] sep("alpha","alphas",word(measures,imeas),kappa,beta,word(gens,igen),leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen) w xerr
+            plot for [igen in genindices] sep("alpha","alphas",word(measures,imeas),kappa,beta,word(gens,igen+0),leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen+0) w xerr ls igen+0
         }
     }
 }
