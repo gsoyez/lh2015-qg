@@ -455,14 +455,14 @@ $\qquad$
 \label{quarkgluon_fig:settings_variation_pythia}
 \end{figure}
 
-Our $\textsc{Pythia}$ baseline is based on the Monash 2013 tune, with parameters described in Ref.~\cite{Skands:2014pea}.  In Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, we consider the following \textsc{Pythia} variations:  \jdt{We should put the plots in the same order as this.}
+Our $\textsc{Pythia}$ baseline is based on the Monash 2013 tune, with parameters described in Ref.~\cite{Skands:2014pea}.  In Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, we consider the following \textsc{Pythia} variations:
 \begin{itemize}
 \item \textsc{Pythia: no $g \to q\bar{q}$}.  While the dominant gluon splitting in the parton shower is $g \to gg$, \textsc{Pythia} also generates the subleading $g \to q \bar{q}$ splittings by default.  This variation turns off $g \to q \bar{q}$, which makes gluon jets look more gluon-like, thereby increasing the separation power.
-\item \textsc{Pythia: 2-loop $\alpha_s$}.  The default \textsc{Pythia} setting is to use 1-loop running for $\alpha_s$.  This variation turns on 2-loop running for $\alpha_s$, which has a small (beneficial) effect at parton level which is washed out at hadron level.
 \item \textsc{Pythia: no ME}.  The first emission in \textsc{Pythia} is improved by applying a matrix element correction, but this variation turns those corrections off.  This  has relatively little effect in our study, however, since there is no matrix element correction available for $h^* \to g g$.
+\item \textsc{Pythia: 2-loop $\alpha_s$}.  The default \textsc{Pythia} setting is to use 1-loop running for $\alpha_s$.  This variation turns on 2-loop running for $\alpha_s$, which has a small (beneficial) effect at parton level which is washed out at hadron level.
 \item \textsc{Pythia: CR1}.  Often, one thinks of color reconnection as being primarily important for hadron colliders, but even at a lepton collider, color reconnection will change the Lund strings used for hadronization.  This variation uses an alternative color reconnection model compared to the default \jdt{Is is alternative or just off?}.  At parton level, this variation has no effect as expected.  At hadron level, this variation considerably decreases quark/gluon separation compared to the baseline.
-\item \textsc{Pythia: CR2}.  \jdt{This variation seems to not be useful, right?  Remove?}
-\item \textsc{Pythia: no rec}.  \jdt{This setting seems to not be useful, right? Remove?}
+\item \textsc{Pythia: CR2}.  \jdt{This variation seems to not be useful, right?  I've removed it from the plot.}
+\item \textsc{Pythia: no rec}.  \jdt{This setting seems to not be useful, right?  I've removed it from the plot.}
 \end{itemize}
 The most surprising \textsc{Pythia} effect is related to color reconnection, which is also important for the \textsc{Herwig} generator described next.
 
@@ -477,18 +477,18 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{quarkgluon_fig_I2_R6_parton_herwig.pdf}
 \label{quarkgluon_fig:summary_parton_herwig}
 }
-\caption{Same as Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, but for \textsc{Herwig 2.7.1}.  \jdt{We are missing many of the Herwig variants.  What happened to them?}}
+\caption{Same as Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, but for \textsc{Herwig 2.7.1}.}
 \label{quarkgluon_fig:settings_variation_herwig}
 \end{figure}
 
 Our \textsc{Herwig} baseline uses the default settings from version 2.7.1.  In Fig.~\ref{quarkgluon_fig:settings_variation_herwig}, we consider the following  \textsc{Herwig} variations:
 \begin{itemize}
 \item \textsc{Herwig: no $g \to q\bar{q}$}.  Turning off $g \to q \bar{q}$ splittings in \textsc{Herwig} has the reverse behavior as seen in \textsc{Pythia}, leading to slightly worse discrimination power, though the effect is modest.
-\item \textsc{Herwig: no CR}.  Like \textsc{Pythia}, \textsc{Herwig} has the option to turn off color reconnections.  Unlike for \textsc{Pythia}, this variation for \textsc{Herwig} gives a rather dramatic improvement in quark/gluon discrimination power.  We think this arises since color reconnection in \textsc{Herwig} allows any color-anticolor pair to reconnect, even if they arose from an initially color octet configuration.  By turning off color reconnection, the gluons look more octet-like, explaining the improvement seen.
+\item \textsc{Herwig: no CR}.  The variation turns off color reconnections in \textsc{Herwig}.  This has no effect at parton level, as expected.  At hadron level, this variation for \textsc{Herwig} gives a rather dramatic improvement in quark/gluon discrimination power.  We think this arises since color reconnection in \textsc{Herwig} allows any color-anticolor pair to reconnect, even if they arose from an initially color octet configuration.  By turning off color reconnection, the gluons look more octet-like, explaining the improvement seen.
 %\item \textsc{Herwig: Dipole}.  The default \textsc{Herwig} shower is based on angular ordering, but this variation uses a dipole shower instead.  Since this shower is closer in spirit to \textsc{Pythia}, one expects it to yield improved quark/gluon discrimination, which it does.
 %\item \textsc{Herwig: Dipole, No CR}.  By switching to the dipole shower without color reconnections, one can make \textsc{Herwig} look rather similar to \textsc{Pythia} in terms of predicted discrimination performance.  Therefore, LHC data will be essential to understand which shower structure is closer to nature.
 \end{itemize}
-The importance of color reconnections in \textsc{Herwig} is a big surprise from this study, motivating future detailed studies into which color reconnection models are most realistic when compared to data.  In the future, we also plan to test the default angular-ordered \textsc{Herwig} shower against an alternative dipole shower.
+The importance of color reconnections in \textsc{Herwig} is a big surprise from this study, motivating future detailed studies into which color reconnection models are most realistic when compared to data.  In the future, we also plan to test the default angular-ordered \textsc{Herwig} shower against an alternative dipole shower, which will be available in \textsc{Herwig 7}.
 
 \begin{figure}
 \centering
@@ -531,10 +531,10 @@ $\qquad$
 Our \textsc{Vincia} baseline is based on the ``jeppsson5'' tune.  While \textsc{Vincia} has NLO matrix elements for $e^+ e^- \to q \bar{q}$, it does not have them for $e^+ e^- \to gg$, so we will use LO \textsc{Vincia} throughout.  In Fig.~\ref{quarkgluon_fig:settings_variation_vincia}, we consider the following \textsc{Vincia} variations:
 \begin{itemize}
 \item \textsc{Vincia:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to the expected increase in separation power as seen in \textsc{Pythia}.
-\item \textsc{Vincia: 2-loop $\alpha_s$}.  Like for \textsc{Pythia}, this variation switches from 1-loop to 2-loop $\alpha_s$ running, yielding a modest parton-level difference and almost no hadron-level difference. 
 \item \textsc{Vincia: no ME}.  By default, each $2 \to 3$ antenna in \textsc{Vincia} has an associated matrix element correction factor.  Since the antenna are already rather close to the true matrix elements, turning off these matrix elements has a modest effect on quark/gluon discrimination power.
+\item \textsc{Vincia: 2-loop $\alpha_s$}.  Like for \textsc{Pythia}, this variation switches from 1-loop to 2-loop $\alpha_s$ running, yielding a modest parton-level difference and almost no hadron-level difference. 
 \item \textsc{Vincia: alt $\mu_q$}.  By default, the $\alpha_s$ scale used in \textsc{Vincia} is determined by the transverse momentum of the corresponding antenna.  In this variation, the $\alpha_s$ scale is set to half the invariant mass of the mother antenna.  This slightly decreases the discrimination power at hadron level, but increases the discrimination power at parton level, again showing the complicated interplay of perturbative and nonperturbative effects.
-\item \textsc{Vincia: no rec}.   \jdt{This setting seems to not be useful, right? Remove?}
+\item \textsc{Vincia: no rec}.   \jdt{This setting seems to not be useful, right? I've removed it from the plot.}
 \end{itemize}
 Since \textsc{Vincia} and \textsc{Pythia} share the same underlying engine, it is not surprising that they exhibit similar behaviors as parameters are changed.  The biggest surprise is the way that changing the $\alpha_s$ scale for the antenna can lead to different trends at parton and hadron level.
 
@@ -551,16 +551,16 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{quarkgluon_fig_I2_R6_parton_ariadne.pdf}
 \label{quarkgluon_fig:summary_parton_adriadne}
 }
-\caption{Same as Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, but for \textsc{Ariadne 5.0.$\beta$}.}
+\caption{Same as Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, but for \textsc{Ariadne 5.0.$\beta$}. \jdt{Waiting on nogqq curves at parton level.}}
 \label{quarkgluon_fig:settings_variation_ariadne}
 \end{figure}
 
 Finally, our \textsc{Ariadne} baseline is based on a beta release of version 5.  In Fig.~\ref{quarkgluon_fig:settings_variation_ariadne}, we consider the following \textsc{Ariadne} variation:
 \begin{itemize}
-\item \textsc{Ariadne: no swing}.  \jdt{What is swing here?  Is it this a color reconnection feature?}
+\item \textsc{Ariadne:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to modest change in separation power, similar in magnitude to \textsc{Herwig}.
+\item \textsc{Ariadne: no swing}.  Swing refers to color reconnections performed during the perturbative cascade, where dipoles in the same color state are allowed to reconnect in a way which prefers low-mass dipoles  \cite{Flensburg:2011kk,Bierlich:2014xba}.  Turning off swing has an effect already at parton level, which is amplified at hadron level, leading to improved quark/gluon separation.
 \end{itemize}
-\jdt{If we could have $g \to q \bar{q}$ turned off for Ariadne, that would be very helpful.}
-
+Like for \textsc{Pythia} and \textsc{Herwig}, color reconnections play a surprisingly important role in \textsc{Ariadne}.
 
 \subsection{Looking Towards the LHC}
 \label{quarkgluon_sec:pp}
