@@ -13,7 +13,7 @@ generators(level)= (level eq "parton") \
   ? "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-1201 Deductor-1.0.2 Ariadne" \
   : "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-1201 Deductor-1.0.2 Ariadne"
 
-gentags(level)='"Pythia 8.2.5" "Herwig 2.7.1" "Sherpa 2.1.1" "Vincia 1.2.1" "Deductor 1.0.2" "Ariadne 5.0.{/Symbol b}"'
+gentags(level)='"Pythia {/*0.8 8.2.5}" "Herwig {/*0.8 2.7.1}" "Sherpa {/*0.8 2.1.1}" "Vincia {/*0.8 1.2.1}" "Deductor {/*0.8 1.0.2}" "Ariadne {/*0.8 5.0.{/Symbol b}}"'
 
 
 # line styles

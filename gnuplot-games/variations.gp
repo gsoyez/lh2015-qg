@@ -39,7 +39,8 @@ set key at graph 0.99,0.96
 # Q variation
 # loop over parton and hadron levels
 set xlabel 'Q [GeV]'
-set xrange [30:9990]
+set xrange [30:12000]
+set xtics (40 1,50,60 1,70 1,80 1,90 1,100,200,300 1,400 1,500,600 1,700 1,800 1,900 1,1000)
 set log x
 
 set label 1 '{/*0.9 R=0.6}'     right at graph 0.95,0.48
@@ -121,8 +122,8 @@ do for [jtype=1:words(levels)]{
 # R variation
 # loop over parton and hadron levels
 set xlabel 'R'
-set xrange [0.0:1.7]
-set xtics 0.2
+set xrange [0.0:1.8]
+set xtics 0.0,0.2,1.2
 
 set label 1 '{/*0.9 Q=200 GeV}' right at graph 0.95,0.48
 set label 2 '{/*0.9 {/Symbol a}_s={/Symbol a}_{s0}}' right at graph 0.95,0.42

@@ -54,15 +54,15 @@ call 'common.gp'
 #----------------------------------------------------------------------
 # the list of quality measures and teh associated labels
 measures="I2 I qrej20 qrej50 grej20 grej50 srej"
-mlabs='"{/Symbol D}" I_{1/2} q@_{50}^{rej} g@_{20}^{rej} g@_{50}^{rej} s^{rej}'
+mlabs='"{/Symbol D}" I_{1/2} q@_{20}^{rej} q@_{50}^{rej}  g@_{20}^{rej} g@_{50}^{rej} s^{rej}'
 
 
 # the different levels of distributions we shall plot
 levels="parton-level hadron-level"
 leveltags="parton hadron"
 
-ymins="0.0 0.0 0.85 0.75 0.85 0.75 0.6"
-ymaxs="0.45 0.3 1.00 1.00 1.00 1.00 0.8"
+ymins="0.0  0.0 0.9 0.72 0.9 0.72 0.6"
+ymaxs="0.45 0.3 1.0 1.00 1.0 1.00 0.8"
 
 # the shapes (we made sure that LHA was first, it might be more
 # convenient to keep the ordering the same as when we plot things with
