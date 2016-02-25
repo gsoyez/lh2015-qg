@@ -20,7 +20,7 @@
 
 \section{SYSTEMATICS OF QUARK/GLUON TAGGING\protect\footnote{Section coordinators: Gregory Soyez and Jesse Thaler}$^{,}$\protect\footnote{Contributing authors: Marat Freytsis, Philippe Gras, Deepak Kar, Leif L\"onnblad, Simon Pl\"atzer, Andrzej Siodmok, Peter Skands, and Davison Soper}$^{,}$\protect\footnote{Additional input: Samuel Bein, Andy Buckley, Jon Butterworth, Mario Campanelli, Andrew Larkoski, Peter Loch, Zoltan Nagy, Chris Pollard, Salvatore Rappoccio, Alexander Schmidt, Frank Tackmann, and Wouter Waalewijn}}
 
-By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined solely by the color factor of the initiating parton ($C_F$ versus $C_A$).  In this section, we confront the challenges faced when going beyond this leading-order understanding, using parton shower generators to assess the impact of higher-order perturbative and nonperturbative physics.  Working in the idealized context of electron-positron collisions, where there exists an unambiguous definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and nonperturbative hadronization effects.
+By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal limit, quark/gluon discrimination is determined solely by the color factor of the initiating parton ($C_F$ versus $C_A$).  In this section, we confront the challenges faced when going beyond this leading-order understanding, using parton shower generators to assess the impact of higher-order perturbative and nonperturbative physics.  Working in the idealized context of electron-positron collisions, where there exists an operator definition of quark and gluon jets, we find a fascinating interplay between perturbative shower effects and nonperturbative hadronization effects.
 
 \subsection{Overview}
 \label{quarkgluon_sec:overview}
@@ -29,15 +29,22 @@ Jets are a robust tool for studying short-distance collisions involving quarks a
 
 In order to achieve robust quark/gluon tagging, though, one needs theoretical and experimental control over quark/gluon radiation patterns.  At the level of eikonal partons, a quark radiates proportional to its $C_F = 4/3$ color factor while a gluon radiates proportional to $C_A = 3$.  In this section, we demonstrate that quark/gluon discrimination performance is highly sensitive to subleading perturbative effects beyond the eikonal limit, such as $g \to q \overline{q}$ splittings and color coherence, as well as to nonperturbative effects such as color reconnection and hadronization.   While these effects are modeled (to differing degrees) in parton shower generators, they are relatively unconstrained by existing collider measurements, especially in the gluon channel.  The goal of this section is to highlight these uncertainties, which then suggests a set of future LHC measurements that will improve the modeling of jets in general and quark/gluon tagging in particular.
 
-\jdt{Reworded this paragraph based on Gregory's comments.}A common misconception about quark/gluon tagging is that it is an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are fundamentally ambiguous. 
+A common misconception about quark/gluon tagging is that it is an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are fundamentally ambiguous. 
 But this is philosophically no different from the fact that a ``jet'' is fundamentally ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in Sec.~\ref{quarkgluon_sec:def}, one can indeed create a well-defined quark/gluon tagging procedure based unambiguous hadron-level measurements.  In this way, even if what one means by ``quark'' or ``gluon'' is based on a naive or ambiguous concept (like Born-level cross sections or eikonal limits), quark/gluon discrimination is still a well-defined technique for enhancing desired signals over unwanted backgrounds.
   
-There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{Larkoski:2014pca} (see also \cite{Berger:2003iw,Almeida:2008yp,Ellis:2010rwa,Larkoski:2014uqa}).  As discussed further in Sec.~\ref{quarkgluon_sec:genang}, we consider five different $(\kappa, \beta)$ working points, which roughly map onto five variables in common use in the literature:
+There are a wide range of possible quark/gluon discriminants and a similarly large range of ways to quantify discrimination power.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{Larkoski:2014pca} (see also \cite{Berger:2003iw,Almeida:2008yp,Ellis:2010rwa,Larkoski:2014uqa}),
 \begin{equation}
-\text{multiplicity}, \quad p_T^D, \quad \text{LHA}, \quad \text{width} 
-, \quad \text{mass} .
+\label{quarkgluon_eq:genang_intro}
+\lambda^{\kappa}_{\beta} = \sum_{i \in \text{jet}} z_i^\kappa \theta_i^\beta,
 \end{equation}
-\jdt{Gregory asked if we should quote the $(\kappa,\beta)$ value here.  I think here it is ok not to say it, since we define it later.} Here, multiplicity is the hadron multiplicity within the
+with the notation to be explained in Sec.~\ref{quarkgluon_sec:genang}.  We consider five different $(\kappa, \beta)$ working points, which roughly map onto five variables in common use in the literature:
+\begin{equation}
+\begin{array}{ccccc}
+(0,0) & (2,0) & (1,0.5) & (1,1) & (1,2) \\
+\text{multiplicity} &  p_T^D &  \text{LHA} & \text{width} & \text{mass}
+\end{array}
+\end{equation}
+Here, multiplicity is the hadron multiplicity within the
 jet, $p_T^D$ was defined in
 Refs.~\cite{Pandolfi:1480598,Chatrchyan:2012sn}, LHA refers to the
 ``Les Houches Angularity'' (named after the venue of this workshop),
@@ -47,12 +54,13 @@ related to jet thrust \cite{Farhi:1977sg}.  To quantify discrimination
 performance, we focus on classifier separation (a default output of
 TMVA \cite{2007physics...3039H}):
 \begin{equation}
+\label{quarkgluon_eq:deltadef_intro}
 \Delta =  \frac{1}{2} \int \text{d} \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
 \end{equation}
 where $p_q$ ($p_g$) is the probability distribution for $\lambda$ in a generated quark jet (gluon jet) sample.  This and other potential potential performance metrics are discussed in
 Sec.~\ref{quarkgluon_sec:classsep}.
 
-We begin our parton shower generator predictions for quark/gluon discrimination in Sec.~\ref{quarkgluon_sec:ee}, using an idealized setup with $e^+e^-$ collisions.  Here, we can use the following processes as unambiguous proxies for quark and gluon jets:
+We begin our parton shower generator predictions for quark/gluon discrimination in Sec.~\ref{quarkgluon_sec:ee}, using an idealized setup with $e^+e^-$ collisions.  Here, we can use the following processes as proxies for quark and gluon jets:
 \begin{align}
 \text{``quark jets''}: \quad & e^+e^- \to (\gamma/Z)^* \to u \overline{u}, \\
 \text{``gluon jets''}: \quad & e^+e^- \to h^* \to g g,
@@ -60,28 +68,26 @@ We begin our parton shower generator predictions for quark/gluon discrimination 
 where $h$ is the Higgs boson.  These processes are physically
 distinguishable by the quantum numbers of the associated color singlet
 production operator, giving a way to define truth-level quarks and
-gluons labels without reference to the final state.\footnote{\jdt{Added footnote for Gregory.}  Of course, the quantum numbers of the color singlet operator are not measurable event by event.  The idea here is to have a fundamental definition of ``quark'' and ``gluon'' that does not reference QCD partons directly.}  We
+gluons labels without reference to the final state.\footnote{Of course, the quantum numbers of the color singlet operator are not measurable event by event.  The idea here is to have a fundamental definition of ``quark'' and ``gluon'' that does not reference QCD partons directly.}  We
 compare six different parton shower generators both before
 hadronization (``parton level'') and after hadronization (``hadron
 level''):
 \begin{itemize}
-\item \textsc{Pythia 8.205} \cite{Sjostrand:2014zea},
-\item \textsc{Herwig++ 2.7.1} \cite{Bellm:2013hwb},
+\item \textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea},
+\item \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb},
 \item \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta},
 \item \textsc{Vincia 1.201} \cite{Giele:2013ema},
 \item \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}),
 \item \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}.\footnote{This version of \textsc{Ariadne} is not yet public, but available from the author on request.  For $e^+ e^-$ collisions, the physics is the same as in \textsc{Ariadne 4} \cite{Lonnblad:1992tz}.}
 \end{itemize}
-In the future, we plan to make \textsc{Dire} \cite{Hoche:2015sya} predictions about quark/gluon discrimination as well as investigate predictions from analytic resummation \cite{Larkoski:2013eya,Larkoski:2014pca}.
+In the future, we plan to make \textsc{Herwig 7} \cite{Bellm:2015jjp} and \textsc{Dire} \cite{Hoche:2015sya} predictions about quark/gluon discrimination as well as investigate predictions from analytic resummation \cite{Larkoski:2013eya,Larkoski:2014pca}.
 
 As we will see, the differences between these generators arise from
 physics at the interface between perturbative showering and
 nonperturbative fragmentation.  One might think that the largest
 differences between generators would appear for infrared-and-collinear
 (IRC) unsafe observables like multiplicity and $p_T^D$, where
-nonperturbative hadronization plays an important role. \jdt{Gregory was worried that the
-  variables are not precisely defined yet, so this might not be clear
-  for everyone.  I think it is ok to anticipate what we will say.} Surprisingly, comparably-sized differences are also
+nonperturbative hadronization plays an important role.  Surprisingly, comparably-sized differences are also
 seen for the IRC safe angularities, indicating that these generators
 have different behavior even at the level of the perturbative final
 state shower.  In Sec.~\ref{quarkgluon_sec:ee_scales}, we study these
@@ -124,7 +130,7 @@ Related statement can be made for gluon jets.
   semi-classical, this definition neglects the impact of genuinely
   quantum radiative corrections as well as nonperturbative
   hadronization.
-\item \textbf{A maximum-$p_T$ quark parton within a jet in a final state parton shower.}  \jdt{Gregory thought we should add a separate bullet for this.  I think that's fine.}  This ``max-$p_T$'' prescription is a variant on the initiating parton prescription above (see further discussion in \cite{Buckley:2015gua}).  It differs from the initiating parton by a calculable amount in a leading logarithmic shower \cite{Dasgupta:2014yra} and is based on the same (naive) assumption that the parton shower history is meaningful. 
+\item \textbf{A maximum-$p_T$ quark parton within a jet in a final state parton shower.}  This ``max-$p_T$'' prescription is a variant on the initiating parton prescription above (see further discussion in \cite{Buckley:2015gua}).  It differs from the initiating parton by a calculable amount in a leading logarithmic shower \cite{Dasgupta:2014yra} and is based on the same (naive) assumption that the parton shower history is meaningful. 
 \item \textbf{An eikonal line with baryon number 1/3 and carrying triplet color charge.}  This is another semi-classical definition that attempts to use a well-defined limit of QCD to define quarks in terms of light-like Wilson lines.  Philosophically, this is similar to the parton shower picture, with a similar concern about how to extrapolate this definition away from the strict eikonal limit.
 \item \textbf{A parton-level jet object that has been quark-tagged using an IRC safe flavored jet algorithm.}  This is the strategy adopted in \cite{Banfi:2006hf}.  While this definition neglects the impact of hadronization, it does allow for the calculation of quark jet cross sections at all perturbative orders, including quantum corrections.
 \end{itemize}
@@ -141,14 +147,13 @@ The definition we adopt for this study is inspired by the idea that one should t
   \emph{tag} a phase space region as being quark-like, rather than try
   to determine a truth definition of a quark.  This definition has the
   advantage of being explicitly tied to hadronic final states and to
-  the discriminant variables of interest.  \jdt{Gregory suggested putting the next sentence in italics.  I think that's fine.}  \emph{The main
+  the discriminant variables of interest. \emph{The main
   challenge with this definition is how to determine the criterion
   that corresponds to successful quark enrichment.}  For that, we will
   have to rely to some degree on the other less well-defined notions
   of what a quark jet is.
 \end{itemize}
 
-\jdt{These next three paragraphs were based on Dave's comments.}
 To better understand this last definition, consider a quark/gluon discriminant $\lambda$.  Since $\lambda$ can be measured on any jet, one can unambiguously determine the cross section $\text{d} \sigma / \text{d} \lambda$ for any jet sample of interest.  But measuring $\lambda$ does not directly lead to the probability $p_q(\lambda)$ that the jet is a quark jet.  Rather, the process of measuring $\lambda$ must be followed by a separate process of interpreting how the value of $\lambda$ should be used as part of an analysis.
 
 For example, the user could choose that small $\lambda$ jets should be tagged as ``quark-like'' while large $\lambda$ jets should be tagged as ``gluon-like''. Alternatively, the user might combine $\lambda$ with other discriminant variables as part of a more sophisticated classification scheme.  The key point is that one first measures hadron-level discriminant variables on a final state of interest, and only later does one interpret exactly what those discriminants accomplish (which could be different depending on this physics goals of a specific analysis).  Typically, one might use a Born-level or eikonal analysis to define which regions of phase space should be associated with ``quarks'' or ``gluons'', but even if these phase space regions are based on naive or ambiguous logic, $\lambda$ itself is a well-defined discriminant variable.
@@ -180,11 +185,11 @@ parton shower tuning.  This in turn would help $\lambda_\beta^\kappa$ become a m
 \subfloat{
 \includegraphics[scale = 0.7]{quarkgluon_fig_lambda_space.pdf}
 }
-\caption{Two-parameter family of generalized angularities, adapted from \cite{Larkoski:2014pca}.  The dots correspond to the five benchmark angularities used in this study.  The horizontal line at $\kappa = 1$ corresponds to the IRC safe angularities.}
+\caption{Two-parameter family of generalized angularities, adapted from \cite{Larkoski:2014pca}.  The dots correspond to the five benchmark angularities used in this study.  The horizontal line at $\kappa = 1$ corresponds to the IRC safe angularities, $e_\beta = \lambda^{1}_{\beta}$.}
 \label{quarkgluon_fig:lambda_space}
 \end{figure}
 
-A wide variety of quark/gluon discriminants have been proposed (see \cite{Gallicchio:2012ez} for an extensive catalog), but here we limit ourselves to a two-parameter family of generalized angularities \cite{Larkoski:2014pca}, shown in Fig.~\ref{quarkgluon_fig:lambda_space}.  These are defined as
+A wide variety of quark/gluon discriminants have been proposed (see \cite{Gallicchio:2012ez} for an extensive catalog), but here we limit ourselves to a two-parameter family of generalized angularities \cite{Larkoski:2014pca}, shown in Fig.~\ref{quarkgluon_fig:lambda_space}.  These are defined as (repeating Eq.~\eqref{quarkgluon_eq:genang_intro} for convenience)
 \begin{equation}
 \label{quarkgluon_eq:genang}
 \lambda^{\kappa}_{\beta} = \sum_{i \in \text{jet}} z_i^\kappa \theta_i^\beta,
@@ -205,11 +210,11 @@ We define
 \begin{equation}
 z_i \equiv \frac{E_i}{E_{\rm jet}}, \qquad \theta_i \equiv \frac{\Omega_{i \hat{n}}}{R},
 \end{equation}
-where $\Omega_{i \hat{n}}$ is the opening angle to the jet axis and $R$ is the jet radius (taken to be $R = 0.6$ by default).  To translate our $ee$ study to an eventual $pp$ study (left to future work), one would use the standard $pp$ version of anti-$k_t$ with $p_T$-ordered winner-take-all recombination, defining
+where $E_i$ is the particle energy, $\Omega_{i \hat{n}}$ is the opening angle to the jet axis, and $R$ is the jet radius (taken to be $R = 0.6$ by default).  To translate our $ee$ study to an eventual $pp$ study (left to future work), one would use the standard $pp$ version of anti-$k_t$ with $p_T$-ordered winner-take-all recombination, defining
 \begin{equation}
 z_i \equiv \frac{p_{Ti}}{\sum_{j \in \text{jet}} p_{Tj}}, \qquad \theta_i \equiv \frac{R_{i \hat{n}}}{R},
 \end{equation}
-where $R_{i \hat{n}}$ is the rapidity-azimuth distance to the jet axis.
+where $p_{Ti}$ is the particle transverse momentum and $R_{i \hat{n}}$ is the rapidity-azimuth distance to the jet axis.
 
 
 
@@ -238,7 +243,7 @@ where equality holds in the extreme eikonal limit.\footnote{This equality also r
 \subsection{Classifier Separation}
 \label{quarkgluon_sec:classsep}
 
-Since we will be testing many parton shower variants, we need a way to quantify quark/gluon separation power in a robust way that can easily be summarized by a single number.  For that purpose we use classifier separation,
+Since we will be testing many parton shower variants, we need a way to quantify quark/gluon separation power in a robust way that can easily be summarized by a single number.  For that purpose we use classifier separation  (repeating Eq.~\eqref{quarkgluon_eq:deltadef_intro} for convenience)
 \begin{equation}
 \label{quarkgluon_eq:deltadef}
 \Delta =  \frac{1}{2} \int \text{d} \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
@@ -251,7 +256,7 @@ An alternative way to quantify discrimination power is through mutual informatio
 \begin{equation}
 I(T; \Lambda) = \int \text{d} \lambda \left(f \, p_q(\lambda) \log_2 \frac{p_q(\lambda)}{p_{\rm tot}(\lambda)} + (1-f) \, p_g(\lambda) \log_2 \frac{p_g(\lambda)}{p_{\rm tot}(\lambda)}   \right),
 \end{equation}
-where
+where $T = \{q,g\}$ is the set of truth labels, $\Lambda = \{\lambda\}$ is the (continuous) set of discriminant values, and 
 \begin{equation}
 p_{\rm tot}(\lambda) = f \, p_q(\lambda) + (1-f) \, p_g(\lambda).
 \end{equation}
@@ -261,7 +266,7 @@ The choice $f = 1/2$ was used in Ref.~\cite{Larkoski:2014pca}, though other $f$ 
 - \frac{\log 2}{4} \frac{\partial^2 I(T;\Lambda)}{\partial f^2} \Big|_{f = \frac{1}{2}} \equiv \Delta.
 \end{equation}
 
-One advantage of $\Delta$ over $I(T;\Lambda)$ is that the integrand in Eq.~\eqref{quarkgluon_eq:deltadef} is easier to interpret, since it tracks the fractional difference between the signal and background at a given value of $\lambda$.\footnote{Another advantage of $\Delta$ over $I(T; \Lambda)$ arises when trying to assign statistical uncertainties to finite Monte Carlo samples.  Since $\Delta$ is defined as a simple integral, one can use standard error propagation to assign uncertainties to $\Delta$.  By contrast, because of the logarithms in the $I(T; \Lambda)$ integrand, one has to be careful about a potential binning bias \cite{Larkoski:2014pca}.}  Specifically, by plotting \jdt{Gregory suggested moving this equation here.  I agree.}
+One advantage of $\Delta$ over $I(T;\Lambda)$ is that the integrand in Eq.~\eqref{quarkgluon_eq:deltadef} is easier to interpret, since it tracks the fractional difference between the signal and background at a given value of $\lambda$.\footnote{Another advantage of $\Delta$ over $I(T; \Lambda)$ arises when trying to assign statistical uncertainties to finite Monte Carlo samples.  Since $\Delta$ is defined as a simple integral, one can use standard error propagation to assign uncertainties to $\Delta$.  By contrast, because of the logarithms in the $I(T; \Lambda)$ integrand, one has to be careful about a potential binning bias \cite{Larkoski:2014pca}.}  Specifically, by plotting 
 \begin{equation}
 \label{quarkgluon_eq:deltaintegrand}
 \frac{\text{d} \Delta}{\text{d} \lambda} = \frac{1}{2} \frac{\bigl(p_q(\lambda) - p_g(\lambda) \bigr)^2}{p_q(\lambda) + p_g(\lambda)},
@@ -271,9 +276,9 @@ one can easily identify which regions of phase space contribute the most to quar
 \subsection{Idealized Quark/Gluon Discrimination}
 \label{quarkgluon_sec:ee}
 
-\jdt{Reworded these next two paragraphs based on Dave's comments.}  Our parton shower studies are based on the idealized case of discriminating quark and gluon jets in $e^+ e^-$ collisions.  As we will see, this example demonstrates the importance of final state evolution for quark/gluon discrimination, separate from initial state complications arising in $pp$ collisions.  
+Our parton shower studies are based on the idealized case of discriminating quark and gluon jets in $e^+ e^-$ collisions.  As we will see, this example demonstrates the importance of final state evolution for quark/gluon discrimination, separate from initial state complications arising in $pp$ collisions.  
 
-To define the truth-level jet flavor, we use a simple definition:  a quark jet is the leading jet produced by a parton shower event generator in $e^+ e^- \to (\gamma/Z)^* \to u \bar{u}$ hard scattering, while a gluon jet is the leading jet produced in $e^+ e^- \to h^* \to gg$.  Of course, an $e^+e^- \to u \bar u$ event can become a $e^+e^- \to u \bar u g$ event after one step of shower evolution, just as $e^+e^- \to g g$ can become $e^+e^- \to g u \bar u$.  This illustrates the inescapable ambiguity in defining jet flavor.\footnote{In an $e^+e^-$ context, our definition at least respects the Lorentz structure of the production vertex, so in that sense it is a fundamental definition that does not reference (ambiguous) quark or gluon partons directly.}  There is also the ambiguity of which parton shower to use, and we investigate this ambiguity by looking at results from several event generators:  \textsc{Pythia 8.205} \cite{Sjostrand:2014zea}, \textsc{Herwig++ 2.7.1} \cite{Bellm:2013hwb}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}), and \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}.
+To define the truth-level jet flavor, we use a simple definition:  a quark jet is the leading jet produced by a parton shower event generator in $e^+ e^- \to (\gamma/Z)^* \to u \bar{u}$ hard scattering, while a gluon jet is the leading jet produced in $e^+ e^- \to h^* \to gg$.  Of course, an $e^+e^- \to u \bar u$ event can become a $e^+e^- \to u \bar u g$ event after one step of shower evolution, just as $e^+e^- \to g g$ can become $e^+e^- \to g u \bar u$.  This illustrates the inescapable ambiguity in defining jet flavor.\footnote{In an $e^+e^-$ context, our definition at least respects the Lorentz structure of the production vertex, so in that sense it is a fundamental definition that does not reference (ambiguous) quark or gluon partons directly.}  There is also the ambiguity of which parton shower to use, and we investigate this ambiguity by looking at results from several event generators:  \textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}), and \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}.
 
 \begin{figure}
 \centering
@@ -300,7 +305,7 @@ corresponding to places where the quark and gluon distributions are
 most dissimilar.  Now we see considerable differences between the
 generators, reproducing the well-known fact that \textsc{Pythia} is
 more optimistic about quark/gluon separation compared to
-\textsc{Herwig}.  The prediction discrimination power from the other four generators are intermediate between these
+\textsc{Herwig} \cite{Aad:2014gea}.  The predicted discrimination power from the other four generators are intermediate between these
 extremes.
 
 \begin{figure}
@@ -326,16 +331,16 @@ $\qquad$
 One might expect that the differences between generators are due
 simply to their having different hadronization models.  It seems,
 however, that the differences already appear at the parton level prior
-to hadronization, as shown in Fig.~\ref{quarkgluon_fig:LHA_parton}.
-The first thing one notices is that three of the
+to hadronization. We should say at the outset that it is nearly impossible to do a true apples-to-apples comparison of parton-level result, since these generators are interfaced to different hadronization models, and only the hadron-level comparison is physically meaningful.  In particular, the crossover between the perturbative and nonperturbative regions is ambiguous and each of these showers has a different effective shower cutoff scale, resulting in different amounts of radiation being generated in the showering versus hadronization steps.
+
+With that caveat in mind, we show parton-level results in Fig.~\ref{quarkgluon_fig:LHA_parton}.  One immediately notices that three of the
 generators---\textsc{Herwig}, \textsc{Sherpa}, and
 \textsc{Deductor}---yield a large population of events where the
-perturbative shower generates no emissions, giving
+perturbative shower generates no emissions.  This gives
 $\lambda_{0.5}^1 = 0$ such that non-zero values of the LHA are
 generated only by the hadronization model.  By contrast,
 \textsc{Pythia} and \textsc{Vincia} give overall larger values of the
-LHA from the perturbative shower alone.  One has to be careful drawing conclusions about this difference, though, since each of these showers has a different effective shower cutoff scale.  \jdt{We might want to say more about the shower cutoff scale.}  Since Fig.~\ref{quarkgluon_fig:LHA_hadron_quark} shows that all generators
-give similar distributions for quark jets after hadronization, we
+LHA from the perturbative shower alone.  As mentioned above, some of this difference can be explained simply by the different shower cutoff scales used in each generator, but it probably also reflects a difference in how semi-perturbative gluon splittings are treated.  Since Fig.~\ref{quarkgluon_fig:LHA_hadron_quark} shows that all generators give similar distributions for quark jets after hadronization, we
 conclude that understanding quark/gluon discrimination is a challenge
 at the interface between perturbative showering and nonperturbative
 hadronization.
@@ -371,7 +376,7 @@ Fig.~\ref{quarkgluon_fig:summary_parton_all}).  This suggests a more
 fundamental difference between the generators that is already present
 in the perturbative shower.
 
-\jdt{Added paragraph based on Gregory's comments.}  For the IRC safe angularities with $\kappa = 1$, there is a generic trend seen by all of the hadron-level generators that discrimination power decreases as $\beta$ increases.  This trend agrees with the study performed in Ref.~\cite{Larkoski:2013eya}, but disagrees with the ATLAS study in Ref.~\cite{Aad:2014gea}, which found flat (or even increasing) discrimination power with increasing $\beta$.  Understanding this $\beta$ trend will therefore be crucial for understanding quark/gluon radiation patterns.
+For the IRC safe angularities with $\kappa = 1$, there is a generic trend seen by all of the hadron-level generators that discrimination power decreases as $\beta$ increases.  This trend agrees with the study performed in Ref.~\cite{Larkoski:2013eya}, but disagrees with the ATLAS study in Ref.~\cite{Aad:2014gea}, which found flat (or even increasing) discrimination power with increasing $\beta$.  Understanding this $\beta$ trend will therefore be crucial for understanding quark/gluon radiation patterns.
 
 \subsection{Parameter Dependence}
 \label{quarkgluon_sec:ee_scales}
@@ -423,7 +428,7 @@ where $\alpha_{s0}$ is the default value of the strong coupling, which is differ
 
 The resulting values of $\Delta$ for the LHA are shown in Fig.~\ref{quarkgluon_fig:ee_sweep}, at both the hadron level and parton level.   There are number of surprising features in these plots.  Perhaps the most obvious (and seen already in Fig.~\ref{quarkgluon_fig:summary_all}) is that even for the IRC safe angularities, the effect of hadronization is rather large, both on the absolute scale of discrimination and the trends.  The main exception to that trend is \textsc{Herwig}, which does not exhibit as much of an effect from hadronization.
 
-\jdt{Rewrote next paragraphs based on Dave's comments.}  The next surprising feature is that the trends for sweeping $Q$ and sweeping $\alpha_s$ tend to disagree with next-to-leading-logarithmic (NLL) predictions.  According to the  perturbative NLL logic in Ref.~\cite{Larkoski:2013eya}, larger values of $\alpha_s$ should lead to improved discrimination power (which is seen for \textsc{Herwig} but not the other generators).  But larger values of $Q$ correspond to smaller values of $\alpha_s$, so increasing $Q$ was expected to lead to worse discrimination power (seen by none of the generators at parton level, and somewhat present for all the generators \emph{except} \textsc{Herwig} at hadron level).  A related feature is that the trend for sweeping $R$ is backwards from the logic in Ref.~\cite{Larkoski:2013eya}, where larger jet radii were expected to yield worse separation power (seen by none of the generators).
+The next surprising feature is that the trends for sweeping $Q$ and sweeping $\alpha_s$ tend to disagree with next-to-leading-logarithmic (NLL) predictions.  According to the  perturbative NLL logic in Ref.~\cite{Larkoski:2013eya}, larger values of $\alpha_s$ should lead to improved discrimination power (which is seen for \textsc{Herwig} but not the other generators).  But larger values of $Q$ correspond to smaller values of $\alpha_s$, so increasing $Q$ was expected to lead to worse discrimination power (seen by none of the generators at parton level, and somewhat present for all the generators \emph{except} \textsc{Herwig} at hadron level).  A related feature is that the trend for sweeping $R$ is backwards from the logic in Ref.~\cite{Larkoski:2013eya}, where larger jet radii were expected to yield worse separation power (seen by none of the generators).
 
 One reason to expect quark/gluon discrimination to improve as higher energies is that that phase space available for shower evolution increases as $Q$ increases.  The scale $\mu$ of the shower splitting is $\mu_0^2 < \mu^2 < Q^2$, where $\mu_0 = \mathcal{O}(\GeV)$ is the shower cutoff scale.  With more range for shower evolution at higher $Q$, there is a greater possibility to see that a quark jet is different from a gluon jet.  By contrast, the NLL logic says that quark/gluon discrimination should be dominated by the leading emission(s) in a jet, and since $\alpha_s$ is smaller at higher $Q$, those leading emissions are more similar between quarks and gluons.  Given these two different (but equally plausible) logics, this motivates experimental tests of quark/gluon separation as a function of $Q$.
 
@@ -457,13 +462,11 @@ $\qquad$
 Our $\textsc{Pythia}$ baseline is based on the Monash 2013 tune, with parameters described in Ref.~\cite{Skands:2014pea}.  In Fig.~\ref{quarkgluon_fig:settings_variation_pythia}, we consider the following \textsc{Pythia} variations:
 \begin{itemize}
 \item \textsc{Pythia: no $g \to q\bar{q}$}.  While the dominant gluon splitting in the parton shower is $g \to gg$, \textsc{Pythia} also generates the subleading $g \to q \bar{q}$ splittings by default.  This variation turns off $g \to q \bar{q}$, which makes gluon jets look more gluon-like, thereby increasing the separation power.
-\item \textsc{Pythia: no ME}.  The first emission in \textsc{Pythia} is improved by applying a matrix element correction, but this variation turns those corrections off.  This  has relatively little effect in our study, however, since there is no matrix element correction available for $h^* \to g g$.
+\item \textsc{Pythia: no ME}.  The first emission in \textsc{Pythia} is improved by applying a matrix element correction, but this variation turns those corrections off, showing the impact of non-singular terms.  This has relatively little effect in our study, however, since there is no matrix element correction available for $h^* \to g g$.
 \item \textsc{Pythia: 2-loop $\alpha_s$}.  The default \textsc{Pythia} setting is to use 1-loop running for $\alpha_s$.  This variation turns on 2-loop running for $\alpha_s$, which has a small (beneficial) effect at parton level which is washed out at hadron level.
-\item \textsc{Pythia: CR1}.  Often, one thinks of color reconnection as being primarily important for hadron colliders, but even at a lepton collider, color reconnection will change the Lund strings used for hadronization.  This variation uses an alternative color reconnection model compared to the default \jdt{Is is alternative or just off?}.  At parton level, this variation has no effect as expected.  At hadron level, this variation considerably decreases quark/gluon separation compared to the baseline.
-\item \textsc{Pythia: CR2}.  \jdt{This variation seems to not be useful, right?  I've removed it from the plot.}
-\item \textsc{Pythia: no rec}.  \jdt{This setting seems to not be useful, right?  I've removed it from the plot.}
+\item \textsc{Pythia: CR1}.  Often, one thinks of color reconnection as being primarily important for hadron colliders, but even at a lepton collider, color reconnection will change the Lund strings used for hadronization.  Compared to the baseline, this variation uses an alternative ``\text{SU}(3)''-based color reconnection model~\cite{Christiansen:2015yqa} (i.e.~\texttt{ColourReconnection:mode = 1}).  No attempts were made to retune any of the other hadronization parameters (as would normally be mandated in a tuning context), so this change simply illustrates the effect of switching this reconnection model on, with default parameters, leaving all other parameters unchanged.  At parton level, this variation has no effect as expected.  At hadron level, this variation considerably decreases quark/gluon separation compared to the baseline.
 \end{itemize}
-The most surprising \textsc{Pythia} effect is related to color reconnection, which is also important for the \textsc{Herwig} generator described next.
+The most surprising \textsc{Pythia} effect is the large potential impact of the color reconnection model, which is also important for the \textsc{Herwig} generator described next.
 
 \begin{figure}
 \centering
@@ -480,7 +483,8 @@ $\qquad$
 \label{quarkgluon_fig:settings_variation_herwig}
 \end{figure}
 
-Our \textsc{Herwig} baseline uses the default settings from version 2.7.1.  In Fig.~\ref{quarkgluon_fig:settings_variation_herwig}, we consider the following  \textsc{Herwig} variations:
+
+Our \textsc{Herwig++} baseline uses version 2.7.1, with improved modeling of underlying event~\cite{Gieseke:2012ft} and the most recent UE-EE-5-MRST tune~\cite{Seymour:2013qka}, which is able to describe the double-parton scattering cross section~\cite{Bahr:2013gkj} and underlying event data from $\sqrt{s} = 300$~GeV to $\sqrt{s} = 7$~TeV.  In Fig.~\ref{quarkgluon_fig:settings_variation_herwig}, we consider the following  \textsc{Herwig} variations:
 \begin{itemize}
 \item \textsc{Herwig: no $g \to q\bar{q}$}.  Turning off $g \to q \bar{q}$ splittings in \textsc{Herwig} has the reverse behavior as seen in \textsc{Pythia}, leading to slightly worse discrimination power, though the effect is modest.
 \item \textsc{Herwig: no CR}.  The variation turns off color reconnections in \textsc{Herwig}.  This has no effect at parton level, as expected.  At hadron level, this variation for \textsc{Herwig} gives a rather dramatic improvement in quark/gluon discrimination power.  We think this arises since color reconnection in \textsc{Herwig} allows any color-anticolor pair to reconnect, even if they arose from an initially color octet configuration.  By turning off color reconnection, the gluons look more octet-like, explaining the improvement seen.
@@ -533,7 +537,6 @@ Our \textsc{Vincia} baseline is based on the ``jeppsson5'' tune.  While \textsc{
 \item \textsc{Vincia: no ME}.  By default, each $2 \to 3$ antenna in \textsc{Vincia} has an associated matrix element correction factor.  Since the antenna are already rather close to the true matrix elements, turning off these matrix elements has a modest effect on quark/gluon discrimination power.
 \item \textsc{Vincia: 2-loop $\alpha_s$}.  Like for \textsc{Pythia}, this variation switches from 1-loop to 2-loop $\alpha_s$ running, yielding a modest parton-level difference and almost no hadron-level difference. 
 \item \textsc{Vincia: alt $\mu_q$}.  By default, the $\alpha_s$ scale used in \textsc{Vincia} is determined by the transverse momentum of the corresponding antenna.  In this variation, the $\alpha_s$ scale is set to half the invariant mass of the mother antenna.  This slightly decreases the discrimination power at hadron level, but increases the discrimination power at parton level, again showing the complicated interplay of perturbative and nonperturbative effects.
-\item \textsc{Vincia: no rec}.   \jdt{This setting seems to not be useful, right? I've removed it from the plot.}
 \end{itemize}
 Since \textsc{Vincia} and \textsc{Pythia} share the same underlying engine, it is not surprising that they exhibit similar behaviors as parameters are changed.  The biggest surprise is the way that changing the $\alpha_s$ scale for the antenna can lead to different trends at parton and hadron level.
 
@@ -588,21 +591,27 @@ Finally, we think it would be useful to perform LHC jet shape measurements after
 
 By measuring the substructure of jets, it is possible to gain information about the quark/gluon composition of a jet sample.  The challenge we have identified in this study is that the precise radiation patterns of quark and gluon jets is poorly understood, in the sense that parton shower generators give rather different predictions for absolute quark/gluon discrimination power as well as relative trends as a function of the jet kinematics.  At the moment, analytic calculations are not at a level of accuracy where they can offer a useful guide.  Therefore, LHC measurements are the best near-term strategy to constrain quark/gluon radiation patterns and enable quark/gluon discrimination to become a robust experimental tool.
 
-In terms of specific measurements that should be highest priority for ATLAS and CMS, our study has not revealed a silver bullet.  Rather, all of the generalized angularities studied here showed similar levels of disagreement between generators, so a systematic LHC study of even one observable is likely to offer crucial new information.  What is essential is to make measurements at multiple jet $p_T$ scales with multiple jet radii $R$ in multiple different jet samples.  Unfolded distributions would be most useful for parton shower tuning, but even detector-level measurements compared to detector-simulated parton showers would help spot troubling trends.  For the IRC safe angularities in particular, studying the $\beta$ dependence would help separate information about collinear and soft radiation patterns.  If possible, it would be interesting to study the LHA ($\beta = 1/2$) on archival LEP data, since this angularity probes the core of jets in a new way, distinct from broadening-like ($\beta = 1$) and thrust-like ($\beta = 2$) observables.
+In terms of specific measurements that should be highest priority for ATLAS and CMS, our study has not revealed a silver bullet.  Rather, all of the generalized angularities studied here showed similar levels of disagreement between generators, so a systematic LHC study of even one observable is likely to offer crucial new information.  What is essential is to make measurements at multiple jet $p_T$ scales with multiple jet radii $R$ in multiple different jet samples.  Unfolded distributions would be most useful for parton shower tuning, but even detector-level measurements compared to detector-simulated parton showers would help spot troubling trends.  For the IRC safe angularities in particular, studying the $\beta$ dependence would help separate information about collinear and soft radiation patterns, especially given the fact that the $\beta$ trends seen in the parton shower generators here disagree with those seen in Ref.~\cite{Aad:2014gea}.  If possible, it would be interesting to study the LHA ($\beta = 1/2$) on archival LEP data, since this angularity probes the core of jets in a new way, distinct from broadening-like ($\beta = 1$) and thrust-like ($\beta = 2$) observables. 
 
 The key lesson to parton shower authors is that, contrary to some standard lore, existing LEP measurements \emph{do not} constrain all of the relevant aspects of the final state parton shower.  While we have extensive information about quark jet radiation patterns from LEP event shapes, gluon jet radiation patterns are largely unconstrained.  This has important implications for parton shower tuning strategies, since LHC data can and should be used to adjust final state shower parameters.  For example, the ATLAS A14 tune of \textsc{Pythia} has a 10\% lower value of $\alpha_s$ in the final state shower compared to the Monash tune, which yields better agreement with charge particle multiplicity distributions \cite{Aad:2016oit}.  However, A14 has not been tested on LEP event shapes, suggesting that a global tuning strategy is needed. 
 
 Based on this study, we have identified three aspects of the final state parton shower that deserve closer scrutiny.
 \begin{itemize}
 \item \textit{Gluon splitting to quarks}.  Some of the largest differences between generators came from turning on and off the $g \to q \overline{q}$ splitting process.  While \textsc{Pythia}, \textsc{Vincia}, and \textsc{Sherpa} suggest that (unphysically) turning off $g \to q \overline{q}$ would improve quark/gluon separation, \textsc{Herwig} (and the analytic calculation in Ref.~\cite{Larkoski:2013eya}) suggests the opposite conclusion.  Beyond quark/gluon discrimination, it would be helpful to think of other contexts where $g \to q \overline{q}$ might play an important role.
-\item \textit{Color reconnection in the final state}.  Color reconnection is often thought of as an issue mainly at hadron colliders, but we have seen that it can have an impact in $e^+ e^-$ collisions as well.  This is particularly the case with the default color reconnection model in \textsc{Herwig}, since it allows the reconnection of color/anticolor lines even if they originally came from an octet configuration.
+\item \textit{Color reconnection in the final state}.  Color reconnection is often thought of as an issue mainly at hadron colliders, but we have seen that it can have an impact in $e^+ e^-$ collisions as well.  This is particularly the case with the default color reconnection model in \textsc{Herwig}, since it allows the reconnection of color/anticolor lines even if they originally came from an octet configuration.  We also saw large changes from \textsc{Pythia: CR1} and  \textsc{Ariadne: no swing}, suggesting that one should revisit color reconnection physics when tuning to LEP data.
 \item \textit{Reconsidering $\alpha_s$ defaults}:  In the context of parton shower tuning, the value of $\alpha_s$ used internally within a code need not match the world average value, since higher-order effects not captured by the shower can often be mimicked by adjusting $\alpha_s$.  That said, one has to be careful whether a value of $\alpha_s$ tuned for one process is really appropriate for another.  For example, \textsc{Pythia} uses a relatively large value of $\alpha_s$ in its final state shower, which allows it to match LEP event shape data.  The same value of $\alpha_s$, though, probably also leads to too much radiation within gluon jets.
 \end{itemize}
 Finally, we want to emphasize that despite the uncertainties currently present in parton shower generators, parton showers in particular (and QCD resummation techniques more generally) will be essential for understanding quark/gluon discrimination.  Fixed-order QCD calculations cannot reliably probe the very soft and very collinear structure of jets, which is precisely where valuable information about quark/gluon radiation patterns reside.  Given the ubiquity and value of parton shower generators, improving the understanding of quark/gluon discrimination will assist every jet study at the LHC.
 
 \subsection*{Acknowledgments}
 
-The work of LL is supported in part by the MCnetITN FP7 Marie Curie Initial Training Network, contract PITN-GA-2012-315877, and the Swedish Research Council (contracts 621-2012-2283 and 621-2013-4287).
+DK acknowledges support from the Science Faculty Research Council, University of Witwatersrand.
+%
+The work of LL, SP, and AS is supported in part by the MCnetITN FP7 Marie Curie Initial Training Network, contract PITN-GA-2012-315877.
+%
+LL is also support by the Swedish Research Council (contracts 621-2012-2283 and 621-2013-4287).
+%
+SP acknowledges support from a FP7 Marie Curie Intra European Fellowship under Grant Agreement PIEF-GA-2013-628739.
 %
 The work of DS is supported by the U.S. Department of Energy (DOE) under Grant DE-SC-0011640.
 %
