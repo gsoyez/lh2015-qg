@@ -25,6 +25,16 @@ xtics ="0.2 0.2 0.2 10 0.2"
 mtics ="4   4   4   5  4"
 rebins="5   5   5   1  5"
 
+# we also want the same yrange for the parton and hadron level
+# we'll also try the same for q and g (but different for the separation)
+# ymaxs ="6.0 12.0 25.0 0.36 6.0" 
+
+#ymaxs_uu ="6.0 12.0 25.0 0.36  6.0" 
+#ymaxs_gg ="4.5  6.0 12.0 0.3  13.0" 
+#ymaxs_sep="2.0  4.0  9.0 0.06  3.0" 
+
+ymaxs="6.0 12.0 25.0 0.36 13.0 6.0 12.0 25.0 0.36  13.0 2.0  4.0  9.0 0.06  3.0"
+
 # get the label associated with a shape
 lambda(kappa,beta)=sprintf("{/Symbol l}@^{%s}_{%s}", kappa, beta)
 extrax(kappa,beta)=(beta==0.5 && kappa==1) ? ' [LHA]' : (beta>0) ? '' : (kappa==0) ? ' [multiplicity]' : (kappa==2) ? ' [(p@_T^D)^2]' : ''
@@ -66,10 +76,10 @@ do for [itype=1:words(types)]{
             set xtics word(xtics,iang)+0.0
             set mxtics word(mtics,iang)+0
             nreb=word(rebins, iang)
-
             set xlabel lambda(kappa,beta).extrax(kappa,beta)
-            #set ylabel '1/N dN/d'.lambda(kappa,beta)
+
             set ylabel ((itype==1) ? 'p_q('.lambda(kappa,beta).')' : (itype==2) ? 'p_g('.lambda(kappa,beta).')' : 'd{/Symbol D}\/d'.lambda(kappa,beta) )
+            set yrange [0:word(ymaxs,(itype-1)*words(kappas)+iang)+0.0]
 	
             plot for [igen=1:words(gens)] distrib(kappa,beta,typetag,word(gens,igen),leveltag,nreb) u 2:4 t word(gtags,igen) w l
         }
