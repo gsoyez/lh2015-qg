@@ -57,7 +57,7 @@ TMVA \cite{2007physics...3039H}):
 \label{quarkgluon_eq:deltadef_intro}
 \Delta =  \frac{1}{2} \int \text{d} \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
 \end{equation}
-where $p_q$ ($p_g$) is the probability distribution for $\lambda$ in a generated quark jet (gluon jet) sample.  This and other potential potential performance metrics are discussed in
+where $p_q$ ($p_g$) is the probability distribution for $\lambda$ in a generated quark jet (gluon jet) sample.  This and other potential performance metrics are discussed in
 Sec.~\ref{quarkgluon_sec:classsep}.
 
 We begin our parton shower generator predictions for quark/gluon discrimination in Sec.~\ref{quarkgluon_sec:ee}, using an idealized setup with $e^+e^-$ collisions.  Here, we can use the following processes as proxies for quark and gluon jets:
@@ -77,7 +77,8 @@ level''):
 \item \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb},
 \item \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta},
 \item \textsc{Vincia 1.201} \cite{Giele:2013ema},
-\item \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}),
+\item \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}),\footnote{Note that this
+\textsc{Deductor} plus \textsc{Pythia} combination has not yet been tuned to data.}
 \item \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}.\footnote{This version of \textsc{Ariadne} is not yet public, but available from the author on request.  For $e^+ e^-$ collisions, the physics is the same as in \textsc{Ariadne 4} \cite{Lonnblad:1992tz}.}
 \end{itemize}
 In the future, we plan to make \textsc{Herwig 7} \cite{Bellm:2015jjp} and \textsc{Dire} \cite{Hoche:2015sya} predictions about quark/gluon discrimination as well as investigate predictions from analytic resummation \cite{Larkoski:2013eya,Larkoski:2014pca}.
@@ -372,9 +373,9 @@ Fig.~\ref{quarkgluon_fig:summary_hadron_all}.  While such differences
 might be expected for IRC unsafe angularities (multiplicity and
 $p_T^D$) which depend on nonperturbative modeling, these differences
 persist even for the IRC safe angularities at parton level (see
-Fig.~\ref{quarkgluon_fig:summary_parton_all}).  This suggests a more
+Fig.~\ref{quarkgluon_fig:summary_parton_all}).\footnote{It is interesting that four of the generators---\textsc{Herwig}, \textsc{Sherpa}, \textsc{Deductor}, and \textsc{Ariadne}---have a comparatively narrow spread in predicted discrimination power at parton level, though this spread increases dramatically at hadron level.}  This suggests a more
 fundamental difference between the generators that is already present
-in the perturbative shower.
+in the perturbative shower
 
 For the IRC safe angularities with $\kappa = 1$, there is a generic trend seen by all of the hadron-level generators that discrimination power decreases as $\beta$ increases.  This trend agrees with the study performed in Ref.~\cite{Larkoski:2013eya}, but disagrees with the ATLAS study in Ref.~\cite{Aad:2014gea}, which found flat (or even increasing) discrimination power with increasing $\beta$.  Understanding this $\beta$ trend will therefore be crucial for understanding quark/gluon radiation patterns.
 
@@ -491,7 +492,7 @@ Our \textsc{Herwig++} baseline uses version 2.7.1, with improved modeling of und
 %\item \textsc{Herwig: Dipole}.  The default \textsc{Herwig} shower is based on angular ordering, but this variation uses a dipole shower instead.  Since this shower is closer in spirit to \textsc{Pythia}, one expects it to yield improved quark/gluon discrimination, which it does.
 %\item \textsc{Herwig: Dipole, No CR}.  By switching to the dipole shower without color reconnections, one can make \textsc{Herwig} look rather similar to \textsc{Pythia} in terms of predicted discrimination performance.  Therefore, LHC data will be essential to understand which shower structure is closer to nature.
 \end{itemize}
-The importance of color reconnections in \textsc{Herwig} is a big surprise from this study, motivating future detailed studies into which color reconnection models are most realistic when compared to data.  In the future, we also plan to test the default angular-ordered \textsc{Herwig} shower against an alternative dipole shower, which will be available in \textsc{Herwig 7}.
+The importance of color reconnections in \textsc{Herwig} is a big surprise from this study, motivating future detailed studies into which color reconnection models are most realistic when compared to data.  In the future, we also plan to test the default angular-ordered \textsc{Herwig} shower against an alternative dipole shower \cite{Platzer:2011bc}.
 
 \begin{figure}
 \centering
@@ -591,7 +592,9 @@ Finally, we think it would be useful to perform LHC jet shape measurements after
 
 By measuring the substructure of jets, it is possible to gain information about the quark/gluon composition of a jet sample.  The challenge we have identified in this study is that the precise radiation patterns of quark and gluon jets is poorly understood, in the sense that parton shower generators give rather different predictions for absolute quark/gluon discrimination power as well as relative trends as a function of the jet kinematics.  At the moment, analytic calculations are not at a level of accuracy where they can offer a useful guide.  Therefore, LHC measurements are the best near-term strategy to constrain quark/gluon radiation patterns and enable quark/gluon discrimination to become a robust experimental tool.
 
-In terms of specific measurements that should be highest priority for ATLAS and CMS, our study has not revealed a silver bullet.  Rather, all of the generalized angularities studied here showed similar levels of disagreement between generators, so a systematic LHC study of even one observable is likely to offer crucial new information.  What is essential is to make measurements at multiple jet $p_T$ scales with multiple jet radii $R$ in multiple different jet samples.  Unfolded distributions would be most useful for parton shower tuning, but even detector-level measurements compared to detector-simulated parton showers would help spot troubling trends.  For the IRC safe angularities in particular, studying the $\beta$ dependence would help separate information about collinear and soft radiation patterns, especially given the fact that the $\beta$ trends seen in the parton shower generators here disagree with those seen in Ref.~\cite{Aad:2014gea}.  If possible, it would be interesting to study the LHA ($\beta = 1/2$) on archival LEP data, since this angularity probes the core of jets in a new way, distinct from broadening-like ($\beta = 1$) and thrust-like ($\beta = 2$) observables. 
+In terms of specific measurements that should be highest priority for ATLAS and CMS, our study has not revealed a silver bullet.  Rather, all of the generalized angularities studied here showed similar levels of disagreement between generators, so a systematic LHC study of even one observable is likely to offer crucial new information.  What is essential is to make measurements at multiple jet $p_T$ scales with multiple jet radii $R$ in multiple different jet samples.  Unfolded distributions would be most useful for parton shower tuning, but even detector-level measurements compared to detector-simulated parton showers would help spot troubling trends.  For the IRC safe angularities in particular, studying the $\beta$ dependence would help separate information about collinear and soft radiation patterns, especially given the fact that the $\beta$ trends seen in the parton shower generators here disagree with those seen in Ref.~\cite{Aad:2014gea}.
+
+If possible, it would be interesting to study the LHA ($\beta = 1/2$) on archival LEP data, since this angularity probes the core of jets in a new way, distinct from broadening-like ($\beta = 1$) and thrust-like ($\beta = 2$) observables.  Among the IRC safe angularities studied here, LHA has the best predicted discrimination power, making it (and other $0<\beta < 1$ angularities) a well-motivated target for future lepton collider measurements.
 
 The key lesson to parton shower authors is that, contrary to some standard lore, existing LEP measurements \emph{do not} constrain all of the relevant aspects of the final state parton shower.  While we have extensive information about quark jet radiation patterns from LEP event shapes, gluon jet radiation patterns are largely unconstrained.  This has important implications for parton shower tuning strategies, since LHC data can and should be used to adjust final state shower parameters.  For example, the ATLAS A14 tune of \textsc{Pythia} has a 10\% lower value of $\alpha_s$ in the final state shower compared to the Monash tune, which yields better agreement with charge particle multiplicity distributions \cite{Aad:2016oit}.  However, A14 has not been tested on LEP event shapes, suggesting that a global tuning strategy is needed. 
 
@@ -614,6 +617,8 @@ LL is also support by the Swedish Research Council (contracts 621-2012-2283 and 
 SP acknowledges support from a FP7 Marie Curie Intra European Fellowship under Grant Agreement PIEF-GA-2013-628739.
 %
 The work of DS is supported by the U.S. Department of Energy (DOE) under Grant DE-SC-0011640.
+%
+The work of GS is supported by the Paris-Saclay IDEX under the IDEOPTIMALJE grant". 
 %
 The work of JT is supported by the DOE under cooperative research agreement DE-SC-00012567, by the DOE Early Career research program DE-SC-0006389, and by a Sloan Research Fellowship from the Alfred P. Sloan Foundation.
 
