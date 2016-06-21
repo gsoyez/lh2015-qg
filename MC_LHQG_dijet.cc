@@ -53,7 +53,7 @@ namespace Rivet {
     MC_LHQG_dijet()
       : Analysis("MC_LHQG_dijet"),
         JET_AVG_PTMIN(100.0),      // avg of the two hardest has that minimum
-        JET_MIN_PT_FRACTION(0.6),  // 2nd hardest is at least 0.6 * hardest
+        JET_MIN_PT_FRACTION(0.8),  // 2nd hardest is at least 0.8 * hardest
         DELTA_RAP_MAX_DIJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),

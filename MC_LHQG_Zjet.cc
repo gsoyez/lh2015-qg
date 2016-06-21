@@ -54,7 +54,7 @@ namespace Rivet {
     MC_LHQG_Zjet()
       : Analysis("MC_LHQG_Zjet"),
         BOSON_PTMIN(100.0),
-        JET_PTMIN_FRACTION(0.6),
+        JET_PTMIN_FRACTION(0.8),
         DELTA_RAP_MAX_ZJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),
