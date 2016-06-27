@@ -28,7 +28,7 @@ cp sep-v-ang-Pythia-8205-parton.pdf  $texfigdir/fig_I2_R6_parton_pythia.pdf
 cp sep-v-ang-Sherpa-2.1.1-parton.pdf $texfigdir/fig_I2_R6_parton_sherpa.pdf
 cp sep-v-ang-Vincia-1201-parton.pdf  $texfigdir/fig_I2_R6_parton_vincia.pdf
 cp sep-v-ang-Herwig-2_7_1-parton.pdf $texfigdir/fig_I2_R6_parton_herwig.pdf
-cp sep-v-ang-Ariadne-parton.pdf      $texfigdir/fig_I2_R6_hadron_parton.pdf
+cp sep-v-ang-Ariadne-parton.pdf      $texfigdir/fig_I2_R6_parton_aridane.pdf
 cp sep-v-ang-AnalyticResum-parton.pdf      $texfigdir/fig_I2_R6_parton_analytic.pdf
 
 cp variations-Q-hadron.pdf      $texfigdir/fig_I2_GA_10_05_hadron_Qdep.pdf
