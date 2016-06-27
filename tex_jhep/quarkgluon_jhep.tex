@@ -661,7 +661,12 @@ In \Fig{fig:NPshift}, we show the size of the $e_\beta$ shift as a function of $
 \label{eq:OmegaXiValues}
 \Omega^i_0 = C_i \times 0.21~\GeV, \qquad \Xi^i_0 = C_i \times 0.34~\GeV,
 \ee
-where these values are obtained by doing a (logarithmic) fit to all of the parton shower shift values.  While the parton shower trends with $R \, E_J$ and $\beta$ roughly agree with, there is no evidence for Casimir scaling, most likely because parton showers already achieve some degree of Casimir scaling through multiple (perturbative) soft gluon emissions from the shower.  Despite this caveat, we use the extracted values from \Eq{eq:OmegaXiValues} for the distributions below, without any attempt to optimize the agreement to parton showers.  \jdt{Not sure if this is the best idea, or not.}
+where these values are obtained by doing a (logarithmic) fit to all of the parton shower shift values.  While the parton shower trends with $R \, E_J$ and $\beta$ roughly agree with, there is no evidence for Casimir scaling, most likely because parton showers already achieve some degree of Casimir scaling through multiple (perturbative) soft gluon emissions from the shower.  Despite this caveat, we use the extracted values from \Eq{eq:OmegaXiValues} for our baseline distributions below.  As an alternative, we also test a variant without Casimir scaling with
+\be
+\label{eq:OmegaXiValuesAlt}
+\Omega^i_0 = 0.40~\GeV, \qquad \Xi^i_0 = 0.64~\GeV,
+\ee
+where again these values are estimated by fitting to the parton shower $e_\beta$ shifts.
 
 \section{Idealized quark/gluon discrimination}
 \label{sec:ee}
@@ -952,12 +957,29 @@ $\qquad$
 \label{fig:settings_variation_ariadne}
 \end{figure}
 
-Finally, our \textsc{Ariadne} baseline is based on a beta release of version 5.  In \Fig{fig:settings_variation_ariadne}, we consider the following \textsc{Ariadne} variation:
+Our \textsc{Ariadne} baseline is based on a beta release of version 5.  In \Fig{fig:settings_variation_ariadne}, we consider the following \textsc{Ariadne} variation:
 \begin{itemize}
 \item \textsc{Ariadne:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to modest change in separation power, similar in magnitude to \textsc{Herwig}.
 \item \textsc{Ariadne: no swing}.  Swing refers to color reconnections performed during the perturbative cascade, where dipoles in the same color state are allowed to reconnect in a way which prefers low-mass dipoles  \cite{Flensburg:2011kk,Bierlich:2014xba}.  Turning off swing has an effect already at parton level, which is amplified at hadron level, leading to improved quark/gluon separation.
 \end{itemize}
 Like for \textsc{Pythia} and \textsc{Herwig}, color reconnections play a surprisingly important role in \textsc{Ariadne}.
+
+\begin{figure}
+\centering
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_hadron_analytic.pdf}
+\label{fig:summary_hadron_analytic}
+}
+$\qquad$
+\subfloat[]{
+\includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_parton_analytic.pdf}
+\label{fig:summary_parton_analytic}
+}
+\caption{Same as \Fig{fig:settings_variation_pythia}, but for the analytic NLL calcultion.}
+\label{fig:settings_variation_analytic}
+\end{figure}
+
+Finally in \Fig{fig:settings_variation_analytic}, \jdt{analytic here.}
 
 \subsection{Testing the shape function}
 \label{subsec:testingshape}

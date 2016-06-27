@@ -112,6 +112,11 @@ do for [jtype=1:words(levels)]{
             names='"baseline" "no g{/Symbol \256}q~q‾" "no swing"'
         }
 
+        if (gen eq "AnalyticResum"){
+            tags='"" -nogqq -noNGL -no2loop -noCas'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "no 2-loop {/Symbol a}_s" "no C_i in {/Symbol e}_0"'
+        }
+
         # the following plots (loop over separation measures) all go in
         # the same file
         set out 'sep-v-ang-'.gen.'-'.leveltag.'.pdf'
