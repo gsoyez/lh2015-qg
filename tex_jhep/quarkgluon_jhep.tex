@@ -554,7 +554,7 @@ where ${}_2F_1[a,b;c;z]$ is the hypergeometric function.\footnote{An alternative
 \be
 \Delta_{\rm QCD} \simeq  0.1286.
 \ee
-We mark this benchmark value on the subsequent plots for reference.\footnote{In large $N_c$ QCD where $C_A/C_F \to 2$, $\Delta \to \ln 3 - 1 \simeq 0.0986$, so quark/gluon separation is expected to be harder as $N_c \to \infty$}  \jdt{We don't yet, but we probably should.}  
+We mark this benchmark value on the subsequent plots for reference.\footnote{In large $N_c$ QCD where $C_A/C_F \to 2$, $\Delta \to \ln 3 - 1 \simeq 0.0986$, so quark/gluon separation is expected to be harder as $N_c \to \infty$}  \jdt{We don't yet, but we should consider it.}  
 
 Going beyond LL accuracy, Casimir scaling is typically violated, and $\Delta$ depends on the precise observable in question.  Thus, all of the differences we see in our subsequent studies are effects that are truly higher-order or nonperturbative.
 
@@ -570,7 +570,8 @@ where $R(e_\beta)$ is known as the radiator function, $\gamma_E$ is the Euler-Ma
 \label{eq:R_der}
 R'(e_\beta) = -\frac{\partial}{\partial \log e_\beta} R(e_\beta).
 \ee
-The $e^{-R(e_\beta)}$ factor in \Eq{eq:NLLcaesar} is just the Sudakov form factor, and the prefactor containing $R'(e_\beta)$ captures the effect of multiple emissions on the $e_\beta$ distribution.
+The $e^{-R(e_\beta)}$ factor in \Eq{eq:NLLcaesar} is just the Sudakov form factor, and the prefactor containing $R'(e_\beta)$ captures the effect of multiple emissions on the $e_\beta$ distribution.  
+
 
 For the IRC safe angularities, the radiator function is \cite{}
 \begin{equation} \label{eq:radiatorC1}
@@ -586,28 +587,38 @@ p_q(z) = \frac{1 + (1-z)^2}{z}, \qquad p_q(z) = 2 \frac{1-z}{z} + z(1-z) + \frac
 \ee
 where $T_R = 1/2$ and we take the number of light quark flavors to be $n_f = 5$.
 
-\jdt{Andrew actually gave me NGL information, so we should include that.}
+\jdt{I think Andrew's formula actually expands this out to only have NLL pieces.  Need to ask him to write up the details.}
+
+\jdt{Andrew actually gave me NGL information, so we should include that.  NGLs Casimir scale, though, so it shouldn't have a major impact on the discrimination power.}
 
 \subsection{Nonperturbative shape function}
 \label{subsec:shapefuncdef}
 
 The quark/gluon studies in \Refs{} used solely the distributions as calculated in \Eq{eq:NLLcaesar}.  As we will see, nonperturbative hadronization has a big effect in our parton shower studies, so we would like to include the corresponding effect in our analytic results.
 
-The IRC safe angularities are additive observables, meaning that one can decompose them into separate contributions from perturbative and nonperturbative modes:
+The IRC safe angularities are additive observables, meaning that at leading power in the small $e_\beta$ limit, one can decompose them into separate contributions from perturbative and nonperturbative modes:
 \be
 e_\beta = e_\beta^{\text{(pert)}} + e_\beta^{\text{(NP)}}.
 \ee
 One can then convolve the perturbative distributions for $e_\beta^{\text{(pert)}}$ with a nonperturbative shape function $F$ that describes the distribution of $\epsilon \equiv e_\beta^{\text{(NP)}}$:
 \be
-\frac{\df \sigma}{\df e_\beta} = \int \df \epsilon \,  \frac{\df \hat{\sigma}}{\df e_\beta}(e_\beta - \epsilon) \, F(\epsilon),
+\label{eq:naiveconvolution}
+\frac{\df \sigma}{\df e_\beta} = \int \df \epsilon \,  \hat{\sigma}(e_\beta - \epsilon) \, F(\epsilon),
 \ee
-where $\hat{\sigma}$ refers to the perturbative distribution.
-
-The shape function $F$ has to be extracted from data, but we can use a simple parametrization that accounts for some aspects of its known behavior \cite{}:
+where $\hat{\sigma} \equiv \df \hat{\sigma}/\df e_\beta$ refers to the perturbative distribution.  The shape function prescription gives sensible results in the small $e_\beta$ limit, but it breaks down at large values of $e_\beta$, since the convolution in \Eq{eq:naiveconvolution} can yield $e_\beta$ values that extend beyond the physical range.  To address this, we need to smoothly turn off the nonperturbative shift as $e_\beta$ approaches the physical endpoint $e_\beta^{\rm max}$.  There is no unique way to do this, but we find sensible results using
 \be
-F(\epsilon) = \frac{\pi \epsilon}{2 \epsilon_0^2} \exp\left[-\frac{\pi}{4} \frac{\epsilon^2}{\epsilon_0^2} \right].
+\label{eq:physicalconvolution}
+\frac{\df \sigma}{\df e_\beta} = \int \df \epsilon \,  \hat{\sigma}\Bigl(e_\beta - \epsilon + \epsilon \frac{e_\beta}{e_\beta^{\rm max}} \Bigr) \, F(\epsilon) \,  \Bigl(1 + \frac{\epsilon}{e_\beta^{\rm max}} \Bigr),
 \ee
-This function goes linearly to zero at $\epsilon \to 0$, falls exponentially as $\epsilon \to \infty$, is normalized by $\int \df \epsilon \,  F(\epsilon) = 1$, and has an expectation value $\vev{\epsilon} = \int \df \epsilon \, \epsilon \, F(\epsilon) = \epsilon_0$.  The parameter $\epsilon_0$ can be interpreted as the average shift of the perturbative distribution from nonperturbative effects.\footnote{In \Ref{}, an alternative form of $F(\epsilon) = (4\epsilon/\epsilon_0^2) e^{-2 \epsilon/\epsilon_0}$ was proposed which has the same rough features.  We find that this alternative form has a large high-side tail and gives somewhat unrealistic angularity distributions for gluons.}
+where the last factor ensures that the total cross section is unmodified \jdt{Need to check this. It comes from Jacobian after performing the perturbative integration}.  For simplicity, we take $e_\beta^{\rm max} = 1$ for all of our distributions.\footnote{\jdt{Add footnote about actual maximum value.}} 
+
+The shape function $F$ has to be extracted from data, but we can use simple parametrizations that account for some aspects of its known behavior \cite{}:
+\be
+F(\epsilon) = \frac{\pi \epsilon}{2 \epsilon_0^2} \exp\left[-\frac{\pi}{4} \frac{\epsilon^2}{\epsilon_0^2} \right], \qquad F_{\rm alt}(\epsilon) = \frac{4\epsilon}{\epsilon_0^2} \exp \left[-\frac{2 \epsilon}{\epsilon_0} \right]
+\ee
+Both of these functions go linearly to zero at $\epsilon \to 0$, fall exponentially as $\epsilon \to \infty$, are normalized by $\int \df \epsilon \,  F(\epsilon) = 1$, and have an expectation value $\vev{\epsilon} = \int \df \epsilon \, \epsilon \, F(\epsilon) = \epsilon_0$.  The parameter $\epsilon_0$ can be interpreted as the average shift of the perturbative distribution from nonperturbative effects.  The second form was used in \Ref{}, but we prefer the 
+
+%\footnote{In \Ref{}, an alternative form of $F(\epsilon) = (4\epsilon/\epsilon_0^2) e^{-2 \epsilon/\epsilon_0}$ was proposed which has the same rough features.  We find that this alternative form has a large high-side tail and gives somewhat unrealistic angularity distributions for gluons.}
 
 Following the work of \Refs{} (see also \cite{}), one can estimate $\epsilon_0$ as a function of $\beta$.  Nonperturbative modes have $k_t \simeq \Lambda_{\rm QCD}$, which implies the relationship
 \be
@@ -634,7 +645,7 @@ Comparing quarks and gluons, we expect the overall size of the nonperturbative s
 \label{eq:Xiscaling}
 \frac{\Omega_0^g}{\Omega_0^q} = \frac{\Xi_0^g}{\Xi_0^q} = \frac{C_A}{C_F}.
 \ee
-By tying $\Omega_0$ and $\Xi_0$ together, this has the effect of reducing the phase space for nonperturbative emissions from gluons, which is particularly important for $\beta < 1$.  Ideally, one would like a more rigorous justification for the assumptions in \Eq{eq:Xiscaling}.
+By tying $\Omega_0$ and $\Xi_0$ together, this has the effect of reducing the phase space for nonperturbative emissions from gluons, which is particularly important for $\beta < 1$.  Ideally, one would like a more rigorous justification for the assumptions in \Eq{eq:Xiscaling} (as well as the convolution structure in \Eq{eq:physicalconvolution}).
 
 \begin{figure}
 \centering
@@ -650,7 +661,7 @@ By tying $\Omega_0$ and $\Xi_0$ together, this has the effect of reducing the ph
 \label{fig:NPshift_20}
 \includegraphics[width = 0.32\columnwidth]{figures/npshift_20}
 }
-\caption{Nonperturbative shifts to the IRC safe angularities as a function of $R \, E_J$ for (a) $\beta = 0.5$, (b) $\beta = 1$, and (c) $\beta = 2$.  The vertical bands correspond to the range of shifts seen by turning hadronization off and on in the parton shower generators.  The dashed line corresponds to the best fit to $\Omega_0$ and $\Xi_0$, assuming the functional form for $\epsilon_0$ in \Eq{eq:epsilon0ansatz} and the assumption of Casimir scaling in \Eq{eq:Xiscaling}.  While the $R \, E_J$ trend agrees, the hadronization corrections (as implemented in the parton showers) do not appear to exhibit Casimir scaling.}
+\caption{Nonperturbative shifts to the IRC safe angularities as a function of $R \, E_J$ for (a) $\beta = 0.5$, (b) $\beta = 1$, and (c) $\beta = 2$.  The vertical bands correspond to the range of shifts seen by turning hadronization off and on in the parton shower generators.  The dashed line corresponds to the best fit to $\Omega_0$ and $\Xi_0$, assuming the functional form for $\epsilon_0$ in \Eq{eq:epsilon0ansatz} and the assumption of Casimir scaling in \Eq{eq:Xiscaling}.  While the $R \, E_J$ trend agrees, the hadronization corrections (as implemented in the parton showers) do not appear to exhibit Casimir scaling.  \jdt{Gregory recommends showing ratio as well.}}
 \label{fig:NPshift}
 \end{figure}
 

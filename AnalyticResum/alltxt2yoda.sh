@@ -1,5 +1,6 @@
 ./txt2yoda2.sh 
 ./txt2yoda2.sh -noCas
+./txt2yoda2.sh -altF
 ./txt2yoda2.sh -nogqq
 ./txt2yoda2.sh -noNGL
 ./txt2yoda2.sh -no2loop
