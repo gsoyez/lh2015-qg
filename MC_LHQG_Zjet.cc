@@ -48,7 +48,8 @@ namespace Rivet {
     const double LOG_SCALE_MAX;      ///< max value of for the log binning (abs)
     const unsigned int nRADII;       ///< number of radii under consideration
     const double DELTA_RADII;        ///< radius step size
-
+    const double PARTICLE_RAPMAX;    ///< maximal rapidity allowed for particles
+    const double JET_RAPMAX;         ///< maximal rapidity allowed for jets
     
     /// Constructor
     MC_LHQG_Zjet()
@@ -58,13 +59,15 @@ namespace Rivet {
         DELTA_RAP_MAX_ZJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),
-        DELTA_RADII(0.2)
+        DELTA_RADII(0.2),
+        PARTICLE_RAPMAX(2.5),
+        JET_RAPMAX(1.5)
     {}
     
     /// Book histograms and initialise projections before the run
     void init() {
       
-      FinalState fs(-2.5, 2.5, 0.0*GeV);
+      FinalState fs(-PARTICLE_RAPMAX, PARTICLE_RAPMAX, 0.0*GeV);
       
       // for the Z boson (-> mumu)
       Cut cut =  pT >= JET_PTMIN_FRACTION*GeV;
@@ -158,7 +161,7 @@ namespace Rivet {
         // we'll keep jets above a certain fraction of the total energy 
         double R=DELTA_RADII*(iR+1);
         JetDefinition jet_def(antikt_algorithm, R);
-        vector<PseudoJet> jets = SelectorPtMin(ptmin_jet)(jet_def(particles));
+        vector<PseudoJet> jets = (SelectorAbsRapMax(JET_RAPMAX) * SelectorPtMin(ptmin_jet))(jet_def(particles));
       
         if(!jets.size()) continue;
 
