@@ -170,11 +170,12 @@ If you only want to process yoda files, you can skip steps 2 and 4.
 
 2. build the analysis using
      rivet-buildplugin RivetMC_LHQG.so MC_LHQG_dijet.cc MC_LHQG_Zjet.cc MC_LHQG_EE.cc \
-       -L<path_to_fastjet> -lfastjetcontribfragile
+       -L<path_to_fastjet lib> -I<path_to_fastjet include> -lfastjetcontribfragile
    (See note below)
 
 3. set the current directory in the Rivet analyses path by including . in 
-   the RIVET_ANALYSIS_PATH environment variable
+   the RIVET_ANALYSIS_PATH environment variable. For pp study, also need
+   the LD_LIBRARY_PATH to point to where libfastjetcontribfragile.so is.
 
 4. Run Rivet [producing the yoda files]:
      mkfifo fifo.hepmc
