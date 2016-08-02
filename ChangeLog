@@ -1,3 +1,9 @@
+2016-08-02  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_dijet.cc:
+	* MC_LHQG_Zjet.cc:
+	normalised the delta(phi) distributions
+
 2016-06-21  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_dijet.cc:

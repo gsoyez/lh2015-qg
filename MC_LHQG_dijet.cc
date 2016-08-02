@@ -195,6 +195,9 @@ namespace Rivet {
         normalize(ho.h);
         normalize(ho.h_log);
       }
+      foreach (Histo1DPtr &hd, h_delta_phi_dijet){
+        normalize(hd);
+      }
     }
 
 
