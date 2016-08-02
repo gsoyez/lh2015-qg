@@ -41,27 +41,35 @@ namespace Rivet {
   public:
 
     /// parameters
-    const double JET_AVG_PTMIN;       ///< minimal pt for the avg of the 2 hardest jets pt
+    vector<double> JET_AVG_PTMINS;    ///< minimal pt for the avg of the 2 hardest jets pt
     const double JET_MIN_PT_FRACTION; ///< 2nd hardest needs to e at least that fraction of hardest
     const double DELTA_RAP_MAX_DIJET; ///< max rapidity difference between the two jets
     const double LOG_SCALE_MAX;       ///< max value of for the log binning (abs)
     const unsigned int nRADII;        ///< number of radii under consideration
+    const unsigned int nQs;           ///< number of scale values (Z ptmin) considered
     const double DELTA_RADII;         ///< radius step size
-    const double PARTICLE_RAPMAX;    ///< maximal rapidity allowed for particles
-    const double JET_RAPMAX;         ///< maximal rapidity allowed for jets
+    const double PARTICLE_RAPMAX;     ///< maximal rapidity allowed for particles
+    const double JET_RAPMAX;          ///< maximal rapidity allowed for jets
     
     /// Constructor
     MC_LHQG_dijet()
       : Analysis("MC_LHQG_dijet"),
-        JET_AVG_PTMIN(100.0),      // avg of the two hardest has that minimum
         JET_MIN_PT_FRACTION(0.8),  // 2nd hardest is at least 0.8 * hardest
         DELTA_RAP_MAX_DIJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),
+        nQs(5),
         DELTA_RADII(0.2),
         PARTICLE_RAPMAX(2.5),
         JET_RAPMAX(1.5)
-    {}
+    {
+      // avg of the two hardest has that minimum
+      JET_AVG_PTMINS.push_back( 50.0);
+      JET_AVG_PTMINS.push_back(100.0);
+      JET_AVG_PTMINS.push_back(200.0);
+      JET_AVG_PTMINS.push_back(400.0);
+      JET_AVG_PTMINS.push_back(800.0);
+    }
     
     /// Book histograms and initialise projections before the run
     void init() {
@@ -88,39 +96,46 @@ namespace Rivet {
       _kappa_betas.push_back(pair_double(1.0, 2.0));
       _kappa_betas.push_back(pair_double(2.0, 0.0));
 
-      // histogram bbookings
-      for (unsigned int iR=1;iR<nRADII+1; iR++){
-        double R=DELTA_RADII*iR;
-        ostringstream Rlabel;
-        Rlabel << "_R" << (int)(10*R);
-        string Rlab = Rlabel.str();
+      // histogram bookings
+      // histogram bookings
+      for (unsigned int iQ=0;iQ<nQs; ++iQ){
+        ostringstream Qlabel;
+        Qlabel << "_Q" << JET_AVG_PTMINS[iQ];
+        string Qlab = Qlabel.str();
 
-        // plain jet quantities
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_00_00"+Rlab,151,-0.5,150.5),
-                                       bookHisto1D("log_GA_00_00"+Rlab,300,0,6)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_10_05"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_10_05"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_10_10"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_10_10"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_10_20"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_10_20"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_20_00"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+        for (unsigned int iR=1;iR<nRADII+1; iR++){
+          double R=DELTA_RADII*iR;
+          ostringstream Rlabel;
+          Rlabel << "_R" << (int)(10*R);
+          string Rlab = Rlabel.str();
 
-        // mMDT quantities
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_00_00"+Rlab,151,-0.5,150.5),
-                                       bookHisto1D("log_mMDT_GA_00_00"+Rlab,300,0,6)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_05"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_10_05"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_10"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_10_10"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_20"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_10_20"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_20_00"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          // plain jet quantities
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_00_00"+Qlab+Rlab,151,-0.5,150.5),
+                                         bookHisto1D("log_GA_00_00"+Qlab+Rlab,300,0,6)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_10_05"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_10_05"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_10_10"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_10_10"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_10_20"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_10_20"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_20_00"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_20_00"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
 
-        // control plots
-        h_delta_phi_dijet.push_back(bookHisto1D("deltaphi_dijet"+Rlab, 100, 0.0, pi));
+          // mMDT quantities
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_00_00"+Qlab+Rlab,151,-0.5,150.5),
+                                         bookHisto1D("log_mMDT_GA_00_00"+Qlab+Rlab,300,0,6)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_05"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_10_05"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_10"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_10_10"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_20"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_10_20"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_20_00"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_20_00"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+
+          // control plots
+          h_delta_phi_dijet.push_back(bookHisto1D("deltaphi_dijet"+Qlab+Rlab, 100, 0.0, pi));
+        }
       }
     }
 
@@ -138,12 +153,10 @@ namespace Rivet {
         particles.push_back(p.pseudojet());
       }
 
-      unsigned int ngas = _kappa_betas.size();
-
       // min jet pt: pt1+pt2=2*avg and pt2=frac*pt1
       //             => (1+1/frac) pt2 = 2 avg
       //             => pt2 = 2frac/(1+frac) avg
-      double ptmin_jet = 2*JET_MIN_PT_FRACTION/(1+JET_MIN_PT_FRACTION)*JET_AVG_PTMIN;       
+      double ptmin_jet = 2*JET_MIN_PT_FRACTION/(1+JET_MIN_PT_FRACTION)*JET_AVG_PTMINS[0]; 
       
       // loop over jet radii
       for (unsigned int iR=0;iR<nRADII; iR++){
@@ -161,15 +174,20 @@ namespace Rivet {
         PseudoJet orig_jet1 = jets[0];
         PseudoJet orig_jet2 = jets[1];
 
-        if (orig_jet1.pt() + orig_jet2.pt() < 2*JET_AVG_PTMIN) continue;
+        // make sure we have something enough symmetric and close in rapidity
         if (orig_jet2.pt() / orig_jet1.pt() < JET_MIN_PT_FRACTION) continue;
-
-        // require that the jets are within 1 unit in rapidity of each other
         if (std::abs(orig_jet1.rap()-orig_jet2.rap())<DELTA_RAP_MAX_DIJET) continue;
+
+        // we need to pass the avgpt cut
+        double avgpt = 0.5*(orig_jet1.pt() + orig_jet2.pt());
+        unsigned int nQ=0;
+        while ((nQ<nQs) && (avgpt>=JET_AVG_PTMINS[nQ])) nQ++;
+        if (nQ == 0) continue;
 
         // control plot: deltaphi with the Z boson
         double dphi = std::abs(orig_jet2.delta_phi_to(orig_jet1));
-        h_delta_phi_dijet[iR]->fill(dphi, weight);
+        for (unsigned int iQ=0;iQ<nQ;++iQ)
+          h_delta_phi_dijet[iQ*nRADII+iR]->fill(dphi, weight);
         
         // grooming
         PseudoJet jet1 = ca_wta_recluster(orig_jet1);
@@ -179,11 +197,11 @@ namespace Rivet {
         PseudoJet mmdt_jet2 = (*mmdt)(jet2);
 
         // calculate shapes
-        compute_and_record(jet1,      R, ngas*(2*iR),   weight);
-        compute_and_record(mmdt_jet1, R, ngas*(2*iR+1), weight);
+        compute_and_record(jet1,      R, (2*iR),   nQ, weight);
+        compute_and_record(mmdt_jet1, R, (2*iR+1), nQ, weight);
         
-        compute_and_record(jet2,      R, ngas*(2*iR),   weight);
-        compute_and_record(mmdt_jet2, R, ngas*(2*iR+1), weight);
+        compute_and_record(jet2,      R, (2*iR),   nQ, weight);
+        compute_and_record(mmdt_jet2, R, (2*iR+1), nQ, weight);
         
       } // loop over radii
       
@@ -209,7 +227,7 @@ namespace Rivet {
     Recluster ca_wta_recluster;
     SharedPtr<contrib::ModifiedMassDropTagger> mmdt;
 
-    void compute_and_record(const PseudoJet &jet, double R, unsigned int offset, double weight){
+    void compute_and_record(const PseudoJet &jet, double R, unsigned int R_offset, unsigned int nQ, double weight){
       unsigned int ngas = _kappa_betas.size();
       vector<double> gas(ngas);
 
@@ -228,11 +246,14 @@ namespace Rivet {
       for(unsigned int i=0; i<ngas;i++){ 
         gas[i]/=(pow(jet.pt(), _kappa_betas[i].first) * pow(R, _kappa_betas[i].second));
 
-        //assert(ngas*iR+i < _gas.size());
-        _gas[offset+i].h->fill(gas[i], weight);
-        // for the log binning make sure we avoid taking log(0) and put
-        // that in the most -ve bin.
-        _gas[offset+i].h_log->fill(gas[i]>0 ? log(gas[i]) : 1e-5-LOG_SCALE_MAX, weight);
+        // loop over all ptcuts we're satisfying
+        for (unsigned int iQ=0;iQ<nQ;++iQ){
+          unsigned int offset = ngas*(iQ*2*nRADII+R_offset);
+          _gas[offset+i].h->fill(gas[i], weight);
+          // for the log binning make sure we avoid taking log(0) and put
+          // that in the most -ve bin.
+          _gas[offset+i].h_log->fill(gas[i]>0 ? log(gas[i]) : 1e-5-LOG_SCALE_MAX, weight);
+        }
       }
     }
   };

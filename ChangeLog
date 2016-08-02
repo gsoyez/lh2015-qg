@@ -2,6 +2,11 @@
 
 	* MC_LHQG_dijet.cc:
 	* MC_LHQG_Zjet.cc:
+	computed all scale (Q) values in a single go
+	NOTE: MC generators should therefore use weighted events
+
+	* MC_LHQG_dijet.cc:
+	* MC_LHQG_Zjet.cc:
 	normalised the delta(phi) distributions
 
 2016-06-21  Gregory Soyez  <soyez@fastjet.fr>

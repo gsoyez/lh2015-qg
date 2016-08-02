@@ -42,11 +42,12 @@ namespace Rivet {
   public:
 
     /// parameters
-    const double BOSON_PTMIN;        ///< minimal boson pt
+    vector<double> BOSON_PTMINS;     ///< minimal boson pt
     const double JET_PTMIN_FRACTION; ///< min value of jet_pt/boson_pt
     const double DELTA_RAP_MAX_ZJET; ///< max rapidity difference between Z and jet
     const double LOG_SCALE_MAX;      ///< max value of for the log binning (abs)
     const unsigned int nRADII;       ///< number of radii under consideration
+    const unsigned int nQs;          ///< number of scale values (Z ptmin) considered
     const double DELTA_RADII;        ///< radius step size
     const double PARTICLE_RAPMAX;    ///< maximal rapidity allowed for particles
     const double JET_RAPMAX;         ///< maximal rapidity allowed for jets
@@ -54,15 +55,21 @@ namespace Rivet {
     /// Constructor
     MC_LHQG_Zjet()
       : Analysis("MC_LHQG_Zjet"),
-        BOSON_PTMIN(100.0),
         JET_PTMIN_FRACTION(0.8),
         DELTA_RAP_MAX_ZJET(1.0),
         LOG_SCALE_MAX(15.0),
         nRADII(5),
+        nQs(5),
         DELTA_RADII(0.2),
         PARTICLE_RAPMAX(2.5),
         JET_RAPMAX(1.5)
-    {}
+    {
+      BOSON_PTMINS.push_back( 50.0);
+      BOSON_PTMINS.push_back(100.0);
+      BOSON_PTMINS.push_back(200.0);
+      BOSON_PTMINS.push_back(400.0);
+      BOSON_PTMINS.push_back(800.0);
+    }
     
     /// Book histograms and initialise projections before the run
     void init() {
@@ -70,7 +77,7 @@ namespace Rivet {
       FinalState fs(-PARTICLE_RAPMAX, PARTICLE_RAPMAX, 0.0*GeV);
       
       // for the Z boson (-> mumu)
-      Cut cut =  pT >= JET_PTMIN_FRACTION*GeV;
+      Cut cut =  pT >= BOSON_PTMINS[0]*GeV;
       ZFinder zfinder_mm_dressed(fs, cut, PID::MUON, 66.0*GeV, 116.0*GeV, 0.1, ZFinder::CLUSTERNODECAY, ZFinder::NOTRACK);
       addProjection(zfinder_mm_dressed, "ZFinder_mm_dressed");
       
@@ -95,40 +102,45 @@ namespace Rivet {
       _kappa_betas.push_back(pair_double(2.0, 0.0));
 
       // histogram bookings
-      for (unsigned int iR=1;iR<nRADII+1; iR++){
-        double R=DELTA_RADII*iR;
-        ostringstream Rlabel;
-        Rlabel << "_R" << (int)(10*R);
-        string Rlab = Rlabel.str();
+      for (unsigned int iQ=0;iQ<nQs; ++iQ){
+        ostringstream Qlabel;
+        Qlabel << "_Q" << BOSON_PTMINS[iQ];
+        string Qlab = Qlabel.str();
 
-        // plain jet quantities
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_00_00"+Rlab,151,-0.5,150.5),
-                                       bookHisto1D("log_GA_00_00"+Rlab,300,0,6)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_10_05"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_10_05"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_10_10"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_10_10"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_10_20"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_10_20"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("GA_20_00"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+        for (unsigned int iR=1;iR<nRADII+1; iR++){
+          double R=DELTA_RADII*iR;
+          ostringstream Rlabel;
+          Rlabel << "_R" << (int)(10*R);
+          string Rlab = Rlabel.str();
 
-        // mMDT quantities
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_00_00"+Rlab,151,-0.5,150.5),
-                                       bookHisto1D("log_mMDT_GA_00_00"+Rlab,300,0,6)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_05"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_10_05"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_10"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_10_10"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_20"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_10_20"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
-        _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_20_00"+Rlab, 500, 0.0, 1.0),
-                                       bookHisto1D("log_mMDT_GA_20_00"+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          // plain jet quantities
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_00_00"+Qlab+Rlab,151,-0.5,150.5),
+                                         bookHisto1D("log_GA_00_00"+Qlab+Rlab,300,0,6)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_10_05"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_10_05"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_10_10"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_10_10"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_10_20"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_10_20"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("GA_20_00"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_GA_20_00"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
 
-        // control plots
-        h_delta_phi_Zjet.push_back(bookHisto1D("deltaphi_Zjet"+Rlab, 100, 0.0, pi));
+          // mMDT quantities
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_00_00"+Qlab+Rlab,151,-0.5,150.5),
+                                         bookHisto1D("log_mMDT_GA_00_00"+Qlab+Rlab,300,0,6)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_05"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_10_05"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_10"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_10_10"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_10_20"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_10_20"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+          _gas.push_back(HistogramHolder(bookHisto1D("mMDT_GA_20_00"+Qlab+Rlab, 500, 0.0, 1.0),
+                                         bookHisto1D("log_mMDT_GA_20_00"+Qlab+Rlab, 500, -LOG_SCALE_MAX, 0.0)));
+
+          // control plots
+          h_delta_phi_Zjet.push_back(bookHisto1D("deltaphi_Zjet"+Qlab+Rlab, 100, 0.0, pi));
+        }
       }
-
     }
 
 
@@ -142,6 +154,12 @@ namespace Rivet {
       const PseudoJet zmom = zfinder.bosons()[0].pseudojet();
       double ptmin_jet = JET_PTMIN_FRACTION*zmom.pt();
 
+      // by default we impose the Z pt cut at the lowest scale under consideration.
+      // We check here if we pass more stringent constraints
+      unsigned int nQ = 1;
+      //cout << "Zpt = " << zmom.pt() << endl;
+      while ((nQ<nQs) && (zmom.pt()>=BOSON_PTMINS[nQ])) nQ++;
+      
       // a few shortcuts
       const double weight = e.weight();
 
@@ -151,8 +169,6 @@ namespace Rivet {
       foreach (const Particle &p, fs.particles()){
         particles.push_back(p.pseudojet());
       }
-
-      unsigned int ngas = _kappa_betas.size();
 
       // loop over jet radii
       for (unsigned int iR=0;iR<nRADII; iR++){
@@ -177,12 +193,12 @@ namespace Rivet {
 
         // control plot: deltaphi with the Z boson
         double dphi = std::abs(jet.delta_phi_to(zmom));
-        h_delta_phi_Zjet[iR]->fill(dphi, weight);
+        for (unsigned int iQ=0;iQ<nQ;++iQ)
+          h_delta_phi_Zjet[iQ*nRADII+iR]->fill(dphi, weight);
         
         // now compute the angularities for the plain and groomed jets
-        compute_and_record(jet,      R, ngas*(2*iR),   weight);
-        compute_and_record(mmdt_jet, R, ngas*(2*iR+1), weight);
-        
+        compute_and_record(jet,      R, 2*iR,   nQ, weight);
+        compute_and_record(mmdt_jet, R, 2*iR+1, nQ, weight);
       } // loop over radii
       
     }
@@ -208,7 +224,7 @@ namespace Rivet {
     SharedPtr<contrib::ModifiedMassDropTagger> mmdt;
 
 
-    void compute_and_record(const PseudoJet &jet, double R, unsigned int offset, double weight){
+    void compute_and_record(const PseudoJet &jet, double R, unsigned int R_offset, unsigned int nQ, double weight){
       unsigned int ngas = _kappa_betas.size();
       vector<double> gas(ngas);
 
@@ -227,11 +243,14 @@ namespace Rivet {
       for(unsigned int i=0; i<ngas;i++){ 
         gas[i]/=(pow(jet.pt(), _kappa_betas[i].first) * pow(R, _kappa_betas[i].second));
 
-        //assert(ngas*iR+i < _gas.size());
-        _gas[offset+i].h->fill(gas[i], weight);
-        // for the log binning make sure we avoid taking log(0) and put
-        // that in the most -ve bin.
-        _gas[offset+i].h_log->fill(gas[i]>0 ? log(gas[i]) : 1e-5-LOG_SCALE_MAX, weight);
+        // loop over all ptcuts we're satisfying
+        for (unsigned int iQ=0;iQ<nQ;++iQ){
+          unsigned int offset = ngas*(iQ*2*nRADII+R_offset);
+          _gas[offset+i].h->fill(gas[i], weight);
+          // for the log binning make sure we avoid taking log(0) and put
+          // that in the most -ve bin.
+          _gas[offset+i].h_log->fill(gas[i]>0 ? log(gas[i]) : 1e-5-LOG_SCALE_MAX, weight);
+        }
       }
     }
   };
