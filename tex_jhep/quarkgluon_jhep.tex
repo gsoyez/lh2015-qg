@@ -1016,7 +1016,7 @@ It is clear from our $e^+e^-$ study that quark/gluon radiation patterns face con
 \subfloat{
 \includegraphics[width = 0.45\columnwidth]{figures/fig_parton_level_qg_composition.pdf}
 }
-\caption{Quark fraction of jets at parton level, as defined by the Born-level parton flavor.}
+\caption{Quark fraction of jets at parton level, as defined by the Born-level parton flavor.  The arrows indicate the $p_T^{\rm min}$ values used for the study in \Sec{subsec:pp_para}.}
 \label{fig:parton_level_qg_composition}
 \end{figure}
 
@@ -1024,15 +1024,15 @@ As discussed in \Sec{sec:def}, there is no way to isolate pure samples of quark 
 
 In principle, one could try to ``diagonalize" some combination of vector boson plus jet and dijet samples in order to define separate quark or gluon samples (see e.g.~\cite{Aad:2014gea}).  In the spirit of \Sec{sec:def}, though, we think it is more beneficial for the LHC experiments to perform process-specific measurements without trying to directly determine their quark and gluon composition.  Instead of quark/gluon separation, here we ask the more well-defined question of whether one can tell ``the jet in $Z$ plus jets" (quark-enriched) apart from ``the jet in dijets" (gluon-enriched).  In a similar spirit, one could test for differences within a single jet sample, such as comparing central jets versus forward jets in dijet production.  This process-based strategy can help sidestep the known process dependance of defining quarks and gluons at the LHC, where color correlations to the rest of the event impede a universal definition of quark and gluon jets.
 
-For this study, we consider five different hadron-level generators---\textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb} \jdt{change to 7}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, and \textsc{Dire} \cite{Hoche:2015sya}---using $Z \to \mu^+ \mu^-$ plus jets as our quark-enriched sample and dijets as our gluon-enriched sample.  We set $R = 0.4$ as the default jet radius in keeping with current jet studies at the LHC.  Hadrons with rapidity $|y| < 2.5$ are used for jet clustering, and the resulting jets are restricted to have $|y_{\rm jet}| < 1.5$.  We apply a minimum $p_T$ cut with default value $p^{\min}_T = 200~\GeV$, similar in spirit to the $Q/2$ value used in the $e^+e^-$ study, though the precise meaning of $p_T^{\rm min}$ differs between the two samples.  For the $Z$ plus jets analysis (with \textsc{Rivet} routine given in \texttt{MC\_LHQG\_Zjet.cc}), $p^\text{min}_T$ applies to the reconstructed $Z$ boson and the jet $p_T$ is then restricted to satisfy  \jdt{Did I say this correctly.  I'm getting myself confused a bit about the RIVET routine.}
+For this study, we consider five different hadron-level generators---\textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb} \jdt{change to 7}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, and \textsc{Dire} \cite{Hoche:2015sya}---using $Z \to \mu^+ \mu^-$ plus jets as our quark-enriched sample and dijets as our gluon-enriched sample.  We set $R = 0.4$ as the default jet radius in keeping with current jet studies at the LHC, exploring other values in \Sec{subsec:pp_para}.  Hadrons with rapidity $|y| < 2.5$ are used for jet clustering, and the resulting jets are restricted to have $|y_{\rm jet}| < 1.5$.  We apply a minimum $p_T$ cut with default value $p^{\min}_T = 200~\GeV$, similar in spirit to the $Q/2$ value used in the $e^+e^-$ study, though the precise meaning of $p_T^{\rm min}$ differs between the two samples.  For the $Z$ plus jets analysis (with \textsc{Rivet} routine given in \texttt{MC\_LHQG\_Zjet.cc}), the selection criteria for the reconstructed $Z$ boson and jet are:
 \be
-\text{$pp \to Z + j$ (``quark-enriched'')} : \quad \frac{p^\text{jet}_T}{p^{Z}_T} > 0.8.
+\text{$pp \to Z + j$ (``quark-enriched'')} : \quad p^{Z}_T  > p^\text{min}_T, \qquad \frac{p^\text{jet}_T}{p^{Z}_T} > 0.8, \qquad |y_{\rm jet} - y_Z| < 1.0.
 \ee
-For the dijet analysis (with \textsc{Rivet} routine given in \texttt{MC\_LHQG\_dijet.cc}), $p^\text{min}_T$ applies to the average $p_T$ of the two hardest jets.  Both jets are used for the analysis as long as they are sufficiently well balanced:
+For the dijet analysis (with \textsc{Rivet} routine given in \texttt{MC\_LHQG\_dijet.cc}), our selection is based on the two hardest jets (labeled $1$ and $2$), both of which are used for analysis if they satisfy:
 \be
-\text{$pp \to 2j$ (``gluon-enriched'')} : \quad \frac{p^\text{jet\,2}_T}{p^{\rm jet\,1}_T} > 0.8, \qquad |y_1 - y_2| < 1.0.
+\text{$pp \to 2j$ (``gluon-enriched'')} : \quad \frac{p^{\rm 1}_T + p^{\rm 2}_T}{2} > p^\text{min}_T, \qquad \frac{p^\text{2}_T}{p^{\rm 1}_T} > 0.8, \qquad |y_1 - y_2| < 1.0.
 \ee 
-We study the same five benchmark angularities from \Eq{eq:benchmarkang}, but we also test the impact of soft radiation removal using mMDT grooming ($\mu = 1$ and $z_{\rm cut} = 0.1$).  \jdt{Is it z or y?}
+We study the same five benchmark angularities from \Eq{eq:benchmarkang}, but we also test the impact of soft radiation removal using mMDT grooming ($\mu = 1$ and $z_{\rm cut} = 0.1$).
 
 
 \subsection{Baseline analysis}
@@ -1111,8 +1111,9 @@ In \Fig{fig:summary_pp_all}, we plot classifier separation $\Delta$ for all five
 \subsection{Parameter dependence}
 \label{subsec:pp_para}
 
-To test parameter dependence, we now consider five different minimum $p_T$ values and five different jet radii, with the boldface values corresponding to the defaults used above:\footnote{As a technical note, in order to test all values of $p^\text{min}_T$ in a single Monte Carlo run, we generate $p_T$-weighted events in each generator.}  \jdt{Do we want to go down to 25?  I guess not for the LHC.}
+To test parameter dependence, we now consider five different minimum $p_T$ values and five different jet radii, with the boldface values corresponding to the defaults used above:\footnote{As a technical note, in order to test all values of $p^\text{min}_T$ in a single Monte Carlo run, we generate $p_T$-weighted events in each generator.}
 \be
+\label{eq:pp_pTRsweep}
 \begin{aligned}
 \text{Minimum $p_T$}: p^\text{min}_T &= \{ 50, 100, \mathbf{200}, 400, 800\}~\GeV, \\
 \text{Jet Radius}: R &= \{ 0.2, \mathbf{0.4}, 0.6, 0.8, 1.0\}. \\
