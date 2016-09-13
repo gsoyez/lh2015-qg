@@ -127,7 +127,7 @@ for level in hadron; do
     sed "s/@GENLABEL@/Z+jet, $level, Q=200GeV/g" style-variations.plot > style-variations-tmp.plot
     safe-rivet-mkhtml -o plots/lhc/zjet-200-R04-allMCs-${level}  $zjet_input  -c style-variations-tmp.plot -t Q=200GeV,R=0.4
 
-    #rm -Rf post-process-tmpfiles/*
+    rm -Rf post-process-tmpfiles/*
 done
 
 # #----------------------------------------------------------------------
@@ -205,9 +205,9 @@ cat >> $web_global <<EOF
 <h3>Generator comparisons</h3>
 <table border="1" cellspacing="0" cellpadding="3">
 <tr><td>dijet     </td>
-    <td><a target="_blank" href="dijet-R04-allMCs-hadron/MC_LHQG_dijet/index.html">hadron</a></td></tr>
+    <td><a target="_blank" href="dijet-200-R04-allMCs-hadron/MC_LHQG_dijet/index.html">hadron</a></td></tr>
 <tr><td>Z+jet     </td>
-    <td><a target="_blank" href="zjet-R04-allMCs-hadron/MC_LHQG_Zjet/index.html">hadron</a></td></tr>
+    <td><a target="_blank" href="zjet-200-R04-allMCs-hadron/MC_LHQG_Zjet/index.html">hadron</a></td></tr>
 </table>
 </body>
 </html>
