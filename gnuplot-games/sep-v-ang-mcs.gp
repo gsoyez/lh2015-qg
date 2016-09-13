@@ -34,19 +34,24 @@
 #  a2L        2-loop    vv   vv                    6    
 #
 # reduce to 5
-#                       Py   Vi  Hw  Sh  De  Ar   ls
-#  ""         baseline  vv   vv  vv  vv  vv  vv    1          
-#  nogqq      no gqq    vv   vv  vv  vv       v    2    
-#  no cr      no CR              vv                3
-#  noswing                                   vv    3
-#  nome       no ME     vv   vv                    3     
-#  njet0      njet=0                 vv            3
-#  njet1      njet=1                 vv            4
-#  dipole     dipole              v                4 
-#  dipolenoCR dip,no CR           v                5
-#  a2L        2-loop    vv   vv                    4    
-#  CR1        CR1       vv                         5
-#  muq        mu_q           vv                    5    
+#                       Py   Vi  Hw  Sh  De  Di  Ar   ls
+#  ""         baseline  vv   vv  vv  vv  vv  vv  vv    1          
+#  nogqq      no gqq    vv   vv  vv  vv           v    2    
+#  no cr      no CR              vv                    3
+#  noswing                                       vv    3
+#  nome       no ME     vv   vv                        3     
+#  njet0      njet=0                 vv                3
+#  njet1      njet=1                 vv                4
+#  dipole     dipole              v                    4 
+#  dipolenoCR dip,no CR           v                    5
+#  a2L        2-loop    vv   vv                        4    
+#  CR1        CR1       vv                             5
+#  muq        mu_q           vv                        5    
+#  as1L                                      vv        4
+#  as3l                                      vv        5
+#  mcnlo                                     vv        3
+#  string                                    vv        2
+
 
 
 call 'common.gp'
@@ -112,9 +117,14 @@ do for [jtype=1:words(levels)]{
             names='"baseline" "no g{/Symbol \256}q~q‾" "no swing"'
         }
 
+        if (gen eq "Dire-1.0.0"){
+            tags='"" -string -mcnlo -as0 -as2'
+            names='"baseline" "string" "MC NLO" "1-loop {/Symbol a}_s" "3-loop {/Symbol a}_s"'
+        }
+
         if (gen eq "AnalyticResum"){
-            tags='"" -nogqq -noNGL -no2loop -noCas -altF'
-            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "no 2-loop {/Symbol a}_s" "no C_i in {/Symbol e}_0" "alt F({/Symbol e})"'
+            tags='"" -nogqq -noNGL -no2loop -noCas'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "no 2-loop {/Symbol a}_s" "no C_i in {/Symbol e}_0"'
         }
 
         # the following plots (loop over separation measures) all go in

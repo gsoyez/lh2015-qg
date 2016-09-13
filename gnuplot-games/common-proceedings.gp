@@ -10,10 +10,10 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 
 # generators
 generators(level)= (level eq "parton") \
-  ? "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-1201 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum" \
-  : "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-1201 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
+  ? "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-1201 Deductor-1.0.2 Ariadne AnalyticResum" \
+  : "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-1201 Deductor-1.0.2 Ariadne AnalyticResum"
 
-gentags(level)='"Pythia {/*0.8 8.205}" "Herwig {/*0.8 2.7.1}" "Sherpa {/*0.8 2.1.1}" "Vincia {/*0.8 1.201}" "Deductor {/*0.8 1.0.2}" "Ariadne {/*0.8 5.0.{/Symbol b}}" "Dire {/*0.8 1.0.0}" "Analytic {/*0.8 NLL}" '
+gentags(level)='"Pythia {/*0.8 8.205}" "Herwig {/*0.8 2.7.1}" "Sherpa {/*0.8 2.1.1}" "Vincia {/*0.8 1.201}" "Deductor {/*0.8 1.0.2}" "Ariadne {/*0.8 5.0.{/Symbol b}}" "Analytic {/*0.8 NLL}" '
 
 # line styles
 
@@ -23,8 +23,7 @@ set style line 3 lt 1 dt (8,4,8,4)     lc rgb "#f07800" lw 4 ps 0.0 # Sherpa
 set style line 4 lt 1 dt (14,4,2,4)    lc rgb "#4daf4a" lw 4 ps 0.0 # Vincia
 set style line 5 lt 1 dt (8,4,2,4,2,4) lc rgb "#377eb8" lw 4 ps 0.0 # Deductor
 set style line 6 lt 1 dt (2,4)         lc rgb "#7b3294" lw 4 ps 0.0 # Ariadne
-set style line 7 lt 1 dt (1,2)         lc rgb "#000000" lw 4 ps 0.0 # Dire
-set style line 8 lt 1 dt (5,5)         lc rgb "#555555" lw 4 ps 0.0 # Analytic
+set style line 7 lt 1 dt (1,2)         lc rgb "#000000" lw 4 ps 0.0 # Analytic
 
 set style increment user
 set bar small
