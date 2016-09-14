@@ -83,7 +83,7 @@ set label 1 '{/*0.9 Q=200 GeV}' right at graph 0.95,0.48
 set label 2 '{/*0.9 R=0.6}'     right at graph 0.95,0.42
 
 # for the alphas sweep, manually remove deductor from the list of curves
-genindices="1 2 3 4 6 7"
+genindices="1 2 3 4 6 7 8"
 
 do for [jtype=1:words(levels)]{
     level=word(levels,jtype)
