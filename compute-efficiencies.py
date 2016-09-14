@@ -48,8 +48,8 @@ def read_until_matching_and_print(fin, pattern, fout):
 # repeatedly look for a "BEGIN" line
 while 1:
     # file header
-    lineq = read_until_matching(fileq, re.compile("^BEGIN|^# BEGIN"));
-    lineg = read_until_matching(fileg, re.compile("^BEGIN|^# BEGIN"));
+    lineq = read_until_matching(fileq, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG_EE|^# BEGIN YODA_HISTO1D /MC_LHQG_EE"));
+    lineg = read_until_matching(fileg, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG_EE|^# BEGIN YODA_HISTO1D /MC_LHQG_EE"));
     fileo.write(lineq);
     lineq = read_until_matching(fileq, re.compile("^Path="));
     label=lineq.replace("Path=/MC_LHQG_EE/","").rstrip("\n")
