@@ -254,7 +254,7 @@ level''):
 \item \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia 8.212}),\footnote{Note that this
 \textsc{Deductor} plus \textsc{Pythia} combination has not yet been tuned to data.}
 \item \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk},\footnote{This version of \textsc{Ariadne} is not yet public, but available from the author on request.  For $e^+ e^-$ collisions, the physics is the same as in \textsc{Ariadne 4} \cite{Lonnblad:1992tz}.}
-\item \textsc{Dire} \cite{Hoche:2015sya} (what version?  with hadronization performed by \jdt{what?}).
+\item \textsc{Dire 1.0.0} \cite{Hoche:2015sya} (with cluster hadronization performed by \textsc{Sherpa 2.1.1} \jdt{is this true?}).
 \end{itemize}
 To test other generators, the analysis code used for this study is available as a \textsc{Rivet} routine \cite{Buckley:2010ar}, which can be downloaded from \verb|https://github.com/gsoyez/lh2015-qg| under \verb|MC_LHQG_EE.cc|.
 
@@ -670,7 +670,7 @@ By tying $\Omega_0$ and $\Xi_0$ together, this has the effect of reducing the ph
 
 To test whether \Eq{eq:epsilon0ansatz} is a plausible estimate for nonperturbative corrections, we take the parton shower generators studied in the next section and study how the average value of $e_\beta$ shifts as hadronization is turned off and on, and use that to estimate $\epsilon_0$.  We emphasize that a hadronization model in a parton shower is not the same as a shape function in an analytic calculation, so one has to be careful drawing conclusions about the size of $\epsilon_0$ from a study like this.  In particular, effects that are captured by $F(\epsilon)$ in an analytic calculation could either be part of the perturbative showering or nonperturbative hadronization in a generator.  That said, we expect that the scaling of the $e_\beta$ shift as a function of $E_J$, $R$, and $\beta$ should be roughly the same.
 
-In \Fig{fig:NPshift}, we show the size of the $e_\beta$ shift as a function of $R \, E_J$ for the three benchmark $\beta$ values, where the band indicates the minimum and maximum shifts seen among \textsc{Pythia}, \textsc{Herwig}, \textsc{Sherpa}, \textsc{Vincia}, and \textsc{Ariadne}.\footnote{We verified that the overall conclusions do not change when considering the separate scaling of $R$ and $E_J$.}  We then compare to the expected shift from \Eq{eq:epsilon0ansatz} with 
+In \Fig{fig:NPshift}, we show the size of the $e_\beta$ shift as a function of $R \, E_J$ for the three benchmark $\beta$ values, where the band indicates the minimum and maximum shifts seen among \textsc{Pythia}, \textsc{Herwig}, \textsc{Sherpa}, \textsc{Vincia}, and \textsc{Ariadne} \jdt{Need to add \textsc{Dire} here as a cross check}.\footnote{We verified that the overall conclusions do not change when considering the separate scaling of $R$ and $E_J$.}  We then compare to the expected shift from \Eq{eq:epsilon0ansatz} with 
 \be
 \label{eq:OmegaXiValues}
 \Omega^i_0 = C_i \times 0.21~\GeV, \qquad \Xi^i_0 = C_i \times 0.34~\GeV,
@@ -692,7 +692,7 @@ To define the truth-level jet flavor, we use a simple definition:  a quark jet i
 \label{eq:Erestrict}
 \frac{E_{\rm jet}}{Q/2} > 0.8,
 \end{equation}
-where $Q$ is the center-of-mass collision energy, allowing for up to two jets studied per event.  Note that this condition acts as a restriction on out-of-jet radiation, which already suppresses to some extent non-global effects \cite{Dasgupta:2001sh}.  There is also the ambiguity of which parton shower to use, and we investigate this ambiguity by looking at results from several event generators:  \textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb} \jdt{change to 7}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}), \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}, and \textsc{Dire} \cite{Hoche:2015sya} \jdt{what version?}.  
+where $Q$ is the center-of-mass collision energy, allowing for up to two jets studied per event.  Note that this condition acts as a restriction on out-of-jet radiation, which already suppresses to some extent non-global effects \cite{Dasgupta:2001sh}.  There is also the ambiguity of which parton shower to use, and we investigate this ambiguity by looking at results from several event generators:  \textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb} \jdt{change to 7}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}), \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}, and \textsc{Dire 1.0.0} \cite{Hoche:2015sya}.  
 
 \subsection{Baseline analysis}
 
@@ -712,7 +712,7 @@ $\qquad$
 \includegraphics[width = 0.65\columnwidth]{figures/fig_GA_10_05_R6_hadron_separation.pdf}
 \label{fig:LHA_hadron_separation}
 }
-\caption{Hadron-level distributions of the LHA for (a) the $e^+ e^- \to u \bar{u}$ (``quark jet'') sample, (b) the $e^+ e^- \to gg$ (``gluon jet'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Six parton shower generators---\textsc{Pythia 8.205}, \textsc{Herwig++ 2.7.1}, \textsc{Sherpa 2.1.1}, \textsc{Vincia 1.201}, \textsc{Deductor 1.0.2}, and \textsc{Ariadne 5.0.$\beta$} \jdt{Remember to update versions}---are run at their baseline settings with center-of-mass energy $Q = 200~\GeV$ and jet radius $R= 0.6$.  We also show the analytic NLL results from \Sec{sec:analytic}.}
+\caption{Hadron-level distributions of the LHA for (a) the $e^+ e^- \to u \bar{u}$ (``quark jet'') sample, (b) the $e^+ e^- \to gg$ (``gluon jet'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Seven parton shower generators---\textsc{Pythia 8.205}, \textsc{Herwig++ 2.7.1}, \textsc{Sherpa 2.1.1}, \textsc{Vincia 1.201}, \textsc{Deductor 1.0.2}, \textsc{Ariadne 5.0.$\beta$}, and \textsc{Dire 1.0.0} \jdt{Remember to update versions}---are run at their baseline settings with center-of-mass energy $Q = 200~\GeV$ and jet radius $R= 0.6$.  We also show the analytic NLL results from \Sec{sec:analytic}.}
 \label{fig:LHA_hadron}
 \end{figure}
 
@@ -754,11 +754,11 @@ to hadronization. We should say at the outset that it is nearly impossible to do
 With that caveat in mind, we show parton-level results in \Fig{fig:LHA_parton}.  One immediately notices that three of the
 generators---\textsc{Herwig}, \textsc{Sherpa}, and
 \textsc{Deductor}---yield a large population of events where the
-perturbative shower generates no emissions.  This gives
+perturbative shower generates no emissions, even in the gluon sample.  This gives
 $\lambda_{0.5}^1 = 0$ such that non-zero values of the LHA are
 generated only by the hadronization model.  By contrast,
 \textsc{Pythia} and \textsc{Vincia} give overall larger values of the
-LHA from the perturbative shower alone.  As mentioned above, some of this difference can be explained simply by the different shower cutoff scales used in each generator, but it probably also reflects a difference in how semi-perturbative gluon splittings are treated.  Since \Fig{fig:LHA_hadron_quark} shows that all generators give similar distributions for quark jets after hadronization, we
+LHA from the perturbative shower alone, with \textsc{Ariadne} and \textsc{Dire} yielding intermediate results.  As mentioned above, some of this difference can be explained simply by the different shower cutoff scales used in each generator, but it probably also reflects a difference in how semi-perturbative gluon splittings are treated.  Since \Fig{fig:LHA_hadron_quark} shows that all generators give similar distributions for quark jets after hadronization, we
 conclude that understanding quark/gluon discrimination is a challenge
 at the interface between perturbative showering and nonperturbative
 hadronization.
@@ -847,7 +847,7 @@ where $\alpha_{s0}$ is the default value of the strong coupling, which is differ
 
 The resulting values of $\Delta$ for the LHA are shown in \Fig{fig:ee_sweep}, at both the hadron level and parton level.   There are number of surprising features in these plots.  Perhaps the most obvious (and seen already in \Fig{fig:summary_all}) is that even for the IRC safe angularities, the effect of hadronization is rather large, both on the absolute scale of discrimination and the trends.  The main exception to this is \textsc{Herwig}, which does not exhibit as much of a shift from hadronization, though an effect is still present.
 
-The next surprising feature is that the parton-level trends for sweeping $\alpha_s$ do not necessarily correspond to those for sweeping $Q$ and $R$.  According to the perturbative next-to-leading-logarithmic (NLL) logic in \Ref{Larkoski:2013eya}, quark/gluon discrimination should depend on $\alpha_s$ evaluated at the scale $Q R / 2$, with larger values of $\alpha_s(Q R / 2)$ leading to improved discrimination power.  This is indeed seen in the parton-level curves obtained from the analytic NLL calculation in \Sec{sec:analytic}, and parton-level \textsc{Pythia}, \textsc{Herwig}, and \textsc{Ariadne} also show improved performance with larger $\alpha_s$.  However, larger values of $Q$ and $R$ correspond to smaller values of $\alpha_s$, so the NLL logic would predict that increasing $Q$ or $R$ should lead to worse discrimination power.  Instead, at parton-level, all of the generators show the opposite $Q$ and $R$ trend from the analytic NLL result.
+The next surprising feature is that the parton-level trends for sweeping $\alpha_s$ do not necessarily correspond to those for sweeping $Q$ and $R$.  According to the perturbative next-to-leading-logarithmic (NLL) logic in \Ref{Larkoski:2013eya}, quark/gluon discrimination should depend on $\alpha_s$ evaluated at the scale $Q R / 2$, with larger values of $\alpha_s(Q R / 2)$ leading to improved discrimination power.  This is indeed seen in the parton-level curves obtained from the analytic NLL calculation in \Sec{sec:analytic}, and parton-level \textsc{Pythia}, \textsc{Herwig}, \textsc{Ariadne}, and \textsc{Dire} also show improved performance with larger $\alpha_s$.  However, larger values of $Q$ and $R$ correspond to smaller values of $\alpha_s$, so the NLL logic would predict that increasing $Q$ or $R$ should lead to worse discrimination power.  Instead, at parton-level, all of the generators show the opposite $Q$ and $R$ trend from the analytic NLL result.
 
 One reason to expect quark/gluon discrimination to improve at higher energies is that that phase space available for shower evolution increases as $Q$ increases.  The scale $\mu$ of the shower splitting is $\mu_0^2 < \mu^2 < Q^2$, where $\mu_0 = \mathcal{O}(\GeV)$ is the shower cutoff scale.  With more range for shower evolution at higher $Q$, there is a greater possibility to see that a quark jet is different from a gluon jet.  Similarly, larger values of $R$ allow for more emissions within a jet, and from scaling symmetry, one expects that parton-level discrimination power should depend on the combination $Q R$.\footnote{At small values of $R$, one has to worry about the flavor purity of a jet sample, since scale evolution can change the leading parton flavor \cite{Dasgupta:2014yra,Dasgupta:2016bnd}.  Similarly, the restriction in \Eq{eq:Erestrict} can impose a non-trivial bias on the jet flavor at small $R$.}  By contrast, the NLL logic says that quark/gluon discrimination should be dominated by the leading emission(s) in a jet, and since $\alpha_s$ is smaller at higher values of $Q R$, those leading emissions are more similar between quarks and gluons.  Given these two different but equally plausible logics, both of which undoubtably play some role in the complete story, this motivates experimental tests of quark/gluon separation as a function of $Q$ and $R$.
 
@@ -991,12 +991,18 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_parton_dire.pdf}
 \label{fig:summary_parton_dire}
 }
-\caption{Same as \Fig{fig:settings_variation_pythia}, but for \textsc{Dire 1.0.0}.}
+\caption{Same as \Fig{fig:settings_variation_pythia}, but for \textsc{Dire 1.0.0}.  \jdt{Jesse wants to fiddle with the legend text.}}
 \label{fig:settings_variation_dire}
 \end{figure}
 
-\jdt{Placeholder for Dire, \Fig{fig:settings_variation_dire}}
-
+\jdt{Check this paragraph.} Our \textsc{Dire} baseline is based on the initial release, interfaced with \textsc{Sherpa} for cluster hadronization.  In \Fig{fig:settings_variation_dire}, we consider the following \textsc{Dire} variations:  \jdt{Is there a g -> q qbar variation?}
+\begin{itemize}
+\item \textsc{Dire: string}.  This variation uses \textsc{Pythia} for Lund string fragmentation, which only has an effect at hadron level.  \jdt{Is the shower cutoff scale different?}  This leads to an improvement in discrimination power, suggesting that long-range color connections play an important role in quark/gluon discrimination. 
+\item \textsc{Dire: MC@NLO}.  This variation uses MC@NLO \cite{} \jdt{need the cite here} as implemented in \textsc{Sherpa} to provide a matrix element correction.  The discrimination power slightly improves at both parton and hadron level, though not that much, since the \textsc{Dire} shower already is very close to matching the matrix element for the first emission.
+\item \textsc{Dire: 1-loop $\alpha_s$}.  The default within \textsc{Dire} is to perform 2-loop $\alpha_s$ running.  This variation uses just 1-loop running, with a slight degradation of discrimination power.
+\item \textsc{Dire: 3-loop $\alpha_s$}.  Using 3-loop running also degrades performance, but by a very small amount.
+\end{itemize}
+\jdt{Need commentary here.}
 
 \begin{figure}
 \centering
