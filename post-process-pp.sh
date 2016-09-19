@@ -42,6 +42,7 @@ function safe-rivet-mkhtml {
     if [ -d $plot_dir ] && [ -z $FORCE ] && [ -z $FORCE_PLOTS ]; then
         message "...... $plot_dir already already done. Delete the directory or run FORCE_PLOTS=yes to redo"
     else
+        echo $@
         rivet-mkhtml $@ >> logfile 2>&1
     fi
 }
@@ -92,42 +93,90 @@ rMML">
 <body><h2>LHC Quark-gluon studies for Les-Houches 2015</h2>
 EOF
 
+#------------------------------------------------------------------------
+# compute separations: note that here we do compute separations
+# between the dijet and Z+jet samples
+message ""
+message "Computing separations"
+for gen in $generators; do
+    for level in hadron parton; do
+        message "... $gen --- $level"
+        for fn in $gen/lhc/${level}/zjet*.yoda; do
+            dijetname=${fn/zjet/dijet}
+            if [ -f ${dijetname} ]; then
+                sepname=${fn/zjet/sep}
+                if [ ! -f ${sepname} ] || [ ! -z $FORCE ]; then
+                    logname=${sepname%yoda}log
+                    # check if the files differ
+                    if diff $fn ${dijetname} > /dev/null ; then
+                        echo "...... WARNING: ${fn} $dijetname HAVE THE SAME CONTENTS"
+                    fi
+                    # do the computation
+                    ./compute-efficiencies.py $fn ${dijetname} $sepname > $logname
+                    ./produce-separation-data-pp.py ${logname} ${sepname/sep/sum}
+                fi
+            fi
+        done
+    done
+done
 
-# compute separations: NOT DONE
 
+#------------------------------------------------------------------------
 # make plots for each of the generators: NOT DONE
 
+#------------------------------------------------------------------------
 # do the MC comparison on the baseline
+#
+# Note that our regular expression GA.*_Q100_R4 automatically includes
+# the mMDT results (as well as the log-scale ones)
 message ""
-message "Plots for generator comparison at 200 GeV, R=0.4"
+message "Plots for generator comparison at 100 GeV, R=0.4"
 for level in hadron; do
     message "... $level"
     dijet_input=""
     zjet_input=""
-    mkdir post-process-tmpfiles/dijet
-    mkdir post-process-tmpfiles/zjet
+    sep_input=""
+    sum_input=""
+    mkdir -p post-process-tmpfiles/dijet
+    mkdir -p post-process-tmpfiles/zjet
+    mkdir -p post-process-tmpfiles/sep
+    mkdir -p post-process-tmpfiles/sum
     for gen in $generators; do
         if [ -f $gen/lhc/${level}/dijet.yoda ]; then
-           yodacnv $gen/lhc/${level}/dijet.yoda  -m "GA.*_Q200_R4" post-process-tmpfiles/dijet/${gen}.yoda
+           yodacnv $gen/lhc/${level}/dijet.yoda  -m "GA.*_Q100_R4" post-process-tmpfiles/dijet/${gen}.yoda
            dijet_input="$dijet_input post-process-tmpfiles/dijet/${gen}.yoda"
         fi
         if [ -f $gen/lhc/${level}/zjet.yoda ]; then
-           yodacnv $gen/lhc/${level}/zjet.yoda  -m "GA.*_Q200_R4" post-process-tmpfiles/zjet/${gen}.yoda
+           yodacnv $gen/lhc/${level}/zjet.yoda  -m "GA.*_Q100_R4" post-process-tmpfiles/zjet/${gen}.yoda
            zjet_input="$zjet_input post-process-tmpfiles/zjet/${gen}.yoda "
+        fi
+        if [ -f $gen/lhc/${level}/sep.yoda ]; then
+           yodacnv $gen/lhc/${level}/sep.yoda  -m "GA.*_Q100_R4" post-process-tmpfiles/sep/${gen}.yoda
+           sep_input="$sep_input post-process-tmpfiles/sep/${gen}.yoda "
+        fi
+        if [ -f $gen/lhc/${level}/sum.yoda ]; then
+           yodacnv $gen/lhc/${level}/sum.yoda post-process-tmpfiles/sum/${gen}.yoda
+           sum_input="$sum_input post-process-tmpfiles/sum/${gen}.yoda "
         fi
     done
     message "... plot dijet: $dijet_input"    
     message "... plot zjet : $zjet_input"
+    message "... plot sep  : $sep_input"
+    message "... plot sum  : $sum_input"
 
     # prepare the style file with the appropriate labels
         
     # do the plots
-    sed "s/@GENLABEL@/dijet, $level, Q=200GeV/g" style-variations.plot > style-variations-tmp.plot
-    safe-rivet-mkhtml -o plots/lhc/dijet-200-R04-allMCs-${level} $dijet_input -c style-variations-tmp.plot -t Q=200GeV,R=0.4
-    sed "s/@GENLABEL@/Z+jet, $level, Q=200GeV/g" style-variations.plot > style-variations-tmp.plot
-    safe-rivet-mkhtml -o plots/lhc/zjet-200-R04-allMCs-${level}  $zjet_input  -c style-variations-tmp.plot -t Q=200GeV,R=0.4
+    sed "s/@GENLABEL@/dijet, $level, Q=100GeV/g;s/@PROC@/dijet/g" style-variations-pp.plot > style-variations-tmp.plot
+    safe-rivet-mkhtml -o plots/lhc/dijet-100-R04-allMCs-${level} $dijet_input -c style-variations-tmp.plot -t Q=100GeV,R=0.4
+    sed "s/@GENLABEL@/Z+jet, $level, Q=100GeV/g;s/@PROC@/Zjet/g" style-variations-pp.plot > style-variations-tmp.plot
+    safe-rivet-mkhtml -o plots/lhc/zjet-100-R04-allMCs-${level}  $zjet_input  -c style-variations-tmp.plot -t Q=100GeV,R=0.4
+    sed "s/@GENLABEL@/separation, $level, Q=100GeV/g;s/@PROC@/Zjet/g" style-variations-pp.plot > style-variations-tmp.plot
+    safe-rivet-mkhtml -o plots/lhc/sep-100-R04-allMCs-${level}  $sep_input  -c style-variations-tmp.plot -t Q=100GeV,R=0.4
+    sed "s/@GENLABEL@/$level, Q=100GeV, R=0.4/g;s/@PROC@/Zjet/g" style-separation.plot > style-separation-tmp.plot
+    safe-rivet-mkhtml -o plots/lhc/sum-100-R04-allMCs-${level}  $sum_input  -c style-separation-tmp.plot -t Q=100GeV,R=0.4
 
-    rm -Rf post-process-tmpfiles/*
+    #rm -Rf post-process-tmpfiles/*
 done
 
 # #----------------------------------------------------------------------
@@ -205,9 +254,13 @@ cat >> $web_global <<EOF
 <h3>Generator comparisons</h3>
 <table border="1" cellspacing="0" cellpadding="3">
 <tr><td>dijet     </td>
-    <td><a target="_blank" href="dijet-200-R04-allMCs-hadron/MC_LHQG_dijet/index.html">hadron</a></td></tr>
+    <td><a target="_blank" href="dijet-100-R04-allMCs-hadron/MC_LHQG_dijet/index.html">hadron</a></td></tr>
 <tr><td>Z+jet     </td>
-    <td><a target="_blank" href="zjet-200-R04-allMCs-hadron/MC_LHQG_Zjet/index.html">hadron</a></td></tr>
+    <td><a target="_blank" href="zjet-100-R04-allMCs-hadron/MC_LHQG_Zjet/index.html">hadron</a></td></tr>
+<tr><td>Separation</td>
+    <td><a target="_blank" href="sep-100-R04-allMCs-hadron/MC_LHQG_Zjet/index.html">hadron</a></td></tr>
+<tr><td>Summary   </td>
+    <td><a target="_blank" href="sum-100-R04-allMCs-hadron/separation/index.html">hadron</a></td></tr>
 </table>
 </body>
 </html>

@@ -55,3 +55,48 @@ YMin=0.6
 YMax=0.801
 # END PLOT
 
+
+
+
+# BEGIN PLOT /separation/mMDT_I
+YLabel=separation: $I_{1/2}$
+YMin=0
+YMax=0.301
+# END PLOT
+
+# BEGIN PLOT /separation/mMDT_I2
+YLabel=separation: $I_{1/2}"$
+YMin=0
+YMax=0.401
+# END PLOT
+
+# BEGIN PLOT /separation/mMDT_grej20
+YLabel=separation: $g_{\rm rej}_{20}$
+YMin=0.85
+YMax=1.01
+# END PLOT
+
+# BEGIN PLOT /separation/mMDT_grej50
+YLabel=separation: $g^{\rm rej}_{50}$
+YMin=0.75
+YMax=1.01
+# END PLOT
+
+# BEGIN PLOT /separation/mMDT_qrej20
+YLabel=separation: $q^{\rm rej}_{20}$
+YMin=0.85
+YMax=1.01
+# END PLOT
+
+# BEGIN PLOT /separation/mMDT_qrej50
+YLabel=separation: $q^{\rm rej}_{50}$
+YMin=0.75
+YMax=1.01
+# END PLOT
+
+# BEGIN PLOT /separation/mMDT_srej
+YLabel=separation: $s^{\rm rej}$
+YMin=0.6
+YMax=0.801
+# END PLOT
+
