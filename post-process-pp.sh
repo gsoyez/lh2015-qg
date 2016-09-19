@@ -246,6 +246,8 @@ cat >> $web_global <<EOF
     <td><a target="_blank" href="sep-100-R04-allMCs-hadron/MC_LHQG_Zjet/index.html">hadron</a></td></tr>
 <tr><td>Summary   </td>
     <td><a target="_blank" href="sum-100-R04-allMCs-hadron/separation/index.html">hadron</a></td></tr>
+<tr><td>variations </td>
+    <td><a target="_blank" href="modulations-hadron/index.html">hadron</a></td></tr>
 </table>
 </body>
 </html>
