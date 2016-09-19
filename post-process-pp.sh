@@ -176,39 +176,39 @@ for level in hadron; do
     sed "s/@GENLABEL@/$level, Q=100GeV, R=0.4/g;s/@PROC@/Zjet/g" style-separation.plot > style-separation-tmp.plot
     safe-rivet-mkhtml -o plots/lhc/sum-100-R04-allMCs-${level}  $sum_input  -c style-separation-tmp.plot -t Q=100GeV,R=0.4
 
-    #rm -Rf post-process-tmpfiles/*
+    rm -Rf post-process-tmpfiles/*
 done
 
-# #----------------------------------------------------------------------
-# # do the alphas modulation
-# mkdir -p modulations
-# message ""
-# message "Plots of the alphas, Q and R modulation for individual generators at 200 GeV, R=0.6"
-# for level in hadron parton; do
-#     message "... $level"
-#     i_input=""
-#     a_input=""
-#     for gen in $generators; do
-#         message "... $gen"
-# 
-#         # skip if the base files are not present
-#         if [ ! -f $gen/${level}/sep-200.log ]; then continue; fi
-#         
+#----------------------------------------------------------------------
+# do the modulations
+mkdir -p modulations/lhc
+message ""
+message "Plots of the Q and R modulation for individual generators at Q=100 GeV, R=0.4"
+for level in hadron parton; do
+    message "... $level"
+    i_input=""
+    a_input=""
+    for gen in $generators; do
+        message "... $gen"
+
+        # skip if the base files are not present
+        if [ ! -f $gen/lhc/${level}/sep.log ]; then continue; fi
+       
 #         ./produce-alphadependence-data.py $gen $level modulations/alphadep-$gen-$level.yoda
 #         if [ -f modulations/alphadep-$gen-$level.yoda ]; then
 #             i_input="$i_input modulations/alphadep-$gen-$level.yoda:$gen"
 #         fi
-# 
-#         ./produce-Rdependence-data.py $gen/${level}/sep-200.log modulations/Rdep-$gen-$level.yoda
-#         if [ -f modulations/Rdep-$gen-$level.yoda ]; then
-#             i_input="$i_input modulations/Rdep-$gen-$level.yoda:$gen"
-#         fi
-# 
-#         ./produce-Qdependence-data.py $gen $level modulations/Qdep-$gen-$level.yoda
-#         if [ -f modulations/Qdep-$gen-$level.yoda ]; then
-#             i_input="$i_input modulations/Qdep-$gen-$level.yoda:$gen"
-#         fi
-# 
+
+        ./produce-Rdependence-data-pp.py $gen/lhc/${level}/sep.log modulations/lhc/Rdep-$gen-$level.yoda
+        if [ -f modulations/lhc/Rdep-$gen-$level.yoda ]; then
+            i_input="$i_input modulations/lhc/Rdep-$gen-$level.yoda:$gen"
+        fi
+
+        ./produce-Qdependence-data-pp.py $gen/lhc/${level}/sep.log modulations/lhc/Qdep-$gen-$level.yoda
+        if [ -f modulations/lhc/Qdep-$gen-$level.yoda ]; then
+            i_input="$i_input modulations/lhc/Qdep-$gen-$level.yoda:$gen"
+        fi
+
 #         ./produce-Rdependence-avg.py $gen $level  modulations/avg-Rdep-$gen-$level.yoda
 #         if [ -f modulations/avg-Rdep-$gen-$level.yoda ]; then
 #             a_input="$a_input modulations/avg-Rdep-$gen-$level.yoda:$gen"
@@ -218,36 +218,21 @@ done
 #         if [ -f modulations/avg-Qdep-$gen-$level.yoda ]; then
 #             a_input="$a_input modulations/avg-Qdep-$gen-$level.yoda:$gen"
 #         fi
-# 
-#     done
-#     # safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
-# 
-#     sed "s/@LEVELLABEL@/$level/g" style-modulations.plot > style-modulations-tmp.plot
-# 
-#     
-#     # do the R modulation
-#     # i_input=""
-#     # for gen in $generators; do
-#     #     message "... $gen"
-#     # done
-#     # # safe-rivet-mkhtml -o plots/Rdependence -c style-Rdependence.plot $i_input -t Q=200GeV
-#     # 
-#     # 
-#     # # do the energy modulation
-#     # # i_input=""
-#     # for gen in $generators; do
-#     #     message "... $gen"
-#     # done
-#     message ""
-#     message "... Plot everything"
-#     message "... input: $i_input"
-#     # safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
-#     safe-rivet-mkhtml -o plots/modulations-${level} -c style-modulations-tmp.plot $i_input -t default_R=0.6,_default_Q=200_GeV
+
+    done
+    # safe-rivet-mkhtml -o plots/alphasdependence -c style-alphasdependence.plot $i_input -t Q=200GeV,R=0.6
+
+    sed "s/@LEVELLABEL@/$level/g" style-modulations.plot > style-modulations-tmp.plot
+
+    message ""
+    message "... Plot everything"
+    message "... input: $i_input"
+    safe-rivet-mkhtml -o plots/lhc/modulations-${level} -c style-modulations-tmp.plot $i_input -t default_R=0.4,_default_Q=100_GeV
 #     message "... avg  : $a_input"
 #     # safe-rivet-mkhtml -o plots/Qdependence -c style-Qdependence.plot $i_input -t R=0.6
 #     safe-rivet-mkhtml -o plots/averages-${level} -c style-modulations-tmp.plot $a_input -t default_R=0.6,_default_Q=200_GeV
 # 
-# done
+done
 
 # write the "web" info
 cat >> $web_global <<EOF
