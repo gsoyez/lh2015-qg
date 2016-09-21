@@ -118,8 +118,8 @@ do for [jtype=1:words(levels)]{
         }
 
         if (gen eq "Dire-1.0.0"){
-            tags='"" -string -mcnlo -as0 -as2'
-            names='"baseline" "string" "MC NLO" "1-loop {/Symbol a}_s" "3-loop {/Symbol a}_s"'
+            tags='"" -nogqq -mcnlo -as0 -as2 -string'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "MC{\100}NLO" "1-loop {/Symbol a}_s" "3-loop {/Symbol a}_s" "string had." '
         }
 
         if (gen eq "AnalyticResum"){

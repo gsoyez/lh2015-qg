@@ -974,7 +974,7 @@ $\qquad$
 
 Our \textsc{Ariadne} baseline is based on a beta release of version 5.  In \Fig{fig:settings_variation_ariadne}, we consider the following \textsc{Ariadne} variation:
 \begin{itemize}
-\item \textsc{Ariadne:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to modest change in separation power, similar in magnitude to \textsc{Herwig}.
+\item \textsc{Ariadne:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to modest improvement in separation power, similar in magnitude to \textsc{Herwig} though in the opposite direction.
 \item \textsc{Ariadne: no swing}.  Swing refers to color reconnections performed during the perturbative cascade, where dipoles in the same color state are allowed to reconnect in a way which prefers low-mass dipoles  \cite{Flensburg:2011kk,Bierlich:2014xba}.  Turning off swing has an effect already at parton level, which is amplified at hadron level, leading to improved quark/gluon separation.
 \end{itemize}
 Like for \textsc{Pythia} and \textsc{Herwig}, color reconnections play a surprisingly important role in \textsc{Ariadne}.
@@ -997,10 +997,11 @@ $\qquad$
 
 \jdt{Check this paragraph.} Our \textsc{Dire} baseline is based on the initial release, interfaced with \textsc{Sherpa} for cluster hadronization.  In \Fig{fig:settings_variation_dire}, we consider the following \textsc{Dire} variations:  \jdt{Is there a g -> q qbar variation?}
 \begin{itemize}
-\item \textsc{Dire: string}.  This variation uses \textsc{Pythia} for Lund string fragmentation, which only has an effect at hadron level.  \jdt{Is the shower cutoff scale different?}  This leads to an improvement in discrimination power, suggesting that long-range color connections play an important role in quark/gluon discrimination. 
+\item \textsc{Dire:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, yielding a similar improvement in separation power as seen in \textsc{Ariadne}.
 \item \textsc{Dire: MC@NLO}.  This variation uses MC@NLO \cite{} \jdt{need the cite here} as implemented in \textsc{Sherpa} to provide a matrix element correction.  The discrimination power slightly improves at both parton and hadron level, though not that much, since the \textsc{Dire} shower already is very close to matching the matrix element for the first emission.
 \item \textsc{Dire: 1-loop $\alpha_s$}.  The default within \textsc{Dire} is to perform 2-loop $\alpha_s$ running.  This variation uses just 1-loop running, with a slight degradation of discrimination power.
 \item \textsc{Dire: 3-loop $\alpha_s$}.  Using 3-loop running also degrades performance, but by a very small amount.
+\item \textsc{Dire: string had}.  This variation uses \textsc{Pythia} for Lund string fragmentation, which only has an effect at hadron level.  \jdt{Is the shower cutoff scale different?}  This leads to an improvement in discrimination power, suggesting that long-range color connections play an important role in quark/gluon discrimination. 
 \end{itemize}
 \jdt{Need commentary here.}
 
