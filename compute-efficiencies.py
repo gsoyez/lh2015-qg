@@ -52,10 +52,13 @@ while 1:
     lineg = read_until_matching(fileg, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG|^# BEGIN YODA_HISTO1D /MC_LHQG"));
     fileo.write(lineq);
     lineq = read_until_matching(fileq, re.compile("^Path="));
-    lineq=lineq.replace("Path=/MC_LHQG_EE/","")
-    lineq=lineq.replace("Path=/MC_LHQG_dijet/","")
-    label=lineq.replace("Path=/MC_LHQG_Zjet/","").rstrip("\n")
+    #lineq=lineq.replace("Path=/MC_LHQG_EE/","")
+    #lineq=lineq.replace("Path=/MC_LHQG_dijet/","")
+    #label=lineq.replace("Path=/MC_LHQG_Zjet/","").rstrip("\n")
+    #fileo.write(lineq)
     fileo.write(lineq)
+    label=lineq.replace("Path=/MC_LHQG_EE/","").rstrip("\n")
+
     fileo.write("ScaledBy=1.0\n")
     fileo.write("Title=\n")
     fileo.write("Type=Histo1D\n")
@@ -180,7 +183,8 @@ while 1:
 
     fileo.write(lineq)
     fileo.write("\n")
-    
+    fileo.write("\n")
+
     # overflow contribution:
     wq=1-wtotq
     if (wq<0): wq=0
