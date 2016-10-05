@@ -48,21 +48,26 @@ def read_until_matching_and_print(fin, pattern, fout):
 # repeatedly look for a "BEGIN" line
 while 1:
     # file header
-    lineq = read_until_matching(fileq, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG|^# BEGIN YODA_HISTO1D /MC_LHQG_EE"));
-    lineg = read_until_matching(fileg, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG|^# BEGIN YODA_HISTO1D /MC_LHQG_EE"));
+    lineq = read_until_matching(fileq, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG|^# BEGIN YODA_HISTO1D /MC_LHQG"));
+    lineg = read_until_matching(fileg, re.compile("^BEGIN YODA_HISTO1D /MC_LHQG|^# BEGIN YODA_HISTO1D /MC_LHQG"));
     fileo.write(lineq);
     lineq = read_until_matching(fileq, re.compile("^Path="));
-    label=lineq.replace("Path=/MC_LHQG_EE/","").rstrip("\n")
+    #lineq=lineq.replace("Path=/MC_LHQG_EE/","")
+    #lineq=lineq.replace("Path=/MC_LHQG_dijet/","")
+    #label=lineq.replace("Path=/MC_LHQG_Zjet/","").rstrip("\n")
+    #fileo.write(lineq)
     fileo.write(lineq)
+    label=lineq.replace("Path=/MC_LHQG_Zjet/","").rstrip("\n")
+
     fileo.write("ScaledBy=1.0\n")
     fileo.write("Title=\n")
     fileo.write("Type=Histo1D\n")
     fileo.write("XLabel=\n")
     fileo.write("YLabel=\n")
-    fileo.write("# Mean: 0.5 # wrong\n")
-    fileo.write("# Area: 1.000000e+0n")
+    fileo.write("# Mean: 0.5\n")
+    fileo.write("# Area: 1.000000e+00\n")
     fileo.write("# ID     ID    sumw    sumw2    sumwx   sumwx2  numEntries\n")
-    fileo.write("Total         Total         1.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00      100000\n")
+    fileo.write("Total         Total         1.000000e+00      1.000000e+00      1.000000e+00      1.000000e+00      100000\n")
     fileo.write("Underflow     Underflow     0.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00      0\n")
     fileo.write("Overflow      Overflow      0.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00      0\n")
     fileo.write("# xlow        xhigh         sumw              sumw2	         sumwx             sumwx2            numEntries\n")
@@ -178,7 +183,8 @@ while 1:
 
     fileo.write(lineq)
     fileo.write("\n")
-    
+    fileo.write("\n")
+
     # overflow contribution:
     wq=1-wtotq
     if (wq<0): wq=0
