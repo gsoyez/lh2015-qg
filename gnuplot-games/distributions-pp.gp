@@ -9,9 +9,13 @@ call 'common-pp.gp'
 types="Z+j 2j Separation"
 typetags="zjet dijet sep"
 
-# the different levels of distributions we shall plot
-levels="hadron-level"
-leveltags="hadron"
+# only do hadron level
+level="Hadron-level"
+leveltag="hadron"
+
+# do plain jet and mmdt
+modes='plain mMDT'
+modetags='"" "mMDT_"'
 
 Q=100
 R=0.4
@@ -38,7 +42,7 @@ lambda(kappa,beta)=sprintf("{/Symbol l}@^{%s}_{%s}", kappa, beta)
 extrax(kappa,beta)=(beta==0.5 && kappa==1) ? ' [LHA]' : (beta>0) ? '' : (kappa==0) ? ' [multiplicity]' : (kappa==2) ? ' [(p@_T^D)^2]' : ''
 
 # extract a given distribution from a given file
-distrib(kappa,beta,typetag,generator,level,nreb)=yodaget(sprintf("GA_%02d_%02d_Q%d_R%d",10*kappa,10*beta,Q,10*R), '../'.generator.'/lhc/'.level.'/'.typetag.'.yoda').' | ./rebin.pl -2 -rc '.nreb
+distrib(kappa,beta,typetag,generator,mode,nreb)=yodaget(sprintf("%sGA_%02d_%02d_Q%d_R%d",mode,10*kappa,10*beta,Q,10*R), '../'.generator.'/lhc/'.leveltag.'/'.typetag.'.yoda').' | ./rebin.pl -2 -rc '.nreb
 
 #----------------------------------------------------------------------
 # now really plot things
@@ -55,17 +59,17 @@ do for [itype=1:words(types)]{
     typetag=word(typetags, itype)
 
     # loop over parton and hadron levels
-    do for [jtype=1:words(levels)]{
-        level=word(levels,jtype)
-        leveltag=word(leveltags,jtype) 
+    do for [imode=1:words(modes)]{
+        mode=word(modes,imode)
+        modetag=word(modetags,imode) 
         gens=generators(leveltag)
         gtags=gentags(leveltag)
-        print "  ".type." - ".level
+        print "  ".type." - ".mode
 
         # the following plots (loop over angularitues) all go in the
         # same file
-        set out 'distributions-'.typetag.'-pp.pdf'
-        set title '{/:Bold '.type.', '.level.'} {/: }'
+        set out 'distributions-'.typetag.'-pp-'.mode.'.pdf'
+        set title '{/:Bold '.type.', '.level.', '.mode.' jet} {/: }'
 
         do for [iang=1:words(kappas)]{
             kappa=word(kappas,iang)
@@ -79,7 +83,7 @@ do for [itype=1:words(types)]{
             set ylabel ((itype==1) ? 'p_{Zj}('.lambda(kappa,beta).')' : (itype==2) ? 'p_{2j}('.lambda(kappa,beta).')' : 'd{/Symbol D}\/d'.lambda(kappa,beta) )
             set yrange [0:word(ymaxs,(itype-1)*words(kappas)+iang)+0.0]
 	
-            plot for [igen=1:words(gens)] distrib(kappa,beta,typetag,word(gens,igen),leveltag,nreb) u 2:4 t word(gtags,igen) w l
+            plot for [igen=1:words(gens)] distrib(kappa,beta,typetag,word(gens,igen),modetag,nreb) u 2:4 t word(gtags,igen) w l
         }
     }
 }
