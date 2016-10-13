@@ -1,0 +1,148 @@
+cd /Herwig/EventHandlers
+create ThePEG::Cuts   /Herwig/Cuts/NoCuts
+
+#set  /Herwig/Cuts/NoCuts/ScaleMin 1.0*GeV
+set  /Herwig/Cuts/NoCuts:MHatMin 0.1*GeV
+
+#############################################################
+# Create a LH event handler (set up & assigned below) ...   #
+#############################################################
+mkdir LesHouches
+cd LesHouches
+library LesHouches.so
+cd /Herwig/EventHandlers
+create ThePEG::LesHouchesFileReader theLHReader  LesHouches.so
+set theLHReader:WeightWarnings    false 
+
+#############################################################
+# Create an LHAPDF (set up & assigned below) ...            #
+#############################################################
+#set /Herwig/Shower/AlphaQCD:InputOption AlphaMZ
+set /Herwig/Shower/AlphaQCD:Qmin 1.05
+
+cd /Herwig/Partons
+#create ThePEG::LHAPDF thePDFset ThePEGLHAPDF.so
+
+#############################################################
+# Setup the Les Houches event handler ...                   #
+#############################################################
+cd /Herwig/EventHandlers
+create ThePEG::LesHouchesEventHandler LesHouchesHandler
+insert LesHouchesHandler:LesHouchesReaders[0] theLHReader
+set LesHouchesHandler:PartonExtractor /Herwig/Partons/EEExtractor
+set LesHouchesHandler:StatLevel 2
+set LesHouchesHandler:Cuts /Herwig/Cuts/NoCuts
+#set LesHouchesHandler:Cuts /Herwig/Cuts/QCDCuts
+set LesHouchesHandler:WeightOption UnitWeight
+set LesHouchesHandler:CascadeHandler /Herwig/Shower/ShowerHandler
+set LesHouchesHandler:HadronizationHandler /Herwig/Hadronization/ClusterHadHandler
+set LesHouchesHandler:DecayHandler /Herwig/Decays/DecayHandler
+
+# Input event file name:
+set theLHReader:FileName                ../../lhef/h100.lhe
+
+
+set theLHReader:MomentumTreatment      Accept
+
+#########################################################    
+# Option to off shower / hadronization / decays / MPI.  #    
+#########################################################    
+cd /Herwig/EventHandlers                                     
+#set LesHouchesHandler:CascadeHandler        NULL        
+#set LesHouchesHandler:DecayHandler          NULL      
+#set LesHouchesHandler:HadronizationHandler  NULL              
+# The handler for multiple parton interactions               
+set /Herwig/Shower/ShowerHandler:MPIHandler       NULL      
+
+##################################################
+# Technical parameters for this run
+##################################################
+cd /Herwig/Generators
+
+# theGenerator represents the Les Houches Handler generator
+create ThePEG::EventGenerator theGenerator
+set theGenerator:RandomNumberGenerator /Herwig/Random
+set theGenerator:StandardModelParameters /Herwig/Model
+set theGenerator:EventHandler /Herwig/EventHandlers/LesHouchesHandler
+#set theGenerator:EventHandler:Cuts /Herwig/Cuts/QCDCuts
+
+set theGenerator:NumberOfEvents 200000
+set theGenerator:RandomNumberGenerator:Seed 31122001
+set theGenerator:DebugLevel 0
+set theGenerator:PrintEvent 100
+set theGenerator:MaxErrors 10000
+
+cd /Herwig/Generators
+##################################################
+# select the analyses
+##################################################
+create ThePEG::RivetAnalysis /Herwig/Analysis/RivetAnalysis RivetAnalysis.so
+insert theGenerator:AnalysisHandlers 0 /Herwig/Analysis/RivetAnalysis
+insert /Herwig/Analysis/RivetAnalysis:Analyses 0 MC_LHQG_EE
+
+cd /Herwig/Generators
+##################################################
+# select the analyses
+##################################################
+
+cd /Herwig/EventHandlers
+set theLHReader:FileName                ../../lhef/h100.lhe
+cd /Herwig/Generators
+run gg-100 theGenerator
+
+cd /Herwig/EventHandlers
+set theLHReader:FileName                ../../lhef/h400.lhe
+cd /Herwig/Generators
+run gg-400 theGenerator
+
+cd /Herwig/EventHandlers
+set theLHReader:FileName                ../../lhef/h800.lhe
+cd /Herwig/Generators
+run gg-800 theGenerator
+
+cd /Herwig/EventHandlers
+set theLHReader:FileName                ../../lhef/h50.lhe
+cd /Herwig/Generators
+run gg-50 theGenerator
+
+cd /Herwig/EventHandlers
+set theLHReader:FileName                ../../lhef/h200.lhe
+cd /Herwig/Generators
+run gg-200 theGenerator
+
+set /Herwig/Shower/AlphaQCD:InputOption AlphaMZ
+get /Herwig/Shower/AlphaQCD:AlphaMZ
+set /Herwig/Shower/AlphaQCD:AlphaMZ 0.1056
+run gg-200-alphasx08 theGenerator
+
+set /Herwig/Shower/AlphaQCD:AlphaMZ 0.1188
+run gg-200-alphasx09 theGenerator
+
+set /Herwig/Shower/AlphaQCD:AlphaMZ 0.1452
+run gg-200-alphasx11 theGenerator
+#set /Herwig/Shower/AlphaQCD:AlphaMZ 0.145
+
+#back to def alpha_s
+set /Herwig/Shower/AlphaQCD:AlphaMZ 0.132
+set /Herwig/Hadronization/ColourReconnector:ColourReconnection No
+get /Herwig/Hadronization/ColourReconnector:ReconnectionProbability
+set /Herwig/Hadronization/ColourReconnector:ReconnectionProbability 0.0
+run gg-200-nocr theGenerator 
+
+#back to def cr
+set /Herwig/Hadronization/ColourReconnector:ColourReconnection Yes
+get /Herwig/Hadronization/ColourReconnector:ReconnectionProbability
+set /Herwig/Hadronization/ColourReconnector:ReconnectionProbability 0.4276
+run gg-200-check theGenerator
+
+cd /Herwig/Shower
+
+do SplittingGenerator:DeleteFinalSplitting g->u,ubar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->d,dbar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->s,sbar; /Herwig/Shower/GtoQQbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->c,cbar; /Herwig/Shower/GtoccbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->b,bbar; /Herwig/Shower/GtobbbarSudakov
+do SplittingGenerator:DeleteFinalSplitting g->t,tbar; /Herwig/Shower/GtoQQbarSudakov
+
+cd /Herwig/Generators
+run gg-200-nogqq theGenerator
