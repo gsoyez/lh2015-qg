@@ -112,7 +112,7 @@ for gen in $generators; do
                         echo "...... WARNING: ${fn} $dijetname HAVE THE SAME CONTENTS"
                     fi
                     # do the computation
-                    ./compute-efficiencies-pp.py $fn ${dijetname} $sepname > $logname
+                    ./compute-efficiencies-pp-new.py $fn ${dijetname} $sepname > $logname
                     ./produce-separation-data-pp.py ${logname} ${sepname/sep/sum}
                 fi
             fi
