@@ -25,7 +25,8 @@ logfile=post-process-pp.log
 date > $logfile
 
 # list of included generators 
-desired_generators="Pythia-8215 Vincia-2001"
+#desired_generators="Pythia-8215 Vincia-2001"
+desired_generators="Pythia-8215 Herwig-7.0.3"
 
 
 #----------------------------------------------------------------------

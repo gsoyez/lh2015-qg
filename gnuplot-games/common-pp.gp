@@ -9,9 +9,11 @@ reset
 yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY]"'
 
 # generators
-generators(level)= "Pythia-8215 Vincia-2001"
+#generators(level)= "Pythia-8215 Vincia-2001"
+generators(level)= "Pythia-8215 Herwig-7.0.3"
 
-gentags(level)='"Pythia {/*0.8 8.215}" "Vincia {/*0.8 2.001}" '
+#gentags(level)='"Pythia {/*0.8 8.215}" "Vincia {/*0.8 2.001}" '
+gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 7.0.3}" '
 
 # line styles (currently adapted so that Vincia matched with te ee Vincia)
 
@@ -60,3 +62,4 @@ ymins="0.0  0.0  0.88 0.55 0.88 0.58 0.58"
 ymaxs="0.42 0.35 1.0  1.00 1.00 1.00 0.8 "
 
 
+set label 501 "{/=36 PRELIMINARY}" center at graph 0.5,0.5 rotate by 35 tc "#cccccc"
