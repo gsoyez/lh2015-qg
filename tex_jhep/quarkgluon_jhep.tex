@@ -1061,8 +1061,6 @@ For the dijet analysis (with \textsc{Rivet} routine given in \texttt{MC\_LHQG\_d
 \ee 
 We study the same five benchmark angularities from \Eq{eq:benchmarkang}, but we also test the impact of soft radiation removal using mMDT grooming ($\mu = 1$ and $z_{\rm cut} = 0.1$), with the grooming condition given in \Eq{eq:mMDTcriteria}.
 
-\jdt{I am here.}
-
 \subsection{Baseline analysis}
 
 \begin{figure}
@@ -1081,7 +1079,7 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{figures/fig_GA_10_05_R6_pp_plain_separation.pdf}
 \label{fig:LHA_hadron_pp_separation}
 }
-\caption{Distributions of the LHA at the LHC for (a) the $pp \to Z+j$ (``quark-enriched'') sample, (b) the $pp \to 2j$ (``gluon-enriched'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Five parton shower generators---\textsc{Pythia 8.205}, \textsc{Herwig++ 2.7.1}, \textsc{Sherpa 2.1.1}, \textsc{Vincia 1.201}, \textsc{Deductor 1.0.2}, and \textsc{Ariadne 5.0.$\beta$} \jdt{Remember to update versions}---are run at their baseline settings with $p_T^{\rm min} = 200~\GeV$ and jet radius $R= 0.4$.}
+\caption{Distributions of the LHA at the LHC for (a) the $pp \to Z+j$ (``quark-enriched'') sample, (b) the $pp \to 2j$ (``gluon-enriched'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Five parton shower generators---\textsc{Pythia 8.205}, \textsc{Herwig++ 2.7.1}, \textsc{Sherpa 2.1.1}, \textsc{Vincia 1.201}, \textsc{Deductor 1.0.2}, and \textsc{Ariadne 5.0.$\beta$} \jdt{Remember to update versions}---are run at their baseline settings with $p_T^{\rm min} = 200~\GeV$ and jet radius $R= 0.4$.  \jdt{Check the Q value for these plots.  I think we wanted pTmin = 200 GeV as the baseline.}}
 \label{fig:LHA_hadron_pp}
 \end{figure}
 
@@ -1105,11 +1103,9 @@ $\qquad$
 \label{fig:LHA_hadron_pp_mmdt}
 \end{figure}
 
-In \Fig{fig:LHA_hadron_pp}, we show LHA distributions for the quark-enriched and gluon-enriched samples, using the default values $p_T^{\rm min} = 200~\GeV$ and $R = 0.4$.  \jdt{Need plot to say more.}  Already from of these raw distributions, we see that LHC jet shape measurements would help constrain power shower uncertainties, especially for gluon-enriched jets \jdt{last statement true?}.
+In \Fig{fig:LHA_hadron_pp}, we show LHA distributions for the quark-enriched and gluon-enriched samples, using the default values $p_T^{\rm min} = 200~\GeV$ and $R = 0.4$.  For the quark-enriched $Z$ plus jets sample, the generators yield similar distributions, as expected since the different generators in the $e^+e^-$ study were in broad agreement on quark radiation patterns.  For the gluon-enriched dijet sample, the difference between generators is quite pronounced, yielding disagreements that are even larger than in the $e^+e^-$ study.  This difference is apparent also in the $\text{d} \Delta / \text{d} \lambda$ distribution, where \textsc{Pythia} predicts substantially larger separation power than \textsc{Herwig}, again in agreement with the $e^+e^-$ study.  Already from these raw distributions, we see that LHC jet shape measurements would help constrain power shower uncertainties, especially for gluon-enriched jets.
 
-We next turn to the impact of jet grooming.  Often jet grooming is described as a strategy to mitigate jet contamination from pileup, underlying event, and initial state radiation.  Even at the level of final state radiation, though, grooming modifies the observed jet radiation patterns in ways that are interesting from the quark/gluon discrimination perspective.  This is shown for the LHA after mMDT in \Fig{fig:LHA_hadron_pp_mmdt}.   \jdt{Need plot to say more.}  
-
-From the calculations in \Refs{Dasgupta:2013ihk,Larkoski:2014wba}, one generically expects quark/gluon discrimination power should degrade after jet grooming, since the soft radiation that is being removed carries information about the color structure of the jet.  This degradation \jdt{is or is not?} seen here.  On the other hand, jet grooming reduces the process dependence in quark/gluon radiation patterns \cite{Frye:2016okc,Frye:2016aiz}, so groomed angularities should yield a more robust theoretical definition for quark and gluon jets, despite the performance penalty.
+We next turn to the impact of jet grooming.  Often jet grooming is described as a strategy to mitigate jet contamination from pileup, underlying event, and initial state radiation.  Even at the level of final state radiation, though, grooming modifies the observed jet radiation patterns in ways that are interesting from the quark/gluon discrimination perspective.  This is shown for the LHA after mMDT in \Fig{fig:LHA_hadron_pp_mmdt}.   Because grooming removes soft peripheral radiation, it pushes the LHA to smaller values than in the ungroomed case.  If the parton showers differed primarily in their treatment of wide-angle soft radiation, then one would expect grooming to bring the distributions into closer agreement.  Instead, the differences between generators persists even after grooming, suggesting that the parton showers differ already in their treatment of collinear radiation, despite using the same underlying collinear splitting kernels.
 
 \begin{figure}
 \centering
@@ -1126,7 +1122,10 @@ $\qquad$
 \label{fig:summary_pp_all}
 \end{figure}
 
-In \Fig{fig:summary_pp_all}, we plot classifier separation $\Delta$ for all five benchmark angularities, with and without jet grooming.  \jdt{Need plot to say more.}
+In \Fig{fig:summary_pp_all}, we plot classifier separation $\Delta$ for all five benchmark angularities, with and without jet grooming.  Compared to the $e^+e^-$ study, the overall degree of discrimination power is reduced, as expected because the $Z+j$ and dijet processes do not yield pure quark/gluon samples.  The spread between the generators is large, with the expected trend that \textsc{Pythia} is more optimistic about quark/gluon separation than \textsc{Herwig}.
+
+One surprising outcome of this study is the relatively modest impact of grooming on discrimination power.  From the calculations in \Refs{Dasgupta:2013ihk,Larkoski:2014wba}, one generically expects quark/gluon discrimination power should degrade after jet grooming, since the soft radiation that is being removed carries information about the color structure of the jet.  This predicted degradation, however, is not seen here.  One advantage of working with groomed samples is that jet grooming reduces the process dependence in quark/gluon radiation patterns \cite{Frye:2016okc,Frye:2016aiz}.   In this way, groomed angularities should yield a more robust theoretical definition for quark and gluon jets, with only a small performance penalty.
+
 
 \subsection{Parameter dependence}
 \label{subsec:pp_para}
@@ -1166,7 +1165,7 @@ $\qquad$
 \label{fig:pp_sweep}
 \end{figure}
 
-The results of sweeping $p^\text{min}_T$ and $R$ are shown in \Fig{fig:pp_sweep}.  \jdt{Need plots to say more.}  We see that varying $p_T^{\rm min}$ and $R$ provides important information that is not captured by looking at a single kinematic regime.
+The results of sweeping $p^\text{min}_T$ and $R$ are shown in \Fig{fig:pp_sweep}.  Increasing $p^\text{min}_T$ leads to a degradation of separation power, as minimum from the loss in quark/gluon-enrichment seen in \Fig{fig:parton_level_qg_composition}, though there are also relative differences between the parton showers that cannot be ascribed to sample composition alone.  Perhaps more interesting is the change in discrimination power with the jet radius $R$.  In \textsc{Pythia}, the discrimination is flat or even rising with increasing jet radius, whereas in \textsc{Herwig}, the discrimination power degrades noticeably at larger $R$.  This is true even after jet grooming, again pointing to differences in collinear physics and not just soft physics.  We conclude that varying $p_T^{\rm min}$ and $R$ provides important information that is not captured by looking at a single kinematic regime.
 
 \section{Summary and recommendations}
 \label{sec:conclude}
