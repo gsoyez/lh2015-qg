@@ -10,17 +10,18 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 
 # generators
 #generators(level)= "Pythia-8215 Vincia-2001"
-generators(level)= "Pythia-8215 Herwig-7.0.3"
+generators(level)= "Pythia-8215 Herwig-7.0.3 Vincia-2001"
 
 #gentags(level)='"Pythia {/*0.8 8.215}" "Vincia {/*0.8 2.001}" '
-gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 7.0.3}" '
+gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 7.0.3}" "Vincia {/*0.8 2.001}" '
 
 # line styles (currently adapted so that Vincia matched with te ee Vincia)
 
 set style line 1 lt 1 dt (24,0)            lc rgb "#444444" lw 4 ps 0.0 # Pythia
 set style line 2 lt 1 dt (20,4)            lc rgb "#e41a1c" lw 4 ps 0.0 # Herwig
 set style line 3 lt 1 dt (8,4,8,4)         lc rgb "#f07800" lw 4 ps 0.0 # Sherpa
-set style line 2 lt 1 dt (14,4,2,4)        lc rgb "#4daf4a" lw 4 ps 0.0 # Vincia
+#set style line 4 lt 1 dt (14,4,2,4)        lc rgb "#4daf4a" lw 4 ps 0.0 # Vincia
+set style line 3 lt 1 dt (14,4,2,4)        lc rgb "#4daf4a" lw 4 ps 0.0 # Vincia
 set style line 5 lt 1 dt (8,4,2,4,2,4)     lc rgb "#377eb8" lw 4 ps 0.0 # Deductor
 set style line 6 lt 1 dt (2,4)             lc rgb "#7b3294" lw 4 ps 0.0 # Ariadne
 set style line 7 lt 1 dt (4,2)             lc rgb "#8c510a" lw 4 ps 0.0 # Dire

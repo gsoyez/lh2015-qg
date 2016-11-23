@@ -20,7 +20,8 @@ cp sep-v-ang-parton.pdf         $texfigdir/fig_I2_R6_parton__all.pdf
 cp sep-v-ang-Pythia-8205-hadron.pdf  $texfigdir/fig_I2_R6_hadron_pythia.pdf
 cp sep-v-ang-Sherpa-2.1.1-hadron.pdf $texfigdir/fig_I2_R6_hadron_sherpa.pdf
 cp sep-v-ang-Vincia-1201-hadron.pdf  $texfigdir/fig_I2_R6_hadron_vincia.pdf
-cp sep-v-ang-Herwig-2_7_1-hadron.pdf $texfigdir/fig_I2_R6_hadron_herwig.pdf
+#cp sep-v-ang-Herwig-2_7_1-hadron.pdf $texfigdir/fig_I2_R6_hadron_herwig.pdf
+cp sep-v-ang-Herwig-7.0.3-hadron.pdf $texfigdir/fig_I2_R6_hadron_herwig.pdf
 cp sep-v-ang-Ariadne-hadron.pdf      $texfigdir/fig_I2_R6_hadron_ariadne.pdf
 cp sep-v-ang-Dire-1.0.0-hadron.pdf   $texfigdir/fig_I2_R6_hadron_dire.pdf
 cp sep-v-ang-AnalyticResum-hadron.pdf      $texfigdir/fig_I2_R6_hadron_analytic.pdf
@@ -28,7 +29,8 @@ cp sep-v-ang-AnalyticResum-hadron.pdf      $texfigdir/fig_I2_R6_hadron_analytic.
 cp sep-v-ang-Pythia-8205-parton.pdf  $texfigdir/fig_I2_R6_parton_pythia.pdf
 cp sep-v-ang-Sherpa-2.1.1-parton.pdf $texfigdir/fig_I2_R6_parton_sherpa.pdf
 cp sep-v-ang-Vincia-1201-parton.pdf  $texfigdir/fig_I2_R6_parton_vincia.pdf
-cp sep-v-ang-Herwig-2_7_1-parton.pdf $texfigdir/fig_I2_R6_parton_herwig.pdf
+#cp sep-v-ang-Herwig-2_7_1-parton.pdf $texfigdir/fig_I2_R6_parton_herwig.pdf
+cp sep-v-ang-Herwig-7.0.3-parton.pdf $texfigdir/fig_I2_R6_parton_herwig.pdf
 cp sep-v-ang-Ariadne-parton.pdf      $texfigdir/fig_I2_R6_parton_aridane.pdf
 cp sep-v-ang-Dire-1.0.0-parton.pdf   $texfigdir/fig_I2_R6_parton_dire.pdf
 cp sep-v-ang-AnalyticResum-parton.pdf      $texfigdir/fig_I2_R6_parton_analytic.pdf

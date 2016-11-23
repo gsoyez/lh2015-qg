@@ -108,6 +108,10 @@ do for [jtype=1:words(levels)]{
             tags='"" -nogqq -nocr'
             names='"baseline" "no g{/Symbol \256}q~q‾" "no CR"'
         }
+        if (gen eq "Herwig-7.0.3"){
+            tags='"" -nogqq -nocr'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no CR"'
+        }
         if (gen eq "Deductor-1.0.2"){
             tags='""'
             names='"baseline"'
