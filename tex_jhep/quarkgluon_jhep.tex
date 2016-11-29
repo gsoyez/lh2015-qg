@@ -252,10 +252,10 @@ compare seven different parton shower generators both before
 hadronization (``parton level'') and after hadronization (``hadron
 level''):
 \begin{itemize}
-\item \textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea},
+\item \textsc{Pythia 8.215} \cite{Sjostrand:2014zea},
 \item \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp},
 \item \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta},
-\item \textsc{Vincia 1.201} \cite{Giele:2013ema},
+\item \textsc{Vincia 2.001} \cite{Fischer:2016vfv},
 \item \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia 8.212}),\footnote{Note that this
 \textsc{Deductor} plus \textsc{Pythia} combination has not yet been tuned to data.}
 \item \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk},\footnote{This version of \textsc{Ariadne} is not yet public, but available from the author on request.  For $e^+ e^-$ collisions, the physics is the same as in \textsc{Ariadne 4} \cite{Lonnblad:1992tz}.}
@@ -698,7 +698,7 @@ To define the truth-level jet flavor, we use a simple definition:  a quark jet i
 \label{eq:Erestrict}
 \frac{E_{\rm jet}}{Q/2} > 0.8,
 \end{equation}
-where $Q$ is the center-of-mass collision energy, allowing for up to two jets studied per event.  Note that this condition acts as a restriction on out-of-jet radiation, which already suppresses to some extent non-global effects \cite{Dasgupta:2001sh}.  There is also the ambiguity of which parton shower to use, and we investigate this ambiguity by looking at results from several event generators:  \textsc{Pythia 8.205} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}), \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}, and \textsc{Dire 1.0.0} \cite{Hoche:2015sya}.  
+where $Q$ is the center-of-mass collision energy, allowing for up to two jets studied per event.  Note that this condition acts as a restriction on out-of-jet radiation, which already suppresses to some extent non-global effects \cite{Dasgupta:2001sh}.  There is also the ambiguity of which parton shower to use, and we investigate this ambiguity by looking at results from several event generators:  \textsc{Pythia 8.215} \cite{Sjostrand:2014zea}, \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 2.001} \cite{Fischer:2016vfv}, \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia}), \textsc{Ariadne 5.0.$\beta$} \cite{Flensburg:2011kk}, and \textsc{Dire 1.0.0} \cite{Hoche:2015sya}.  
 
 \subsection{Baseline analysis}
 
@@ -718,7 +718,7 @@ $\qquad$
 \includegraphics[width = 0.65\columnwidth]{figures/fig_GA_10_05_R6_hadron_separation.pdf}
 \label{fig:LHA_hadron_separation}
 }
-\caption{Hadron-level distributions of the LHA for (a) the $e^+ e^- \to u \bar{u}$ (``quark jet'') sample, (b) the $e^+ e^- \to gg$ (``gluon jet'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Seven parton shower generators---\textsc{Pythia 8.205}, \textsc{Herwig 7.0.3}, \textsc{Sherpa 2.1.1}, \textsc{Vincia 1.201}, \textsc{Deductor 1.0.2}, \textsc{Ariadne 5.0.$\beta$}, and \textsc{Dire 1.0.0}---are run at their baseline settings with center-of-mass energy $Q = 200~\GeV$ and jet radius $R= 0.6$.  We also show the analytic NLL results from \Sec{sec:analytic}.}
+\caption{Hadron-level distributions of the LHA for (a) the $e^+ e^- \to u \bar{u}$ (``quark jet'') sample, (b) the $e^+ e^- \to gg$ (``gluon jet'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Seven parton shower generators---\textsc{Pythia 8.215}, \textsc{Herwig 7.0.3}, \textsc{Sherpa 2.1.1}, \textsc{Vincia 2.001}, \textsc{Deductor 1.0.2}, \textsc{Ariadne 5.0.$\beta$}, and \textsc{Dire 1.0.0}---are run at their baseline settings with center-of-mass energy $Q = 200~\GeV$ and jet radius $R= 0.6$.  We also show the analytic NLL results from \Sec{sec:analytic}.}
 \label{fig:LHA_hadron}
 \end{figure}
 
@@ -877,7 +877,7 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_parton_pythia.pdf}
 \label{fig:summary_parton_pythia}
 }
-\caption{Settings variations for \textsc{Pythia 8.205}.  Shown are (a) hadron-level and (b) parton-level results for the classifier separation $\Delta$ derived from the five benchmark angularities.}
+\caption{Settings variations for \textsc{Pythia 8.215}.  Shown are (a) hadron-level and (b) parton-level results for the classifier separation $\Delta$ derived from the five benchmark angularities.}
 \label{fig:settings_variation_pythia}
 \end{figure}
 
@@ -948,11 +948,13 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_parton_vincia.pdf}
 \label{fig:summary_parton_vincia}
 }
-\caption{Same as \Fig{fig:settings_variation_pythia}, but for \textsc{Vincia 1.201}.}
+\caption{Same as \Fig{fig:settings_variation_pythia}, but for \textsc{Vincia 2.001}.}
 \label{fig:settings_variation_vincia}
 \end{figure}
 
-Our \textsc{Vincia} baseline is based on the ``jeppsson5'' tune.  While \textsc{Vincia} has NLO matrix elements for $e^+ e^- \to q \bar{q}$, it does not have them for $e^+ e^- \to gg$, so we will use LO \textsc{Vincia} throughout.  In \Fig{fig:settings_variation_vincia}, we consider the following \textsc{Vincia} variations:
+Our \textsc{Vincia} baseline uses the default setup for version
+2.001~\cite{Fischer:2016vfv}, which includes LO matrix-element corrections  (see \cite{Giele:2011cb}) up
+to ${\cal O}(\alpha_s^3)$ for both $e^+ e^- \to q \bar{q}$ and $e^+ e^- \to gg$.  In \Fig{fig:settings_variation_vincia}, we consider the following \textsc{Vincia} variations: 
 \begin{itemize}
 \item \textsc{Vincia:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to the expected increase in separation power as seen in \textsc{Pythia}.
 \item \textsc{Vincia: no ME}.  By default, each $2 \to 3$ antenna in \textsc{Vincia} has an associated matrix element correction factor.  Since the antenna are already rather close to the true matrix elements, turning off these matrix elements has a modest effect on quark/gluon discrimination power.
@@ -1058,7 +1060,7 @@ As discussed in \Sec{sec:def}, there is no way to isolate pure samples of quark 
 
 In principle, one could try to ``diagonalize" some combination of vector boson plus jet and dijet samples in order to define separate quark or gluon samples (see e.g.~\cite{Aad:2014gea}).  In the spirit of \Sec{sec:def}, though, we think it is more beneficial for the LHC experiments to perform process-specific measurements without trying to directly determine their quark and gluon composition.  Instead of quark/gluon separation, here we ask the more well-defined question of whether one can tell ``the jet in $Z$ plus jets" (quark-enriched) apart from ``the jet in dijets" (gluon-enriched).  In a similar spirit, one could test for differences within a single jet sample, such as comparing central jets versus forward jets in dijet production.  This process-based strategy can help sidestep the known process dependance of defining quarks and gluons at the LHC, where color correlations to the rest of the event impede a universal definition of quark and gluon jets.
 
-For this study, we consider five different hadron-level generators---\textsc{Pythia 8.215} \cite{Sjostrand:2006za,Sjostrand:2014zea}, \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 1.201} \cite{Giele:2013ema}, and \textsc{Dire} \cite{Hoche:2015sya}  \jdt{Missing Sherpa and Dire at the momnet}---using $Z \to \mu^+ \mu^-$ plus jets as our quark-enriched sample and dijets as our gluon-enriched sample.  We set $R = 0.4$ as the default jet radius in keeping with current jet studies at the LHC, exploring other values in \Sec{subsec:pp_para}.  Hadrons with rapidity $|y| < 2.5$ are used for jet clustering, and the resulting jets are restricted to have $|y_{\rm jet}| < 1.5$.  We apply a minimum $p_T$ cut with default value $p^{\min}_T = 200~\GeV$, similar in spirit to the $Q/2$ value used in the $e^+e^-$ study, though the precise meaning of $p_T^{\rm min}$ differs between the two samples. 
+For this study, we consider five different hadron-level generators---\textsc{Pythia 8.215} \cite{Sjostrand:2014zea}, \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp}, \textsc{Sherpa 2.1.1} \cite{Gleisberg:2008ta}, \textsc{Vincia 2.001} \cite{Fischer:2016vfv}, and \textsc{Dire} \cite{Hoche:2015sya}  \jdt{Missing Sherpa and Dire at the momnet}---using $Z \to \mu^+ \mu^-$ plus jets as our quark-enriched sample and dijets as our gluon-enriched sample.  We set $R = 0.4$ as the default jet radius in keeping with current jet studies at the LHC, exploring other values in \Sec{subsec:pp_para}.  Hadrons with rapidity $|y| < 2.5$ are used for jet clustering, and the resulting jets are restricted to have $|y_{\rm jet}| < 1.5$.  We apply a minimum $p_T$ cut with default value $p^{\min}_T = 200~\GeV$, similar in spirit to the $Q/2$ value used in the $e^+e^-$ study, though the precise meaning of $p_T^{\rm min}$ differs between the two samples. 
 
 The specific analysis routines used for this $pp$ study are available from \url{https://github.com/gsoyez/lh2015-qg}.  For the $Z$ plus jets analysis (with \textsc{Rivet} routine \verb|MC_LHQG_Zjet.cc|), the selection criteria for the reconstructed $Z$ boson and jet are:
 \be
@@ -1088,7 +1090,7 @@ $\qquad$
 \includegraphics[width = 0.45\columnwidth]{figures/fig_GA_10_05_R6_pp_plain_separation.pdf}
 \label{fig:LHA_hadron_pp_separation}
 }
-\caption{Distributions of the LHA at the LHC for (a) the $pp \to Z+j$ (``quark-enriched'') sample, (b) the $pp \to 2j$ (``gluon-enriched'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Five parton shower generators---\textsc{Pythia 8.215}, \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp}, \textsc{Vincia 1.201}, \textsc{Deductor 1.0.2}, and \textsc{Ariadne 5.0.$\beta$}---are run at their baseline settings with $p_T^{\rm min} = 200~\GeV$ and jet radius $R= 0.4$.  \jdt{Check the Q value for these plots.  I think we wanted pTmin = 200 GeV as the baseline.}}
+\caption{Distributions of the LHA at the LHC for (a) the $pp \to Z+j$ (``quark-enriched'') sample, (b) the $pp \to 2j$ (``gluon-enriched'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Five parton shower generators---\textsc{Pythia 8.215}, \textsc{Herwig 7.0.3} \cite{Bahr:2008pv,Bellm:2013hwb,Bellm:2015jjp}, \textsc{Vincia 2.001}, \textsc{Deductor 1.0.2}, and \textsc{Ariadne 5.0.$\beta$}---are run at their baseline settings with $p_T^{\rm min} = 200~\GeV$ and jet radius $R= 0.4$.  \jdt{Check the Q value for these plots.  I think we wanted pTmin = 200 GeV as the baseline.}}
 \label{fig:LHA_hadron_pp}
 \end{figure}
 
