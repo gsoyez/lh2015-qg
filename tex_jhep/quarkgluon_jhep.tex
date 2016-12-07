@@ -207,7 +207,10 @@ In order to achieve robust quark/gluon tagging, though, one needs theoretical an
 The goal of this paper is to highlight these uncertainties in quark/gluon tagging, using both parton-shower generators and first-principles calculations.  We start in the idealized context of electron-positron collisions, where one can study final-state quark/gluon radiation patterns in the absence of initial-state complications.  Here, we find modest differences in the predicted cross sections for quark/gluon discriminants, which then translate to large differences in the predicted quark/gluon separation power.  Motivated by these uncertainties, we propose a set of LHC measurements that should help improve the modeling of jets in general and quark/gluon tagging in particular.  A summary and outline of this paper follows.
 
 A common misconception about quark/gluon tagging is that it is an intrinsically ill-defined problem.  Of course, quark and gluon partons carry color while jets are composed of color-singlet hadrons, so the labels ``quark'' and ``gluon'' are fundamentally ambiguous. 
-But this is philosophically no different from the fact that a ``jet'' is fundamentally ambiguous and one must therefore always specify a concrete jet finding procedure.  As discussed in \Sec{sec:def}, one can indeed create a well-defined quark/gluon tagging procedure based unambiguous hadron-level measurements.  In this way, even if what one means by ``quark'' or ``gluon'' is based on a naive or ambiguous concept (like Born-level cross sections or eikonal limits), quark/gluon discrimination is still a well-defined technique for enhancing desired signals over unwanted backgrounds.
+But this is philosophically no different from the fact that a ``jet'' is
+fundamentally ambiguous and one must therefore always specify a concrete jet
+finding procedure.  As discussed in \Sec{sec:def}, one can indeed create a
+well-defined quark/gluon tagging procedure based on unambiguous hadron-level measurements.  In this way, even if what one means by ``quark'' or ``gluon'' is based on a naive or ambiguous concept (like Born-level cross sections or eikonal limits), quark/gluon discrimination is still a well-defined technique for enhancing desired signals over unwanted backgrounds.
 
 In order to quantify quark/gluon discrimination power, there are a wide range of possible quark/gluon discriminants and a similarly large range of performance metrics, both discussed in \Sec{sec:preliminaries}.  As a concrete set of discriminants, we consider the generalized angularities $\lambda_\beta^\kappa$ \cite{Larkoski:2014pca} (see also \cite{Berger:2003iw,Almeida:2008yp,Ellis:2010rwa,Larkoski:2014uqa}),
 \begin{equation}
@@ -229,13 +232,14 @@ jet, $p_T^D$ was defined in
 width is closely related to jet broadening
 \cite{Catani:1992jc,Rakow:1981qn,Ellis:1986ig}, and mass is closely
 related to jet thrust \cite{Farhi:1977sg}.  To quantify discrimination
-performance, we focus on classifier separation (a default output of
-TMVA \cite{2007physics...3039H}):
+performance, we focus on classifier separation (a default output of the 
+TMVA package \cite{2007physics...3039H}):
 \begin{equation}
 \label{eq:deltadef_intro}
 \Delta =  \frac{1}{2} \int \text{d} \lambda \, \frac{\bigl(p_q(\lambda) - p_g(\lambda)\bigr)^2}{p_q(\lambda) + p_g(\lambda)},
 \end{equation}
-where $p_q$ ($p_g$) is the probability distribution for $\lambda$ in a generated quark jet (gluon jet) sample.  This and other potential performance metrics are discussed in \Sec{sec:classsep}.
+where $p_q$ ($p_g$) is the probability distribution for $\lambda$ in a generated quark jet (gluon jet) sample. This and other potential performance
+metrics are discussed in \Sec{sec:classsep}. 
 
 To gain a baseline analytic understanding, we use resummed calculations in \Sec{sec:analytic} to provide a first-order approximation for quark/gluon radiation patterns.  For $\kappa = 1$, the generalized angularities are infrared and collinear (IRC) safe, and therefore calculable in (resummed) perturbation theory.  At leading-logarithmic (LL) accuracy, the IRC safe angularities satisfy a property called Casimir scaling, and the resulting classifier separation $\Delta$ is a universal function of $C_A/C_F$, independent of the value of $\beta$.  At present, the distributions for generalized angularities are known to next-to-LL (NLL) accuracy \cite{Larkoski:2013eya,Larkoski:2014pca}, though without the resummation of nonglobal logarithms \cite{Dasgupta:2001sh} nor the resummation of jet radius logarithms \cite{Dasgupta:2014yra}.  These NLL calculations are effectively at parton-level, so to obtain hadron-level distributions, we estimate the impact of nonperturbative effects using shape functions \cite{Korchemsky:1999kt,Korchemsky:2000kp}.
 
