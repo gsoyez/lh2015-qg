@@ -27,8 +27,8 @@ set key at graph 0.99,0.96
 #set label 1 '{/*0.9 Q=200 GeV}' left at graph 0.75,0.38
 #set label 2 '{/*0.9 R=0.6}'     left at graph 0.75,0.32
 
-set label 1 '{/*0.9 Q=200 GeV}' right at graph 0.95,0.48
-set label 2 '{/*0.9 R=0.6}'     right at graph 0.95,0.42
+set label 1 '{/*0.9 Q=200 GeV}' right at graph 0.95,0.42
+set label 2 '{/*0.9 R=0.6}'     right at graph 0.95,0.36
 
 # loop over parton and hadron levels
 do for [jtype=1:words(levels)]{
@@ -44,10 +44,19 @@ do for [jtype=1:words(levels)]{
     set title '{/:Bold '.level.'} {/: }'
 
     do for [imeas=1:words(measures)]{
+        # for the Delta measure, indicate Casimir scaling
+        if (imeas == 1){
+            set arrow 1 from -1.0,0.1286 to -0.5,0.1286 head lt 1 lc rgb '#000000' lw 3
+            set arrow 2 from  5.0,0.1286 to  4.5,0.1286 head lt 1 lc rgb '#000000' lw 3
+        }
+        
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 
         plot for [igen=1:words(gens)] sep(word(measures,imeas),word(gens,igen),leveltag) u (0.5*($1+$2)):3:(0.5*($2-$1)) t word(gtags,igen) w xerr
+
+        unset arrow 1
+        unset arrow 2
     }
 }
 
