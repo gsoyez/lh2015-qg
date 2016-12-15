@@ -17,7 +17,7 @@ leveltag="hadron"
 modes='plain mMDT'
 modetags='"" "mMDT_"'
 
-Q=100
+pTmin=100
 R=0.4
 
 # the shapes (we made sure that LHA was first, it might be more
@@ -42,7 +42,7 @@ lambda(kappa,beta)=sprintf("{/Symbol l}@^{%s}_{%s}", kappa, beta)
 extrax(kappa,beta)=(beta==0.5 && kappa==1) ? ' [LHA]' : (beta>0) ? '' : (kappa==0) ? ' [multiplicity]' : (kappa==2) ? ' [(p@_T^D)^2]' : ''
 
 # extract a given distribution from a given file
-distrib(kappa,beta,typetag,generator,mode,nreb)=yodaget(sprintf("%sGA_%02d_%02d_Q%d_R%d",mode,10*kappa,10*beta,Q,10*R), '../'.generator.'/lhc/'.leveltag.'/'.typetag.'.yoda').' | ./rebin.pl -2 -rc '.nreb
+distrib(kappa,beta,typetag,generator,mode,nreb)=yodaget(sprintf("%sGA_%02d_%02d_Q%d_R%d",mode,10*kappa,10*beta,pTmin,10*R), '../'.generator.'/lhc/'.leveltag.'/'.typetag.'.yoda').' | ./rebin.pl -2 -rc '.nreb
 
 #----------------------------------------------------------------------
 # now really plot things
@@ -50,8 +50,8 @@ distrib(kappa,beta,typetag,generator,mode,nreb)=yodaget(sprintf("%sGA_%02d_%02d_
 set yrange [0:]
 set key at graph 0.99,0.96
 
-set label 1 sprintf('{/*0.9 Q=%d GeV}',Q) right at graph 0.95,0.48
-set label 2 sprintf('{/*0.9 R=%g}',R)     right at graph 0.95,0.42
+set label 1 sprintf('{/*0.9p@_T^{min}=%d GeV}',pTmin) right at graph 0.95,0.48
+set label 2 sprintf('{/*0.9 R=%g}',R)                 right at graph 0.95,0.42
 
 # loop over quarks, gluons and separation
 do for [itype=1:words(types)]{

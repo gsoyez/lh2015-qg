@@ -1,5 +1,5 @@
 # plot the dependence of the separation as a function of several
-# physics parameters: Q, R and the alphas value
+# physics parameters: pTmin, R and the alphas value
 
 call 'common-pp.gp'
 
@@ -14,7 +14,7 @@ leveltag="hadron"
 modes='plain mMDT'
 modetags='"" "mMDT_"'
 
-Q=100
+pTmin=100
 R=0.4
 
 # the shapes (we made sure that LHA was first, it might be more
@@ -37,9 +37,9 @@ sep(var,varin,measure,kappa,beta,generator,mode)=yodaget(sprintf("%sdependence/%
 set key at graph 0.99,0.96
 
 #----------------------------------------------------------------------
-# Q variation
+# pTmin variation
 # loop over parton and hadron levels
-set xlabel 'Q [GeV]'
+set xlabel 'p@_T^{min} [GeV]'
 set xrange [30:12000]
 set xtics (40 1,50,60 1,70 1,80 1,90 1,100,200,300 1,400 1,500,600 1,700 1,800 1,900 1,1000)
 set log x
@@ -53,11 +53,11 @@ do for [imode=1:words(modes)]{
 
     gens=generators(leveltag)
     gtags=gentags(leveltag)
-    print "  Q - ".mode
+    print "  pTmin - ".mode
     
     # the following plots (loop over separation measures) all go in
     # the same file
-    set out 'variations-Q-pp-'.mode.'.pdf'
+    set out 'variations-pTmin-pp-'.mode.'.pdf'
 
     do for [imeas=1:words(measures)]{
         set ylabel 'Separation: '.word(mlabs,imeas)
@@ -68,7 +68,6 @@ do for [imode=1:words(modes)]{
             beta =word(betas,iang)
             set title '{/:Bold '.lambda(kappa,beta).extrax(kappa,beta).', '. level.', '. level.', '.mode.' jet} {/: }'
 
-            #plot for [gen in gens] sep("Q","Q",word(measures,imeas),kappa,beta,gen,leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t escape(gen) w xerr
             plot for [igen=1:words(gens)] sep("Q","Q",word(measures,imeas),kappa,beta,word(gens,igen),modetag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen) w xerr
 
 
@@ -85,7 +84,7 @@ set xlabel 'R'
 set xrange [0.0:1.8]
 set xtics 0.0,0.2,1.2
 
-set label 1 sprintf('{/*0.9 Q=%d GeV}',Q) right at graph 0.95,0.48
+set label 1 sprintf('{/*0.9 p@_T^{min}=%d GeV}',pTmin) right at graph 0.95,0.48
 
 do for [imode=1:words(modes)]{
     mode=word(modes,imode)

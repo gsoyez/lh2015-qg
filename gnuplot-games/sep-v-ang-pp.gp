@@ -14,7 +14,7 @@ leveltag="hadron"
 modes='plain mMDT'
 modetags='"" "mMDT_"'
 
-Q=100 # note that this is hardcoded in produce-separation-data.py
+pTmin=100 # note that this is hardcoded in produce-separation-data.py
 R=0.4
 
 # the shapes (we made sure that LHA was first, it might be more
@@ -32,8 +32,8 @@ sep(measure,generator,modetag)=yodaget(sprintf("separation/%s%s_R%d",modetag,mea
 
 set key at graph 0.99,0.96
 
-set label 1 sprintf('{/*0.9 Q=%d GeV}',Q) right at graph 0.95,0.48
-set label 2 sprintf('{/*0.9 R=%g}',R)     right at graph 0.95,0.42
+set label 1 sprintf('{/*0.9 p@_T^{min}=%d GeV}',pTmin) right at graph 0.95,0.48
+set label 2 sprintf('{/*0.9 R=%g}',R)                  right at graph 0.95,0.42
 
 # loop over parton and hadron levels
 do for [jtype=1:words(modes)]{
