@@ -1,6 +1,6 @@
 ! 1) Collider Setup:
-Beams:eCM =  50.0      ! Total energy of collision (in GeV)
-25:m0     =  50.       ! Set Higgs mass = eCM
+Beams:eCM =  200.0      ! Total energy of collision (in GeV)
+25:m0     =  200.       ! Set Higgs mass = eCM
 Beams:idA =  13         ! Beam A: mu-
 Beams:idB = -13         ! Beam B: mu+
 Main:numberOfEvents = 200000  ! number of events to generate
@@ -19,3 +19,4 @@ HadronLevel:all = off
 ! 4) Les Houches Q/G study setup for VINCIA
 Vincia = on                     ! Vincia on/off (off = pure PYTHIA)
 Vincia:uncertaintyBands = off   ! Uncertainty bands on/off
+Vincia:alphaSvalue = 0.09833
