@@ -15,7 +15,7 @@ cp distributions-sep-pp-plain.pdf    $texfigdir/fig_GA_10_05_R6_pp_plain_separat
 cp sep-v-ang-pp-mMDT.pdf          $texfigdir/fig_I2_R6_pp_mMDT__all.pdf
 cp sep-v-ang-pp-plain.pdf         $texfigdir/fig_I2_R6_pp_plain__all.pdf
 
-cp variations-Q-pp-mMDT.pdf       $texfigdir/fig_I2_GA_10_05_pp_mMDT_Qdep.pdf
-cp variations-Q-pp-plain.pdf      $texfigdir/fig_I2_GA_10_05_pp_plain_Qdep.pdf
+cp variations-pTmin-pp-mMDT.pdf       $texfigdir/fig_I2_GA_10_05_pp_mMDT_Qdep.pdf
+cp variations-pTmin-pp-plain.pdf      $texfigdir/fig_I2_GA_10_05_pp_plain_Qdep.pdf
 cp variations-R-pp-mMDT.pdf       $texfigdir/fig_I2_GA_10_05_pp_mMDT_Rdep.pdf
 cp variations-R-pp-plain.pdf      $texfigdir/fig_I2_GA_10_05_pp_plain_Rdep.pdf

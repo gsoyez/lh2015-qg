@@ -104,6 +104,10 @@ do for [jtype=1:words(levels)]{
             tags='"" -noqgg -nome -a2L -muq'
             names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "2-loop {/Symbol a}_s" "alt {/Symbol m}_q"'
         }
+        if (gen eq "Vincia-2001"){
+            tags='"" -noqgg -nome -a2L -muq'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "2-loop {/Symbol a}_s" "alt {/Symbol m}_q"'
+        }
         if (gen eq "Herwig-2_7_1"){
             tags='"" -nogqq -nocr'
             names='"baseline" "no g{/Symbol \256}q~q‾" "no CR"'
@@ -136,12 +140,26 @@ do for [jtype=1:words(levels)]{
         set out 'sep-v-ang-'.gen.'-'.leveltag.'.pdf'
         set title '{/:Bold '.word(gtags,igen).', '.level.'} {/: }'
         
+
+
         do for [imeas=1:words(measures)]{
+
+            # for the Delta measure, indicate Casimir scaling
+            if (imeas == 1){
+                set arrow 1 from  graph 0.68, first 0.1286 to graph 0.63,first 0.1286 head filled size screen 0.01,25,60 ls 1 lw 1.5 lc rgb '#000000'
+                set label 3 '{/*0.8 LL}' left at graph 0.69, first 0.131
+            }
+
             set ylabel 'Separation: '.word(mlabs,imeas)
             set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
             
             plot for [itag=1:words(tags)] sep(word(measures,imeas),gen,leveltag,word(tags,itag)) u (0.5*($1+$2)):3:(0.5*($2-$1)) t word(names,itag) w xerr
+
+            unset arrow 1
+            unset label 3
         }
+
+
     }
 }
 

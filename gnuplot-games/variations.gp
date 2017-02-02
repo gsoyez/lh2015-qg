@@ -54,6 +54,12 @@ do for [jtype=1:words(levels)]{
     set out 'variations-Q-'.leveltag.'.pdf'
 
     do for [imeas=1:words(measures)]{
+        # for the Delta measure, indicate Casimir scaling
+        if (imeas == 1){
+            set arrow 1 from  graph 0.68, first 0.1286 to graph 0.63,first 0.1286 head filled size screen 0.01,25,60 ls 1 lw 1.5 lc rgb '#000000'
+            set label 3 '{/*0.8 LL}' left at graph 0.69, first 0.131
+        }
+
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 
@@ -65,8 +71,10 @@ do for [jtype=1:words(levels)]{
             #plot for [gen in gens] sep("Q","Q",word(measures,imeas),kappa,beta,gen,leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t escape(gen) w xerr
             plot for [igen=1:words(gens)] sep("Q","Q",word(measures,imeas),kappa,beta,word(gens,igen),leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen) w xerr
 
-
         }
+
+	unset arrow 1
+	unset label 3
     }
 }
 
@@ -97,6 +105,13 @@ do for [jtype=1:words(levels)]{
     set out 'variations-alphas-'.leveltag.'.pdf'
 
     do for [imeas=1:words(measures)]{
+
+        # for the Delta measure, indicate Casimir scaling
+        if (imeas == 1){
+            set arrow 1 from  graph 0.68, first 0.1286 to graph 0.63,first 0.1286 head filled size screen 0.01,25,60 ls 1 lw 1.5 lc rgb '#000000'
+            set label 3 '{/*0.8 LL}' left at graph 0.69, first 0.131
+        }
+
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 
@@ -108,6 +123,9 @@ do for [jtype=1:words(levels)]{
             #plot for [gen in gens] sep("alpha","alphas",word(measures,imeas),kappa,beta,gen,leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t escape(gen) w xerr
             plot for [igen in genindices] sep("alpha","alphas",word(measures,imeas),kappa,beta,word(gens,igen+0),leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen+0) w xerr ls igen+0
         }
+
+	unset arrow 1
+	unset label 3
     }
 }
 
@@ -134,6 +152,13 @@ do for [jtype=1:words(levels)]{
     set out 'variations-R-'.leveltag.'.pdf'
 
     do for [imeas=1:words(measures)]{
+
+        # for the Delta measure, indicate Casimir scaling
+        if (imeas == 1){
+            set arrow 1 from  graph 0.68, first 0.1286 to graph 0.63,first 0.1286 head filled size screen 0.01,25,60 ls 1 lw 1.5 lc rgb '#000000'
+            set label 3 '{/*0.8 LL}' left at graph 0.69, first 0.131
+        }
+
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 
@@ -146,6 +171,10 @@ do for [jtype=1:words(levels)]{
             plot for [igen=1:words(gens)] sep("R","R",word(measures,imeas),kappa,beta,word(gens,igen),leveltag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen) w xerr
 
         }
+	
+	unset arrow 1
+	unset label 3
+
     }
 }
 

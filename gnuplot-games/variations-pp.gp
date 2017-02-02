@@ -60,6 +60,7 @@ do for [imode=1:words(modes)]{
     set out 'variations-pTmin-pp-'.mode.'.pdf'
 
     do for [imeas=1:words(measures)]{
+
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 
@@ -72,6 +73,7 @@ do for [imode=1:words(modes)]{
 
 
         }
+
     }
 }
 
@@ -98,6 +100,7 @@ do for [imode=1:words(modes)]{
     set out 'variations-R-pp-'.mode.'.pdf'
 
     do for [imeas=1:words(measures)]{
+
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 

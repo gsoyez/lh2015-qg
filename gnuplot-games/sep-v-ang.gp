@@ -44,10 +44,10 @@ do for [jtype=1:words(levels)]{
     set title '{/:Bold '.level.'} {/: }'
 
     do for [imeas=1:words(measures)]{
-        # for the Delta measure, indicate Casimir scaling
+
         if (imeas == 1){
-            set arrow 1 from -1.0,0.1286 to -0.5,0.1286 head lt 1 lc rgb '#000000' lw 3
-            set arrow 2 from  5.0,0.1286 to  4.5,0.1286 head lt 1 lc rgb '#000000' lw 3
+            set arrow 1 from  graph 0.68, first 0.1286 to graph 0.63,first 0.1286 head filled size screen 0.01,25,60 ls 1 lw 1.5 lc rgb '#000000'
+            set label 3 '{/*0.8 LL}' left at graph 0.69, first 0.131
         }
         
         set ylabel 'Separation: '.word(mlabs,imeas)
@@ -56,7 +56,7 @@ do for [jtype=1:words(levels)]{
         plot for [igen=1:words(gens)] sep(word(measures,imeas),word(gens,igen),leveltag) u (0.5*($1+$2)):3:(0.5*($2-$1)) t word(gtags,igen) w xerr
 
         unset arrow 1
-        unset arrow 2
+	unset label 3
     }
 }
 

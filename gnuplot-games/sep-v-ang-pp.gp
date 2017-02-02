@@ -50,10 +50,12 @@ do for [jtype=1:words(modes)]{
     set title '{/:Bold '.level.', '.mode.' jet} {/: }'
 
     do for [imeas=1:words(measures)]{
+
         set ylabel 'Separation: '.word(mlabs,imeas)
         set yrange [word(ymins,imeas)+0.0:word(ymaxs,imeas)+0.0]
 
         plot for [igen=1:words(gens)] sep(word(measures,imeas),word(gens,igen),modetag) u (0.5*($1+$2)):3:(0.5*($2-$1)) t word(gtags,igen) w xerr
+
     }
 }
 
