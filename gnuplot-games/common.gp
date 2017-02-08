@@ -60,6 +60,6 @@ mlabs='"{/Symbol D}" I_{1/2} q@_{20}^{rej} q@_{50}^{rej} g@_{20}^{rej} g@_{50}^{
 # exception for the "grej" ones and ptD but covering these would
 # probably impact the other grej plots.
 ymins="0.0  0.0  0.88 0.55 0.88 0.58 0.58"
-ymaxs="0.42 0.35 1.0  1.00 1.00 1.00 0.8 "
+ymaxs="0.45 0.35 1.0  1.00 1.00 1.00 0.8 "
 
 
