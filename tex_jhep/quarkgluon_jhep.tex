@@ -193,7 +193,7 @@
 \abstract{By measuring the substructure of a jet, one can assign it a ``quark'' or ``gluon'' tag.  In the eikonal (double-logarithmic) limit, quark/gluon discrimination is determined solely by the color factor of the initiating parton ($C_F$ versus $C_A$).  In this paper, we confront the challenges faced when going beyond this leading-order understanding, using both parton-shower generators and first-principles calculations to assess the impact of higher-order perturbative and nonperturbative physics.  Working in the idealized context of electron-positron collisions, where one can define a proxy for quark and gluon jets based on the Lorentz structure of the production vertex, we find a fascinating interplay between perturbative shower effects and nonperturbative hadronization effects.   Turning to proton-proton collisions, we highlight a core set of measurements that would constrain current uncertainties in quark/gluon tagging and improve the overall modeling of jets at the Large Hadron Collider.
 }
 
-\preprint{MIT--CTP xxxx}
+\preprint{MIT--CTP xxxx, CoEPP-MN-17-2, MCNET-17-1}
 
 \maketitle
 
@@ -1206,7 +1206,14 @@ If possible, it would be interesting to study the LHA ($\beta = 1/2$) on archiva
 
 The key lesson to parton-shower authors is that, contrary to some standard lore, existing LEP measurements used for tuning \emph{do not} constrain all of the relevant aspects of the final state parton shower.  While we have extensive information about quark jet radiation patterns from LEP event shapes, gluon jet radiation patterns are largely unconstrained.  This has important implications for parton-shower tuning strategies, since LHC data can and should be used to adjust final state shower parameters.  For example, the ATLAS A14 tune of \textsc{Pythia} has a 10\% lower value of $\alpha_s$ in the final state shower compared to the Monash tune, which yields better agreement with charge particle multiplicity distributions \cite{Aad:2016oit}.  However, A14 has not been tested on LEP event shapes, suggesting that a global tuning strategy is needed.   In addition, it is worth mentioning that similar quark/gluon studies have been carried out in deep inelastic electron-proton scattering \cite{Chekanov:2004kz}, which offer an intermediate step between $pp$ and $e^+ e^-$ collisions, and this $ep$ data could also be valuable for parton-shower tuning.
 
-Interestingly, there are LEP measurements that do constrain gluon radiation patterns, though to our knowledge, they are not currently used in any parton shower tuning strategy.  \jdt{Placeholder for Peter.}  Therefore, we strongly encourage the inclusion of these measurements in the next round of parton shower tunes.
+Interestingly, there are LEP measurements that do constrain gluon
+radiation patterns, though they are not currently
+available in \textsc{Rivet}~\cite{Buckley:2010ar} and, 
+to our knowledge, are not  used in any parton shower tuning strategy.   
+\jdt{Placeholder for
+  Peter.}  Therefore, we strongly encourage the inclusion of these
+measurements in RIVET and in the the next round of parton shower
+tunes.  
 
 Based on this study, we have identified three aspects of the final state parton shower that deserve closer scrutiny.
 \begin{itemize}
@@ -1236,6 +1243,8 @@ The work of DS is supported by the U.S. Department of Energy (DOE) under Grant D
 %
 The work of GS is supported by the Paris-Saclay IDEX under the IDEOPTIMALJE grant. 
 %
+PS is the recipient of an Australian Research Council Future Fellowship, FT130100744.
+% 
 The work of JT is supported by the DOE under grant contract numbers DE-SC-00012567 and DE-SC0015476, and by a Sloan Research Fellowship from the Alfred P. Sloan Foundation.
 
 \end{acknowledgments}
