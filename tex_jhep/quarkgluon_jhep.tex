@@ -1240,10 +1240,25 @@ Interestingly, there are LEP measurements that do constrain gluon
 radiation patterns (see, e.g., the overview given by K.~Hamacher in
 \cite{Anderle:2017qwx}), though they are not currently
 available in \textsc{Rivet}~\cite{Buckley:2010ar} and, 
-to our knowledge, are not  used in any present-day parton shower tuning strategy.
-The procedures used to tag and compare the jets are not always trivial, 
-hence we strongly encourage efforts to determine the extent to which
-\textsc{Rivet} implementations are practicable and to begin that
+to our knowledge, are not  used in any present-day parton shower
+tuning strategy. The cleanest studies focused on $Z\to b\bar{b}g$
+events, i.e.\ 3-jet events with two heavy-flavor tagged
+jets~\cite{Alexander:1991ce,Acton:1993jm}. Additonal event-selection
+cuts isolated either so-called symmetric
+events~\cite{Buskulic:1995sw,Abreu:1995hp,OPAL:1995ab,Abreu:1998ve}, 
+with use of Lorentz invariant $p_\perp$ scales allowing to extend to
+more general 3-jet topologies~\cite{Abreu:1999af},  or 
+the rare case that the two tagged jets appeared in the same hemisphere
+of an event so that the opposite side defined an inclusive
+sample of gluon-like jets~\cite{Alexander:1996qr,Ackerstaff:1997xg,Abbiendi:1999pi,Abbiendi:2003ri}.  
+It should be noted,
+however, that in at least some of these analyses, the 
+corrections to hadron level made use of MC truth
+% This is the case for at least
+% Alexander:1996qr,Ackerstaff:1997xg,Abbiendi:1999pi, and Abbiendi:2003ri
+to correct not only for photon ISR and detector effects but also for impurities in the
+gluon-jet selection. Hence we strongly encourage efforts to determine the extent to which
+\textsc{Rivet} implementations of these measurements are practicable and to begin that
 process. This would enable them to be included
 in the next round of parton-shower tunes and in global comparisons
 such as those on the
