@@ -966,13 +966,31 @@ $\qquad$
 \end{figure}
 
 Our \textsc{Vincia} baseline uses the default setup for version
-2.001~\cite{Fischer:2016vfv}, which includes LO matrix-element corrections  (see \cite{Giele:2011cb}) up
-to ${\cal O}(\alpha_s^3)$ for both $e^+ e^- \to q \bar{q}$ and $e^+ e^- \to gg$.  In \Fig{fig:settings_variation_vincia}, we consider the following \textsc{Vincia} variations: 
+2.001~\cite{Fischer:2016vfv}, which includes ``smooth ordering'' and LO matrix-element corrections  (see \cite{Giele:2011cb}) up
+to ${\cal O}(\alpha_s^3)$ for both $e^+ e^- \to q \bar{q}$ and $e^+
+e^- \to gg$, a 2-loop running $\alpha_s$ defined by $\alpha_s(M_Z)=0.118$
+(reinterpreted according to the CMW scheme~\cite{Catani:1990rr}) with 
+$\mu_R = 0.6 p_\perp$ as the renormalisation scale for gluon emissions
+and $\mu_R = 0.5 m_{q\bar{q}}$ for $g\to q\bar{q}$ branchings. 
+ In \Fig{fig:settings_variation_vincia}, we consider the following \textsc{Vincia} variations: 
 \begin{itemize}
 \item \textsc{Vincia:  no $g \to q\bar{q}$}.  This variation turns off $g \to q \bar{q}$, leading to the expected increase in separation power as seen in \textsc{Pythia}.
 \item \textsc{Vincia: no ME}.  By default, each $2 \to 3$ antenna in \textsc{Vincia} has an associated matrix element correction factor.  Since the antenna are already rather close to the true matrix elements, turning off these matrix elements has a modest effect on quark/gluon discrimination power.
-\item \textsc{Vincia: 2-loop $\alpha_s$}.  Like for \textsc{Pythia}, this variation switches from 1-loop to 2-loop $\alpha_s$ running, yielding a modest parton-level difference and almost no hadron-level difference. 
-\item \textsc{Vincia: alt $\mu_q$}.  By default, the $\alpha_s$ scale used in \textsc{Vincia} is determined by the transverse momentum of the corresponding antenna.  In this variation, the $\alpha_s$ scale is set to half the invariant mass of the mother antenna.  This slightly decreases the discrimination power at hadron level, but increases the discrimination power at parton level, again showing the complicated interplay of perturbative and nonperturbative effects.
+\item \textsc{Vincia: 1-loop $\alpha_s$}.  This variation switches
+  from 2-loop to 1-loop $\alpha_s$ running, yielding a
+  parton-level difference which goes in the same direction as the
+  equivalent \textsc{Pythia} variation (note the baseline in
+  \textsc{Pythia} is 1-loop running) and almost no hadron-level
+  difference, again in agreement with the observation for \textsc{Pythia}. 
+\item \textsc{Vincia: alt $Q_E$}.  By default, \textsc{Vincia} uses a
+  transverse-momentum scale (the same as in \textsc{Ariadne}) as the
+  evolution variable for gluon emission, which 
+  agrees with the logarithmic structure of the NLO
+  $q\bar{q}\to qg\bar{q}$ antenna function~\cite{Hartgring:2013jma}. This variation
+  instead uses a virtuality-like quantity. This changes the Sudakov
+  factors to slightly enhance wide-angle emissions over collinear
+  ones (see, e.g., \cite{Fischer:2014bja}) and produces an increases in the separation power, mainly
+  coming from increased activity in the $H\to gg$ showers. 
 \end{itemize}
 Since \textsc{Vincia} and \textsc{Pythia} share the same underlying engine, it is not surprising that they exhibit similar behaviors as parameters are changed.  The biggest surprise is the way that changing the $\alpha_s$ scale for the antenna can lead to different trends at parton and hadron level.
 
@@ -1207,13 +1225,16 @@ If possible, it would be interesting to study the LHA ($\beta = 1/2$) on archiva
 The key lesson to parton-shower authors is that, contrary to some standard lore, existing LEP measurements used for tuning \emph{do not} constrain all of the relevant aspects of the final state parton shower.  While we have extensive information about quark jet radiation patterns from LEP event shapes, gluon jet radiation patterns are largely unconstrained.  This has important implications for parton-shower tuning strategies, since LHC data can and should be used to adjust final state shower parameters.  For example, the ATLAS A14 tune of \textsc{Pythia} has a 10\% lower value of $\alpha_s$ in the final state shower compared to the Monash tune, which yields better agreement with charge particle multiplicity distributions \cite{Aad:2016oit}.  However, A14 has not been tested on LEP event shapes, suggesting that a global tuning strategy is needed.   In addition, it is worth mentioning that similar quark/gluon studies have been carried out in deep inelastic electron-proton scattering \cite{Chekanov:2004kz}, which offer an intermediate step between $pp$ and $e^+ e^-$ collisions, and this $ep$ data could also be valuable for parton-shower tuning.
 
 Interestingly, there are LEP measurements that do constrain gluon
-radiation patterns, though they are not currently
+radiation patterns (see, e.g., the overview given by K.~Hamacher in
+\cite{Anderle:2017qwx}), though they are not currently
 available in \textsc{Rivet}~\cite{Buckley:2010ar} and, 
-to our knowledge, are not  used in any parton shower tuning strategy.   
-\jdt{Placeholder for
-  Peter.}  Therefore, we strongly encourage the inclusion of these
-measurements in RIVET and in the the next round of parton shower
-tunes.  
+to our knowledge, are not  used in any parton shower tuning strategy.
+The relevant measurements include ... 
+We strongly encourage the implementation of these
+measurements in \textsc{Rivet}, which would enable them to be included
+in the next round of parton-shower tunes and on the
+\href{http://mcplots.cern.ch}{\mbox{\textsc{MCplots}}}~\cite{Karneyeu:2013aha}
+web site. 
 
 Based on this study, we have identified three aspects of the final state parton shower that deserve closer scrutiny.
 \begin{itemize}
