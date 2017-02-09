@@ -105,8 +105,8 @@ do for [jtype=1:words(levels)]{
             names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "2-loop {/Symbol a}_s" "alt {/Symbol m}_q"'
         }
         if (gen eq "Vincia-2001"){
-            tags='"" -noqq -nomec -a1L -muq -recoil'
-            names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "1-loop {/Symbol a}_s" "alt {/Symbol m}_q" "recoil"'
+            tags='"" -noqq -nomec -a1L -muq'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "1-loop {/Symbol a}_s" "alt Q_E" '
         }
         if (gen eq "Herwig-2_7_1"){
             tags='"" -nogqq -nocr'
