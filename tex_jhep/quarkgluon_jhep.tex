@@ -984,14 +984,27 @@ and $\mu_R = 0.5 m_{q\bar{q}}$ for $g\to q\bar{q}$ branchings.
   difference, again in agreement with the observation for \textsc{Pythia}. 
 \item \textsc{Vincia: alt $Q_E$}.  By default, \textsc{Vincia} uses a
   transverse-momentum scale (the same as in \textsc{Ariadne}) as the
-  evolution variable for gluon emissions, which reproduces the logarithmic structure of the
-  $q\bar{q}\to qg\bar{q}$ antenna function to second order in $\alpha_s$~\cite{Hartgring:2013jma}. This variation
+  evolution variable for gluon emissions. This variation
   instead uses a virtuality-like quantity. This changes the Sudakov
   factors to slightly enhance wide-angle emissions over collinear
   ones (see, e.g., \cite{Fischer:2014bja}). The increase in separation
   power is mainly due to increased activity in the $H\to gg$ showers. 
 \end{itemize}
-Since \textsc{Vincia} and \textsc{Pythia} share the same underlying engine, it is not surprising that they exhibit similar behaviors as parameters are changed.  The biggest surprise is the way that changing the $\alpha_s$ scale for the antenna can lead to different trends at parton and hadron level.
+Since \textsc{Vincia} and \textsc{Pythia} share the same hadronisation
+model and both have dipole-style showers, it is not surprising that
+they exhibit similar behaviors as parameters are changed.  The biggest
+surprise is the significant change observed when changing the shower
+evolution variable (``alt $Q_E$''), which persists at hadron
+level. Although this variation is theoretically disfavoured (the
+default $p_\perp$ evolution variable has been shown to reproduce the logarithmic structure of the
+  $q\bar{q}\to qg\bar{q}$ antenna function to second order in
+  $\alpha_s$~\cite{Hartgring:2013jma}), formal control of the
+  ambiguity would depend on one-loop corrections. It would therefore be
+  interesting to determine the extent to which multi-leg NLO
+  merging techniques (such as UNLOPS~\cite{Lonnblad:2012ix}) would
+  reduce it, and/or whether second-order corrections to the shower
+  kernels (for which currently only a proof  of concept
+  exists~\cite{Li:2016yez}) are required. 
 
 Our \textsc{Deductor} baseline uses leading color plus (LC+) showering, which includes some subleading color structures. We find that switching from LC+ to LC showering at parton level has a negligible impact on quark/gluon discrimination power.  When \textsc{Deductor} interfaces with the default tune of \textsc{Pythia 8.212} for hadronization, only leading color is used in the showering, such that partons with their LC color information can be directly passed to the Lund string model.  No \textsc{Deductor} variations are shown here, though it would be interesting to study the effect of $g \to q \bar{q}$ splitting in future work.
 
@@ -1227,11 +1240,13 @@ Interestingly, there are LEP measurements that do constrain gluon
 radiation patterns (see, e.g., the overview given by K.~Hamacher in
 \cite{Anderle:2017qwx}), though they are not currently
 available in \textsc{Rivet}~\cite{Buckley:2010ar} and, 
-to our knowledge, are not  used in any parton shower tuning strategy.
-The relevant measurements include ... 
-We strongly encourage the implementation of these
-measurements in \textsc{Rivet}, which would enable them to be included
-in the next round of parton-shower tunes and on the
+to our knowledge, are not  used in any present-day parton shower tuning strategy.
+The procedures used to tag and compare the jets are not always trivial, 
+hence we strongly encourage efforts to determine the extent to which
+\textsc{Rivet} implementations are practicable and to begin that
+process. This would enable them to be included
+in the next round of parton-shower tunes and in global comparisons
+such as those on the
 \href{http://mcplots.cern.ch}{\mbox{\textsc{MCplots}}}~\cite{Karneyeu:2013aha}
 web site. 
 
