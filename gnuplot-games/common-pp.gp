@@ -10,10 +10,12 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 
 # generators
 #generators(level)= "Pythia-8215 Vincia-2001"
-generators(level)= "Pythia-8215 Herwig-7.0.3 Vincia-2001"
+#generators(level)= "Pythia-8215 Herwig-7.0.3 Vincia-2001"
+generators(level)= "Pythia-8215 Herwig-2_7_1 Vincia-2001"
+
 
 #gentags(level)='"Pythia {/*0.8 8.215}" "Vincia {/*0.8 2.001}" '
-gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 7.0.3}" "Vincia {/*0.8 2.001}" '
+gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 2.7.1}" "Vincia {/*0.8 2.001}" '
 
 # line styles (currently adapted so that Vincia matched with te ee Vincia)
 

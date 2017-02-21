@@ -26,7 +26,8 @@ date > $logfile
 
 # list of included generators 
 #desired_generators="Pythia-8215 Vincia-2001"
-desired_generators="Pythia-8215 Herwig-7.0.3 Vincia-2001"
+#desired_generators="Pythia-8215 Herwig-7.0.3 Vincia-2001"
+desired_generators="Pythia-8215 Herwig-2_7_1 Vincia-2001"
 
 
 #----------------------------------------------------------------------
