@@ -65,4 +65,4 @@ ymins="0.0  0.0  0.88 0.55 0.88 0.58 0.58"
 ymaxs="0.42 0.35 1.0  1.00 1.00 1.00 0.8 "
 
 
-set label 501 "{/=36 PRELIMINARY}" center at graph 0.5,0.5 rotate by 35 tc "#cccccc"
+#set label 501 "{/=36 PRELIMINARY}" center at graph 0.5,0.5 rotate by 35 tc "#cccccc"
