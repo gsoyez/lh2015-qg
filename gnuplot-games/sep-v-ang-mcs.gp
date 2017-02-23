@@ -97,8 +97,8 @@ do for [jtype=1:words(levels)]{
             names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "2-loop {/Symbol a}_s" "CR1"'
         }
         if (gen eq "Sherpa-2.1.1"){
-            tags='"" -nogqq -njet0 -njet1 '
-            names='"baseline" "no g{/Symbol \256}q~q‾" "N_{jet}=0" "N_{jet}=1" '
+            tags='"" -nogqq -njet1 -njet0 '
+            names='"baseline" "no g{/Symbol \256}q~q‾" "N_{jet}=1" "N_{jet}=0" '
         }
         if (gen eq "Vincia-1201"){
             tags='"" -noqgg -nome -a2L -muq'
@@ -132,7 +132,7 @@ do for [jtype=1:words(levels)]{
 
         if (gen eq "AnalyticResum"){
             tags='"" -nogqq -noNGL -no2loop -noCas -altF'
-            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "no 2-loop {/Symbol a}_s" "no C_i in {/Symbol e}_0" "alt F({/Symbol e})"'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "1-loop {/Symbol a}_s" "no C_i in {/Symbol e}_0" "alt F({/Symbol e})"'
         }
 
         # the following plots (loop over separation measures) all go in
