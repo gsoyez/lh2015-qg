@@ -1135,7 +1135,7 @@ $\qquad$
 \includegraphics[width = 0.65\columnwidth]{figures/fig_GA_10_05_R6_pp_plain_separation.pdf}
 \label{fig:LHA_hadron_pp_separation}
 }
-\caption{\jdt{Consider changing the y-axis range on these plots.}  Distributions of the LHA at the LHC for (a) the $pp \to Z+j$ (``quark-enriched'') sample, (b) the $pp \to 2j$ (``gluon-enriched'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Four parton-shower generators---\textsc{Pythia 8.215}, \textsc{Herwig 2.7.1}, \textsc{Sherpa 2.1.1}, and \textsc{Vincia 2.001}---are run at their baseline settings with $p_T^{\rm min} = 100~\GeV$ and jet radius $R= 0.4$.}
+\caption{Distributions of the LHA at the LHC for (a) the $pp \to Z+j$ (``quark-enriched'') sample, (b) the $pp \to 2j$ (``gluon-enriched'') sample, and (c) the classifier separation integrand in \Eq{eq:deltaintegrand}.  Four parton-shower generators---\textsc{Pythia 8.215}, \textsc{Herwig 2.7.1}, \textsc{Sherpa 2.1.1}, and \textsc{Vincia 2.001}---are run at their baseline settings with $p_T^{\rm min} = 100~\GeV$ and jet radius $R= 0.4$.  For ease of comparison, the plotted range is identical to \Fig{fig:LHA_hadron}.}
 \label{fig:LHA_hadron_pp}
 \end{figure}
 
@@ -1155,7 +1155,7 @@ $\qquad$
 \includegraphics[width = 0.65\columnwidth]{figures/fig_GA_10_05_R6_pp_mMDT_separation.pdf}
 \label{fig:LHA_hadron_pp_mmdt_separation}
 }
-\caption{\jdt{Also consider changing the y-axis range.}  Same as \Fig{fig:LHA_hadron_pp} but after mMDT jet grooming with $\mu = 1$ and $z_{\rm cut} = 0.1$.}
+\caption{Same as \Fig{fig:LHA_hadron_pp} but after mMDT jet grooming with $\mu = 1$ and $z_{\rm cut} = 0.1$.}
 \label{fig:LHA_hadron_pp_mmdt}
 \end{figure}
 
@@ -1174,11 +1174,11 @@ $\qquad$
 \label{fig:summary_hadron_pp_mmdt_all}
 \includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_pp_mMDT__all.pdf}
 }
-\caption{Classifier separation $\Delta$ for the five benchmark angularities in our LHC study, determined from the various generators (a) using all jet constituents and (b) after mMDT grooming.}
+\caption{Classifier separation $\Delta$ for the five benchmark angularities in our LHC study, determined from the various generators (a) using all jet constituents and (b) after mMDT grooming.  The plotted range is identical to \Fig{fig:summary_all} to make clear the decreased discrimination power in the realistic $pp$ case compared to the idealized $e^+e^-$ study with pure quark/gluon samples.}
 \label{fig:summary_pp_all}
 \end{figure}
 
-In \Fig{fig:summary_pp_all}, we plot the classifier separation $\Delta$ for all five benchmark angularities, with and without jet grooming.  Compared to the $e^+e^-$ study, the overall degree of discrimination power is reduced, as expected because the $Z+j$ and dijet processes do not yield pure quark/gluon samples.  The spread between the generators is large, with the expected trend that \textsc{Pythia} is more optimistic about quark/gluon separation than \textsc{Herwig}.  Interestingly, \textsc{Vincia} has even larger separation power than \textsc{Pythia}, \jdt{which is possible just an artifact of having low stats, need Deepak to get this first.}
+In \Fig{fig:summary_pp_all}, we plot the classifier separation $\Delta$ for all five benchmark angularities, with and without jet grooming.  Compared to the $e^+e^-$ study, the overall degree of discrimination power is reduced, as expected because the $Z+j$ and dijet processes do not yield pure quark/gluon samples.  The spread between the generators is large, with the expected trend that \textsc{Pythia} is more optimistic about quark/gluon separation than \textsc{Herwig}.  Interestingly, \textsc{Vincia} has even slightly larger separation power than \textsc{Pythia}, \jdt{which is possible just an artifact of using Pythia pp tunes!  Need to address this.}
 
 One surprising outcome of this study is the relatively modest impact of grooming on discrimination power.  From the calculations in \Refs{Dasgupta:2013ihk,Larkoski:2014wba}, one generically expects quark/gluon discrimination power to degrade after jet grooming, since the soft radiation that is being removed carries information about the color structure of the jet.  This predicted degradation, however, is not seen here, possibly because soft correlations with the initial state already blurred the distributions in the ungroomed case.   One advantage of working with groomed samples is that jet grooming reduces the process dependence in quark/gluon radiation patterns \cite{Frye:2016okc,Frye:2016aiz}.   In this way, groomed angularities should yield a more robust theoretical definition for quark and gluon jets, with only a small performance penalty.
 
