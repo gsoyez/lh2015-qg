@@ -176,7 +176,7 @@ namespace Rivet {
 
         // make sure we have something enough symmetric and close in rapidity
         if (orig_jet2.pt() / orig_jet1.pt() < JET_MIN_PT_FRACTION) continue;
-        if (std::abs(orig_jet1.rap()-orig_jet2.rap())<DELTA_RAP_MAX_DIJET) continue;
+        if (std::abs(orig_jet1.rap()-orig_jet2.rap())>DELTA_RAP_MAX_DIJET) continue;
 
         // we need to pass the avgpt cut
         double avgpt = 0.5*(orig_jet1.pt() + orig_jet2.pt());

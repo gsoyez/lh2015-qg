@@ -185,7 +185,7 @@ namespace Rivet {
         PseudoJet orig_jet = (SelectorNHardest(1)(jets))[0];
 
         // require that the jet is within 1 unit in rapidity of the Z boson
-        if (std::abs(zmom.rap()-orig_jet.rap())<DELTA_RAP_MAX_ZJET) continue;
+        if (std::abs(zmom.rap()-orig_jet.rap())>DELTA_RAP_MAX_ZJET) continue;
 
         // recluster the jet to get a broadening-free axis and apply grooming
         PseudoJet jet = ca_wta_recluster(orig_jet);
