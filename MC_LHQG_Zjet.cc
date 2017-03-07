@@ -77,8 +77,9 @@ namespace Rivet {
       FinalState fs(-PARTICLE_RAPMAX, PARTICLE_RAPMAX, 0.0*GeV);
       
       // for the Z boson (-> mumu)
-      Cut cut =  pT >= BOSON_PTMINS[0]*GeV;
-      ZFinder zfinder_mm_dressed(fs, cut, PID::MUON, 66.0*GeV, 116.0*GeV, 0.1, ZFinder::CLUSTERNODECAY, ZFinder::NOTRACK);
+      Cut lepton_cut =  pT >= 10.0*GeV; // we already know they have |y|<2.5
+      //Cut cut =  pT >= BOSON_PTMINS[0]*GeV;
+      ZFinder zfinder_mm_dressed(fs, lepton_cut, PID::MUON, 66.0*GeV, 116.0*GeV, 0.1, ZFinder::CLUSTERNODECAY, ZFinder::NOTRACK);
       addProjection(zfinder_mm_dressed, "ZFinder_mm_dressed");
       
       // for the jets
@@ -152,7 +153,9 @@ namespace Rivet {
 
       // deduce the cut to apply on jets
       const PseudoJet zmom = zfinder.bosons()[0].pseudojet();
-      double ptmin_jet = JET_PTMIN_FRACTION*zmom.pt();
+      double zpt = zmom.pt();
+      if (zpt < BOSON_PTMINS[0]) return;
+      double ptmin_jet = JET_PTMIN_FRACTION*zpt;
 
       // by default we impose the Z pt cut at the lowest scale under consideration.
       // We check here if we pass more stringent constraints

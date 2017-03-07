@@ -1,3 +1,17 @@
+2017-03-07  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_Zjet.cc (Rivet):
+	The Boson cut was actually applied on the muons!  Changed this to
+	Impose a looser cut on the leptons and then then teh appropriate
+	cut on the -boson pt.
+
+2017-03-05  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_dijet.cc (Rivet):
+	* MC_LHQG_Zjet.cc (Rivet):
+	bug fixed: the delta-rapdity cut was written in the wrong
+	way. [Thanks Philippe!!]
+
 2016-08-02  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_dijet.cc:
