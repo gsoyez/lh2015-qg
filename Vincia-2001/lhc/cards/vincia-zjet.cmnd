@@ -1,8 +1,6 @@
 ! File: Qcdparams
 ! Zjet
 
-
-
 ! Process/Kinematic cuts
 
 !Production
@@ -17,14 +15,10 @@ WeakBosonAndParton:qg2gmZq On
 PhaseSpace:pTHatMin 50
 PhaseSpace:bias2Selection On
 
-
-
-
 ! Beam parameter settings. Values below agree with default ones
 Beams:idA = 2212                   ! first beam, p = 2212, pbar = -2212
 Beams:idB = 2212                   ! second beam, p = 2212, pbar = -2212
 Beams:eCM = 13000                   ! CM energy of collision
-
 
 ! Settings that will be used in a main program
 Main:numberOfEvents = 1000000          ! number of events to generate 1000000
@@ -38,11 +32,9 @@ Main:timesAllowErrors = 1000         ! abort run after this many flawed events
 Random:setSeed = on
 Random:seed = 111
 
-! Tune
-Tune:ee=7
-Tune:pp=14
-
-
 ParticleDecays:limitTau0 = On
 ParticleDecays:tau0Max = 10.0
 
+# Settings to optimise VINCIA speed
+Vincia:hardJets = off
+Vincia:matchingLO = 2

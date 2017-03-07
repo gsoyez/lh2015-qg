@@ -25,7 +25,8 @@ logfile=post-process.log
 date > $logfile
 
 # add Herwig later since it's not done yet:
-desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-2001 Herwig-2_7_1 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
+desired_generators="Pythia-8205 Sherpa-2.2.1 Vincia-2001 Herwig-2_7_1 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
+#desired_generators="Pythia-8205 Sherpa-2.1.1 Vincia-2001 Herwig-2_7_1 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
 # Herwig-7-dipole AnalyticResum Herwig-2_7_1
 
 
