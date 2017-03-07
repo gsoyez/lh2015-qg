@@ -11,10 +11,10 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 # generators
 generators(level)= (level eq "parton") \
   ? "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-2001 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum" \
-  : "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-2001 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
+  : "Pythia-8205 Herwig-2_7_1 Sherpa-2.2.1 Vincia-2001 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
 
 #Note the fake labeling of Pythia 8.215 since the results are identical to 8.205
-gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 2.7.1}" "Sherpa {/*0.8 2.1.1}" "Vincia {/*0.8 2.001}" "Deductor {/*0.8 1.0.2}" "Ariadne {/*0.8 5.0.{/Symbol b}}" "Dire {/*0.8 1.0.0}" "Analytic {/*0.8 NLL}" '
+gentags(level)='"Pythia {/*0.8 8.215}" "Herwig {/*0.8 2.7.1}" "Sherpa {/*0.8 2.2.1}" "Vincia {/*0.8 2.001}" "Deductor {/*0.8 1.0.2}" "Ariadne {/*0.8 5.0.{/Symbol b}}" "Dire {/*0.8 1.0.0}" "Analytic {/*0.8 NLL}" '
 
 # line styles
 

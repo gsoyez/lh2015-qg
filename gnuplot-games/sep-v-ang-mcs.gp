@@ -100,6 +100,10 @@ do for [jtype=1:words(levels)]{
             tags='"" -nogqq -njet1 -njet0 '
             names='"baseline" "no g{/Symbol \256}q~q‾" "N_{jet}=1" "N_{jet}=0" '
         }
+        if (gen eq "Sherpa-2.2.1"){
+            tags='"" -nogqq -njet1 -njet0 '
+            names='"baseline" "no g{/Symbol \256}q~q‾" "N_{jet}=1" "N_{jet}=0" '
+        }
         if (gen eq "Vincia-1201"){
             tags='"" -noqgg -nome -a2L -muq'
             names='"baseline" "no g{/Symbol \256}q~q‾" "no ME" "2-loop {/Symbol a}_s" "alt {/Symbol m}_q"'
