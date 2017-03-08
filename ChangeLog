@@ -1,3 +1,8 @@
+2017-03-08  Gregory Soyez  <soyez@fastjet.fr>
+
+	* MC_LHQG_Zjet.cc (Rivet):
+	Set the cut to 5GeV after discussion w Philippe
+
 2017-03-07  Gregory Soyez  <soyez@fastjet.fr>
 
 	* MC_LHQG_Zjet.cc (Rivet):

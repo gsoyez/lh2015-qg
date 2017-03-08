@@ -77,7 +77,7 @@ namespace Rivet {
       FinalState fs(-PARTICLE_RAPMAX, PARTICLE_RAPMAX, 0.0*GeV);
       
       // for the Z boson (-> mumu)
-      Cut lepton_cut =  pT >= 10.0*GeV; // we already know they have |y|<2.5
+      Cut lepton_cut =  pT >= 5.0*GeV; // we already know they have |y|<2.5
       //Cut cut =  pT >= BOSON_PTMINS[0]*GeV;
       ZFinder zfinder_mm_dressed(fs, lepton_cut, PID::MUON, 66.0*GeV, 116.0*GeV, 0.1, ZFinder::CLUSTERNODECAY, ZFinder::NOTRACK);
       addProjection(zfinder_mm_dressed, "ZFinder_mm_dressed");
