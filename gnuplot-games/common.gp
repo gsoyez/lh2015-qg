@@ -10,7 +10,7 @@ yodaget(name, file)='< yoda2flat -m "/'.name.'" '.file.' - | grep -v -E "^[PSTXY
 
 # generators
 generators(level)= (level eq "parton") \
-  ? "Pythia-8205 Herwig-2_7_1 Sherpa-2.1.1 Vincia-2001 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum" \
+  ? "Pythia-8205 Herwig-2_7_1 Sherpa-2.2.1 Vincia-2001 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum" \
   : "Pythia-8205 Herwig-2_7_1 Sherpa-2.2.1 Vincia-2001 Deductor-1.0.2 Ariadne Dire-1.0.0 AnalyticResum"
 
 #Note the fake labeling of Pythia 8.215 since the results are identical to 8.205
