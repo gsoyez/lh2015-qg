@@ -42,6 +42,7 @@ eval "$tmp"
 check_new_lib(){
     rm .newlib
     tee .log
+    grep -q "Source code created. Run './makelibs' to compile." .log && touch .newlib
     grep -q "New libraries created. Please compile." .log && touch .newlib
 }
 

@@ -61,7 +61,7 @@
 (processes){
   Process 13 -13 -> 93 93 93{NJET}
   CKKW pow(10,-2.25);
-  Order (*,2);
+  Order (*,0,2);
   End process;
 }(processes)
 
