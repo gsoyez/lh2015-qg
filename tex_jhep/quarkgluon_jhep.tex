@@ -411,11 +411,11 @@ z_i \equiv \frac{E_i}{E_{\rm jet}}, \qquad \theta_i \equiv \frac{\Omega_{i \hat{
 \end{equation}
 where $E_i$ is the particle energy, $\Omega_{i \hat{n}}$ is the opening angle to the jet axis, and $R$ is the jet radius (taken to be $R = 0.6$ by default).
 
-For our $pp$ study, we use the standard $pp$ version of anti-$k_t$ with $p_T$-ordered winner-take-all recombination, defining
+For our $pp$ study, we use the standard $pp$ version of anti-$k_t$ with  $E$-scheme recombination, defining
 \begin{equation}
 z_i \equiv \frac{p_{Ti}}{\sum_{j \in \text{jet}} p_{Tj}}, \qquad \theta_i \equiv \frac{R_{i \hat{n}}}{R},
 \end{equation}
-where $p_{Ti}$ is the particle transverse momentum and $R_{i \hat{n}}$ is the rapidity-azimuth distance to the jet axis.  In addition to directly measuring the angularities, we also want to test the impact of jet grooming (see e.g.~\cite{Butterworth:2008iy,Ellis:2009su,Ellis:2009me,Krohn:2009th}).  As one grooming example, we use the modified mass drop tagger (mMDT) with $\mu = 1$ \cite{Butterworth:2008iy,Dasgupta:2013ihk} (equivalently, soft drop declustering with $\beta = 0$ \cite{Larkoski:2014wba}).  This grooming procedure is based on reclustering a jet with the Cambridge/Aachen algorithm \cite{Dokshitzer:1997in,Wobisch:1998wt} to form an angular-ordered tree.  The resulting tree is then declustered, removing the softer branch until
+where $p_{Ti}$ is the particle transverse momentum and $R_{i \hat{n}}$ is the rapidity-azimuth distance to the jet axis.  To define a recoil-free axis, we recluster the jet using the Cambridge/Aachen (C/A) algorithm \cite{Dokshitzer:1997in,Wobisch:1998wt} with $p_T$-ordered winner-take-all recombination.  In addition to directly measuring the angularities, we also want to test the impact of jet grooming (see e.g.~\cite{Butterworth:2008iy,Ellis:2009su,Ellis:2009me,Krohn:2009th}).  As one grooming example, we use the modified mass drop tagger (mMDT) with $\mu = 1$ \cite{Butterworth:2008iy,Dasgupta:2013ihk} (equivalently, soft drop declustering with $\beta = 0$ \cite{Larkoski:2014wba}).  This grooming procedure starts from the C/A-reclustered jet, which yields an angular-ordered clustering tree.  This tree is then declustered, removing the softer branch until
 \be
 \label{eq:mMDTcriteria}
 \frac{\min[p_{T1}, p_{T2}]}{p_{T1} + p_{T2}} > z_{\rm cut},
@@ -1111,7 +1111,7 @@ The specific analysis routines used for this $pp$ study are available from \url{
 \be
 \text{$pp \to Z + j$ (``quark-enriched'')} : \quad p^{Z}_T  > p^\text{min}_T, \qquad \frac{p^\text{jet}_T}{p^{Z}_T} > 0.8, \qquad |y_{\rm jet} - y_Z| < 1.0.
 \ee
-For the dijet analysis (with \textsc{Rivet} routine \verb|MC_LHQG_dijet.cc|), our selection is based on the two hardest jets (labeled $1$ and $2$), both of which are used for analysis if they satisfy:
+In addition, we apply a $p_T > 5~\GeV$ cut on each muon.  For the dijet analysis (with \textsc{Rivet} routine \verb|MC_LHQG_dijet.cc|), our selection is based on the two hardest jets (labeled $1$ and $2$), both of which are used for analysis if they satisfy:
 \be
 \text{$pp \to 2j$ (``gluon-enriched'')} : \quad \frac{p^{\rm 1}_T + p^{\rm 2}_T}{2} > p^\text{min}_T, \qquad \frac{p^\text{2}_T}{p^{\rm 1}_T} > 0.8, \qquad |y_1 - y_2| < 1.0.
 \ee 
