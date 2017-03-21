@@ -20,5 +20,5 @@
 
 
 (selector){
-  FastjetFinder antikt 2 88 0 0.4 1.5 1.5
+  FastjetFinder antikt 2 80 0 0.4 1.5 1.5
 }(selector)

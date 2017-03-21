@@ -1,16 +1,14 @@
 (run){
   % general setting
-  %EVENTS 5M; 
-  EVENTS 1M;
+  EVENTS 1000; 
   ERROR 0.99;
-  MASSIVE_PS 4 5;
 
-   % model parameters
-  ANALYSIS_OUTPUT results/pp_Zj;
- 
   % scales, tags for scale variations
   FSF:=1.; RSF:=1.; QSF:=1.;
   SCALES METS{FSF*MU_F2}{RSF*MU_R2}{QSF*MU_Q2};
+
+  % tags for process setup
+  NJET:=2; LJET:=0; QCUT:=20.;
 
   % me generator settings
   ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
@@ -26,12 +24,12 @@
 }(run)
 
 (processes){
-  Process 93 93 -> 13 -13 93;
-  Order (*,2);
-  NLO_QCD_Mode MC@NLO;
-  ME_Generator Amegic;
-  RS_ME_Generator Comix;
-  Loop_Generator LOOPGEN;
+  Process 93 93 -> 13 -13 93{NJET};
+  Order (*,2); CKKW sqr(QCUT/E_CMS);
+  NLO_QCD_Mode MC@NLO {LJET};
+  ME_Generator Amegic {LJET};
+  RS_ME_Generator Comix {LJET};
+  Loop_Generator LOOPGEN {LJET};
   Integration_Error 0.02 {4};
   Integration_Error 0.02 {5};
   Integration_Error 0.05 {6};
@@ -42,6 +40,7 @@
 }(processes)
 
 (selector){
-  Mass 13 -13 66 E_CMS
-  PT2NLO 13 -13 100 E_CMS
+  Mass 11 -11 66 116
+  Mass 13 -13 66 116
+  PT 13,-13 100,E_CMS [PT_UP,PT_UP]
 }(selector)
