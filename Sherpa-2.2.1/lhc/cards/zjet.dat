@@ -8,7 +8,7 @@
   SCALES METS{FSF*MU_F2}{RSF*MU_R2}{QSF*MU_Q2};
 
   % tags for process setup
-  NJET:=2; LJET:=0; QCUT:=20.;
+  NJET:=1; LJET:=0; QCUT:=20.;
 
   % me generator settings
   ME_SIGNAL_GENERATOR Comix Amegic LOOPGEN;
@@ -24,7 +24,7 @@
 }(run)
 
 (processes){
-  Process 93 93 -> 13 -13 93{NJET};
+  Process 93 93 -> 13 -13 93 93{NJET};
   Order (*,2); CKKW sqr(QCUT/E_CMS);
   NLO_QCD_Mode MC@NLO {LJET};
   ME_Generator Amegic {LJET};
@@ -42,5 +42,5 @@
 (selector){
   Mass 11 -11 66 116
   Mass 13 -13 66 116
-  PT 13,-13 100,E_CMS [PT_UP,PT_UP]
+  "PT" 13,-13 200,E_CMS [PT_UP,PT_UP]
 }(selector)
