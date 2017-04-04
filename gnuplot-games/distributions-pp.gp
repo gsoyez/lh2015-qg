@@ -34,8 +34,9 @@ rebins="5   5   5   1  5"
 
 # we also want the same yrange for the parton and hadron level
 # we'll also try the same for Zj and jj (but different for the separation)
-
-ymaxs="6.0 12.0 25.0 0.36 13.0 6.0 12.0 25.0 0.36  13.0 2.0  4.0  9.0 0.06  3.0"
+#
+# Note that this overrides the defaults in common-pp.gp
+ymaxs="5.0 13.0 35.0 0.08 10.0 5.0 13.0 35.0 0.08  10.0 0.6  1.4  5.0 0.008  1.2"
 
 # get the label associated with a shape
 lambda(kappa,beta)=sprintf("{/Symbol l}@^{%s}_{%s}", kappa, beta)

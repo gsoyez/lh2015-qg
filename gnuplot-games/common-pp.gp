@@ -61,8 +61,8 @@ mlabs='"{/Symbol D}" I_{1/2} q@_{20}^{rej} q@_{50}^{rej} g@_{20}^{rej} g@_{50}^{
 # These should cover most of the cases in the plots. These is a small
 # exception for the "grej" ones and ptD but covering these would
 # probably impact the other grej plots.
-ymins="0.0  0.0  0.88 0.55 0.88 0.58 0.58"
-ymaxs="0.42 0.35 1.0  1.00 1.00 1.00 0.8 "
+ymins="0.0  0.0  0.8  0.4 0.75 0.4 0.45"
+ymaxs="0.15 0.12 1.0  1.0 1.00 1.0 0.7 "
 
 
 #set label 501 "{/=36 PRELIMINARY}" center at graph 0.5,0.5 rotate by 35 tc "#cccccc"
