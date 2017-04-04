@@ -67,7 +67,7 @@ do for [imode=1:words(modes)]{
         do for [iang=1:words(kappas)]{
             kappa=word(kappas,iang)
             beta =word(betas,iang)
-            set title '{/:Bold '.lambda(kappa,beta).extrax(kappa,beta).', '. level.', '. level.', '.mode.' jet} {/: }'
+            set title '{/:Bold '.lambda(kappa,beta).extrax(kappa,beta).', '. level.', '.mode.' jet} {/: }'
 
             plot for [igen=1:words(gens)] sep("Q","Q",word(measures,imeas),kappa,beta,word(gens,igen),modetag) u (sqrt($1*$2)):(treat_zero_as_nan($3)):1:2 t word(gtags,igen) w xerr
 
