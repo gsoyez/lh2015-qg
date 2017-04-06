@@ -919,8 +919,6 @@ Our \textsc{Herwig} baseline uses version 2.7.1, with improved modeling of under
 \begin{itemize}
 \item \textsc{Herwig: no $g \to q\bar{q}$}.  Turning off $g \to q \bar{q}$ splittings in \textsc{Herwig} has the reverse behavior as seen in \textsc{Pythia}, leading to slightly worse discrimination power, though the effect is modest.
 \item \textsc{Herwig: no CR}.  The variation turns off color reconnections in \textsc{Herwig}.  This has no effect at parton level, as expected.  At hadron level, this variation for \textsc{Herwig} gives a rather dramatic improvement in quark/gluon discrimination power.  We think this arises since color reconnection in \textsc{Herwig} allows any color-anticolor pair to reconnect, even if they arose from an initially color octet configuration.  By turning off color reconnection, the gluons look more octet-like, explaining the improvement seen.
-%\item \textsc{Herwig: Dipole}.  The default \textsc{Herwig} shower is based on angular ordering, but this variation uses a dipole shower instead.  Since this shower is closer in spirit to \textsc{Pythia}, one expects it to yield improved quark/gluon discrimination, which it does.
-%\item \textsc{Herwig: Dipole, No CR}.  By switching to the dipole shower without color reconnections, one can make \textsc{Herwig} look rather similar to \textsc{Pythia} in terms of predicted discrimination performance.  Therefore, LHC data will be essential to understand which shower structure is closer to nature.
 \end{itemize}
 The importance of color reconnections in \textsc{Herwig} is a big surprise from this study, motivating future detailed studies into which color reconnection models are most realistic when compared to data.  In the future, we also plan to test the default angular-ordered \textsc{Herwig} shower against an alternative dipole shower \cite{Platzer:2011bc}.
 
@@ -1282,9 +1280,6 @@ process if the corrections are deemed to be sufficiently model independent.
 This would enable a broader suite of LEP measurements to be included in the next round of parton-shower tunes and in global comparisons
 such as \href{http://mcplots.cern.ch}{\mbox{\textsc{MCplots}}}~\cite{Karneyeu:2013aha}. 
 
-% This is the case for at least
-% Alexander:1996qr,Ackerstaff:1997xg,Abbiendi:1999pi, and Abbiendi:2003ri
-
 Based on this study, we have identified three aspects of the final-state parton shower that deserve closer scrutiny.
 \begin{itemize}
 \item \textit{Gluon splitting to quarks}.  Some of the largest differences between generators came from turning on and off the $g \to q \overline{q}$ splitting process.  While \textsc{Pythia}, \textsc{Sherpa}, \textsc{Vincia}, \textsc{Ariadne} and \textsc{Dire} suggest that (unphysically) turning off $g \to q \overline{q}$ would improve quark/gluon separation, \textsc{Herwig} (and the analytic calculation from \Sec{sec:analytic}) suggests the opposite conclusion.  Beyond quark/gluon discrimination, it would be helpful to identify other contexts where $g \to q \overline{q}$ might play an important role (see e.g.\ \cite{Ilten:2017rbd}).
@@ -1318,112 +1313,6 @@ PS is the recipient of an Australian Research Council Future Fellowship, FT13010
 The work of JT is supported by the DOE under grant contract numbers DE-SC-00012567 and DE-SC-00015476.
 
 \end{acknowledgments}
-%
-%\appendix
-%
-%\section{Selected results in terms of ROC values}
-%\label{app:ROC}
-%
-%\begin{figure}
-%\centering
-%\subfloat{
-%\label{fig:summary_hadron_all_g20}
-%\includegraphics[page=5,width = 0.45\columnwidth]{figures/fig_I2_R6_hadron__all.pdf}
-%}
-%$\qquad$
-%\subfloat{
-%\label{fig:summary_parton_all_g20}
-%\includegraphics[page=5,width = 0.45\columnwidth]{figures/fig_I2_R6_parton__all.pdf}
-%}
-%
-%\subfloat{
-%\label{fig:summary_hadron_all_g50}
-%\includegraphics[page=6,width = 0.45\columnwidth]{figures/fig_I2_R6_hadron__all.pdf}
-%}
-%$\qquad$
-%\subfloat{
-%\label{fig:summary_parton_all_g50}
-%\includegraphics[page=6,width = 0.45\columnwidth]{figures/fig_I2_R6_parton__all.pdf}
-%}
-%\caption{Same as \Fig{fig:summary_all}, but for the gluon rejection rate at (top row) 20\% and (bottom row) 50\% quark efficiency.}
-%\label{fig:summary_all_g2050}
-%\end{figure}
-%
-%
-%\begin{figure}
-%\centering
-%\subfloat[]{
-%\includegraphics[page=21,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_hadron_Qdep.pdf}
-%\label{fig:sweep_Q_hadron_g20}
-%}
-%$\qquad$
-%\subfloat[]{
-%\includegraphics[page=21,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_parton_Qdep.pdf}
-%\label{fig:sweep_Q_parton_g20}
-%}
-%
-%\subfloat[]{
-%\includegraphics[page=21,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_hadron_Rdep.pdf}
-%\label{fig:sweep_R_hadron_g20}
-%}
-%$\qquad$
-%\subfloat[]{
-%\includegraphics[page=21,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_parton_Rdep.pdf}
-%\label{fig:sweep_R_parton_g20}
-%}
-%
-%\subfloat[]{
-%\includegraphics[page=21,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_hadron_alphadep.pdf}
-%\label{fig:sweep_as_hadron_g20}
-%}
-%$\qquad$
-%\subfloat[]{
-%\includegraphics[page=21,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_parton_alphadep.pdf}
-%\label{fig:sweep_as_parton_g20}
-%}
-%\caption{Same as \Fig{fig:ee_sweep}, but for the gluon rejection rate at 20\% quark efficiency.}
-%\label{fig:ee_sweep_g20}
-%\end{figure}
-%
-%
-%
-%\begin{figure}
-%\centering
-%\subfloat[]{
-%\includegraphics[page=26,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_hadron_Qdep.pdf}
-%\label{fig:sweep_Q_hadron_g50}
-%}
-%$\qquad$
-%\subfloat[]{
-%\includegraphics[page=26,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_parton_Qdep.pdf}
-%\label{fig:sweep_Q_parton_g50}
-%}
-%
-%\subfloat[]{
-%\includegraphics[page=26,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_hadron_Rdep.pdf}
-%\label{fig:sweep_R_hadron_g50}
-%}
-%$\qquad$
-%\subfloat[]{
-%\includegraphics[page=26,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_parton_Rdep.pdf}
-%\label{fig:sweep_R_parton_g50}
-%}
-%
-%\subfloat[]{
-%\includegraphics[page=26,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_hadron_alphadep.pdf}
-%\label{fig:sweep_as_hadron_g50}
-%}
-%$\qquad$
-%\subfloat[]{
-%\includegraphics[page=26,width = 0.45\columnwidth]{figures/fig_I2_GA_10_05_parton_alphadep.pdf}
-%\label{fig:sweep_as_parton_g50}
-%}
-%\caption{Same as \Fig{fig:ee_sweep}, but for the gluon rejection rate at 50\% quark efficiency.}
-%\label{fig:ee_sweep_g50}
-%\end{figure}
-%
-%
-
 
 \bibliographystyle{jhep}
 \bibliography{quarkgluon_bib}
