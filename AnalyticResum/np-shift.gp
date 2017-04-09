@@ -1,26 +1,39 @@
+
+
 reset
-set term pdfcairo color font ",12" size 8cm,7cm
+set term pdfcairo color font "Palatino" fontscale 0.9 size 12cm,10cm
 set colors classic
 
 set xlabel 'R E_J [GeV]'
 set xrange [4:500]
-set xtics add ("5" 5, "50" 50, "500" 500)
+set xtics add ("5" 5, "20" 20, "50" 50, "200" 200, "500" 500)
 set logscale x
 
 set log y
 
 set bars small
 
+set macros
+lcg= "rgb '#800080'"
+lcq= "rgb '#ff8000'"
 
-set key at graph 0.97,0.9 maxrows 2 width -5.5
-set label 1 'MC'            center at graph 0.69,0.93
-set label 2 '{/Symbol e}_0' center at graph 0.87,0.93
+#alt:set key at graph 0.97,0.9 maxrows 2 width -5.5
+#alt:set label 1 'MC'            center at graph 0.71,0.925
+#alt:set label 2 '{/Symbol e}_0' center at graph 0.88,0.925
+
+set key at graph 0.87,0.89 spacing 1.25
+xmc=0.91
+set label 1 'MC'            center at graph xmc,0.925
+set label 2 '{/Symbol e}_0' center at graph 0.78,0.925
+set arrow 1 from graph xmc,0.805 to graph xmc,0.875 nohead lc @lcg lw 3 
+set arrow 2 from graph xmc,0.705 to graph xmc,0.775 nohead lc @lcq lw 3 
+
 
 CF=4.0/3.0
 CA=3.0
 
-langle='<'
-rangle='>'
+langle='{/*1.4 {/Symbol \341}}'
+rangle='{/*1.4 {/Symbol \361}}'
 
 omega0=0.225549
 xi0=0.367883
@@ -44,13 +57,17 @@ do for [ib=1:words(betas)]{
     set ylabel langle.'e@_{'.beta.'}^{NP}'.rangle offset beta+0.5
     set label 10 '{/*1.1 {/Symbol b}='.beta.'}' at graph 0.07,0.9
     set ytics auto
-    if (ib==1){ set yrange [0.02:1];   set ytics add ("0.02" 0.02, "0.05" 0.05, "0.2" 0.2, "0.5" 0.5)}
-    if (ib==2){ set yrange [0.002:1];  set ytics add ("0.002" 0.002)}
+    if (ib==1){ set yrange [0.02:1];    set ytics add ("0.02" 0.02, "0.05" 0.05, "0.2" 0.2, "0.5" 0.5)}
+    if (ib==2){ set yrange [0.001:1];}
     if (ib==3){ set yrange [0.0001:1];}
-    plot mc(beta+0.0) u ($1/splitfactor):(0.5*($4+$5)):4:5 t 'gluon' w yerr dt 1 lc 3             lw 2 ps 0,\
-         mc(beta+0.0) u ($1*splitfactor):(0.5*($2+$3)):2:3 t 'quark' w yerr dt 1 lc rgb '#00aa00' lw 2 ps 0,\
-         f(x,beta+0.00001,CA) t ' ' w l dt 2 lc 3             lw 3,\
-         f(x,beta+0.00001,CF) t ' ' w l dt 2 lc rgb '#00aa00' lw 3
+    plot mc(beta+0.0) u ($1/splitfactor):(0.5*($4+$5)):4:5 not w yerr dt 1 lc @lcg lw 3 ps 0,\
+         mc(beta+0.0) u ($1*splitfactor):(0.5*($2+$3)):2:3 not w yerr dt 1 lc @lcq lw 3 ps 0,\
+         f(x,beta+0.00001,CA) t 'gluon' w l dt 2 lc @lcg lw 3,\
+         f(x,beta+0.00001,CF) t 'quark' w l dt 2 lc @lcq lw 3
+#alt:    plot mc(beta+0.0) u ($1/splitfactor):(0.5*($4+$5)):4:5 t 'gluon' w yerr dt 1 lc @lcg lw 3 ps 0,\
+#alt:         mc(beta+0.0) u ($1*splitfactor):(0.5*($2+$3)):2:3 t 'quark' w yerr dt 1 lc @lcq lw 3 ps 0,\
+#alt:         f(x,beta+0.00001,CA) t ' ' w l dt 2 lc @lcg lw 3,\
+#alt:         f(x,beta+0.00001,CF) t ' ' w l dt 2 lc @lcq lw 3
 }
 
 set out
