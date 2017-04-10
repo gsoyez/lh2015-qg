@@ -167,7 +167,7 @@
 %\emailAdd{andrzej@cern.ch}
 \author[j]{Peter Skands,}
 %\emailAdd{peter.skands@monash.edu}
-\author[k,\dagger]{Gregory Soyez,}
+\author[k,\dagger]{\\ Gregory Soyez,}
 \emailAdd{gregory.soyez@cea.fr}
 \author[l,\dagger]{and Jesse Thaler}
 \emailAdd{jthaler@mit.edu}
@@ -723,15 +723,15 @@ By tying $\Omega_0$ and $\Xi_0$ together, this has the effect of reducing the ph
 \centering
 \subfloat[]{
 \label{fig:NPshift_05}
-\includegraphics[width = 0.32\columnwidth]{figures/npshift_05}
+\includegraphics[width = 0.32\columnwidth]{figures/np-shift-beta05}
 }
 \subfloat[]{
 \label{fig:NPshift_10}
-\includegraphics[width = 0.32\columnwidth]{figures/npshift_10}
+\includegraphics[width = 0.32\columnwidth]{figures/np-shift-beta10}
 }
 \subfloat[]{
 \label{fig:NPshift_20}
-\includegraphics[width = 0.32\columnwidth]{figures/npshift_20}
+\includegraphics[width = 0.32\columnwidth]{figures/np-shift-beta20}
 }
 \caption{Average nonperturbative shifts to the IRC-safe angularities
   as a function of $R \, E_J$ for (a) $\beta = 0.5$, (b) $\beta = 1$,
@@ -1298,10 +1298,10 @@ $\qquad$
 \label{fig:summary_pp_all}
 \end{figure}
 
-In \Fig{fig:summary_pp_all}, we plot the classifier separation $\Delta$ for all five benchmark angularities, with and without jet grooming.  Compared to the $e^+e^-$ study, the overall degree of discrimination power is reduced, as expected because the $Z+j$ and dijet processes do not yield pure quark/gluon samples.  The spread between the generators is large, with the expected trend that \textsc{Pythia} is more optimistic about quark/gluon separation than \textsc{Herwig}.  We see that \textsc{Vincia} has slightly smaller predicted separation power than \textsc{Pythia}, and \textsc{Sherpa} exhibits intermediate behavior.
+In \Fig{fig:summary_pp_all}, we plot the classifier separation $\Delta$ for all five benchmark angularities, with and without jet grooming.  Compared to the $e^+e^-$ study, the overall degree of discrimination power is reduced, as expected because the $Z+j$ and dijet processes do not yield pure quark/gluon samples.  The spread between the generators is large, with the expected trend that \textsc{Pythia} is more optimistic about quark/gluon separation than \textsc{Herwig}.  We see that \textsc{Vincia} has smaller predicted separation power than \textsc{Pythia}, and \textsc{Sherpa} exhibits intermediate behavior.
 
 
-One surprising outcome of this study is the relatively modest impact of grooming on discrimination power.  From the calculations in \Refs{Dasgupta:2013ihk,Larkoski:2014wba}, one generically expects quark/gluon discrimination power to degrade after jet grooming, since the soft radiation that is being removed carries information about the color structure of the jet.  This predicted degradation, however, is not seen here, possibly because soft correlations with the initial state already blurred the distributions in the ungroomed case.   One advantage of working with groomed samples is that jet grooming reduces the process dependence in quark/gluon radiation patterns \cite{Frye:2016okc,Frye:2016aiz}.   In this way, groomed angularities should yield a more robust theoretical definition for quark and gluon jets, with only a small performance penalty.
+One surprising outcome of this study is the relatively modest impact of grooming on discrimination power.  From the calculations in \Refs{Dasgupta:2013ihk,Larkoski:2014wba}, one generically expects quark/gluon discrimination power to degrade after jet grooming, since the soft radiation that is being removed carries information about the color structure of the jet.  This predicted degradation, however, is only seen modestly here, possibly because soft correlations with the initial state already blurred the distributions in the ungroomed case.   One advantage of working with groomed samples is that jet grooming reduces the process dependence in quark/gluon radiation patterns \cite{Frye:2016okc,Frye:2016aiz}.   In this way, groomed angularities should yield a more robust theoretical definition for quark and gluon jets, with only a small performance penalty.
 
 
 \subsection{Parameter dependence}
@@ -1344,7 +1344,7 @@ $\qquad$
 
 The results of sweeping $p^\text{min}_T$ and $R$ are shown in \Fig{fig:pp_sweep}.  In general, increasing $p^\text{min}_T$ leads to a degradation of separation power.  In the context of these mixed samples, it is somewhat difficult to disentangle the impact of reduced quark/gluon enrichment at high $p_T$ with actual trends in discrimination power (cf.\  \Fig{fig:sweep_Q_hadron} from the $e^+e^-$ study).  That said, the trends are sufficiently different between generators that the relative differences cannot be ascribed to sample composition alone.
 
-With respect to changing the jet radius $R$, the discrimination trend is roughly flat in all of the generators.  In \textsc{Pythia} and \textsc{Vincia}, the discrimination power rises slightly with increasing jet radius, whereas in \textsc{Herwig}, the discrimination power degrades somewhat with larger $R$; \textsc{Sherpa} has nearly no dependence on $R$.  The trends are rather similar before and after jet grooming, again pointing to differences between the generators in collinear physics and not just soft physics.  We conclude that varying $p_T^{\rm min}$ and $R$ provides important information about quark/gluon radiation patterns that cannot captured by focusing on a single kinematic regime.  We therefore encourage LHC measurements of jet shapes at multiple energy scales with multiple jet radii.  
+With respect to changing the jet radius $R$, the discrimination trends are noticeably different between the generators.  In \textsc{Pythia} and \textsc{Vincia}, the discrimination power rises with increasing jet radius, whereas in \textsc{Herwig}, the discrimination power degrades with larger $R$; \textsc{Sherpa} has relatively little $R$ dependence.  The trends are rather similar before and after jet grooming, again pointing to differences between the generators in collinear physics and not just soft physics.  We conclude that varying $p_T^{\rm min}$ and $R$ provides important information about quark/gluon radiation patterns that cannot captured by focusing on a single kinematic regime.  We therefore encourage LHC measurements of jet shapes at multiple energy scales with multiple jet radii.  
 
 \section{Summary and recommendations}
 \label{sec:conclude}
