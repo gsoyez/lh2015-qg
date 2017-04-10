@@ -157,12 +157,10 @@
 %\emailAdd{deepak.kar@cern.ch}
 \author[d]{Andrew Larkoski,}
 %\emailAdd{larkoski@reed.edu}
-\author[e]{Leif L\"{o}nnblad,}
+\author[e]{\\ Leif L\"{o}nnblad,}
 %\emailAdd{leif.lonnblad@thep.lu.se}
-\author[f,g]{\\ Simon Pl\"atzer,}
+\author[f,g]{Simon Pl\"atzer,}
 %\emailAdd{simon.platzer@durham.ac.uk}
-\author[b]{Stefan Prestel,}
-%\emailAdd{prestel@slac.stanford.edu}
 \author[h,i]{Andrzej Si\'{o}dmok,}
 %\emailAdd{andrzej@cern.ch}
 \author[j]{Peter Skands,}
@@ -428,9 +426,9 @@ three-momentum $\vec{p}$; this turns out to be a desirable feature
 for avoiding soft recoil effects
 \cite{Larkoski:2013eya,Larkoski:2014uqa,Catani:1992jc,Dokshitzer:1998kz,Banfi:2004yd}.  We define
 \begin{equation}
-z_i \equiv \frac{E_i}{E_{\rm jet}}, \qquad \theta_i \equiv \frac{\Omega_{i \hat{n}}}{R},
+z_i \equiv \frac{E_i}{E_{J}}, \qquad \theta_i \equiv \frac{\Omega_{i \hat{n}}}{R},
 \end{equation}
-where $E_i$ is the particle energy, $\Omega_{i \hat{n}}$ is the
+where $E_J$ is the jet energy, $E_i$ is the particle energy, $\Omega_{i \hat{n}}$ is the
 opening angle to the jet axis, and $R$ is the jet radius (taken to be
 $R = 0.6$ by default, unless explicitly mentioned otherwise).
 
@@ -613,6 +611,7 @@ and the change of variables $u \equiv e^{-C_F \, r(\lambda)}$, we have
 \end{align}
 where ${}_2F_1[a,b;c;z]$ is the hypergeometric function.\footnote{An alternative way to derive this result is to take $I(T;A)$ from \Ref{Larkoski:2014pca} and use \Eq{eq:altdeltadef} to extract $\Delta$.}  For the case of QCD with $C_A/C_F = 9/4$,
 \be
+\label{eq:LLbenchmark}
 \Delta_{\rm QCD} \simeq  0.1286.
 \ee
 We mark this benchmark value with an arrow on the subsequent plots for reference.\footnote{In large $N_c$ QCD where $C_A/C_F \to 2$, $\Delta \to \ln 3 - 1 \simeq 0.0986$, so quark/gluon separation is expected to be more challenging as $N_c \to \infty$.} 
@@ -878,7 +877,7 @@ $\qquad$
 \label{fig:summary_parton_all}
 \includegraphics[width = 0.45\columnwidth]{figures/fig_I2_R6_parton__all.pdf}
 }
-\caption{Classifier separation $\Delta$ for the five benchmark angularities in \Eq{eq:benchmarkang}, determined from the various generators at (a) hadron level and (b) parton level.  The first two columns correspond to IRC-unsafe distributions (multiplicity and $p_T^D$), while the last three columns are the IRC-safe angularities.  The LHA (i.e.~$\kappa = 1$, $\beta = 1/2$) is shown in the middle column.  Results in terms of ROC values appear in the \texttt{arXiv} source files, for this and subsequent plots.}
+\caption{Classifier separation $\Delta$ for the five benchmark angularities in \Eq{eq:benchmarkang}, determined from the various generators at (a) hadron level and (b) parton level.  The first two columns correspond to IRC-unsafe distributions (multiplicity and $p_T^D$), while the last three columns are the IRC-safe angularities.  The LHA (i.e.~$\kappa = 1$, $\beta = 1/2$) is shown in the middle column.  Results in terms of ROC values appear in the \texttt{arXiv} source files, for this and subsequent plots.  The label ``LL''  indicates the value from \Eq{eq:LLbenchmark} predicted by Casimir scaling.}
 \label{fig:summary_all}
 \end{figure}
 
@@ -1204,7 +1203,7 @@ As discussed in \Sec{sec:def}, there is no way to isolate pure samples of quark 
 
 In principle, one could try to ``diagonalize" some combination of vector boson plus jet and dijet samples in order to define separate quark or gluon samples (see e.g.~\cite{Aad:2014gea}).  In the spirit of \Sec{sec:def}, though, we think it is more beneficial for the LHC experiments to perform process-specific measurements without trying to directly determine their quark and gluon composition.  Instead of quark/gluon separation, here we ask the more well-defined question of whether one can tell ``the jet in $Z$ plus jets" (quark-enriched) apart from ``the jet in dijets" (gluon-enriched).\footnote{See, however, \Ref{Dery:2017fap} for a machine-learning approach to handle mixed quark/gluon samples.}  In a similar spirit, one could test for differences within a single jet sample, such as comparing central jets versus forward jets in dijet production.  This process-based strategy can help sidestep the known process dependance of defining quarks and gluons at the LHC, where color correlations to the rest of the event impede a universal definition of quark and gluon jets.
 
-For this study, we consider four different hadron-level generators---\textsc{Pythia 8.215} \cite{Sjostrand:2014zea}, \textsc{Herwig 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb}, \textsc{Sherpa 2.2.1} \cite{Gleisberg:2008ta}, and \textsc{Vincia 2.001} \cite{Fischer:2016vfv}---using $Z \to \mu^+ \mu^-$ plus jets as our quark-enriched sample and dijets as our gluon-enriched sample.  All of these generators are used with their default settings, including underlying event modeling and hadronization.  We set $R = 0.4$ as the default jet radius, with jets defined by the anti-$k_t$ algorithm, in keeping with current jet studies at the LHC, exploring other values in \Sec{subsec:pp_para}.  Hadrons with rapidity $|y| < 2.5$ are used for jet clustering, and the resulting jets are restricted to have $|y_{\rm jet}| < 1.5$.  We apply a minimum $p_T$ cut with default value $p^{\min}_T = 100~\GeV$, similar in spirit to the $Q/2$ value used in the $e^+e^-$ study, though the precise meaning of $p_T^{\rm min}$ differs between the two samples. 
+For this study, we study proton-proton collisions at the 13 TeV LHC.  We consider four different hadron-level generators---\textsc{Pythia 8.215} \cite{Sjostrand:2014zea}, \textsc{Herwig 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb}, \textsc{Sherpa 2.2.1} \cite{Gleisberg:2008ta}, and \textsc{Vincia 2.001} \cite{Fischer:2016vfv}---using $Z \to \mu^+ \mu^-$ plus jets as our quark-enriched sample and dijets as our gluon-enriched sample.  All of these generators are used with their default settings, including underlying event modeling and hadronization.  We set $R = 0.4$ as the default jet radius, with jets defined by the anti-$k_t$ algorithm, in keeping with current jet studies at the LHC, exploring other values in \Sec{subsec:pp_para}.  Hadrons with rapidity $|y| < 2.5$ are used for jet clustering, and the resulting jets are restricted to have $|y_{\rm jet}| < 1.5$.  We apply a minimum $p_T$ cut with default value $p^{\min}_T = 100~\GeV$, similar in spirit to the $Q/2$ value used in the $e^+e^-$ study, though the precise meaning of $p_T^{\rm min}$ differs between the two samples. 
 
 The specific analysis routines used for this $pp$ study are available from \url{https://github.com/gsoyez/lh2015-qg}.  For the $Z$ plus jets analysis (with \textsc{Rivet} routine \verb|MC_LHQG_Zjet.cc|), the selection criteria for the reconstructed $Z$ boson and jet are:
 \be
@@ -1418,27 +1417,27 @@ We thank Marat Freytsis and Davison Soper for contributing to the original Les H
 %
 We thank L'\'{E}cole de Physique des Houches and the organizers of the 2015 Les Houches workshop on ``Physics at TeV Colliders'' for a stimulating environment while this work was being initiated.
 %
-We benefitted from helpful discussions and feedback from Samuel Bein, Andy Buckley, Jon Butterworth, Mario Campanelli, Peter Loch, Ben Nachman, Zoltan Nagy, Chris Pollard, Salvatore Rappoccio, Gavin Salam, Alexander Schmidt, Frank Tackmann, and Wouter Waalewijn.
+We benefitted from helpful discussions and feedback from Samuel Bein, Andy Buckley, Jon Butterworth, Mario Campanelli, Peter Loch, Ben Nachman, Zoltan Nagy, Chris Pollard, Stefan Prestel, Salvatore Rappoccio, Gavin Salam, Alexander Schmidt, Frank Tackmann, and Wouter Waalewijn.
 %
-The work of SH and SP is supported by the U.S. Department of Energy (DOE) under contract DE-AC02-76SF00515.
+The work of SH is supported by the U.S. Department of Energy (DOE) under contract DE-AC02-76SF00515.
 %
 DK acknowledges support from the Science Faculty Research Council, University of Witwatersrand.
 %
 The work of LL, SP, and AS is supported in part by the MCnetITN FP7 Marie Curie Initial Training Network, contract PITN-GA-2012-315877.
 %
-AS acknowledges support from COST Action CA15213 THOR.
-%
-LL is also support by the Swedish Research Council (contracts 621-2012-2283 and 621-2013-4287).
+LL is also supported by the Swedish Research Council (contracts 621-2012-2283 and 621-2013-4287).
 %
 SP acknowledges support from a FP7 Marie Curie Intra European Fellowship under Grant Agreement PIEF-GA-2013-628739.
 %
+AS acknowledges support from COST Action CA15213 THOR.
+%
+PS is the recipient of an Australian Research Council Future Fellowship, FT130100744.
+% 
 The work of GS is supported in part by the Paris-Saclay IDEX under the
 IDEOPTIMALJE grant, by the French Agence Nationale de la Recherche,
 under grant ANR-15-CE31-0016, and by the ERC Advanced Grant Higgs@LHC
 (No.\ 321133).
 %
-PS is the recipient of an Australian Research Council Future Fellowship, FT130100744.
-% 
 The work of JT is supported by the DOE under grant contract numbers DE-SC-00012567 and DE-SC-00015476.
 
 \end{acknowledgments}
