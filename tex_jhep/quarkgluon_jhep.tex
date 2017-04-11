@@ -190,7 +190,7 @@
 \preprint{\begin{flushright}
 MIT--CTP 4885 \\
 CoEPP-MN-17-2 \\
-MCNET-17-1
+MCNET-17-04
 \end{flushright}
 }
 
@@ -852,7 +852,10 @@ $\qquad$
 One might expect that the differences between generators are due
 simply to their having different hadronization models.  It seems,
 however, that the differences already appear at the parton level prior
-to hadronization. We should say at the outset that it is nearly impossible to do a true apples-to-apples comparison of parton-level results, since these generators are interfaced to different hadronization models, and only the hadron-level comparison is physically meaningful.  In particular, the crossover between the perturbative and nonperturbative regions is ambiguous and each of these showers has a different effective shower cutoff scale, resulting in different amounts of radiation being generated in the showering versus hadronization steps.\footnote{In general, generators based on string hadronization tend to use a lower shower cutoff scale ($\sim 0.5$ GeV) compared to those based on cluster hadronization ($\sim 1$ GeV).}  Similarly, for the parton-level NLL results, small values of the angularities are artificially suppressed by the $\alpha_s \to \infty$ Landau pole, which enhances the Sudakov exponent.\footnote{An alternative approach would be to freeze $\alpha_s$ at scales below $\Lambda_{\rm QCD}$.  Either way, this region of phase space is dominated by the nonperturbative shape function, which is absent from the ``parton-level'' distributions.}
+to hadronization. We should say at the outset that it is nearly impossible to do a true apples-to-apples comparison of parton-level results, since these generators are interfaced to different hadronization models, and only the hadron-level comparison is physically meaningful.  In particular, the crossover between the perturbative and nonperturbative regions is ambiguous and each of these showers has a different effective shower cutoff scale, resulting in different amounts of radiation being generated in the showering versus hadronization steps.\footnote{In general, generators based on string hadronization tend to use a lower shower cutoff scale ($\sim 0.5$ GeV) compared to those based on cluster hadronization ($\sim 1$ GeV).}  Similarly, for the parton-level NLL results, small values of the angularities are artificially suppressed by the $\alpha_s \to \infty$ Landau pole, 
+which enhances the Sudakov exponent.\footnote{An alternative approach would be to freeze $\alpha_s$ 
+at scales below $\Lambda_{\rm QCD}$ or extend it into the non-perturbative
+region as suggested in~\cite{Dokshitzer:1995qm,Guffanti:2000ep,Gieseke:2007ad}.  Either way, this region of phase space is dominated by the nonperturbative shape function, which is absent from the ``parton-level'' distributions.}
 
 With that caveat in mind, we show parton-level results in \Fig{fig:LHA_parton}.  One immediately notices that three of the
 generators---\textsc{Herwig}, \textsc{Sherpa}, and
@@ -1409,7 +1412,8 @@ Based on this study, we have identified three aspects of the final-state parton 
 \item \textit{Color reconnection in the final state}.  Color reconnection is often thought of as an issue mainly at hadron colliders, but we have seen that it can have an impact in $e^+ e^-$ collisions as well.  This is particularly the case with the default color reconnection model in \textsc{Herwig}, since it allows the reconnection of color/anticolor lines even if they originally came from an octet configuration.  We also saw large changes from ``\textsc{Pythia: CR1}'' and  ``\textsc{Ariadne: no swing}'', suggesting that one should revisit color reconnection physics when tuning generators to LEP data.
 \item \textit{Reconsidering $\alpha_s$ defaults}:  In the context of parton-shower tuning, the value of $\alpha_s$ used internally within a code need not match the world average value, since higher-order effects not captured by the shower can often be mimicked by adjusting $\alpha_s$.  That said, one has to be careful whether a value of $\alpha_s$ tuned for one process is really appropriate for another.  For example, \textsc{Pythia} uses a relatively large value of $\alpha_s$ in its final-state shower, which allows it to match LEP event shape data.  The same value of $\alpha_s$, though, probably also leads to too much radiation within gluon jets.
 \end{itemize}
-Finally, we want to emphasize that despite the uncertainties currently present in parton-shower generators, parton showers in particular (and QCD resummation techniques more generally) will be essential for understanding quark/gluon discrimination.  Fixed-order QCD calculations cannot reliably probe the very soft and very collinear structure of jets, which is precisely where valuable information about quark/gluon radiation patterns reside.  Given the ubiquity and value of parton-shower generators, improving the understanding of quark/gluon discrimination will assist every jet study at the LHC.
+Finally, we want to emphasize that despite the uncertainties currently present in parton-shower generators~\cite{Bellm:2016rhh,Bellm:2016voq,Mrenna:2016sih,Bothmann:2016nao}, 
+parton showers in particular (and QCD resummation techniques more generally) will be essential for understanding quark/gluon discrimination.  Fixed-order QCD calculations cannot reliably probe the very soft and very collinear structure of jets, which is precisely where valuable information about quark/gluon radiation patterns reside.  Given the ubiquity and value of parton-shower generators, improving the understanding of quark/gluon discrimination will assist every jet study at the LHC.
 
 \begin{acknowledgments}
 
