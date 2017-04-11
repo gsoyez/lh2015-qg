@@ -1,0 +1,1135 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     42610,       1127]
+NotebookOptionsPosition[     42080,       1104]
+NotebookOutlinePosition[     42439,       1120]
+CellTagsIndexPosition[     42396,       1117]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SAMPLE", "[", "\"\<2j\>\"", "]"}], "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<process1_dijet.out\>\"", ",", " ", "\"\<Table\>\""}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SAMPLE", "[", "\"\<Wj\>\"", "]"}], "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<process2_Wjet.out\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SAMPLE", "[", "\"\<Zj\>\"", "]"}], "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<process3_Zjet.out\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SAMPLE", "[", "\"\<Hj\>\"", "]"}], "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<process4_Hjet.out\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SAMPLE", "[", "\"\<\[Gamma]j\>\"", "]"}], "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<process5_gammajet.out\>\"", ",", " ", "\"\<Table\>\""}], 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.651226994532052*^9, 3.651227117434848*^9}}],
+
+Cell[BoxData["\<\"/Users/jthaler/Dropbox \
+(MIT)/QuarkGluon/PythiaStudies\"\>"], "Output",
+ CellChangeTimes->{
+  3.651227019082913*^9, {3.6512271116588593`*^9, 3.651227117890461*^9}, 
+   3.651228687052855*^9, {3.651228744165818*^9, 3.651228746789901*^9}, 
+   3.6512289222463303`*^9, 3.680615665768928*^9, {3.7008305152646112`*^9, 
+   3.700830551079533*^9}, 3.7008307162797003`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"STYLE", "[", "\"\<2j\>\"", "]"}], " ", "=", " ", 
+   RowBox[{"Directive", "[", 
+    RowBox[{
+     RowBox[{"Thickness", "[", "Medium", "]"}], ",", " ", "Red"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"STYLE", "[", "\"\<Wj\>\"", "]"}], " ", "=", " ", 
+   RowBox[{"Directive", "[", 
+    RowBox[{
+     RowBox[{"Thickness", "[", "Medium", "]"}], ",", " ", "Dashed", ",", " ", 
+     
+     RowBox[{"Darker", "[", "Green", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"STYLE", "[", "\"\<Zj\>\"", "]"}], " ", "=", " ", 
+   RowBox[{"Directive", "[", 
+    RowBox[{
+     RowBox[{"Thickness", "[", "Medium", "]"}], ",", " ", 
+     RowBox[{"Darker", "[", "Green", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"STYLE", "[", "\"\<Hj\>\"", "]"}], " ", "=", " ", 
+   RowBox[{"Directive", "[", 
+    RowBox[{
+     RowBox[{"Thickness", "[", "Medium", "]"}], ",", " ", "Orange"}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"STYLE", "[", "\"\<\[Gamma]j\>\"", "]"}], " ", "=", " ", 
+    RowBox[{"Directive", "[", 
+     RowBox[{
+      RowBox[{"Thickness", "[", "Medium", "]"}], ",", " ", "Blue"}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"smalltick", " ", "=", " ", "0.010"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"largetick", " ", "=", " ", "0.020"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MYTICKS", " ", "=", 
+    RowBox[{"{", " ", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "10", "]"}], ",", " ", "\"\<10\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"largetick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "20", "]"}], ",", " ", "\"\<20\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "30", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "40", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "50", "]"}], ",", " ", "\"\<50\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "60", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "70", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "80", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "90", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "100", "]"}], ",", " ", "\"\<100\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"largetick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "200", "]"}], ",", " ", "\"\<200\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "300", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "400", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "500", "]"}], ",", " ", "\"\<500\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "600", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "700", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "800", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "900", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "1000", "]"}], ",", " ", "\"\<1000\>\"", ",",
+         " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"largetick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}]}], "\[IndentingNewLine]", 
+     "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MYSILENTTICKS", " ", "=", 
+    RowBox[{"{", " ", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "10", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"largetick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "20", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "30", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "40", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "50", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "60", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "70", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "80", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "90", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "100", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"largetick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "200", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "300", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "400", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "500", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "600", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "700", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "800", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "900", "]"}], ",", " ", "\"\<\>\"", ",", " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"smalltick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Identity", "[", "1000", "]"}], ",", " ", "\"\<\>\"", ",", 
+        " ", 
+        RowBox[{
+         StyleBox["{",
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], 
+         StyleBox[
+          RowBox[{"largetick", ",", "0"}],
+          ShowSpecialCharacters->False,
+          ShowStringCharacters->True,
+          NumberMarks->True], "}"}]}], "}"}]}], "\[IndentingNewLine]", 
+     "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MYPLOT", " ", "=", " ", 
+   RowBox[{"ListLogLinearPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"SAMPLE", "[", "\"\<2j\>\"", "]"}], ",", 
+       RowBox[{"SAMPLE", "[", "\"\<Wj\>\"", "]"}], ",", 
+       RowBox[{"SAMPLE", "[", "\"\<Zj\>\"", "]"}], ",", 
+       RowBox[{"SAMPLE", "[", "\"\<Hj\>\"", "]"}], ",", 
+       RowBox[{"SAMPLE", "[", "\"\<\[Gamma]j\>\"", "]"}]}], "}"}], ",", " ", 
+     RowBox[{"Joined", "\[Rule]", " ", "True"}], ",", " ", 
+     RowBox[{"PlotRange", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"10", "*", "0.9"}], ",", " ", 
+          RowBox[{"1000", "/", "0.9"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+     RowBox[{"Frame", " ", "\[Rule]", "True"}], ",", " ", 
+     RowBox[{"BaseStyle", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}], ",", "14"}], 
+       "}"}]}], ",", " ", 
+     RowBox[{"FrameStyle", " ", "\[Rule]", " ", 
+      RowBox[{"Thickness", "[", "Medium", "]"}]}], ",", " ", 
+     RowBox[{"PlotTheme", "\[Rule]", " ", "\"\<Classic\>\""}], ",", " ", 
+     RowBox[{"LabelStyle", " ", "\[Rule]", "  ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}], ",", " ", 
+        "Black"}], "}"}]}], ",", " ", 
+     RowBox[{"FrameLabel", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Generator \!\(\*SubscriptBox[\(p\), \(T\)]\) Cut [GeV]\>\"", ",", 
+        "\"\<Quark Fraction\>\""}], "}"}]}], ",", " ", 
+     RowBox[{"PlotLabel", " ", "\[Rule]", " ", "\"\<LHC 13 TeV\>\""}], ",", 
+     " ", 
+     RowBox[{"PlotStyle", " ", "->", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"STYLE", "[", "\"\<2j\>\"", "]"}], ",", 
+        RowBox[{"STYLE", "[", "\"\<Wj\>\"", "]"}], ",", 
+        RowBox[{"STYLE", "[", "\"\<Zj\>\"", "]"}], ",", 
+        RowBox[{"STYLE", "[", "\"\<Hj\>\"", "]"}], ",", 
+        RowBox[{"STYLE", "[", "\"\<\[Gamma]j\>\"", "]"}]}], "}"}]}], ",", " ", 
+     RowBox[{"AspectRatio", " ", "\[Rule]", " ", "0.8"}], ",", 
+     RowBox[{"FrameTicks", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "Automatic"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"MYTICKS", ",", "MYSILENTTICKS"}], "}"}]}], "}"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MYOVERLAY", "=", "  ", 
+   RowBox[{"ListLogLinearPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"#", ",", " ", "0.06"}], "}"}], "&"}], "/@", 
+       RowBox[{"{", 
+        RowBox[{"50", ",", "100", ",", "200", ",", "400", ",", "800"}], 
+        "}"}]}], "}"}], ",", " ", 
+     RowBox[{"Joined", " ", "\[Rule]", " ", "False"}], ",", " ", 
+     RowBox[{"PlotRange", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"10", "*", "0.9"}], ",", " ", 
+          RowBox[{"1000", "/", "0.9"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+     RowBox[{"Frame", " ", "\[Rule]", "True"}], ",", " ", 
+     RowBox[{"BaseStyle", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}], ",", "14"}], 
+       "}"}]}], ",", " ", 
+     RowBox[{"FrameStyle", " ", "\[Rule]", " ", 
+      RowBox[{"Thickness", "[", "Medium", "]"}]}], ",", " ", 
+     RowBox[{"PlotTheme", "\[Rule]", " ", "\"\<Classic\>\""}], ",", " ", 
+     RowBox[{"LabelStyle", " ", "\[Rule]", "  ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"FontFamily", "\[Rule]", "\"\<Times\>\""}], ",", " ", 
+        "Black"}], "}"}]}], ",", " ", 
+     RowBox[{"FrameLabel", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Generator \!\(\*SubscriptBox[\(p\), \(T\)]\) Cut [GeV]\>\"", ",", 
+        "\"\<Quark Fraction\>\""}], "}"}]}], ",", " ", 
+     RowBox[{"PlotLabel", " ", "\[Rule]", " ", "\"\<LHC 13 TeV\>\""}], ",", 
+     " ", 
+     RowBox[{"PlotStyle", " ", "->", " ", 
+      RowBox[{"{", "Black", "}"}]}], ",", " ", 
+     RowBox[{"AspectRatio", " ", "\[Rule]", " ", "0.8"}], ",", " ", 
+     RowBox[{"PlotMarkers", " ", "\[Rule]", " ", 
+      RowBox[{"{", "\"\<\[DownArrow]\>\"", "}"}]}], ",", " ", 
+     RowBox[{"FrameTicks", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "Automatic"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"MYTICKS", ",", "MYSILENTTICKS"}], "}"}]}], "}"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"MYOVERLAY", ",", "MYPLOT", ",", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"STYLE", "[", "\"\<2j\>\"", "]"}], " ", ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{"\"\<2j\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Log", "[", "16", "]"}], ",", "0.18"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"STYLE", "[", "\"\<Wj\>\"", "]"}], " ", ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{"\"\<W+j\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Log", "[", "16", "]"}], ",", "0.76"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"STYLE", "[", "\"\<Zj\>\"", "]"}], " ", ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{"\"\<Z+j\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Log", "[", "16", "]"}], ",", "0.68"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"STYLE", "[", "\"\<Hj\>\"", "]"}], " ", ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{"\"\<H+j\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Log", "[", "16", "]"}], ",", "0.26"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"STYLE", "[", "\"\<\[Gamma]j\>\"", "]"}], " ", ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{"\"\<\[Gamma]+j\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Log", "[", "16", "]"}], ",", "0.93"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      "Black", ",", " ", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Pythia 8.215\>\"", ",", "Italic"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Log", "[", "800", "]"}], ",", "0.2"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+     "}"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<fig_parton_level_qg_composition.pdf\>\"", ",", "%"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQ3WG3Yp+myWvHjk8X74LoT1vvPgTRmbJ3OLWAdJdn
+Ez+IPvVDQAdEb3gR2wWi2/Q0ekD0o80CC0B0/99FK0C0j1udvDZIvdZ6ML1U
+v3m1ec5rx19VTidAtK7JuvMgmiFl3w0Q7b/x1x0QbTGP+TlYPK3zLYi+E2bA
+ZQGkJdp9tEH0OpbzZiA6JL7ZGkQ/qxIOBtHf501RPTbptaOcEZMaiN7wtcoB
+RHNtXAWm/0woLDsBpAWezADTvBqLa0H031u76kC0UuqeJhBd9elCD4jeYZ2y
+AES/L+wB0zNu7FoKol9efbIMRAMAWy+bug==
+  "]],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {
+     {GrayLevel[0], AbsolutePointSize[6], AbsoluteThickness[1], 
+      StyleBox[GeometricTransformationBox[
+        TagBox[InsetBox["\[DownArrow]", {0., 0.}],
+         "InsetString"], {{{3.912023005428146, 0.06}}, {{4.605170185988092, 
+        0.06}}, {{5.298317366548036, 0.06}}, {{5.991464547107982, 0.06}}, {{
+        6.684611727667927, 0.06}}}],
+       FontFamily->"Times"]}, {}}, {}, {}, {{}, {}}}, {{}, {{}, {}, 
+     {RGBColor[1, 0, 0], Thickness[Medium], 
+      StyleBox[
+       LineBox[{{2.8723039582492573`, 0.217655}, {3.2188758248682006`, 
+        0.232346}, {3.565448310382953, 0.248305}, {3.912023005428146, 
+        0.26599}, {4.258596905157023, 0.284969}, {4.605170185988092, 
+        0.311777}, {4.951741257286718, 0.340735}, {5.298317366548036, 
+        0.3707}, {5.644891973383226, 0.411446}, {5.991464547107982, 
+        0.453371}, {6.3380373861764525`, 0.504596}, {6.684611727667927, 
+        0.565362}, {7.031184566736398, 0.633491}}],
+       FontFamily->"Times"]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Thickness[Medium], 
+      Dashing[{Small, Small}], 
+      StyleBox[
+       LineBox[{{2.8723039582492573`, 0.735689}, {3.2188758248682006`, 
+        0.772743}, {3.565448310382953, 0.806551}, {3.912023005428146, 
+        0.833728}, {4.258596905157023, 0.852824}, {4.605170185988092, 
+        0.859701}, {4.951741257286718, 0.861207}, {5.298317366548036, 
+        0.854742}, {5.644891973383226, 0.842975}, {5.991464547107982, 
+        0.827331}, {6.3380373861764525`, 0.813235}, {6.684611727667927, 
+        0.794359}, {7.031184566736398, 0.780989}}],
+       FontFamily->"Times"]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Thickness[Medium], 
+      StyleBox[
+       LineBox[{{2.8723039582492573`, 0.720456}, {3.2188758248682006`, 
+        0.760469}, {3.565448310382953, 0.79266}, {3.912023005428146, 
+        0.822085}, {4.258596905157023, 0.844988}, {4.605170185988092, 
+        0.857481}, {4.951741257286718, 0.860755}, {5.298317366548036, 
+        0.854797}, {5.644891973383226, 0.845235}, {5.991464547107982, 
+        0.834098}, {6.3380373861764525`, 0.821318}, {6.684611727667927, 
+        0.806605}, {7.031184566736398, 0.793921}}],
+       FontFamily->"Times"]}, 
+     {RGBColor[1, 0.5, 0], Thickness[Medium], 
+      StyleBox[
+       LineBox[{{2.8723039582492573`, 0.238202}, {3.2188758248682006`, 
+        0.259777}, {3.565448310382953, 0.281435}, {3.912023005428146, 
+        0.30742}, {4.258596905157023, 0.332543}, {4.605170185988092, 
+        0.360666}, {4.951741257286718, 0.395556}, {5.298317366548036, 
+        0.434145}, {5.644891973383226, 0.474665}, {5.991464547107982, 
+        0.52628}, {6.3380373861764525`, 0.581567}, {6.684611727667927, 
+        0.637539}, {7.031184566736398, 0.704292}}],
+       FontFamily->"Times"]}, 
+     {RGBColor[0, 0, 1], Thickness[Medium], 
+      StyleBox[
+       LineBox[{{2.8723039582492573`, 0.932111}, {3.2188758248682006`, 
+        0.927248}, {3.565448310382953, 0.920412}, {3.912023005428146, 
+        0.91144}, {4.258596905157023, 0.902138}, {4.605170185988092, 
+        0.892919}, {4.951741257286718, 0.881577}, {5.298317366548036, 
+        0.866755}, {5.644891973383226, 0.852783}, {5.991464547107982, 
+        0.838509}, {6.3380373861764525`, 0.825413}, {6.684611727667927, 
+        0.813359}, {7.031184566736398, 0.800825}}],
+       FontFamily->"Times"]}}, {}, {}, {{}, {}}}, {
+    {RGBColor[1, 0, 0], Thickness[Medium], 
+     InsetBox["\<\"2j\"\>", 
+      NCache[{Log[16], 0.18}, {2.772588722239781, 0.18}], 
+      ImageScaled[{1, Rational[1, 2]}]]}, 
+    {RGBColor[0, 
+      NCache[
+       Rational[2, 3], 0.6666666666666666], 0], Thickness[Medium], 
+     Dashing[{Small, Small}], 
+     InsetBox["\<\"W+j\"\>", 
+      NCache[{Log[16], 0.76}, {2.772588722239781, 0.76}], 
+      ImageScaled[{1, Rational[1, 2]}]], 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Thickness[Medium], 
+      InsetBox["\<\"Z+j\"\>", 
+       NCache[{Log[16], 0.68}, {2.772588722239781, 0.68}], 
+       ImageScaled[{1, Rational[1, 2]}]]}, 
+     {RGBColor[1, 0.5, 0], Thickness[Medium], 
+      InsetBox["\<\"H+j\"\>", 
+       NCache[{Log[16], 0.26}, {2.772588722239781, 0.26}], 
+       ImageScaled[{1, Rational[1, 2]}]]}, 
+     {RGBColor[0, 0, 1], Thickness[Medium], 
+      InsetBox["\<\"\[Gamma]+j\"\>", 
+       NCache[{Log[16], 0.93}, {2.772588722239781, 0.93}], 
+       ImageScaled[{1, Rational[1, 2]}]], 
+      {GrayLevel[0], InsetBox[
+        StyleBox["\<\"Pythia 8.215\"\>",
+         StripOnInput->False,
+         FontSlant->Italic], 
+        NCache[{Log[800], 0.2}, {6.684611727667927, 0.2}], 
+        ImageScaled[{1, Rational[1, 2]}]]}}}}},
+  AspectRatio->0.8,
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{2.2213040334227383`, 0},
+  AxesStyle->Directive[
+    GrayLevel[0], 
+    AbsoluteThickness[0.2]],
+  BaseStyle->{FontFamily -> "Times", 14},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{
+     FormBox["\"Quark Fraction\"", TraditionalForm], None}, {
+     FormBox[
+     "\"Generator \\!\\(\\*SubscriptBox[\\(p\\), \\(T\\)]\\) Cut [GeV]\"", 
+      TraditionalForm], None}},
+  FrameStyle->Thickness[Medium],
+  FrameTicks->{{Automatic, Automatic}, {{{
+       NCache[
+        Log[10], 2.302585092994046], 
+       FormBox["\"10\"", TraditionalForm], {0.02, 0}}, {
+       NCache[
+        Log[20], 2.995732273553991], 
+       FormBox["\"20\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[30], 3.4011973816621555`], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[40], 3.6888794541139363`], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[50], 3.912023005428146], 
+       FormBox["\"50\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[60], 4.0943445622221], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[70], 4.248495242049359], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[80], 4.382026634673881], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[90], 4.499809670330265], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[100], 4.605170185988092], 
+       FormBox["\"100\"", TraditionalForm], {0.02, 0}}, {
+       NCache[
+        Log[200], 5.298317366548036], 
+       FormBox["\"200\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[300], 5.703782474656201], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[400], 5.991464547107982], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[500], 6.214608098422191], 
+       FormBox["\"500\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[600], 6.396929655216146], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[700], 6.551080335043404], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[800], 6.684611727667927], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[900], 6.802394763324311], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[1000], 6.907755278982137], 
+       FormBox["\"1000\"", TraditionalForm], {0.02, 0}}}, {{
+       NCache[
+        Log[10], 2.302585092994046], 
+       FormBox["\"\"", TraditionalForm], {0.02, 0}}, {
+       NCache[
+        Log[20], 2.995732273553991], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[30], 3.4011973816621555`], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[40], 3.6888794541139363`], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[50], 3.912023005428146], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[60], 4.0943445622221], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[70], 4.248495242049359], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[80], 4.382026634673881], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[90], 4.499809670330265], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[100], 4.605170185988092], 
+       FormBox["\"\"", TraditionalForm], {0.02, 0}}, {
+       NCache[
+        Log[200], 5.298317366548036], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[300], 5.703782474656201], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[400], 5.991464547107982], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[500], 6.214608098422191], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[600], 6.396929655216146], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[700], 6.551080335043404], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[800], 6.684611727667927], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[900], 6.802394763324311], 
+       FormBox["\"\"", TraditionalForm], {0.01, 0}}, {
+       NCache[
+        Log[1000], 6.907755278982137], 
+       FormBox["\"\"", TraditionalForm], {0.02, 0}}}}},
+  FrameTicksStyle->GrayLevel[0],
+  GridLines->{None, None},
+  GridLinesStyle->Automatic,
+  ImagePadding->All,
+  LabelStyle->{FontFamily -> "Times", 
+    GrayLevel[0]},
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Part[{{Log, Exp}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Log, Exp}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Part[{{Log, Exp}, {Identity, Identity}}, 1, 2][#]& )[
+         Part[#, 1]], 
+        (Part[{{Log, Exp}, {Identity, Identity}}, 2, 2][#]& )[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox["\"LHC 13 TeV\"", TraditionalForm],
+  PlotRange->{{2.1972245773362196`, 7.013115794639964}, {0, 1}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{0, 0}, {0, 0}},
+  Ticks->{
+    Charting`ScaledTicks[{Log, Exp}], Automatic},
+  TicksStyle->GrayLevel[0]]], "Output",
+ CellChangeTimes->{{3.68061612719989*^9, 3.6806161349870777`*^9}, {
+   3.680616169845216*^9, 3.680616248366685*^9}, {3.680616303306856*^9, 
+   3.6806163939939117`*^9}, {3.680616424204483*^9, 3.680616533174708*^9}, {
+   3.6806168757714787`*^9, 3.680616890097361*^9}, {3.680616927434245*^9, 
+   3.680616960834619*^9}, {3.6806170021208*^9, 3.680617065592231*^9}, {
+   3.680617098805766*^9, 3.680617117607634*^9}, {3.700830512843627*^9, 
+   3.7008305512181683`*^9}, {3.700830716422182*^9, 3.70083072571559*^9}, {
+   3.700835311871332*^9, 3.700835358750063*^9}, {3.700835403628531*^9, 
+   3.700835430974448*^9}, 3.7008355888885098`*^9, {3.7008356312219877`*^9, 
+   3.700835639437052*^9}}],
+
+Cell[BoxData["\<\"fig_parton_level_qg_composition.pdf\"\>"], "Output",
+ CellChangeTimes->{{3.68061612719989*^9, 3.6806161349870777`*^9}, {
+   3.680616169845216*^9, 3.680616248366685*^9}, {3.680616303306856*^9, 
+   3.6806163939939117`*^9}, {3.680616424204483*^9, 3.680616533174708*^9}, {
+   3.6806168757714787`*^9, 3.680616890097361*^9}, {3.680616927434245*^9, 
+   3.680616960834619*^9}, {3.6806170021208*^9, 3.680617065592231*^9}, {
+   3.680617098805766*^9, 3.680617117607634*^9}, {3.700830512843627*^9, 
+   3.7008305512181683`*^9}, {3.700830716422182*^9, 3.70083072571559*^9}, {
+   3.700835311871332*^9, 3.700835358750063*^9}, {3.700835403628531*^9, 
+   3.700835430974448*^9}, 3.7008355888885098`*^9, {3.7008356312219877`*^9, 
+   3.7008356396103373`*^9}}]
+}, Open  ]],
+
+Cell["", "Title"]
+},
+WindowSize->{1061, 852},
+WindowMargins->{{72, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1283, 33, 138, "Input"],
+Cell[1866, 57, 381, 6, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2284, 68, 27929, 760, 1545, "Input"],
+Cell[30216, 830, 11069, 257, 336, "Output"],
+Cell[41288, 1089, 756, 10, 90, "Output"]
+}, Open  ]],
+Cell[42059, 1102, 17, 0, 92, "Title"]
+}
+]
+*)
+
