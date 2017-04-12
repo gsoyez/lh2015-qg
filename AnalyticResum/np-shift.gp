@@ -32,8 +32,8 @@ set arrow 2 from graph xmc,0.705 to graph xmc,0.775 nohead lc @lcq lw 3
 CF=4.0/3.0
 CA=3.0
 
-langle='{/*1.4 {/Symbol \341}}'
-rangle='{/*1.4 {/Symbol \361}}'
+langle='{/*1.15 {/Symbol \341}}'
+rangle='{/*1.15 {/Symbol \361}}'
 
 omega0=0.225549
 xi0=0.367883
