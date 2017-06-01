@@ -1,21 +1,21 @@
 #!/bin/bash
 
-mkdir quarkgluon_v2
-mkdir quarkgluon_v2/figures/
+mkdir quarkgluon_v3
+mkdir quarkgluon_v3/figures/
 
-cp quarkgluon_jhep.tex quarkgluon_v2/
-cp quarkgluon_jhep.bbl quarkgluon_v2/
-cp jheppub.sty quarkgluon_v2/
+cp quarkgluon_jhep.tex quarkgluon_v3/
+cp quarkgluon_jhep.bbl quarkgluon_v3/
+cp jheppub.sty quarkgluon_v3/
 
 pushd figures
 for file in *.pdf
 do
    echo $file
-   cp $file ../quarkgluon_v2/figures/$file
+   cp $file ../quarkgluon_v3/figures/$file
 done
 popd
 
-pushd quarkgluon_v2/figures
+pushd quarkgluon_v3/figures
 for file in *.pdf
 do
    echo $file
@@ -25,9 +25,9 @@ do
 done
 popd
 
-tar cvzf quarkgluon_v2.tgz quarkgluon_v2/
+tar cvzf quarkgluon_v3.tgz quarkgluon_v3/
 
-pushd quarkgluon_v2
+pushd quarkgluon_v3
 pdflatex --file-line-error --synctex=1 quarkgluon_jhep.tex
 pdflatex --file-line-error --synctex=1 quarkgluon_jhep.tex
 pdflatex --file-line-error --synctex=1 quarkgluon_jhep.tex

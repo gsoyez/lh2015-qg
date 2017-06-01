@@ -135,8 +135,8 @@ do for [jtype=1:words(levels)]{
         }
 
         if (gen eq "AnalyticResum"){
-            tags='"" -nogqq -noNGL -no2loop -noCas -altF'
-            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "1-loop {/Symbol a}_s" "no C_i in {/Symbol e}_0" "alt F({/Symbol e})"'
+            tags='"" -nogqq -noNGL -no2loop -halfCas -noCas -altF'
+            names='"baseline" "no g{/Symbol \256}q~q‾" "no NGLs" "1-loop {/Symbol a}_s" "no C_i in {/Symbol X}_0" "no C_i in {/Symbol e}_0" "alt F({/Symbol e})"'
         }
 
         # the following plots (loop over separation measures) all go in

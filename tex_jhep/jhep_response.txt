@@ -1,0 +1,29 @@
+Dear JHEP Editor,
+
+We thank the referee for the positive feedback about our work and for the suggested improvements.  Here are our responses to the specific requested changes.
+
+1.  The referee has identified the important issue of the Casimir scaling (or not) of the nonperturbative parameter $\Xi_0$.  Initially, we concurred with the referee's reasoning that $\Omega_0$ should experience Casimir scaling but $\Xi_0$ should not.  Then, however, we were reminded of the last paragraph of Appendix I of hep-ph/0407286 (Ref. [73] in our paper), which highlights the possibility that the nonperturbative power correction could depend on fractional moment of the coupling (and hence of the Casimir factor) in the dispersive approach.  This was the motivation for the Casimir scaling in Eq. (4.25), which we have left as the default for a reason that will be clear momentarily.
+
+In order to study the referee's suggestion, we added a new "no $C_i$ in $\Xi_0$" variant to the analytic study.  As one can see in Fig. 15a, this leads to a dramatic increase in discrimination power for beta < 1, yielding better discrimination power for the Les Houches Angularity (beta = 1/2) than any of the other shower variants studied.  Thus, we suspect that this is an unrealistic scaling behavior, and have therefore left Eq. (4.26) as our default choice for our baseline studies.  We are still puzzled why (4.25) should give sensible results, and we hope to figure out a rigorous justification for this choice in future work.
+
+To draw more attention to this issue, we have introduced the sentence above (4.25) on page 16:  "The scaling of $\Xi_0$ is less clear, since it controls nonperturbative collinear radiation, which is less well studied than nonperturbative soft radiation."  We have completely rewritten the paragraph on page 18 that begins with:  "We also consider two alternative scaling behaviors for $\Omega_0$ and $\Xi_0$. ..."  We added the "no $C_i$ in $\Xi_0$" variant to Fig. 15a on page 32, and added corresponding discussion in the text, including the phrase at the end: "especially the assumed scaling of $\epsilon_0$ with the Casimir factor."
+
+Finally, we thank the referee for suggesting us to highlight the beta = 1 case.  We added the phrase below (4.24) of:  "yielding a logarithmic structure of $\frac{\Omega_0}{R \, E_J} \log \frac{R \, E_J}{\Xi_0}$ for $\beta = 1$ exactly."
+
+
+2.  We agree that color coherence is a very important effect to include.  We meant "subleading" to refer to "beyond the double logarithmic limit".  To avoid confusion, we simply removed the word "subleading" from the first paragraph of page 2, such that the remaining phrase still captures the intended meaning:  "perturbative effects beyond the eikonal limit".
+
+3.  To clarify which shower was used in Herwig 2.7.1, we added to footnote 2:  "We use the default angular-ordered shower for these studies."
+
+4.  We thank the referee for pointing out that we did not fully define the max-pT prescription on page 6.  We added the wording:  "This definition uses the hardest parton within the active jet area encountered at any stage of the shower evolution, including the initial hard scattering process."
+
+5. We agree with the referee that it is misleading to mention a possible "universal definition" of quark and gluon jets.   That said, we think it is important to highlight the important role of color correlations at the LHC.  We therefore changed the wording in the top paragraph of page 34 to "where color correlations have an important impact on observed jet radiation patterns."
+
+6. As suggested, we changed the wording on page 37 to: "(see Fig. 19a)".
+
+7. We thank the referee for identifying this issue of diacritical marks in the bibliography.  This was due to a faulty encoding of the tex file, and has now been fixed.
+
+We hope that with these changes, the present version of our manuscript is suitable for publication in JHEP.
+
+Sincerely,
+Gregory Soyez and Jesse Thaler (on behalf of the authors)
