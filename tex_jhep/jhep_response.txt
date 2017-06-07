@@ -17,7 +17,7 @@ Finally, we thank the referee for suggesting us to highlight the beta = 1 case. 
 
 4.  We thank the referee for pointing out that we did not fully define the max-pT prescription on page 6.  We added the wording:  "This definition uses the hardest parton within the active jet area encountered at any stage of the shower evolution, including the initial hard scattering process."
 
-5. We agree with the referee that it is misleading to mention a possible "universal definition" of quark and gluon jets.   That said, we think it is important to highlight the important role of color correlations at the LHC.  We therefore changed the wording in the top paragraph of page 34 to "where color correlations have an important impact on observed jet radiation patterns."
+5.  We agree with the referee that it is misleading to mention a possible "universal definition" of quark and gluon jets.   That said, we think it is important to highlight the important role of color correlations at the LHC.  We therefore changed the wording in the top paragraph of page 34 to "where color correlations have an important impact on observed jet radiation patterns."
 
 6. As suggested, we changed the wording on page 37 to: "(see Fig. 19a)".
 
