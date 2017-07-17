@@ -21,7 +21,7 @@ Also, for consistency with the umlauts in the other author names, please change 
 
 Stefan H\"{o}che
 
-3.  Yes, we are happy with the removal of [85] and including the additional figures as a supplement.  Because the figures changed slightly in the editorial process, we are attaching a new tgz file with the latest figures.  (The arXiv tex files are not needed in the supplement, just the pdf figures.)
+3.  Yes, we are happy with the removal of [85] and including the additional figures as a supplement.  Because the figures changed slightly in the editorial process, we are attaching a new figures.zip file with the latest figures.  (The arXiv tex files are not needed in the supplement, just the pdf figures.)
 
 Sincerely,
 Gregory Soyez and Jesse Thaler (on behalf of the authors)
