@@ -1,0 +1,27 @@
+Dear JHEP Typesetter,
+
+Here are our responses to your query:
+
+1.  Indeed, "that that" at the bottom of page 22 should be "that the".
+
+2.  Here is the list of email addresses for all of the authors (note that Soyez's email is now changed):
+
+philippe.gras@cern.ch
+shoeche@slac.stanford.edu
+deepak.kar@cern.ch
+larkoski@reed.edu
+leif.lonnblad@thep.lu.se
+simon.platzer@durham.ac.uk
+Andrzej.Siodmok@ifj.edu.pl
+peter.skands@monash.edu
+gregory.soyez@ipht.fr
+jthaler@mit.edu
+
+Also, for consistency with the umlauts in the other author names, please change the second author to:
+
+Stefan H\"{o}che
+
+3.  Yes, we are happy with the removal of [85] and including the additional figures as a supplement.  Because the figures changed slightly in the editorial process, we are attaching a new tgz file with the latest figures.  (The arXiv tex files are not needed in the supplement, just the pdf figures.)
+
+Sincerely,
+Gregory Soyez and Jesse Thaler (on behalf of the authors)
