@@ -155,7 +155,7 @@
 
 \author[a]{Philippe Gras,}
 %\emailAdd{philippe.gras@cern.ch}
-\author[b]{Stefan Hoeche,}
+\author[b]{Stefan H\"{o}che,}
 %\emailAdd{shoeche@slac.stanford.edu}
 \author[c]{Deepak Kar,}
 %\emailAdd{deepak.kar@cern.ch}
@@ -278,7 +278,7 @@ hadronization (``parton level'') and after hadronization (``hadron
 level''):
 \begin{itemize}
 \item \textsc{Pythia 8.215} \cite{Sjostrand:2014zea},
-\item \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb},\footnote{We use the default angular-ordered shower for these studies.  We also performed preliminary tests with \textsc{Herwig 7.0.3} \cite{Bellm:2015jjp}.}
+\item \textsc{Herwig++ 2.7.1} \cite{Bahr:2008pv,Bellm:2013hwb},\footnote{We use the default angular-ordered shower for these studies.  Subsequent to this paper, \Ref{Reichelt:2017hts} performed a study to improve quark/gluon modeling in \textsc{Herwig 7.1} \cite{Bellm:2015jjp,Bellm:2017bvx}.}
 \item \textsc{Sherpa 2.2.1} \cite{Gleisberg:2008ta},
 \item \textsc{Vincia 2.001} \cite{Fischer:2016vfv},
 \item \textsc{Deductor 1.0.2} \cite{Nagy:2014mqa} (with hadronization performed by \textsc{Pythia 8.212}),\footnote{Note that this
@@ -974,7 +974,7 @@ The resulting values of $\Delta$ for the LHA are shown in \Fig{fig:ee_sweep}, at
 
 The next surprising feature is that the parton-level trends for sweeping $\alpha_s$ do not necessarily correspond to those for sweeping $Q$ and $R$.  According to the perturbative NLL logic in \Ref{Larkoski:2013eya}, quark/gluon discrimination should depend on $\alpha_s$ evaluated at the scale $Q R / 2$, with larger values of $\alpha_s(Q R / 2)$ leading to improved discrimination power.  This is indeed seen in the parton-level curves obtained from the analytic NLL calculation in \Sec{sec:analytic}, and parton-level \textsc{Pythia}, \textsc{Herwig}, \textsc{Vincia}, \textsc{Ariadne}, and \textsc{Dire} also show improved performance with larger $\alpha_s$.  However, larger values of $Q$ and $R$ correspond to smaller values of $\alpha_s$, so the NLL logic would predict that increasing $Q$ or $R$ should lead to worse discrimination power.  Instead, at parton-level, all of the generators show the opposite $Q$ and $R$ trend from the analytic NLL result.
 
-One reason to expect quark/gluon discrimination to improve at higher energies is that that phase space available for shower evolution increases as $Q$ increases.  The scale $\mu$ of the shower splitting is $\mu_0^2 < \mu^2 < Q^2$, where $\mu_0 = \mathcal{O}(\GeV)$ is the shower cutoff scale.  With more range for shower evolution at higher $Q$, there is a greater possibility to see that a quark jet is different from a gluon jet.  Similarly, larger values of $R$ allow for more emissions within a jet, and from scaling symmetry, one expects that parton-level discrimination power should depend on the combination $Q R$.\footnote{At small values of $R$, one has to worry about the flavor purity of a jet sample, since scale evolution can change the leading parton flavor \cite{Dasgupta:2014yra,Dasgupta:2016bnd}.  Similarly, the restriction in \Eq{eq:Erestrict} can impose a non-trivial bias on the jet flavor at small $R$.}  By contrast, the NLL logic says that quark/gluon discrimination should be dominated by the leading emission(s) in a jet, and since $\alpha_s$ is smaller at higher values of $Q R$, those leading emissions are more similar between quarks and gluons.  Given these two different but equally plausible logics, both of which undoubtably play some role in the complete story, this motivates experimental tests of quark/gluon separation as a function of $Q$ and $R$.
+One reason to expect quark/gluon discrimination to improve at higher energies is that the phase space available for shower evolution increases as $Q$ increases.  The scale $\mu$ of the shower splitting is $\mu_0^2 < \mu^2 < Q^2$, where $\mu_0 = \mathcal{O}(\GeV)$ is the shower cutoff scale.  With more range for shower evolution at higher $Q$, there is a greater possibility to see that a quark jet is different from a gluon jet.  Similarly, larger values of $R$ allow for more emissions within a jet, and from scaling symmetry, one expects that parton-level discrimination power should depend on the combination $Q R$.\footnote{At small values of $R$, one has to worry about the flavor purity of a jet sample, since scale evolution can change the leading parton flavor \cite{Dasgupta:2014yra,Dasgupta:2016bnd}.  Similarly, the restriction in \Eq{eq:Erestrict} can impose a non-trivial bias on the jet flavor at small $R$.}  By contrast, the NLL logic says that quark/gluon discrimination should be dominated by the leading emission(s) in a jet, and since $\alpha_s$ is smaller at higher values of $Q R$, those leading emissions are more similar between quarks and gluons.  Given these two different but equally plausible logics, both of which undoubtably play some role in the complete story, this motivates experimental tests of quark/gluon separation as a function of $Q$ and $R$.
 
 For many of the generators, going from parton-level to hadron-level reverses
 or flattens the $Q$ and $\alpha_s$ trends, though the $R$ trends are more
